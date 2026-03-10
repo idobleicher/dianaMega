@@ -1,0 +1,72 @@
+SEQUENCE LOGO STATISTICS
+============================================================
+
+Dataset: 53 sequences (54 hits, one per gene)
+Positions analyzed: 1-5 (N-terminal motif)
+
+
+Position 1:
+  Information Content: 4.322 bits
+  Conservation: 100.0% (of maximum)
+  Top amino acids:
+    M: 100.0% frequency, 4.322 bits
+
+Position 2:
+  Information Content: 1.295 bits
+  Conservation: 30.0% (of maximum)
+  Top amino acids:
+    G:  24.5% frequency, 0.318 bits
+    P:  22.6% frequency, 0.293 bits
+    E:  11.3% frequency, 0.147 bits
+    T:  11.3% frequency, 0.147 bits
+    S:   5.7% frequency, 0.073 bits
+    D:   5.7% frequency, 0.073 bits
+    A:   5.7% frequency, 0.073 bits
+    Q:   5.7% frequency, 0.073 bits
+    L:   3.8% frequency, 0.049 bits
+    V:   1.9% frequency, 0.024 bits
+
+Position 3:
+  Information Content: 1.140 bits
+  Conservation: 26.4% (of maximum)
+  Top amino acids:
+    D:  20.8% frequency, 0.237 bits
+    P:  15.1% frequency, 0.172 bits
+    E:  15.1% frequency, 0.172 bits
+    L:  13.2% frequency, 0.151 bits
+    T:   9.4% frequency, 0.108 bits
+    S:   9.4% frequency, 0.108 bits
+    V:   3.8% frequency, 0.043 bits
+    A:   3.8% frequency, 0.043 bits
+    N:   3.8% frequency, 0.043 bits
+    W:   1.9% frequency, 0.022 bits
+
+Position 4:
+  Information Content: 0.458 bits
+  Conservation: 10.6% (of maximum)
+  Top amino acids:
+    R:  13.2% frequency, 0.060 bits
+    L:   9.4% frequency, 0.043 bits
+    A:   7.5% frequency, 0.035 bits
+    D:   7.5% frequency, 0.035 bits
+    K:   7.5% frequency, 0.035 bits
+    Y:   7.5% frequency, 0.035 bits
+    I:   7.5% frequency, 0.035 bits
+    V:   7.5% frequency, 0.035 bits
+    S:   7.5% frequency, 0.035 bits
+    T:   5.7% frequency, 0.026 bits
+
+Position 5:
+  Information Content: 0.570 bits
+  Conservation: 13.2% (of maximum)
+  Top amino acids:
+    K:  13.2% frequency, 0.075 bits
+    I:   9.4% frequency, 0.054 bits
+    R:   9.4% frequency, 0.054 bits
+    S:   9.4% frequency, 0.054 bits
+    L:   9.4% frequency, 0.054 bits
+    A:   9.4% frequency, 0.054 bits
+    D:   7.5% frequency, 0.043 bits
+    C:   5.7% frequency, 0.032 bits
+    G:   5.7% frequency, 0.032 bits
+    E:   5.7% frequency, 0.032 bits

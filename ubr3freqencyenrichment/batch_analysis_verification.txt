@@ -1,0 +1,64 @@
+================================================================================
+UBR3 BATCH ANALYSIS VERIFICATION REPORT
+================================================================================
+
+Full Screen Sequences: 16514
+Hits Sequences: 91
+Unique Genes in Hits: 53
+
+Gene List:
+  1. ACIN1
+  2. AGBL5
+  3. ARFIP2
+  4. ATF7
+  5. B3GNTL1
+  6. BTNL2
+  7. C17orf51
+  8. CNPPD1
+  9. CU633980.2
+  10. CXCR3
+  11. DDX31
+  12. ERMAP
+  13. FAM193B
+  14. FARP1
+  15. FARP2
+  16. FARSB
+  17. FBXO24
+  18. FCHSD1
+  19. GBP2
+  20. GPN3
+  21. GPS2
+  22. INTS14
+  23. KCNJ10
+  24. KCNMB3
+  25. KIAA1211
+  26. KLHDC3
+  27. KLK12
+  28. KRT9
+  29. LPIN1
+  30. MITF
+  31. MOV10L1
+  32. MYLK
+  33. NDOR1
+  34. NDRG4
+  35. NMRAL1
+  36. NOB1
+  37. PCK2
+  38. PGBD5
+  39. RDH12
+  40. SH3PXD2A
+  41. SLC25A4
+  42. SLC41A2
+  43. SLC7A9
+  44. SLITRK3
+  45. SOD2
+  46. SPECC1
+  47. THEG
+  48. UNC13B
+  49. UQCC3
+  50. UVRAG
+  51. ZFAT
+  52. ZNF496
+  53. ZNF718
+
+================================================================================

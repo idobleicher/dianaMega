@@ -1,0 +1,40 @@
+{
+  "motifs": [
+    {
+      "name": "3C_like_Q|G",
+      "pattern": "QG",
+      "cut_after": 1
+    },
+    {
+      "name": "3C_like_Q|S",
+      "pattern": "QS",
+      "cut_after": 1
+    },
+    {
+      "name": "3C_like_E|G",
+      "pattern": "EG",
+      "cut_after": 1
+    },
+    {
+      "name": "3CLpro_[LFVM]Q|(S/G/A)",
+      "pattern": "[LFVM]Q[SGA]",
+      "cut_after": 2
+    },
+    {
+      "name": "TEV_NIaPro_ENLYFQ|G",
+      "pattern": "ENLYFQG",
+      "cut_after": 6
+    },
+    {
+      "name": "PreScission_HRV3C_LEVLFQ|GP",
+      "pattern": "LEVLFQGP",
+      "cut_after": 6
+    },
+    {
+      "name": "Thrombin_LVPR|G",
+      "pattern": "LVPRG",
+      "cut_after": 4
+    }
+  ]
+}
+

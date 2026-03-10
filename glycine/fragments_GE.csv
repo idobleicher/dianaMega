@@ -1,0 +1,2 @@
+polyprotein_id,protease,fragment_index,fragment_start_1based,fragment_end_1based,fragment_length,n_term,n_term_2aa,n_term_5aa,c_term,upstream_cut_pos_1based,upstream_site_context,upstream_motif_match,upstream_motif_match_span_1based
+toy_polyprotein_1,3C_like_Q|G,2,6,14,9,G,GE,GEAAA,Q,6,MSTNQ|GEAAAA,QG,5-6

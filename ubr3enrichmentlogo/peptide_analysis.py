@@ -952,17 +952,24 @@ sig_up = (delta_psi >= DPSI_CUTOFF) & (pvals < P_CUTOFF) & ~is_hit
 sig_down = (delta_psi <= -DPSI_CUTOFF) & (pvals < P_CUTOFF) & ~is_hit
 ns = ~sig_up & ~sig_down & ~is_hit
 
+n_sig_up = int(sig_up.sum())
+n_sig_down = int(sig_down.sum())
+
 fig, ax = plt.subplots(figsize=(16, 7))
+
+ax.axvspan(DPSI_CUTOFF, 2.0, ymin=neg_log_p_cutoff / 3.5, alpha=0.03, color=COLOR_SEC, zorder=0)
+ax.axvspan(-2.0, -DPSI_CUTOFF, ymin=neg_log_p_cutoff / 3.5, alpha=0.03, color='#2E86C1', zorder=0)
+
 ax.scatter(delta_psi[ns], neg_log_p[ns], s=4, c='#BDC3C7', alpha=0.3,
            edgecolors='none', rasterized=True, label='Not significant')
 ax.scatter(delta_psi[sig_down], neg_log_p[sig_down], s=6, c='#2E86C1', alpha=0.5,
-           edgecolors='none', rasterized=True, label=f'dPSI <= -{DPSI_CUTOFF}')
+           edgecolors='none', rasterized=True, label=f'Down (n={n_sig_down})')
 ax.scatter(delta_psi[sig_up], neg_log_p[sig_up], s=6, c=COLOR_SEC, alpha=0.5,
-           edgecolors='none', rasterized=True, label=f'dPSI >= {DPSI_CUTOFF}')
-ax.scatter(delta_psi[is_hit], neg_log_p[is_hit], s=25, c=COLOR_MAIN, alpha=0.8,
-           edgecolors='black', linewidths=0.4, zorder=5, label=f'Best hits (n={is_hit.sum()})')
+           edgecolors='none', rasterized=True, label=f'Up (n={n_sig_up})')
+ax.scatter(delta_psi[is_hit], neg_log_p[is_hit], s=30, c=COLOR_MAIN, alpha=0.85,
+           edgecolors='black', linewidths=0.5, zorder=5, label=f'Best hits (n={is_hit.sum()})')
 
-ax.set_ylim(-0.1, 3.0)
+ax.set_ylim(-0.1, 3.5)
 
 hit_idx = np.where(is_hit)[0]
 from adjustText import adjust_text
@@ -970,29 +977,104 @@ texts = []
 for idx in hit_idx:
     gene = df_all.iloc[idx]['Gene_ID']
     texts.append(ax.text(delta_psi.iloc[idx], neg_log_p[idx], gene,
-                         fontsize=7.5, color='#333', fontweight='bold', zorder=6))
+                         fontsize=7, color='#333', fontweight='bold', zorder=6))
 adjust_text(texts, ax=ax, arrowprops=dict(arrowstyle='-', color='#999', lw=0.4),
-            force_text=(0.6, 0.9), force_points=(0.3, 0.3), expand=(1.3, 1.5))
+            force_text=(0.8, 1.2), force_points=(0.4, 0.4), expand=(1.5, 1.8),
+            only_move={'points': 'y', 'text': 'xy'})
 
 ax.axvline(x=DPSI_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 ax.axvline(x=-DPSI_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 ax.axhline(y=neg_log_p_cutoff, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 
-ax.text(DPSI_CUTOFF + 0.02, 2.95, f'dPSI = {DPSI_CUTOFF}',
-        fontsize=8, color='#333', va='top')
-ax.text(-DPSI_CUTOFF - 0.02, 2.95, f'dPSI = -{DPSI_CUTOFF}',
-        fontsize=8, color='#333', va='top', ha='right')
+ax.text(DPSI_CUTOFF + 0.02, 3.45, f'dPSI = {DPSI_CUTOFF}',
+        fontsize=8, color='#555', va='top')
+ax.text(-DPSI_CUTOFF - 0.02, 3.45, f'dPSI = -{DPSI_CUTOFF}',
+        fontsize=8, color='#555', va='top', ha='right')
 ax.text(ax.get_xlim()[1] * 0.98, neg_log_p_cutoff + 0.05, f'p = {P_CUTOFF}',
-        fontsize=8, color='#333', va='bottom', ha='right')
+        fontsize=8, color='#555', va='bottom', ha='right')
 
 ax.set_xlabel(r'$\Delta$ PSI (UBR3 $-$ Control)', fontsize=12)
-ax.set_ylabel('-log10(p-value)', fontsize=12)
+ax.set_ylabel(r'$-\log_{10}$(p-value)', fontsize=12)
 ax.set_title('Volcano Plot — UBR3 N-terminal Screen\n'
-             f'(n={len(df_all):,} peptides, t-test UBR3 vs Control replicates)',
+             f'(n={len(df_all):,} peptides, Welch t-test, '
+             f'{n_sig_up + n_sig_down + int(is_hit.sum())} significant)',
              fontweight='bold', fontsize=12)
 ax.legend(fontsize=9, frameon=False, loc='upper left', markerscale=1.5)
 plt.tight_layout()
 save(fig, 'fig19_volcano_plot')
+
+# ============================================================
+# FIG 19b: Volcano plot — Cohen's d effect size
+# ============================================================
+print("\n--- Fig 19b: Volcano plot (Cohen's d) ---")
+
+cohen_d_vals = []
+for _, row in df_all.iterrows():
+    ctrl = np.array([row['PSI-293a'], row['PSI-293b']])
+    ubr3 = np.array([row['PSI-UBR3a'], row['PSI-UBR3b']])
+    pooled_std = np.sqrt((np.var(ctrl, ddof=1) + np.var(ubr3, ddof=1)) / 2)
+    if pooled_std == 0:
+        cohen_d_vals.append(0.0)
+    else:
+        cohen_d_vals.append((np.mean(ubr3) - np.mean(ctrl)) / pooled_std)
+
+cohen_d = np.array(cohen_d_vals)
+abs_cohen_d = np.abs(cohen_d)
+abs_cohen_d_clipped = np.clip(abs_cohen_d, 0, 20)
+
+DPSI_CUTOFF_D = 0.5
+COHEN_D_CUTOFF = 0.8  # conventional "large" effect threshold
+
+sig_up_d = (delta_psi >= DPSI_CUTOFF_D) & (abs_cohen_d >= COHEN_D_CUTOFF) & ~is_hit
+sig_down_d = (delta_psi <= -DPSI_CUTOFF_D) & (abs_cohen_d >= COHEN_D_CUTOFF) & ~is_hit
+ns_d = ~sig_up_d & ~sig_down_d & ~is_hit
+
+n_sig_up_d = int(sig_up_d.sum())
+n_sig_down_d = int(sig_down_d.sum())
+n_sig_d = n_sig_up_d + n_sig_down_d + int(is_hit.sum())
+
+fig, ax = plt.subplots(figsize=(16, 7))
+
+ax.scatter(delta_psi[ns_d], abs_cohen_d_clipped[ns_d], s=4, c='#BDC3C7', alpha=0.3,
+           edgecolors='none', rasterized=True, label='Below threshold')
+ax.scatter(delta_psi[sig_down_d], abs_cohen_d_clipped[sig_down_d], s=6, c='#2E86C1', alpha=0.5,
+           edgecolors='none', rasterized=True, label=f'Down (n={n_sig_down_d})')
+ax.scatter(delta_psi[sig_up_d], abs_cohen_d_clipped[sig_up_d], s=6, c=COLOR_SEC, alpha=0.5,
+           edgecolors='none', rasterized=True, label=f'Up (n={n_sig_up_d})')
+ax.scatter(delta_psi[is_hit], abs_cohen_d_clipped[is_hit], s=30, c=COLOR_MAIN, alpha=0.85,
+           edgecolors='black', linewidths=0.5, zorder=5, label=f'Best hits (n={is_hit.sum()})')
+
+ax.set_ylim(-0.3, 21)
+
+texts_d = []
+for idx in hit_idx:
+    gene = df_all.iloc[idx]['Gene_ID']
+    texts_d.append(ax.text(delta_psi.iloc[idx], abs_cohen_d_clipped[idx], gene,
+                           fontsize=7, color='#333', fontweight='bold', zorder=6))
+adjust_text(texts_d, ax=ax, arrowprops=dict(arrowstyle='-', color='#999', lw=0.4),
+            force_text=(0.8, 1.2), force_points=(0.4, 0.4), expand=(1.5, 1.8),
+            only_move={'points': 'y', 'text': 'xy'})
+
+ax.axvline(x=DPSI_CUTOFF_D, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+ax.axvline(x=-DPSI_CUTOFF_D, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+ax.axhline(y=COHEN_D_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+
+ax.text(DPSI_CUTOFF_D + 0.02, 20.5, f'dPSI = {DPSI_CUTOFF_D}',
+        fontsize=8, color='#555', va='top')
+ax.text(-DPSI_CUTOFF_D - 0.02, 20.5, f'dPSI = -{DPSI_CUTOFF_D}',
+        fontsize=8, color='#555', va='top', ha='right')
+ax.text(ax.get_xlim()[1] * 0.98, COHEN_D_CUTOFF + 0.15,
+        f"|Cohen's d| = {COHEN_D_CUTOFF}", fontsize=8, color='#555', va='bottom', ha='right')
+
+ax.set_xlabel(r'$\Delta$ PSI (UBR3 $-$ Control)', fontsize=12)
+ax.set_ylabel("|Cohen's d|  (effect size, clipped at 20)", fontsize=12)
+ax.set_title("Volcano Plot — Cohen's d Effect Size\n"
+             f"(n={len(df_all):,} peptides, |d| >= {COHEN_D_CUTOFF} & |dPSI| >= {DPSI_CUTOFF_D}"
+             f" → {n_sig_d} significant)",
+             fontweight='bold', fontsize=12)
+ax.legend(fontsize=9, frameon=False, loc='upper left', markerscale=1.5)
+plt.tight_layout()
+save(fig, 'fig19b_volcano_cohen_d')
 
 # FIG 20: Volcano plot — colored by Pos2 residue motif
 # ============================================================
@@ -1011,26 +1093,46 @@ pos2_colors = {
 }
 DEFAULT_COLOR = '#95A5A6'
 
-fig, ax = plt.subplots(figsize=(16, 7))
+fig, ax = plt.subplots(figsize=(17, 7))
+
+ax.axvspan(DPSI_CUTOFF, 2.0, ymin=neg_log_p_cutoff / 3.8, alpha=0.03, color=COLOR_SEC, zorder=0)
+ax.axvspan(-2.0, -DPSI_CUTOFF, ymin=neg_log_p_cutoff / 3.8, alpha=0.03, color='#2E86C1', zorder=0)
+
 ax.scatter(delta_psi[ns], neg_log_p[ns], s=4, c='#BDC3C7', alpha=0.3,
-           edgecolors='none', rasterized=True, label='Not significant')
+           edgecolors='none', rasterized=True, label='_nolegend_')
 ax.scatter(delta_psi[sig_down], neg_log_p[sig_down], s=6, c='#BDC3C7', alpha=0.3,
-           edgecolors='none', rasterized=True)
+           edgecolors='none', rasterized=True, label='_nolegend_')
 ax.scatter(delta_psi[sig_up & ~is_hit], neg_log_p[sig_up & ~is_hit], s=6, c='#BDC3C7',
-           alpha=0.3, edgecolors='none', rasterized=True)
+           alpha=0.3, edgecolors='none', rasterized=True, label='_nolegend_')
 
 hit_idx = np.where(is_hit)[0]
-plotted_pos2 = set()
+pos2_order = ['P', 'G', 'E', 'T', 'Q', 'S', 'A', 'D']
+pos2_counts = {}
 for idx in hit_idx:
-    seq = df_all.iloc[idx]['AA_seq']
-    p2 = seq[1]
+    p2 = df_all.iloc[idx]['AA_seq'][1]
+    pos2_counts[p2] = pos2_counts.get(p2, 0) + 1
+
+plotted_pos2 = set()
+for p2_key in pos2_order:
+    idxs = [idx for idx in hit_idx if df_all.iloc[idx]['AA_seq'][1] == p2_key]
+    if not idxs:
+        continue
+    c = pos2_colors.get(p2_key, DEFAULT_COLOR)
+    for i, idx in enumerate(idxs):
+        lbl = f'{p2_key} (n={len(idxs)})' if i == 0 else None
+        ax.scatter(delta_psi.iloc[idx], neg_log_p[idx], s=50, c=c, alpha=0.85,
+                   edgecolors='black', linewidths=0.5, zorder=5, label=lbl)
+
+remaining = [idx for idx in hit_idx if df_all.iloc[idx]['AA_seq'][1] not in pos2_order]
+for idx in remaining:
+    p2 = df_all.iloc[idx]['AA_seq'][1]
     c = pos2_colors.get(p2, DEFAULT_COLOR)
-    lbl = f'Pos2 = {p2} (n={sum(1 for i in hit_idx if df_all.iloc[i]["AA_seq"][1]==p2)})' if p2 not in plotted_pos2 else None
+    lbl = f'{p2} (n={pos2_counts.get(p2, 1)})' if p2 not in plotted_pos2 else None
     ax.scatter(delta_psi.iloc[idx], neg_log_p[idx], s=50, c=c, alpha=0.85,
                edgecolors='black', linewidths=0.5, zorder=5, label=lbl)
     plotted_pos2.add(p2)
 
-ax.set_ylim(-0.1, 3.0)
+ax.set_ylim(-0.1, 3.5)
 
 texts = []
 for idx in hit_idx:
@@ -1041,29 +1143,104 @@ for idx in hit_idx:
     c = pos2_colors.get(p2, DEFAULT_COLOR)
     texts.append(ax.text(delta_psi.iloc[idx], neg_log_p[idx],
                          f'{gene} ({dipeptide})',
-                         fontsize=7.5, color=c, fontweight='bold', zorder=6))
+                         fontsize=6.5, color=c, fontweight='bold', zorder=6))
 adjust_text(texts, ax=ax, arrowprops=dict(arrowstyle='-', color='#999', lw=0.4),
-            force_text=(0.6, 0.9), force_points=(0.3, 0.3), expand=(1.3, 1.5))
+            force_text=(1.0, 1.5), force_points=(0.5, 0.5), expand=(1.8, 2.2),
+            only_move={'points': 'y', 'text': 'xy'})
 
 ax.axvline(x=DPSI_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 ax.axvline(x=-DPSI_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 ax.axhline(y=neg_log_p_cutoff, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
 
-ax.text(DPSI_CUTOFF + 0.02, 2.95, f'dPSI = {DPSI_CUTOFF}',
-        fontsize=8, color='#333', va='top')
-ax.text(-DPSI_CUTOFF - 0.02, 2.95, f'dPSI = -{DPSI_CUTOFF}',
-        fontsize=8, color='#333', va='top', ha='right')
+ax.text(DPSI_CUTOFF + 0.02, 3.45, f'dPSI = {DPSI_CUTOFF}',
+        fontsize=8, color='#555', va='top')
+ax.text(-DPSI_CUTOFF - 0.02, 3.45, f'dPSI = -{DPSI_CUTOFF}',
+        fontsize=8, color='#555', va='top', ha='right')
 ax.text(ax.get_xlim()[1] * 0.98, neg_log_p_cutoff + 0.05, f'p = {P_CUTOFF}',
-        fontsize=8, color='#333', va='bottom', ha='right')
+        fontsize=8, color='#555', va='bottom', ha='right')
 
 ax.set_xlabel(r'$\Delta$ PSI (UBR3 $-$ Control)', fontsize=12)
-ax.set_ylabel('-log10(p-value)', fontsize=12)
+ax.set_ylabel(r'$-\log_{10}$(p-value)', fontsize=12)
 ax.set_title('Volcano Plot — Best Hits Colored by Position 2 Residue\n'
-             f'(n={len(df_all):,} peptides, label shows Gene (Pos2–Pos3 dipeptide))',
+             f'(n={len(df_all):,} peptides, label = Gene (Pos2–Pos3))',
              fontweight='bold', fontsize=12)
-ax.legend(fontsize=9, frameon=True, loc='upper left', markerscale=1.2,
-          edgecolor='#ccc', fancybox=True)
+ax.legend(fontsize=8.5, frameon=True, loc='upper left', markerscale=1.2,
+          edgecolor='#ccc', fancybox=True, ncol=2, title='Pos2 residue',
+          title_fontsize=9)
 plt.tight_layout()
 save(fig, 'fig20_volcano_motif')
+
+# ============================================================
+# FIG 20b: Volcano plot by motif — Cohen's d effect size
+# ============================================================
+print("\n--- Fig 20b: Volcano plot by motif (Cohen's d) ---")
+
+fig, ax = plt.subplots(figsize=(17, 7))
+
+ax.scatter(delta_psi[ns_d], abs_cohen_d_clipped[ns_d], s=4, c='#BDC3C7', alpha=0.3,
+           edgecolors='none', rasterized=True, label='_nolegend_')
+ax.scatter(delta_psi[sig_down_d], abs_cohen_d_clipped[sig_down_d], s=6, c='#BDC3C7', alpha=0.3,
+           edgecolors='none', rasterized=True, label='_nolegend_')
+ax.scatter(delta_psi[sig_up_d & ~is_hit], abs_cohen_d_clipped[sig_up_d & ~is_hit], s=6,
+           c='#BDC3C7', alpha=0.3, edgecolors='none', rasterized=True, label='_nolegend_')
+
+hit_idx = np.where(is_hit)[0]
+for p2_key in pos2_order:
+    idxs = [idx for idx in hit_idx if df_all.iloc[idx]['AA_seq'][1] == p2_key]
+    if not idxs:
+        continue
+    c = pos2_colors.get(p2_key, DEFAULT_COLOR)
+    for i, idx in enumerate(idxs):
+        lbl = f'{p2_key} (n={len(idxs)})' if i == 0 else None
+        ax.scatter(delta_psi.iloc[idx], abs_cohen_d_clipped[idx], s=50, c=c, alpha=0.85,
+                   edgecolors='black', linewidths=0.5, zorder=5, label=lbl)
+
+plotted_pos2 = set(pos2_order)
+remaining = [idx for idx in hit_idx if df_all.iloc[idx]['AA_seq'][1] not in pos2_order]
+for idx in remaining:
+    p2 = df_all.iloc[idx]['AA_seq'][1]
+    c = pos2_colors.get(p2, DEFAULT_COLOR)
+    lbl = f'{p2} (n={pos2_counts.get(p2, 1)})' if p2 not in plotted_pos2 else None
+    ax.scatter(delta_psi.iloc[idx], abs_cohen_d_clipped[idx], s=50, c=c, alpha=0.85,
+               edgecolors='black', linewidths=0.5, zorder=5, label=lbl)
+    plotted_pos2.add(p2)
+
+ax.set_ylim(-0.3, 21)
+
+texts_20b = []
+for idx in hit_idx:
+    seq = df_all.iloc[idx]['AA_seq']
+    gene = df_all.iloc[idx]['Gene_ID']
+    dipeptide = seq[1:3]
+    p2 = seq[1]
+    c = pos2_colors.get(p2, DEFAULT_COLOR)
+    texts_20b.append(ax.text(delta_psi.iloc[idx], abs_cohen_d_clipped[idx],
+                             f'{gene} ({dipeptide})',
+                             fontsize=6.5, color=c, fontweight='bold', zorder=6))
+adjust_text(texts_20b, ax=ax, arrowprops=dict(arrowstyle='-', color='#999', lw=0.4),
+            force_text=(1.0, 1.5), force_points=(0.5, 0.5), expand=(1.8, 2.2),
+            only_move={'points': 'y', 'text': 'xy'})
+
+ax.axvline(x=DPSI_CUTOFF_D, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+ax.axvline(x=-DPSI_CUTOFF_D, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+ax.axhline(y=COHEN_D_CUTOFF, color='#333', linestyle='--', linewidth=0.8, alpha=0.6)
+
+ax.text(DPSI_CUTOFF_D + 0.02, 20.5, f'dPSI = {DPSI_CUTOFF_D}',
+        fontsize=8, color='#555', va='top')
+ax.text(-DPSI_CUTOFF_D - 0.02, 20.5, f'dPSI = -{DPSI_CUTOFF_D}',
+        fontsize=8, color='#555', va='top', ha='right')
+ax.text(ax.get_xlim()[1] * 0.98, COHEN_D_CUTOFF + 0.15,
+        f"|Cohen's d| = {COHEN_D_CUTOFF}", fontsize=8, color='#555', va='bottom', ha='right')
+
+ax.set_xlabel(r'$\Delta$ PSI (UBR3 $-$ Control)', fontsize=12)
+ax.set_ylabel("|Cohen's d|  (effect size, clipped at 20)", fontsize=12)
+ax.set_title("Volcano Plot — Cohen's d, Best Hits by Position 2 Residue\n"
+             f"(n={len(df_all):,} peptides, label = Gene (Pos2–Pos3))",
+             fontweight='bold', fontsize=12)
+ax.legend(fontsize=8.5, frameon=True, loc='upper left', markerscale=1.2,
+          edgecolor='#ccc', fancybox=True, ncol=2, title='Pos2 residue',
+          title_fontsize=9)
+plt.tight_layout()
+save(fig, 'fig20b_volcano_motif_cohen_d')
 
 print(f"\n=== All figures saved to: {OUTPUT_DIR} ===")

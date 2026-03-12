@@ -9,7 +9,7 @@ from scipy import stats
 import os
 
 EXCEL_PATH = r'c:\Users\User\Downloads\UBR3 Nt screen (1).xlsx'
-OUTPUT_DIR = r'c:\Users\User\Desktop\תינוקת\ubr3enrichmentlogo\figures'
+OUTPUT_DIR = r'c:\Users\User\Desktop\תינוקת\dianaMega\ubr3enrichmentlogo\figures'
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 COLOR_MAIN = '#C0392B'

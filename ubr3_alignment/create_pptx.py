@@ -38,6 +38,31 @@ EXPLANATIONS = {
         ]
     ),
 
+    "ubr3_combined_conservation_architecture.png": (
+        "Conservation Score and Domain Architecture (Aligned Axes)",
+        [
+            "This figure combines the per-position conservation plot (Panel A) with the "
+            "domain architecture across all 13 species (Panel B), sharing the same x-axis "
+            "(human amino acid numbering).",
+
+            "Panel A shows the conservation score (fraction of species sharing the most "
+            "common residue) smoothed over a 20-residue window. The red dashed line marks "
+            "90% conservation and the orange dashed line marks 70%. Colored vertical bands "
+            "highlight the three conserved domains.",
+
+            "Panel B shows the full-length UBR3 protein for each species with colored "
+            "domain blocks. Because both panels share the same x-axis, you can trace "
+            "straight down from each conservation peak to see the corresponding domain "
+            "in every species.",
+
+            "This view makes it immediately clear that the conservation peaks correspond "
+            "precisely to the functional domains: the UBR box (~118-189), the 400-600 "
+            "region, and the RING domain (~1306-1364). The x-axis uses human residue "
+            "numbering, which corrects for alignment gaps and gives biologically meaningful "
+            "coordinates.",
+        ]
+    ),
+
     "ubr3_pub_combined_panels.png": (
         "Combined Publication Figure",
         [
@@ -302,6 +327,7 @@ REGION_EXPLANATION = (
 
 SLIDE_GROUPS = [
     ("Overview", [
+        "ubr3_combined_conservation_architecture.png",
         "ubr3_animal_domain_architecture.png",
         "ubr3_pub_combined_panels.png",
     ]),

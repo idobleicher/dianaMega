@@ -1,8 +1,7 @@
 """
 Combined figure: Conservation plot (A) on top, domain architecture (B) below,
-both sharing the exact same amino acid x-axis.
+sharing the same amino acid x-axis. One figure per protein.
 """
-
 import os
 import numpy as np
 import matplotlib
@@ -15,18 +14,18 @@ from collections import Counter
 from Bio import AlignIO
 
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
-ALIGNED_FASTA = os.path.join(OUTPUT_DIR, "ubr3_aligned.fasta")
-ICONS_DIR = os.path.join(OUTPUT_DIR, "icons")
+ICONS_DIR = os.path.join(os.path.dirname(OUTPUT_DIR), "ubr3_alignment", "icons")
 
 SPECIES_ORDER = [
-    "H_sapiens", "M_musculus", "X_laevis", "P_marinus",
-    "C_intestinalis", "B_floridae", "S_purpuratus", "O_sinensis",
-    "D_melanogaster", "A_mellifera", "P_tepidariorum",
+    "H_sapiens", "M_musculus", "X_laevis", "G_gallus", "D_rerio",
+    "P_marinus", "C_intestinalis", "B_floridae", "S_purpuratus",
+    "O_sinensis", "D_melanogaster", "A_mellifera", "P_tepidariorum",
     "H_vulgaris", "N_vectensis",
 ]
 ICON_FILES = {
     "H_sapiens": "icon_human.png", "M_musculus": "icon_mouse.png",
-    "X_laevis": "icon_frog.png", "P_marinus": "icon_lamprey.png",
+    "X_laevis": "icon_frog.png", "G_gallus": "icon_chicken.png",
+    "D_rerio": "icon_zebrafish.png", "P_marinus": "icon_lamprey.png",
     "C_intestinalis": "icon_seasquirt.png", "B_floridae": "icon_amphioxus.png",
     "S_purpuratus": "icon_seaurchin.png", "O_sinensis": "icon_octopus.png",
     "D_melanogaster": "icon_fruitfly.png", "A_mellifera": "icon_honeybee.png",
@@ -35,7 +34,8 @@ ICON_FILES = {
 }
 DISPLAY_NAMES = {
     "H_sapiens": "H. sapiens", "M_musculus": "M. musculus",
-    "X_laevis": "X. laevis", "P_marinus": "P. marinus",
+    "X_laevis": "X. laevis", "G_gallus": "G. gallus",
+    "D_rerio": "D. rerio", "P_marinus": "P. marinus",
     "C_intestinalis": "C. intestinalis", "B_floridae": "B. floridae",
     "S_purpuratus": "S. purpuratus", "O_sinensis": "O. sinensis",
     "D_melanogaster": "D. melanogaster", "A_mellifera": "A. mellifera",
@@ -44,6 +44,7 @@ DISPLAY_NAMES = {
 }
 COMMON_NAMES = {
     "H_sapiens": "Human", "M_musculus": "Mouse", "X_laevis": "Frog",
+    "G_gallus": "Chicken", "D_rerio": "Zebrafish",
     "P_marinus": "Lamprey", "C_intestinalis": "Sea squirt",
     "B_floridae": "Amphioxus", "S_purpuratus": "Sea urchin",
     "O_sinensis": "Octopus", "D_melanogaster": "Fruit fly",
@@ -52,19 +53,14 @@ COMMON_NAMES = {
 }
 PHYLUM_COLORS = {
     "H_sapiens": "#B71C1C", "M_musculus": "#B71C1C",
-    "X_laevis": "#BF360C", "P_marinus": "#E65100",
+    "X_laevis": "#BF360C", "G_gallus": "#D84315",
+    "D_rerio": "#E65100", "P_marinus": "#E65100",
     "C_intestinalis": "#F57F17", "B_floridae": "#827717",
     "S_purpuratus": "#33691E", "O_sinensis": "#00695C",
     "D_melanogaster": "#01579B", "A_mellifera": "#01579B",
     "P_tepidariorum": "#0D47A1", "H_vulgaris": "#4A148C",
     "N_vectensis": "#4A148C",
 }
-
-DOMAINS = [
-    ("UBR box",       118,  189,  "#7E57C2"),
-    ("Region 400-600", 400, 600,  "#1E88E5"),
-    ("RING domain",   1232, 1376, "#EF6C00"),
-]
 
 
 def auto_crop(img, bg_thresh=245):
@@ -97,12 +93,9 @@ def load_icon(sp_id):
     return auto_crop(img)
 
 
-def main():
-    print("=" * 60)
-    print("Combined Conservation + Domain Architecture Figure")
-    print("=" * 60)
-
-    alignment = AlignIO.read(ALIGNED_FASTA, "fasta")
+def create_combined_figure(fasta_path, protein_name, output_filename,
+                            l22e_start, l22e_end):
+    alignment = AlignIO.read(fasta_path, "fasta")
     n_cols = alignment.get_alignment_length()
     n_seqs = len(alignment)
 
@@ -141,7 +134,7 @@ def main():
         human_x.append(last_h)
     human_x = np.array(human_x, dtype=float)
 
-    window = 20
+    window = min(10, n_cols // 5) if n_cols > 20 else 3
     kernel = np.ones(window) / window
     smoothed = np.convolve(scores, kernel, mode="same")
 
@@ -155,66 +148,35 @@ def main():
         species_lengths.append(sl)
 
     n = len(ordered)
-    x_max = max(human_len, max(species_lengths)) * 1.03
+    x_max = max(human_len, max(species_lengths)) * 1.05
 
-    # ── Figure with shared x-axis ──
+    domains = [
+        (f"L22e domain", l22e_start, l22e_end, "#7E57C2"),
+    ]
+
     fig, (ax_top, ax_bot) = plt.subplots(
-        2, 1, figsize=(18, 15), sharex=True,
+        2, 1, figsize=(14, 13), sharex=True,
         gridspec_kw={"height_ratios": [1, 2.2], "hspace": 0.05}
     )
 
-    # ── Panel A: Conservation ──
+    # Panel A: Conservation
     ax_top.fill_between(human_x, smoothed, alpha=0.3, color="#2196F3")
     ax_top.plot(human_x, smoothed, linewidth=0.8, color="#0D47A1")
     ax_top.axhline(0.9, ls="--", color="red", alpha=0.5, lw=1)
     ax_top.axhline(0.7, ls="--", color="orange", alpha=0.5, lw=1)
     ax_top.set_ylim(0, 1.05)
     ax_top.set_ylabel("Conservation", fontsize=12)
-    ax_top.set_title("UBR3 Conservation and Domain Architecture",
+    ax_top.set_title(f"{protein_name} Conservation and Domain Architecture",
                      fontsize=16, fontweight="bold", pad=12)
 
-    for dname, h_start, h_end, color in DOMAINS:
+    for dname, h_start, h_end, color in domains:
         ax_top.axvspan(h_start, h_end, alpha=0.15, color=color)
         ax_bot.axvspan(h_start, h_end, alpha=0.08, color=color)
 
-    substrate_residues = {
-        132: "Arg132", 140: "Pro140", 141: "Cys141",
-        169: "Ala169", 171: "Asp171", 177: "Val177",
-        444: "Val444", 448: "Val448", 449: "Gln449",
-        511: "Trp511", 577: "Glu577",
-    }
-    sorted_subs = sorted(substrate_residues.items())
-    offsets = []
-    for i, (pos, label) in enumerate(sorted_subs):
-        level = 0
-        for j in range(i):
-            prev_pos = sorted_subs[j][0]
-            if offsets[j] == level and abs(pos - prev_pos) < 30:
-                level += 1
-        offsets.append(level)
-    for (pos, label), level in zip(sorted_subs, offsets):
-        col = human_to_col.get(pos)
-        if col is not None:
-            sc = smoothed[col]
-            ax_top.plot(pos, sc, "v", color="#D32F2F", markersize=4, zorder=5)
-            y_off = 8 + level * 12
-            ax_top.annotate(
-                label, xy=(pos, sc), xytext=(0, y_off),
-                textcoords="offset points", fontsize=5.5,
-                ha="center", va="bottom", color="#B71C1C",
-                fontweight="bold", rotation=60,
-                annotation_clip=False,
-            )
-
-    from matplotlib.lines import Line2D
     domain_patches = [
         mpatches.Patch(facecolor=c, edgecolor="none", label=nm, alpha=0.5)
-        for nm, _, _, c in DOMAINS
+        for nm, _, _, c in domains
     ]
-    domain_patches.append(
-        Line2D([0], [0], marker="v", color="#D32F2F", linestyle="None",
-               markersize=5, label="Substrate recognition")
-    )
     ax_top.legend(handles=domain_patches, fontsize=8, loc="lower right",
                   framealpha=0.9)
     ax_top.spines["top"].set_visible(False)
@@ -222,7 +184,7 @@ def main():
     ax_top.text(0.01, 0.95, "A", transform=ax_top.transAxes,
                 fontsize=22, fontweight="bold", va="top")
 
-    # ── Panel B: Domain architecture ──
+    # Panel B: Domain architecture
     row_h = 1.0
     bar_h = 0.4
 
@@ -237,7 +199,7 @@ def main():
         ax_bot.barh(y, seq_len, height=bar_h,
                     color=ph_color, alpha=0.08, edgecolor="none")
 
-        for dname, h_start, h_end, color in DOMAINS:
+        for dname, h_start, h_end, color in domains:
             col_s = human_to_col.get(h_start)
             col_e = human_to_col.get(h_end)
             if col_s is None or col_e is None:
@@ -282,7 +244,7 @@ def main():
             )
             ax_bot.add_artist(ab)
 
-        ax_bot.text(seq_len + 15, y, f"{seq_len} aa",
+        ax_bot.text(seq_len + 2, y, f"{seq_len} aa",
                     va="center", ha="left", fontsize=7, color="#999")
 
     ax_bot.set_yticks([])
@@ -298,12 +260,39 @@ def main():
 
     fig.subplots_adjust(left=0.18, right=0.95)
 
-    out_path = os.path.join(OUTPUT_DIR,
-                            "ubr3_combined_conservation_architecture.png")
+    out_path = os.path.join(OUTPUT_DIR, output_filename)
     fig.savefig(out_path, dpi=300, bbox_inches="tight",
                 facecolor="white", edgecolor="none")
     plt.close(fig)
     print(f"Saved: {out_path}")
+    return out_path
+
+
+def main():
+    print("=" * 60)
+    print("Combined Conservation + Domain Architecture Figures")
+    print("=" * 60)
+
+    rpl22_fasta = os.path.join(OUTPUT_DIR, "rpl22_aligned.fasta")
+    rpl22l1_fasta = os.path.join(OUTPUT_DIR, "rpl22l1_aligned.fasta")
+
+    if os.path.exists(rpl22_fasta):
+        create_combined_figure(rpl22_fasta, "RPL22",
+                                "rpl22_combined_conservation_architecture.png",
+                                l22e_start=15, l22e_end=128)
+    else:
+        print(f"SKIP RPL22: {rpl22_fasta} not found")
+
+    if os.path.exists(rpl22l1_fasta):
+        create_combined_figure(rpl22l1_fasta, "RPL22L1",
+                                "rpl22l1_combined_conservation_architecture.png",
+                                l22e_start=16, l22e_end=122)
+    else:
+        print(f"SKIP RPL22L1: {rpl22l1_fasta} not found")
+
+    print(f"\n{'='*60}")
+    print("DONE")
+    print(f"{'='*60}")
 
 
 if __name__ == "__main__":

@@ -1,9 +1,9 @@
 """
-Publication-style UBR3 alignment figures with broad phylogenetic panel.
-  Panel A: ClustalW-style text alignment for UBR box, 400-600 region, RING domain
-  Panel B: Domain architecture diagram across species
+Publication-style RPL22 / RPL22L1 alignment figures:
+  - ClustalW-style text alignment for the full protein (L22e domain)
+  - Domain architecture diagram across species
+  - Combined multi-panel figure
 """
-
 import os
 from collections import Counter
 
@@ -17,54 +17,35 @@ from matplotlib.lines import Line2D
 from Bio import AlignIO
 
 OUTPUT_DIR = os.path.dirname(os.path.abspath(__file__))
-ALIGNED_FASTA = os.path.join(OUTPUT_DIR, "ubr3_aligned.fasta")
 
 DISPLAY_NAMES = {
-    "H_sapiens":       "H. sapiens",
-    "M_musculus":      "M. musculus",
-    "X_laevis":        "X. laevis",
-    "P_marinus":       "P. marinus",
-    "C_intestinalis":  "C. intestinalis",
-    "B_floridae":      "B. floridae",
-    "S_purpuratus":    "S. purpuratus",
-    "O_sinensis":      "O. sinensis",
-    "D_melanogaster":  "D. melanogaster",
-    "A_mellifera":     "A. mellifera",
-    "P_tepidariorum":  "P. tepidariorum",
-    "H_vulgaris":      "H. vulgaris",
-    "N_vectensis":     "N. vectensis",
+    "H_sapiens": "H. sapiens", "M_musculus": "M. musculus",
+    "X_laevis": "X. laevis", "G_gallus": "G. gallus",
+    "D_rerio": "D. rerio", "P_marinus": "P. marinus",
+    "C_intestinalis": "C. intestinalis", "B_floridae": "B. floridae",
+    "S_purpuratus": "S. purpuratus", "O_sinensis": "O. sinensis",
+    "D_melanogaster": "D. melanogaster", "A_mellifera": "A. mellifera",
+    "P_tepidariorum": "P. tepidariorum", "H_vulgaris": "H. vulgaris",
+    "N_vectensis": "N. vectensis",
 }
-
 COMMON_NAMES = {
-    "H_sapiens":       "Human",
-    "M_musculus":      "Mouse",
-    "X_laevis":        "Frog",
-    "P_marinus":       "Lamprey",
-    "C_intestinalis":  "Sea squirt",
-    "B_floridae":      "Amphioxus",
-    "S_purpuratus":    "Sea urchin",
-    "O_sinensis":      "Octopus",
-    "D_melanogaster":  "Fruit fly",
-    "A_mellifera":     "Honeybee",
-    "P_tepidariorum":  "Spider",
-    "H_vulgaris":      "Hydra",
-    "N_vectensis":     "Sea anemone",
+    "H_sapiens": "Human", "M_musculus": "Mouse", "X_laevis": "Frog",
+    "G_gallus": "Chicken", "D_rerio": "Zebrafish",
+    "P_marinus": "Lamprey", "C_intestinalis": "Sea squirt",
+    "B_floridae": "Amphioxus", "S_purpuratus": "Sea urchin",
+    "O_sinensis": "Octopus", "D_melanogaster": "Fruit fly",
+    "A_mellifera": "Honeybee", "P_tepidariorum": "Spider",
+    "H_vulgaris": "Hydra", "N_vectensis": "Sea anemone",
 }
-
 PHYLUM_COLORS = {
-    "H_sapiens":       "#B71C1C",
-    "M_musculus":      "#B71C1C",
-    "X_laevis":        "#BF360C",
-    "P_marinus":       "#E65100",
-    "C_intestinalis":  "#F57F17",
-    "B_floridae":      "#827717",
-    "S_purpuratus":    "#33691E",
-    "O_sinensis":      "#00695C",
-    "D_melanogaster":  "#01579B",
-    "A_mellifera":     "#01579B",
-    "P_tepidariorum":  "#0D47A1",
-    "H_vulgaris":      "#4A148C",
-    "N_vectensis":     "#4A148C",
+    "H_sapiens": "#B71C1C", "M_musculus": "#B71C1C",
+    "X_laevis": "#BF360C", "G_gallus": "#D84315",
+    "D_rerio": "#E65100", "P_marinus": "#E65100",
+    "C_intestinalis": "#F57F17", "B_floridae": "#827717",
+    "S_purpuratus": "#33691E", "O_sinensis": "#00695C",
+    "D_melanogaster": "#01579B", "A_mellifera": "#01579B",
+    "P_tepidariorum": "#0D47A1", "H_vulgaris": "#4A148C",
+    "N_vectensis": "#4A148C",
 }
 
 STRONG_GROUPS = [
@@ -95,20 +76,10 @@ AA_FG = {
 }
 
 
-def load_alignment():
-    return AlignIO.read(ALIGNED_FASTA, "fasta")
-
-
-def get_display_name(rec_id):
-    return DISPLAY_NAMES.get(rec_id, rec_id)
-
-
 def get_label(rec_id):
     dn = DISPLAY_NAMES.get(rec_id, rec_id)
     cn = COMMON_NAMES.get(rec_id, "")
-    if cn:
-        return f"{dn} ({cn})"
-    return dn
+    return f"{dn} ({cn})" if cn else dn
 
 
 def alignment_col_to_human_pos(alignment):
@@ -159,32 +130,15 @@ def get_alignment_slice(human_to_col, human_start, human_end):
     return col_start, col_end
 
 
-SUBSTRATE_RESIDUES = {
-    132: "Arg132", 140: "Pro140", 141: "Cys141",
-    169: "Ala169", 171: "Asp171", 177: "Val177",
-    444: "Val444", 448: "Val448", 449: "Gln449",
-    511: "Trp511", 577: "Glu577",
-}
-
-RING_RESIDUES = {
-    1239: "Cys1239", 1334: "Cys1334",
-    1360: "Cys1360", 1363: "Cys1363",
-}
-
-
-# ── Panel A: ClustalW-style alignment figure ─────────────────────────────
 def render_clustal_figure(alignment, col_start, col_end, col_to_human,
                            title, filename, block_width=60,
-                           highlight_positions=None,
-                           highlight_positions_2=None):
+                           highlight_positions=None):
     n_seqs = len(alignment)
     labels = [get_label(rec.id) for rec in alignment]
     max_label = max(len(l) for l in labels)
     cols = list(range(col_start, col_end + 1))
     n_blocks = (len(cols) + block_width - 1) // block_width
-    any_highlights = highlight_positions or highlight_positions_2
-    n_highlight_rows = (1 if highlight_positions else 0) + (1 if highlight_positions_2 else 0)
-    extra_per_block = 2.0 * n_highlight_rows if any_highlights else 0
+    extra_per_block = 2.0 if highlight_positions else 0
     lines_per_block = n_seqs + 2 + extra_per_block
 
     total_lines = n_blocks * lines_per_block + 3
@@ -209,7 +163,7 @@ def render_clustal_figure(alignment, col_start, col_end, col_to_human,
     ax.text(fig_w / 2, y, title, ha="center", va="top",
             fontsize=10, fontweight="bold", fontstyle="italic",
             family="sans-serif")
-    y += 1.8 if not any_highlights else 2.8
+    y += 1.8 if not highlight_positions else 2.8
 
     for blk in range(n_blocks):
         chunk_cols = cols[blk * block_width:(blk + 1) * block_width]
@@ -221,27 +175,24 @@ def render_clustal_figure(alignment, col_start, col_end, col_to_human,
                 if first_h is None:
                     first_h = h
                 last_h = h
-        for hp, tri_c, txt_c in [
-            (highlight_positions, "#C62828", "#B71C1C"),
-            (highlight_positions_2, "#1565C0", "#0D47A1"),
-        ]:
-            if hp:
-                hits_top = []
-                for ci, c in enumerate(chunk_cols):
-                    h = col_to_human.get(c)
-                    if h is not None and h in hp:
-                        hits_top.append((ci, h))
-                if hits_top:
-                    for ci, h in hits_top:
-                        x = x_seq + ci * char_w
-                        ax.plot(x, y + 0.55, "v", color=tri_c,
-                                markersize=2.5, zorder=10, clip_on=False)
-                        ax.text(x, y + 0.35, hp[h],
-                                fontsize=4.2, ha="left", va="bottom",
-                                color=txt_c, fontweight="bold",
-                                rotation=45, rotation_mode="anchor",
-                                clip_on=False)
-                    y += 1.2
+
+        if highlight_positions:
+            hits_top = []
+            for ci, c in enumerate(chunk_cols):
+                h = col_to_human.get(c)
+                if h is not None and h in highlight_positions:
+                    hits_top.append((ci, h))
+            if hits_top:
+                for ci, h in hits_top:
+                    x = x_seq + ci * char_w
+                    ax.plot(x, y + 0.55, "v", color="#C62828",
+                            markersize=2.5, zorder=10, clip_on=False)
+                    ax.text(x, y + 0.35, highlight_positions[h],
+                            fontsize=4.2, ha="left", va="bottom",
+                            color="#B71C1C", fontweight="bold",
+                            rotation=45, rotation_mode="anchor",
+                            clip_on=False)
+                y += 1.2
 
         num_y = y + 0.0
         if first_h:
@@ -256,19 +207,15 @@ def render_clustal_figure(alignment, col_start, col_end, col_to_human,
 
         block_top = y - 0.5
         block_bot = y + n_seqs * 1 + 0.5
-        for hp, col_bg in [
-            (highlight_positions, "#FFCDD2"),
-            (highlight_positions_2, "#BBDEFB"),
-        ]:
-            if hp:
-                for ci, c in enumerate(chunk_cols):
-                    h = col_to_human.get(c)
-                    if h is not None and h in hp:
-                        x = x_seq + ci * char_w
-                        ax.add_patch(plt.Rectangle(
-                            (x - char_w * 0.45, block_top),
-                            char_w * 0.9, block_bot - block_top,
-                            fc=col_bg, ec="none", alpha=0.35, zorder=-1))
+        if highlight_positions:
+            for ci, c in enumerate(chunk_cols):
+                h = col_to_human.get(c)
+                if h is not None and h in highlight_positions:
+                    x = x_seq + ci * char_w
+                    ax.add_patch(plt.Rectangle(
+                        (x - char_w * 0.45, block_top),
+                        char_w * 0.9, block_bot - block_top,
+                        fc="#FFCDD2", ec="none", alpha=0.35, zorder=-1))
 
         for seq_i in range(n_seqs):
             rec_id = alignment[seq_i].id
@@ -325,7 +272,6 @@ def render_clustal_figure(alignment, col_start, col_end, col_to_human,
                 ax.text(x, y, sym, va="center", ha="center",
                         color="#AAA", **font)
         y += 0.7
-
         y += 1.3
 
     fig.tight_layout(pad=0.3)
@@ -337,16 +283,14 @@ def render_clustal_figure(alignment, col_start, col_end, col_to_human,
     return path
 
 
-# ── Panel B: Domain architecture ─────────────────────────────────────────
 def plot_domain_architecture(alignment, col_to_human, human_to_col,
-                              human_idx, prefix):
+                              human_idx, protein_name, prefix,
+                              l22e_start, l22e_end):
     n_seqs = len(alignment)
     labels = [get_label(rec.id) for rec in alignment]
 
     domains = [
-        ("UBR box (118-189)",     118,  189, "#7E57C2"),
-        ("Region 400-600",        400,  600, "#1E88E5"),
-        ("RING domain (1232-1376)", 1232, 1376, "#EF6C00"),
+        (f"L22e domain ({l22e_start}-{l22e_end})", l22e_start, l22e_end, "#7E57C2"),
     ]
 
     species_lengths = []
@@ -357,8 +301,8 @@ def plot_domain_architecture(alignment, col_to_human, human_to_col,
     max_len = max(species_lengths)
 
     fig_h = max(5, n_seqs * 0.55 + 2.5)
-    fig_w_arch = max(10, (60 + max(len(l) for l in labels) + 6) * 6.2 / 72 + 0.5)
-    fig, ax = plt.subplots(figsize=(fig_w_arch, fig_h))
+    fig_w = max(10, (60 + max(len(l) for l in labels) + 6) * 6.2 / 72 + 0.5)
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h))
 
     bar_h = 0.35
     y_spacing = 0.7
@@ -407,8 +351,8 @@ def plot_domain_architecture(alignment, col_to_human, human_to_col,
             ax.get_yticklabels()[i].set_fontweight("bold")
 
     ax.set_xlabel("Amino acid position", fontsize=10)
-    ax.set_xlim(0, max_len + 30)
-    ax.set_title("UBR3 Domain Architecture across Species",
+    ax.set_xlim(0, max_len + 10)
+    ax.set_title(f"{protein_name} Domain Architecture across Species",
                  fontsize=12, fontweight="bold", pad=12)
 
     legend_patches = [
@@ -429,7 +373,6 @@ def plot_domain_architecture(alignment, col_to_human, human_to_col,
     return path
 
 
-# ── Combined figure ──────────────────────────────────────────────────────
 def create_combined_figure(paths_a, path_b, prefix):
     from PIL import Image, ImageDraw, ImageFont
 
@@ -480,46 +423,41 @@ def create_combined_figure(paths_a, path_b, prefix):
     return path
 
 
-def main():
-    print("=" * 60)
-    print("UBR3 Publication-Style Figures (Broad Phylogeny)")
-    print("=" * 60)
+def process_protein(fasta_path, protein_name, prefix, l22e_start, l22e_end):
+    print(f"\n{'='*60}")
+    print(f"{protein_name} Publication Figures")
+    print(f"{'='*60}")
 
-    alignment = load_alignment()
+    alignment = AlignIO.read(fasta_path, "fasta")
     col_to_human, human_to_col, human_idx = alignment_col_to_human_pos(alignment)
+    human_len = max(v for v in col_to_human.values() if v is not None)
     print(f"  {len(alignment)} sequences x {alignment.get_alignment_length()} columns")
-    print(f"  Species: {', '.join(get_display_name(r.id) for r in alignment)}")
-
-    prefix = "ubr3_pub"
-
-    regions = [
-        ("UBR Box Domain (aa 118-189)", 118, 189, "ubr_box"),
-        ("Conserved Region (aa 400-600)", 400, 600, "region_400_600"),
-        ("RING Domain (aa 1232-1376)", 1232, 1376, "ring_domain"),
-    ]
+    print(f"  Human length: {human_len} aa")
 
     panel_a_paths = []
-    for title, h_start, h_end, suffix in regions:
-        print(f"\n--- {title} ---")
-        col_start, col_end = get_alignment_slice(human_to_col, h_start, h_end)
-        if col_start is None or col_end is None:
-            print(f"  Could not find alignment columns for {h_start}-{h_end}")
-            continue
-        print(f"  Alignment columns: {col_start}-{col_end}")
-        region_subs = {p: n for p, n in SUBSTRATE_RESIDUES.items()
-                       if h_start <= p <= h_end}
-        region_ring = {p: n for p, n in RING_RESIDUES.items()
-                       if h_start <= p <= h_end}
+
+    print(f"\n--- Full Protein Alignment ---")
+    col_start, col_end = get_alignment_slice(human_to_col, 1, human_len)
+    if col_start is not None and col_end is not None:
         path = render_clustal_figure(
             alignment, col_start, col_end, col_to_human,
-            title, f"{prefix}_{suffix}.png", block_width=60,
-            highlight_positions=region_subs if region_subs else None,
-            highlight_positions_2=region_ring if region_ring else None)
+            f"{protein_name} Full Protein Alignment (aa 1-{human_len})",
+            f"{prefix}_full_alignment.png", block_width=60)
+        panel_a_paths.append(path)
+
+    print(f"\n--- L22e Domain Alignment ---")
+    col_start, col_end = get_alignment_slice(human_to_col, l22e_start, l22e_end)
+    if col_start is not None and col_end is not None:
+        path = render_clustal_figure(
+            alignment, col_start, col_end, col_to_human,
+            f"{protein_name} L22e Domain (aa {l22e_start}-{l22e_end})",
+            f"{prefix}_l22e_domain.png", block_width=60)
         panel_a_paths.append(path)
 
     print(f"\n--- Domain Architecture ---")
     path_b = plot_domain_architecture(
-        alignment, col_to_human, human_to_col, human_idx, prefix)
+        alignment, col_to_human, human_to_col, human_idx,
+        protein_name, prefix, l22e_start, l22e_end)
 
     if panel_a_paths and path_b:
         print(f"\n--- Combined Figure ---")
@@ -527,6 +465,25 @@ def main():
             create_combined_figure(panel_a_paths, path_b, prefix)
         except Exception as exc:
             print(f"  Combined figure failed: {exc}")
+
+    return alignment, col_to_human, human_to_col, human_idx
+
+
+def main():
+    rpl22_fasta = os.path.join(OUTPUT_DIR, "rpl22_aligned.fasta")
+    rpl22l1_fasta = os.path.join(OUTPUT_DIR, "rpl22l1_aligned.fasta")
+
+    if os.path.exists(rpl22_fasta):
+        process_protein(rpl22_fasta, "RPL22", "rpl22_pub",
+                         l22e_start=15, l22e_end=128)
+    else:
+        print(f"SKIP RPL22: {rpl22_fasta} not found")
+
+    if os.path.exists(rpl22l1_fasta):
+        process_protein(rpl22l1_fasta, "RPL22L1", "rpl22l1_pub",
+                         l22e_start=16, l22e_end=122)
+    else:
+        print(f"SKIP RPL22L1: {rpl22l1_fasta} not found")
 
     print(f"\n{'='*60}")
     print("DONE")

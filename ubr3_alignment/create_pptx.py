@@ -25,7 +25,7 @@ EXPLANATIONS = {
             "binds N-degron substrates\n"
             "  \u2022 Conserved region 400-600 (blue): a region of unknown function that is "
             "highly conserved across all species\n"
-            "  \u2022 RING domain (orange, aa 1306-1364): the E3 ubiquitin ligase catalytic "
+            "  \u2022 RING domain (orange, aa 1232-1376): the E3 ubiquitin ligase catalytic "
             "domain responsible for ubiquitin transfer",
 
             "The domain positions are mapped from the human reference sequence onto each "
@@ -57,7 +57,7 @@ EXPLANATIONS = {
 
             "This view makes it immediately clear that the conservation peaks correspond "
             "precisely to the functional domains: the UBR box (~118-189), the 400-600 "
-            "region, and the RING domain (~1306-1364). The x-axis uses human residue "
+            "region, and the RING domain (~1232-1376). The x-axis uses human residue "
             "numbering, which corrects for alignment gaps and gives biologically meaningful "
             "coordinates.",
         ]
@@ -71,7 +71,7 @@ EXPLANATIONS = {
 
             "Panel A shows ClustalW-style multiple sequence alignments for the three most "
             "conserved functional regions: the UBR box domain (aa 118-189), the conserved "
-            "region (aa 400-600), and the RING domain (aa 1306-1364).",
+            "region (aa 400-600), and the RING domain (aa 1232-1376).",
 
             "Panel B shows the domain architecture diagram with colored blocks indicating "
             "domain positions across all 13 species.",
@@ -96,7 +96,7 @@ EXPLANATIONS = {
 
             "A sliding window average (typically 10-20 residues) smooths the signal to "
             "reveal broad conserved regions. Prominent peaks correspond to the UBR box "
-            "(~120-190), the 400-600 region, and the RING domain (~1306-1364).",
+            "(~120-190), the 400-600 region, and the RING domain (~1232-1376).",
 
             "This plot was generated using Biopython to parse the Clustal Omega alignment "
             "and Matplotlib for visualization. Regions above the conservation threshold "
@@ -242,6 +242,10 @@ EXPLANATIONS = {
             "The high density of fully conserved positions (marked with '*') indicates "
             "that the substrate-binding interface has been under very strong purifying "
             "selection. Key zinc-coordinating cysteines and histidines are 100% conserved.",
+
+            "Red triangles mark substrate recognition residues identified from the UBR3-UNC13B "
+            "cryo-EM structure: Arg132, Pro140, Cys141, Ala169, Asp171, and Val177. These "
+            "residues form the Pro1-binding pocket and contact the N-degron peptide.",
         ]
     ),
 
@@ -262,13 +266,18 @@ EXPLANATIONS = {
             "This region may represent a novel functional domain, a protein-protein "
             "interaction surface, or a structural scaffold essential for UBR3 folding. "
             "It represents a promising target for future mutagenesis studies.",
+
+            "Red triangles mark key substrate recognition residues from the UBR3-UNC13B "
+            "structure: Val444, Val448, Gln449 (Pro1-binding pocket), Trp511 (Leu3/Arg5 "
+            "interactions), and Glu577 (Arg5/Lys7 electrostatic contacts). These explain "
+            "why this region is so highly conserved.",
         ]
     ),
 
     "ubr3_pub_ring_domain.png": (
-        "RING Domain Alignment (aa 1306-1364)",
+        "RING Domain Alignment (aa 1232-1376)",
         [
-            "ClustalW-style alignment of the RING finger domain (human residues 1306-1364) "
+            "ClustalW-style alignment of the RING finger domain (human residues 1232-1376) "
             "across all 13 species.",
 
             "The RING domain is the catalytic core of UBR3's E3 ubiquitin ligase activity. "

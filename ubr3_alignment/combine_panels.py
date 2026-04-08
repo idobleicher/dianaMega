@@ -177,44 +177,10 @@ def main():
         ax_top.axvspan(h_start, h_end, alpha=0.15, color=color)
         ax_bot.axvspan(h_start, h_end, alpha=0.08, color=color)
 
-    substrate_residues = {
-        132: "Arg132", 140: "Pro140", 141: "Cys141",
-        169: "Ala169", 171: "Asp171", 177: "Val177",
-        444: "Val444", 448: "Val448", 449: "Gln449",
-        511: "Trp511", 577: "Glu577",
-    }
-    sorted_subs = sorted(substrate_residues.items())
-    offsets = []
-    for i, (pos, label) in enumerate(sorted_subs):
-        level = 0
-        for j in range(i):
-            prev_pos = sorted_subs[j][0]
-            if offsets[j] == level and abs(pos - prev_pos) < 30:
-                level += 1
-        offsets.append(level)
-    for (pos, label), level in zip(sorted_subs, offsets):
-        col = human_to_col.get(pos)
-        if col is not None:
-            sc = smoothed[col]
-            ax_top.plot(pos, sc, "v", color="#D32F2F", markersize=4, zorder=5)
-            y_off = 8 + level * 12
-            ax_top.annotate(
-                label, xy=(pos, sc), xytext=(0, y_off),
-                textcoords="offset points", fontsize=5.5,
-                ha="center", va="bottom", color="#B71C1C",
-                fontweight="bold", rotation=60,
-                annotation_clip=False,
-            )
-
-    from matplotlib.lines import Line2D
     domain_patches = [
         mpatches.Patch(facecolor=c, edgecolor="none", label=nm, alpha=0.5)
         for nm, _, _, c in DOMAINS
     ]
-    domain_patches.append(
-        Line2D([0], [0], marker="v", color="#D32F2F", linestyle="None",
-               markersize=5, label="Substrate recognition")
-    )
     ax_top.legend(handles=domain_patches, fontsize=8, loc="lower right",
                   framealpha=0.9)
     ax_top.spines["top"].set_visible(False)

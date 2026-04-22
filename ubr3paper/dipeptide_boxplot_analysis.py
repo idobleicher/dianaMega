@@ -402,14 +402,26 @@ fig.savefig(os.path.join(OUTPUT_DIR, 'Fig_Combined_only_boxplot.pdf'))
 plt.close()
 print("  Saved Fig_Combined_only_boxplot")
 
-# ── Cohen's d version ──
-print("\n  Generating Cohen's d version...")
+# ── Cohen's d version (Brunner-Munzel test) ──
+print("\n  Generating Cohen's d version (Brunner-Munzel)...")
 
 def cohen_d_label(d):
     if abs(d) >= 0.8: return 'large'
     if abs(d) >= 0.5: return 'medium'
     if abs(d) >= 0.2: return 'small'
     return 'negligible'
+
+pvals_bm = {}
+for dp in combined_only:
+    hits_psi = dp_data[dp]['hits']['PSI_AAVS'].dropna().values
+    all_psi  = dp_data[dp]['all']['PSI_AAVS'].dropna().values
+    if len(hits_psi) >= 2 and len(all_psi) >= 2:
+        _, p_bm = stats.brunnermunzel(hits_psi, all_psi, alternative='less')
+        pvals_bm[dp] = p_bm
+    else:
+        pvals_bm[dp] = np.nan
+    print(f"    {dp}: Brunner-Munzel one-tailed p={pvals_bm[dp]:.6f} ({significance_marker(pvals_bm[dp])}), "
+          f"Cohen's d={cohen_d_co[dp]:.2f}")
 
 fig, ax = plt.subplots(figsize=(4.0 * n_co, 6))
 
@@ -460,21 +472,21 @@ ax.set_xticklabels(tlabels_cd, fontsize=10)
 ax.set_ylabel('Protein Stability Index (PSI)', fontsize=12)
 ax.set_title('Combined Dipeptide Groups (P2-P3): Top Hits vs All Screen',
              fontsize=13, fontweight='bold', pad=18)
-ax.text(0.5, 1.01, "Cohen's d effect size (All Screen vs Top Hits)",
+ax.text(0.5, 1.01, r"Brunner-Munzel test ($H_1$: Top Hits < All Screen) + Cohen's d",
         transform=ax.transAxes, ha='center', va='bottom', fontsize=10, color='#555')
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
 for center, (_, _, dp) in zip(centers_cd, brackets_cd):
-    ax.text(center, -0.18, dp, transform=ax.get_xaxis_transform(),
+    ax.text(center, -0.26, dp, transform=ax.get_xaxis_transform(),
             ha='center', fontsize=13, fontweight='bold',
             color=DIPEPTIDE_COLORS[dp])
     members_str = ' + '.join(COMBINED_GROUPS[dp])
-    ax.text(center, -0.25, f'({members_str})', transform=ax.get_xaxis_transform(),
+    ax.text(center, -0.33, f'({members_str})', transform=ax.get_xaxis_transform(),
             ha='center', fontsize=9, color='#666')
 
 for p_all, p_hits, dp in brackets_cd:
-    ax.plot([p_all - 0.3, p_hits + 0.3], [-0.14, -0.14],
+    ax.plot([p_all - 0.3, p_hits + 0.3], [-0.22, -0.22],
             transform=ax.get_xaxis_transform(),
             color=DIPEPTIDE_COLORS[dp], linewidth=2.5, clip_on=False)
 
@@ -483,27 +495,27 @@ bracket_y_cd = global_max_cd + 0.15
 
 for p_all, p_hits, dp in brackets_cd:
     d_val = cohen_d_co.get(dp, np.nan)
-    p_val = pvals_1t.get(dp, np.nan)
+    p_val = pvals_bm.get(dp, np.nan)
     if not np.isnan(d_val):
         label = cohen_d_label(d_val)
         sig = significance_marker(p_val) if not np.isnan(p_val) else ''
         draw_bracket(ax, p_all, p_hits, bracket_y_cd, 0.06, sig, fontsize=12)
-        ax.text((p_all + p_hits) / 2, bracket_y_cd + 0.16,
+        ax.text((p_all + p_hits) / 2, bracket_y_cd + 0.30,
                 f'd = {d_val:.2f} ({label} effect)',
                 ha='center', va='bottom', fontsize=8.5, color='#555',
                 style='italic')
-        ax.text((p_all + p_hits) / 2, bracket_y_cd + 0.30,
-                f'p = {p_val:.3f}',
+        ax.text((p_all + p_hits) / 2, bracket_y_cd + 0.46,
+                f'p = {p_val:.4f}',
                 ha='center', va='bottom', fontsize=8, color='#555')
 
-ax.set_ylim(top=bracket_y_cd + 0.65)
+ax.set_ylim(top=bracket_y_cd + 0.80)
 
 plt.tight_layout()
-fig.subplots_adjust(bottom=0.28)
+fig.subplots_adjust(bottom=0.34)
 fig.savefig(os.path.join(OUTPUT_DIR, 'Fig_Combined_only_cohen_d.png'))
 fig.savefig(os.path.join(OUTPUT_DIR, 'Fig_Combined_only_cohen_d.pdf'))
 plt.close()
-print("  Saved Fig_Combined_only_cohen_d")
+print("  Saved Fig_Combined_only_cohen_d (Brunner-Munzel)")
 
 # ══════════════════════════════════════════════════════════════════════════
 # SUMMARY TABLE & EXCEL EXPORT

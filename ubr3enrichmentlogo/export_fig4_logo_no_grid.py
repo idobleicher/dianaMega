@@ -37,11 +37,12 @@ AA_COLOR_SCHEME = {aa: CAT_COLORS[cat] for aa, cat in AA_CATEGORIES.items()}
 
 mpl.rcParams.update({
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Arial', 'DejaVu Sans'],
-    'font.size': 11,
+    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.size': 8,
+    'axes.linewidth': 0.8,
     'svg.fonttype': 'none',
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
+    'figure.dpi': 600,
+    'savefig.dpi': 600,
     'savefig.bbox': 'tight',
     'axes.spines.top': False,
     'axes.spines.right': False,
@@ -66,39 +67,39 @@ fc_matrix = pd.DataFrame({0: enrich_aa2, 1: enrich_aa3}).T
 fc_display = fc_matrix.copy()
 fc_display[fc_display <= 1] = 0
 
-fig, ax = plt.subplots(figsize=(4.5, 3.5))
+fig, ax = plt.subplots(figsize=(3.15, 2.55))
 logo = logomaker.Logo(fc_display, ax=ax, color_scheme=AA_COLOR_SCHEME,
-                      font_name='DejaVu Sans', vpad=0.0, width=0.95,
+                      font_name='Helvetica', vpad=0.0, width=0.95,
                       stack_order='big_on_top')
 for patch in ax.patches:
     patch.set_edgecolor('black')
-    patch.set_linewidth(0.5)
+    patch.set_linewidth(0.35)
 
 ax.axhline(y=0, color='black', linewidth=0.5)
 ax.yaxis.grid(False)
 ax.xaxis.grid(False)
 ax.set_axisbelow(True)
 
-ax.set_ylabel('Fold Change (hits / library)', fontsize=9)
+ax.set_ylabel('Fold Change (hits / library)', fontsize=8)
 ax.set_xticks([0, 1])
-ax.set_xticklabels(['Pos 2', 'Pos 3'], fontsize=9)
-ax.tick_params(axis='y', labelsize=7)
+ax.set_xticklabels(['Pos 2', 'Pos 3'], fontsize=8)
+ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2)
 ax.set_title('Fold-Change Logo — Best Hits vs Library',
-             fontweight='bold', fontsize=10, pad=6)
+             fontweight='bold', fontsize=8.5, pad=4)
 
 max_stack = max(sum(v for v in enr.values() if v > 1)
                 for enr in [enrich_aa2, enrich_aa3])
 ax.set_ylim(-0.3, max_stack + 2.0)
 
 ax.text(0.5, -0.10, f'n = {len(df_hits)} best hits  vs  n = {len(df_all):,} library',
-        transform=ax.transAxes, ha='center', fontsize=7, color='#666', style='italic')
+        transform=ax.transAxes, ha='center', fontsize=5.8, color='#666', style='italic')
 
 legend_patches = [mpatches.Patch(color=CAT_COLORS[c], label=c) for c in
                   ['Acidic', 'Basic', 'Nonpolar', 'Polar']]
-ax.legend(handles=legend_patches, fontsize=6, frameon=False,
+ax.legend(handles=legend_patches, fontsize=5.5, frameon=False,
           loc='upper left', bbox_to_anchor=(1.02, 1.0),
           handlelength=0.8, handletextpad=0.3, borderpad=0.2)
-plt.tight_layout()
+plt.tight_layout(pad=0.3)
 
 base = 'fig4_logo_pos2_pos3_besthits'
 for ext in ('png', 'pdf', 'svg'):

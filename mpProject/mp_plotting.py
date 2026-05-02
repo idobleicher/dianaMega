@@ -28,14 +28,39 @@ AA_GROUPS = {
     "Special":     list("CGP"),
 }
 GROUP_COLORS = {
-    "Hydrophobic": "#4C8C40",
-    "Aromatic":    "#9C27B0",
-    "Polar":       "#1F77B4",
-    "Basic":       "#1565C0",
-    "Acidic":      "#D32F2F",
-    "Special":     "#F57C00",
+    "Hydrophobic": "#8A6A2A",
+    "Aromatic":    "#B45A12",
+    "Polar":       "#8DA0AE",
+    "Basic":       "#7A8793",
+    "Acidic":      "#B21F2D",
+    "Special":     "#E8901A",
 }
 PSEUDOCOUNT = 0.5
+
+PAPER_DPI = 600
+HEATMAP_CMAP = "RdBu_r"
+FREQUENCY_CMAP = "YlOrBr"
+AXIS_GREY = "#333333"
+
+
+plt.rcParams.update({
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica", "Arial", "Liberation Sans", "DejaVu Sans"],
+    "font.size": 7,
+    "axes.edgecolor": AXIS_GREY,
+    "axes.linewidth": 0.55,
+    "axes.titlesize": 7.5,
+    "axes.labelsize": 7,
+    "xtick.labelsize": 6,
+    "ytick.labelsize": 6,
+    "legend.fontsize": 5.5,
+    "xtick.color": AXIS_GREY,
+    "ytick.color": AXIS_GREY,
+    "axes.labelcolor": AXIS_GREY,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+    "svg.fonttype": "none",
+})
 
 
 # ---------------------------------------------------------------------------
@@ -77,26 +102,57 @@ def log2_enrichment(hit_seqs, lib_seqs, positions):
             pd.DataFrame(l, index=AA_ORDER, columns=cols))
 
 
+def save_figure(fig: plt.Figure, out_path: Path):
+    """Save publication-quality raster and vector copies."""
+    fig.savefig(out_path, dpi=PAPER_DPI, bbox_inches="tight", facecolor="white")
+    fig.savefig(out_path.with_suffix(".pdf"), bbox_inches="tight", facecolor="white")
+    fig.savefig(out_path.with_suffix(".svg"), bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+
+
+def short_title(lib_label: str) -> str:
+    if "MP" in lib_label and "full" not in lib_label.lower():
+        return "Enrichment heatmap (hits / MP library)"
+    return "Enrichment heatmap (hits / full library)"
+
+
+def clean_axes(ax):
+    """Use thin manuscript-style axes and ticks."""
+    for spine in ax.spines.values():
+        spine.set_color(AXIS_GREY)
+        spine.set_linewidth(0.55)
+    ax.tick_params(length=2.0, width=0.55, color=AXIS_GREY, pad=1.5)
+
+
+def style_heatmap_colorbar(ax):
+    cbar = ax.collections[0].colorbar
+    if cbar is not None:
+        cbar.outline.set_linewidth(0.4)
+        cbar.ax.tick_params(length=2.0, width=0.45, labelsize=5.8, pad=1.5)
+        cbar.ax.yaxis.label.set_size(6.2)
+
+
 # ---------------------------------------------------------------------------
 # Plot 1: enrichment heatmap
 # ---------------------------------------------------------------------------
 def plot_enrichment_heatmap(df: pd.DataFrame, title: str, out_path: Path,
                             vmax: float | None = None):
     if vmax is None:
-        vmax = max(float(np.nanpercentile(np.abs(df.values), 99)), 0.5)
-    fig, ax = plt.subplots(figsize=(13, 8))
+        vmax = max(float(np.nanpercentile(np.abs(df.values), 98)), 0.5)
+    fig, ax = plt.subplots(figsize=(4.2, 3.25))
     sns.heatmap(
-        df, cmap="RdBu_r", center=0, vmin=-vmax, vmax=vmax,
-        linewidths=0.4, linecolor="white",
-        cbar_kws={"label": "log2(hit / library)", "shrink": 0.8},
+        df, cmap=HEATMAP_CMAP, center=0, vmin=-vmax, vmax=vmax,
+        linewidths=0.18, linecolor="white",
+        cbar_kws={"label": "log2(hits / library)", "shrink": 0.72, "pad": 0.025},
         ax=ax, xticklabels=True, yticklabels=True,
     )
-    ax.set_xlabel("Residue position", fontsize=13, weight="bold")
-    ax.set_ylabel("Amino acid", fontsize=13, weight="bold")
-    ax.set_title(title, fontsize=14, weight="bold", pad=14)
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+    ax.set_xlabel("Residue position")
+    ax.set_ylabel("Amino acid")
+    ax.set_title(title, loc="left", weight="bold", pad=6)
+    clean_axes(ax)
+    style_heatmap_colorbar(ax)
+    plt.tight_layout(pad=0.35)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -113,25 +169,24 @@ def plot_frequency_panels(hit_seqs, lib_seqs, positions, out_path,
     df_l = pd.DataFrame(l_freq * 100, index=AA_ORDER, columns=cols)
     vmax = max(df_h.values.max(), df_l.values.max())
 
-    fig, axes = plt.subplots(1, 2, figsize=(24, 8), sharey=True)
+    fig, axes = plt.subplots(1, 2, figsize=(6.8, 2.75), sharey=True)
     for ax, df, sub in (
-        (axes[0], df_h, f"A   MP project hits  (n={len(hit_seqs)})"),
-        (axes[1], df_l, f"B   {lib_label}  (n={len(lib_seqs)})"),
+        (axes[0], df_h, f"Hits (n={len(hit_seqs)})"),
+        (axes[1], df_l, f"Library (n={len(lib_seqs)})"),
     ):
         sns.heatmap(
-            df, cmap="YlOrRd", vmin=0, vmax=vmax,
-            linewidths=0.4, linecolor="white",
-            cbar_kws={"label": "Frequency (%)", "shrink": 0.8},
+            df, cmap=FREQUENCY_CMAP, vmin=0, vmax=vmax,
+            linewidths=0.14, linecolor="white",
+            cbar_kws={"label": "Frequency (%)", "shrink": 0.72, "pad": 0.025},
             ax=ax, xticklabels=True, yticklabels=True,
         )
-        ax.set_xlabel("Residue position", fontsize=13, weight="bold")
-        ax.set_ylabel("Amino acid", fontsize=13, weight="bold")
-        ax.set_title(sub, loc="left", fontsize=13, weight="bold", pad=10)
-    fig.suptitle("Amino-acid frequencies per position", fontsize=16,
-                 weight="bold", y=1.02)
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+        ax.set_xlabel("Residue position")
+        ax.set_ylabel("Amino acid")
+        ax.set_title(sub, loc="left", weight="bold", pad=5)
+        clean_axes(ax)
+        style_heatmap_colorbar(ax)
+    plt.tight_layout(pad=0.35, w_pad=0.8)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -167,31 +222,34 @@ def plot_significance(hit_seqs, lib_seqs, positions, out_path,
     df_sig = pd.DataFrame(sig, index=AA_ORDER, columns=cols)
     df_sig.to_csv(out_csv)
 
-    vmax = max(float(np.nanpercentile(np.abs(sig), 99)), 1.0)
+    vmax = max(float(np.nanpercentile(np.abs(sig), 98)), 1.0)
     annot = np.full(sig.shape, "", dtype=object)
     annot[(pvals < 0.05) & (pvals >= 0.01)] = "*"
     annot[(pvals < 0.01) & (pvals >= 0.001)] = "**"
     annot[pvals < 0.001] = "***"
 
-    fig, ax = plt.subplots(figsize=(13, 8))
+    fig, ax = plt.subplots(figsize=(4.2, 3.25))
     sns.heatmap(
-        df_sig, cmap="RdBu_r", center=0, vmin=-vmax, vmax=vmax,
-        linewidths=0.4, linecolor="white",
-        annot=annot, fmt="", annot_kws={"size": 8, "weight": "bold"},
-        cbar_kws={"label": "signed -log10(Fisher p)", "shrink": 0.8},
+        df_sig, cmap=HEATMAP_CMAP, center=0, vmin=-vmax, vmax=vmax,
+        linewidths=0.18, linecolor="white",
+        annot=annot, fmt="", annot_kws={"size": 4.7, "weight": "bold"},
+        cbar_kws={"label": "signed -log10(p)", "shrink": 0.72, "pad": 0.025},
         ax=ax, xticklabels=True, yticklabels=True,
     )
-    ax.set_xlabel("Residue position", fontsize=13, weight="bold")
-    ax.set_ylabel("Amino acid", fontsize=13, weight="bold")
+    ax.set_xlabel("Residue position")
+    ax.set_ylabel("Amino acid")
     ax.set_title(
-        f"Statistical significance — Fisher's exact, MP project (n={len(hit_seqs)}) "
-        f"vs {title_lib} (n={len(lib_seqs)})\n"
-        "Cell text: *p<0.05  **p<0.01  ***p<0.001",
-        fontsize=13, weight="bold", pad=12,
+        f"Fisher's exact test (hits / {title_lib})",
+        loc="left", weight="bold", pad=6,
     )
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+    ax.text(
+        0.0, 1.01, "* p<0.05, ** p<0.01, *** p<0.001",
+        transform=ax.transAxes, ha="left", va="bottom", fontsize=5.8,
+    )
+    clean_axes(ax)
+    style_heatmap_colorbar(ax)
+    plt.tight_layout(pad=0.35)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -213,30 +271,29 @@ def plot_logo(hit_seqs, lib_seqs, positions, out_path, title_lib: str):
         for aa in aas:
             color_scheme[aa] = GROUP_COLORS[grp]
 
-    fig, ax = plt.subplots(figsize=(15, 5))
+    fig, ax = plt.subplots(figsize=(4.7, 2.15))
     logo = logomaker.Logo(
         df, ax=ax, color_scheme=color_scheme, shade_below=0.5, fade_below=0.5,
         flip_below=True,
     )
     logo.style_xticks(anchor=positions[0], spacing=1)
-    logo.ax.set_xlabel("Residue position", fontsize=13, weight="bold")
-    logo.ax.set_ylabel("log2(hit / library)", fontsize=13, weight="bold")
+    logo.ax.set_xlabel("Residue position")
+    logo.ax.set_ylabel("log2(hits / library)")
     logo.ax.set_title(
-        f"Enrichment logo — MP project (n={len(hit_seqs)}) vs {title_lib} "
-        f"(n={len(lib_seqs)})\nLetter height = log2 enrichment "
-        "(positive above zero, negative flipped below)",
-        fontsize=13, weight="bold", pad=10,
+        f"Fold-change logo (hits / {title_lib})",
+        loc="left", weight="bold", pad=6,
     )
-    logo.ax.axhline(0, color="black", linewidth=0.7)
+    logo.ax.axhline(0, color=AXIS_GREY, linewidth=0.55)
 
     handles = [plt.Rectangle((0, 0), 1, 1, color=GROUP_COLORS[g])
                for g in AA_GROUPS]
     labels = [f"{g} ({''.join(AA_GROUPS[g])})" for g in AA_GROUPS]
-    logo.ax.legend(handles, labels, loc="upper right", fontsize=8,
-                   ncol=2, frameon=True)
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+    logo.ax.legend(handles, labels, loc="upper left", bbox_to_anchor=(1.01, 1.0),
+                   ncol=1, frameon=False, handlelength=0.9,
+                   handletextpad=0.35, borderaxespad=0.0)
+    clean_axes(logo.ax)
+    plt.tight_layout(pad=0.25)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -261,25 +318,25 @@ def plot_grouped_heatmap(hit_seqs, lib_seqs, positions, out_path, out_csv: Path,
     df = pd.DataFrame(np.array(rows), index=labels, columns=cols)
     df.to_csv(out_csv)
 
-    vmax = max(float(np.nanpercentile(np.abs(df.values), 99)), 0.5)
-    fig, ax = plt.subplots(figsize=(13, 4))
+    vmax = max(float(np.nanpercentile(np.abs(df.values), 98)), 0.5)
+    fig, ax = plt.subplots(figsize=(4.45, 1.65))
     sns.heatmap(
-        df, cmap="RdBu_r", center=0, vmin=-vmax, vmax=vmax,
-        linewidths=0.4, linecolor="white",
-        annot=True, fmt="+.2f", annot_kws={"size": 8},
-        cbar_kws={"label": "log2(hit / library)", "shrink": 0.8},
+        df, cmap=HEATMAP_CMAP, center=0, vmin=-vmax, vmax=vmax,
+        linewidths=0.18, linecolor="white",
+        annot=True, fmt="+.1f", annot_kws={"size": 4.6},
+        cbar_kws={"label": "log2(hits / library)", "shrink": 0.72, "pad": 0.025},
         ax=ax, xticklabels=True, yticklabels=True,
     )
-    ax.set_xlabel("Residue position", fontsize=13, weight="bold")
-    ax.set_ylabel("AA chemistry group", fontsize=13, weight="bold")
+    ax.set_xlabel("Residue position")
+    ax.set_ylabel("AA chemistry group")
     ax.set_title(
-        f"Property-grouped enrichment — MP project (n={len(hit_seqs)}) "
-        f"vs {title_lib} (n={len(lib_seqs)})",
-        fontsize=13, weight="bold", pad=12,
+        f"Property-grouped enrichment (hits / {title_lib})",
+        loc="left", weight="bold", pad=6,
     )
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+    clean_axes(ax)
+    style_heatmap_colorbar(ax)
+    plt.tight_layout(pad=0.25)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -301,7 +358,7 @@ def plot_top_movers(hit_seqs, lib_seqs, positions, out_path, title_lib: str):
             aa_to_color[aa] = GROUP_COLORS[grp]
 
     n = len(positions)
-    fig, axes = plt.subplots(1, n, figsize=(3.2 * n, 6.4))
+    fig, axes = plt.subplots(1, n, figsize=(1.28 * n, 2.55), sharex=True)
     if n == 1:
         axes = [axes]
 
@@ -322,36 +379,35 @@ def plot_top_movers(hit_seqs, lib_seqs, positions, out_path, title_lib: str):
         values = [col[i] for i in sel]
         colors = [aa_to_color[a] for a in labels]
         ypos = np.arange(len(sel))
-        ax.barh(ypos, values, color=colors, edgecolor="black", linewidth=0.6)
+        ax.barh(ypos, values, color=colors, edgecolor=AXIS_GREY, linewidth=0.25)
         ax.set_yticks(ypos)
-        ax.set_yticklabels(labels, fontsize=14, weight="bold")
+        ax.set_yticklabels(labels, fontsize=6.2, weight="bold")
         ax.invert_yaxis()
-        ax.axvline(0, color="black", linewidth=0.8)
+        ax.axvline(0, color=AXIS_GREY, linewidth=0.55)
         ax.set_xlim(*xlim)
-        ax.set_title(f"Position {p}", fontsize=12, weight="bold")
-        ax.set_xlabel("log2(hit / library)", fontsize=10)
-        ax.grid(axis="x", linestyle=":", alpha=0.55)
-        ax.tick_params(axis="x", labelsize=9)
+        ax.set_title(f"Pos {p}", weight="bold", pad=3)
+        ax.set_xlabel("log2")
+        ax.grid(axis="x", linestyle=":", alpha=0.35, linewidth=0.45)
+        clean_axes(ax)
         for k, v in enumerate(values):
             offset = xpad * 0.25
             tx, ha = (v + offset, "left") if v >= 0 else (v - offset, "right")
             ax.text(tx, k, f"{v:+.2f}", va="center", ha=ha,
-                    fontsize=8.5, color="#222222")
-    axes[0].set_ylabel("Amino acid", fontsize=12, weight="bold")
+                    fontsize=4.8, color="#222222")
+    axes[0].set_ylabel("Amino acid")
 
     fig.suptitle(
-        f"Top enriched (above 0) & depleted (below 0) residues per position\n"
-        f"MP project (n={len(hit_seqs)}) vs {title_lib} (n={len(lib_seqs)})",
-        fontsize=13, weight="bold", y=1.02,
+        f"Top residue changes (hits / {title_lib})",
+        x=0.01, ha="left", weight="bold", y=1.02,
     )
     handles = [plt.Rectangle((0, 0), 1, 1, color=GROUP_COLORS[g])
                for g in AA_GROUPS]
     labels = [f"{g}" for g in AA_GROUPS]
     fig.legend(handles, labels, loc="lower center", ncol=len(AA_GROUPS),
-               bbox_to_anchor=(0.5, -0.05), frameon=True, fontsize=9)
-    plt.tight_layout()
-    fig.savefig(out_path, dpi=300, bbox_inches="tight")
-    plt.close(fig)
+               bbox_to_anchor=(0.5, -0.075), frameon=False,
+               handlelength=0.9, columnspacing=0.8)
+    plt.tight_layout(pad=0.25, w_pad=0.45)
+    save_figure(fig, out_path)
 
 
 # ---------------------------------------------------------------------------
@@ -368,19 +424,15 @@ def run_full_panel_set(hit_seqs, lib_seqs, out_dir: Path,
     h_counts.to_csv(out_dir / "counts_hits.csv")
     l_counts.to_csv(out_dir / "counts_library.csv")
 
-    plot_enrichment_heatmap(
-        enrich,
-        f"MP project (n={len(hit_seqs)}) vs {lib_label} (n={len(lib_seqs)})\n"
-        f"Log2 enrichment per residue (positions {positions_main[0]}–{positions_main[-1]})",
-        out_dir / "mp_enrichment_heatmap.png",
-    )
+    plot_enrichment_heatmap(enrich, short_title(lib_label),
+                            out_dir / "mp_enrichment_heatmap.png")
     plot_frequency_panels(hit_seqs, lib_seqs, positions_main,
                           out_dir / "mp_frequency_heatmaps.png", lib_label)
     plot_significance(hit_seqs, lib_seqs, positions_main,
                       out_dir / "mp_significance_heatmap.png",
                       out_dir / "significance_signed_log10p.csv",
                       lib_short)
-    plot_logo(hit_seqs, lib_seqs, positions_main,
+    plot_logo(hit_seqs, lib_seqs, positions_main[:8],
               out_dir / "mp_enrichment_logo.png", lib_short)
     plot_grouped_heatmap(hit_seqs, lib_seqs, positions_main,
                          out_dir / "mp_property_group_heatmap.png",

@@ -277,8 +277,9 @@ def slide_specs_mp():
          "baseline and the basic stack below are the visual summary of "
          "the substrate preference.",
          "Built with logomaker. Letter values are the same log2 enrichment "
-         "matrix used in the heatmap (with the 0/0-cell mask applied). "
-         "Negative values are rendered flipped below the baseline."),
+         "matrix used in the heatmap (with the 0/0-cell mask applied), "
+         "focused on positions 3–10 for figure readability. Negative values "
+         "are rendered flipped below the baseline."),
 
         ("Property-grouped enrichment",
          "Amino acids collapsed into 6 chemistry groups",
@@ -368,7 +369,7 @@ def slide_specs_full():
          "just slightly compressed because the larger background "
          "smoothens single-residue tails.",
          "Same logomaker construction as the MP-vs-MP logo; positions "
-         "3–24, 0/0-cell mask applied, negative letters flipped below "
+         "3–10, 0/0-cell mask applied, negative letters flipped below "
          "the baseline."),
 
         ("Property-grouped enrichment",

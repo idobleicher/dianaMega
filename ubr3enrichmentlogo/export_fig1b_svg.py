@@ -21,12 +21,14 @@ AMINO_ACIDS = list('ACDEFGHIKLMNPQRSTVWY')
 
 mpl.rcParams.update({
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Arial', 'DejaVu Sans'],
-    'font.size': 11,
-    'axes.titlesize': 14,
-    'axes.labelsize': 12,
+    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.size': 8,
+    'axes.titlesize': 9,
+    'axes.labelsize': 8,
+    'axes.linewidth': 0.8,
     'svg.fonttype': 'none',
-    'figure.dpi': 300,
+    'figure.dpi': 600,
+    'savefig.dpi': 600,
     'savefig.bbox': 'tight',
     'axes.spines.top': False,
     'axes.spines.right': False,
@@ -74,15 +76,15 @@ for aa in AMINO_ACIDS:
         _, p = stats.fisher_exact(table, alternative='two-sided')
         pval_dict[(aa, pos_label)] = p
 
-fig, ax = plt.subplots(figsize=(4.5, 8))
+fig, ax = plt.subplots(figsize=(2.75, 4.7))
 cmap_warm = LinearSegmentedColormap.from_list(
     'warm', ['#FEF9E7', '#F5B041', '#E67E22', '#C0392B', '#78281F'])
 im = ax.imshow(sorted_by_pos2.values, aspect='auto', cmap=cmap_warm, vmin=0,
                vmax=max(sorted_by_pos2.values.max(), 5))
 ax.set_xticks([0, 1])
-ax.set_xticklabels(['Position 2', 'Position 3'], fontsize=12)
+ax.set_xticklabels(['Position 2', 'Position 3'], fontsize=7.5)
 ax.set_yticks(range(len(sorted_by_pos2)))
-ax.set_yticklabels(sorted_by_pos2.index, fontsize=11)
+ax.set_yticklabels(sorted_by_pos2.index, fontsize=7.5)
 
 col_labels = ['Position 2', 'Position 3']
 for i, aa in enumerate(sorted_by_pos2.index):
@@ -91,17 +93,28 @@ for i, aa in enumerate(sorted_by_pos2.index):
         p = pval_dict[(aa, col_labels[j])]
         stars = '***' if p < 0.001 else '**' if p < 0.01 else '*' if p < 0.05 else ''
         color = 'white' if v > 2.5 else 'black'
-        ax.text(j, i, f'{v:.1f}{stars}', ha='center', va='center', fontsize=9,
-                color=color, fontweight='bold' if stars else 'normal')
+        if stars:
+            ax.text(j + 0.03, i, f'{v:.1f}', ha='right', va='center',
+                    fontsize=5.8, color=color, fontweight='normal')
+            ax.text(j + 0.03, i, stars, ha='left', va='center',
+                    fontsize=6.8, color=color, fontweight='bold')
+        else:
+            ax.text(j, i, f'{v:.1f}', ha='center', va='center',
+                    fontsize=5.8, color=color, fontweight='normal')
 
-cbar = plt.colorbar(im, ax=ax, shrink=0.6, label='Enrichment')
+cbar = plt.colorbar(im, ax=ax, shrink=0.62, pad=0.06, label='Enrichment')
+cbar.ax.tick_params(labelsize=6, length=2, width=0.6)
+cbar.outline.set_linewidth(0.6)
 ax.set_title(f'Enrichment Heatmap (Best Hits / Library)\n'
              f'(n={n_hit} hits, n={n_lib:,} library)', fontweight='bold')
 fig.text(0.5, 0.005, '* p<0.05  ** p<0.01  *** p<0.001 (Fisher exact test)',
-         ha='center', fontsize=7.5, color='#555')
+         ha='center', fontsize=5.4, color='#555')
+ax.tick_params(length=2, width=0.7, pad=1.5)
 plt.tight_layout(rect=[0, 0.025, 1, 1])
 
-svg_path = os.path.join(OUTPUT_DIR, 'fig1b_enrichment_heatmap.svg')
-fig.savefig(svg_path, format='svg')
+base = 'fig1b_enrichment_heatmap'
+for ext in ('png', 'pdf', 'svg'):
+    path = os.path.join(OUTPUT_DIR, f'{base}.{ext}')
+    fig.savefig(path, format=ext)
+    print(f"Saved: {path}")
 plt.close(fig)
-print(f"Saved: {svg_path}")

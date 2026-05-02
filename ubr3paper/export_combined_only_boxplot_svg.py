@@ -29,18 +29,20 @@ DIPEPTIDE_COLORS = {
 }
 
 plt.rcParams.update({
-    'font.family': 'Arial',
-    'font.size': 11,
-    'axes.titlesize': 13,
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.size': 8,
+    'axes.titlesize': 9,
     'axes.titleweight': 'bold',
-    'axes.labelsize': 12,
-    'axes.linewidth': 1.2,
-    'xtick.major.width': 1.0,
-    'ytick.major.width': 1.0,
-    'xtick.labelsize': 10,
-    'ytick.labelsize': 10,
-    'legend.fontsize': 10,
-    'figure.dpi': 300,
+    'axes.labelsize': 8,
+    'axes.linewidth': 0.8,
+    'xtick.major.width': 0.7,
+    'ytick.major.width': 0.7,
+    'xtick.labelsize': 7,
+    'ytick.labelsize': 7,
+    'legend.fontsize': 7,
+    'figure.dpi': 600,
+    'savefig.dpi': 600,
     'svg.fonttype': 'none',
 })
 
@@ -66,8 +68,8 @@ def significance_marker(p):
     return 'ns'
 
 def draw_bracket(ax, x1, x2, y, h, text, fontsize=11):
-    ax.plot([x1, x1, x2, x2], [y, y + h, y + h, y], lw=1.2, color='black')
-    ax.text((x1 + x2) / 2, y + h, text, ha='center', va='bottom',
+    ax.plot([x1, x1, x2, x2], [y, y + h, y + h, y], lw=0.8, color='black')
+    ax.text((x1 + x2) / 2, y + h + 0.02, text, ha='center', va='bottom',
             fontsize=fontsize, fontweight='bold')
 
 combined_only = [k for k in COMBINED_GROUPS.keys() if len(dp_data[k]['hits']) > 0]
@@ -87,7 +89,7 @@ for dp in combined_only:
         pvals_1t[dp] = np.nan
         cohen_d_co[dp] = np.nan
 
-fig, ax = plt.subplots(figsize=(4.0 * n_co, 6))
+fig, ax = plt.subplots(figsize=(3.75, 2.9))
 
 positions_co, data_co, colors_co = [], [], []
 ticks_co, tlabels_co = [], []
@@ -110,38 +112,38 @@ for dp in combined_only:
 
 bp = ax.boxplot(data_co, positions=positions_co, widths=0.55,
                 patch_artist=True, showfliers=False,
-                whiskerprops={'linewidth': 1.3, 'color': 'black'},
-                capprops={'linewidth': 1.3, 'color': 'black'},
-                medianprops={'linewidth': 2.0, 'color': 'black'})
+                whiskerprops={'linewidth': 0.8, 'color': 'black'},
+                capprops={'linewidth': 0.8, 'color': 'black'},
+                medianprops={'linewidth': 1.2, 'color': 'black'})
 
 for patch, c in zip(bp['boxes'], colors_co):
     patch.set_facecolor(c)
     patch.set_edgecolor('black')
-    patch.set_linewidth(1.0)
+    patch.set_linewidth(0.7)
     patch.set_alpha(0.85)
 
 ax.set_xticks(ticks_co)
-ax.set_xticklabels(tlabels_co, fontsize=10)
-ax.set_ylabel('Protein Stability Index (PSI)', fontsize=12)
+ax.set_xticklabels(tlabels_co, fontsize=6.5)
+ax.set_ylabel('Protein Stability Index (PSI)', fontsize=8)
 ax.set_title('Combined Dipeptide Groups (P2-P3): Top Hits vs All Screen',
-             fontsize=13, fontweight='bold', pad=18)
+             fontsize=8.8, fontweight='bold', pad=10)
 ax.text(0.5, 1.01, r'One-tailed Mann-Whitney U ($H_1$: Top Hits < All Screen)',
-        transform=ax.transAxes, ha='center', va='bottom', fontsize=10, color='#555')
+        transform=ax.transAxes, ha='center', va='bottom', fontsize=6.2, color='#555')
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 
 for center, (_, _, dp) in zip(centers_co, brackets_co):
     ax.text(center, -0.18, dp, transform=ax.get_xaxis_transform(),
-            ha='center', fontsize=13, fontweight='bold',
+            ha='center', fontsize=8, fontweight='bold',
             color=DIPEPTIDE_COLORS[dp])
     members_str = ' + '.join(COMBINED_GROUPS[dp])
     ax.text(center, -0.25, f'({members_str})', transform=ax.get_xaxis_transform(),
-            ha='center', fontsize=9, color='#666')
+            ha='center', fontsize=5.8, color='#666')
 
 for p_all, p_hits, dp in brackets_co:
     ax.plot([p_all - 0.3, p_hits + 0.3], [-0.14, -0.14],
             transform=ax.get_xaxis_transform(),
-            color=DIPEPTIDE_COLORS[dp], linewidth=2.5, clip_on=False)
+            color=DIPEPTIDE_COLORS[dp], linewidth=1.5, clip_on=False)
 
 global_max_co = max(np.percentile(d, 99) for d in data_co if len(d) > 0)
 bracket_y_co = global_max_co + 0.15
@@ -151,17 +153,20 @@ for p_all, p_hits, dp in brackets_co:
     d_val = cohen_d_co.get(dp, np.nan)
     if not np.isnan(p):
         sig = significance_marker(p)
-        draw_bracket(ax, p_all, p_hits, bracket_y_co, 0.06, sig, fontsize=12)
-        ax.text((p_all + p_hits) / 2, bracket_y_co + 0.18,
+        draw_bracket(ax, p_all, p_hits, bracket_y_co, 0.06, sig, fontsize=7.5)
+        ax.text((p_all + p_hits) / 2, bracket_y_co + 0.28,
                 f'p = {p:.3f}, d = {d_val:.2f}',
-                ha='center', va='bottom', fontsize=8, color='#555')
+                ha='center', va='bottom', fontsize=5.5, color='#555')
 
-ax.set_ylim(top=bracket_y_co + 0.55)
+ax.set_ylim(top=bracket_y_co + 0.72)
 
-plt.tight_layout()
+ax.tick_params(length=2.5, width=0.7, pad=2)
+plt.tight_layout(pad=0.35)
 fig.subplots_adjust(bottom=0.28)
 
-svg_path = os.path.join(OUTPUT_DIR, 'Fig_Combined_only_boxplot.svg')
-fig.savefig(svg_path, format='svg', bbox_inches='tight')
+base = 'Fig_Combined_only_boxplot'
+for ext in ('png', 'pdf', 'svg'):
+    path = os.path.join(OUTPUT_DIR, f'{base}.{ext}')
+    fig.savefig(path, format=ext, bbox_inches='tight')
+    print(f"Saved: {path}")
 plt.close(fig)
-print(f"Saved: {svg_path}")

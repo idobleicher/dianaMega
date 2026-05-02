@@ -19,13 +19,14 @@ AMINO_ACIDS = list('ACDEFGHIKLMNPQRSTVWY')
 
 mpl.rcParams.update({
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Arial', 'DejaVu Sans'],
-    'font.size': 11,
-    'axes.titlesize': 14,
-    'axes.labelsize': 12,
+    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.size': 8,
+    'axes.titlesize': 9,
+    'axes.labelsize': 8,
+    'axes.linewidth': 0.8,
     'svg.fonttype': 'none',
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
+    'figure.dpi': 600,
+    'savefig.dpi': 600,
     'savefig.bbox': 'tight',
     'axes.spines.top': False,
     'axes.spines.right': False,
@@ -70,18 +71,19 @@ for rank, (dp, e) in enumerate(zip(sorted_dipeps, sorted_enrich), 1):
 
 color_gradient = plt.cm.YlOrRd(np.linspace(0.3, 0.95, n))[::-1]
 
-fig, ax = plt.subplots(figsize=(max(6, 0.5 * n + 2), 5))
+fig, ax = plt.subplots(figsize=(3.45, 2.55))
 ax.bar(range(n), sorted_enrich,
        color=[color_gradient[i] for i in range(n)],
-       edgecolor='white', linewidth=0.5)
-ax.axhline(y=1.0, color='#7B7D7D', linestyle='--', linewidth=0.8, alpha=0.7)
+       edgecolor='white', linewidth=0.35)
+ax.axhline(y=1.0, color='#7B7D7D', linestyle='--', linewidth=0.65, alpha=0.7)
 ax.set_xticks(range(n))
-ax.set_xticklabels(sorted_dipeps, rotation=45, ha='right', fontsize=10)
+ax.set_xticklabels(sorted_dipeps, rotation=45, ha='right', fontsize=7)
 ax.set_xlabel('Dipeptide (Position 2-3)')
 ax.set_ylabel('Enrichment (hits / library)')
 ax.set_title('Top Dipeptide Enrichment at Positions 2-3 (after Met)\nBest Hits vs Library',
              fontweight='bold')
-plt.tight_layout()
+ax.tick_params(length=2.5, width=0.7, pad=2)
+plt.tight_layout(pad=0.35)
 
 base = 'fig3_dipeptide_enrichment_bars'
 for ext in ('png', 'pdf', 'svg'):

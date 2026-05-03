@@ -83,6 +83,49 @@ EXPLANATIONS = {
         ]
     ),
 
+    "ubr3_pub_combined_panels_slide.png": (
+        "Combined Publication Figure (slide layout)",
+        [
+            "Same content as the stacked publication composite, but rearranged for slides: "
+            "panels a and b (UBR box and conserved region alignments) appear side by side, "
+            "then panel c (RING alignment) full width, then panel d (domain architecture) "
+            "full width. The image is built at high width so it stays legible when scaled "
+            "to fit a widescreen slide.",
+
+            "Panels a–c show ClustalW-style multiple sequence alignments for the three most "
+            "conserved functional regions. Panel d shows domain positions across all 13 species.",
+
+            "Amino acids are colored by biochemical property. Conservation symbols: "
+            "'*' identical, ':' strongly similar, '.' weakly similar.",
+
+            "For PowerPoint, prefer the three separate files "
+            "ubr3_pub_slide_panel_ab.png, _c.png, and _d.png (one slide each) if the "
+            "all-in-one file is still too tall when fitted to a 16×9 slide.",
+        ]
+    ),
+
+    "ubr3_pub_slide_panel_ab.png": (
+        "UBR publication alignments — panels a and b (slide)",
+        [
+            "Side-by-side ClustalW-style alignments: UBR box (a) and conserved region 400–600 (b), "
+            "scaled for a single widescreen slide."
+        ]
+    ),
+
+    "ubr3_pub_slide_panel_c.png": (
+        "UBR publication alignment — panel c — RING domain (slide)",
+        [
+            "RING domain alignment block (scaled for one widescreen slide)."
+        ]
+    ),
+
+    "ubr3_pub_slide_panel_d.png": (
+        "UBR domain architecture — panel d (slide)",
+        [
+            "Domain architecture across species (scaled to match panels a–c width)."
+        ]
+    ),
+
     "ubr3_conservation_line.png": (
         "Conservation Score Along UBR3 Alignment",
         [
@@ -291,6 +334,52 @@ EXPLANATIONS = {
 
             "Even non-zinc-coordinating positions show high conservation, indicating that "
             "the overall fold and E2-interaction surface are under strong selection.",
+
+            "Blue markers highlight the four coordinating cysteines (Cys1239, Cys1334, "
+            "Cys1360, Cys1363) emphasized in structural studies.",
+        ]
+    ),
+
+    "ubr3_pub_ubr_box_ppt.png": (
+        "UBR Box Domain Alignment — slide version (large type)",
+        [
+            "Use this file in PowerPoint: same alignment as the standard export, but with "
+            "larger amino-acid and species labels, wider columns, higher resolution, and "
+            "more prominent conservation symbols (*, :, .).",
+
+            "ClustalW-style alignment of the UBR box domain (human residues 118-189) "
+            "across all 13 species.",
+
+            "The UBR box is the substrate-recognition domain of UBR-family E3 ligases. "
+            "It binds N-terminal destabilizing residues (N-degrons) of target proteins, "
+            "marking them for proteasomal degradation via the N-end rule pathway.",
+
+            "Red triangles mark substrate recognition residues from the UBR3-UNC13B "
+            "structure: Arg132, Pro140, Cys141, Ala169, Asp171, and Val177.",
+        ]
+    ),
+
+    "ubr3_pub_region_400_600_ppt.png": (
+        "Conserved Region Alignment — slide version (large type)",
+        [
+            "Use this file in PowerPoint: enlarged fonts and conservation row for readability "
+            "on a projector.",
+
+            "Same region as the standard figure: human residues 400–600 across all 13 species.",
+
+            "Red triangles mark Val444, Val448, Gln449, Trp511, and Glu577 from the "
+            "UBR3-UNC13B structure.",
+        ]
+    ),
+
+    "ubr3_pub_ring_domain_ppt.png": (
+        "RING Domain Alignment — slide version (large type)",
+        [
+            "Use this file in PowerPoint: enlarged fonts for RING residues and clearer "
+            "conservation markers (* larger and bold).",
+
+            "RING domain alignment (human residues 1232–1376). Blue markers: Cys1239, "
+            "Cys1334, Cys1360, Cys1363.",
         ]
     ),
 }
@@ -336,9 +425,13 @@ REGION_EXPLANATION = (
 
 SLIDE_GROUPS = [
     ("Overview", [
+        "ubr3_pub_slide_panel_ab.png",
+        "ubr3_pub_slide_panel_c.png",
+        "ubr3_pub_slide_panel_d.png",
         "ubr3_combined_conservation_architecture.png",
         "ubr3_animal_domain_architecture.png",
         "ubr3_pub_combined_panels.png",
+        "ubr3_pub_combined_panels_slide.png",
     ]),
     ("Conservation Analysis", [
         "ubr3_conservation_line.png",

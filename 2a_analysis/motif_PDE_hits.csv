@@ -1,0 +1,894 @@
+name,aid,db,class,origin,twoA_seq,found,pos2,downstream_product,lineage
+A22539,UPI00085E5502/109-123,UniParc,A,Unclassified,LLKLAGDVESNPGP,True,D,PDAHLANGSMSEVMMSEIAG,N/A
+A30434,UPI0012A782B9/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDALVKLNDCKTKYGLNSNC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29747,UPI001BEE1881/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDALVKLNDYKTRYGLNIKC,N/A
+A30185,UPI001BF14967/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDALVKLNDYKTRYGLNIKC,N/A
+A21678,UPI0010B8E47E/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDALVKLNDYKTRYGLSIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A21184,UPI00032B29A4/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A30407,UPI00032B2D87/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A13185,UPI00032B2E8C/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A34482,UPI00032B2EC3/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A5916,UPI00032B3000/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A14400,UPI00032B326D/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A23052,UPI00032B34BF/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A31169,UPI00032B35A0/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A18779,UPI00032B39F6/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A7435,UPI00032B4133/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A8235,UPI00032B4D18/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A14649,UPI00032B5356/1003-1019,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A18312,UPI00032B6107/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A14142,UPI00032B645C/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A6938,UPI00032B7150/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A22541,UPI00032B7AC6/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A24719,UPI00032B841D/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A31170,UPI00032B8ED3/831-847,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDASVHGQIGAALLVMITLF,N/A
+A6695,UPI001893775D/42-57,UniParc,A,Unclassified,LLLLVSGDIESNPGP,True,D,PDAVLAELQKLSAGQSTLLN,N/A
+A30427,UPI001893C63B/42-57,UniParc,A,Unclassified,LLLLVSGDIESNPGP,True,D,PDAVLAELQKLSAGQSTLLN,N/A
+A25481,UPI001893DD99/151-166,UniParc,A,Unclassified,LLLLVSGDIESNPGP,True,D,PDAVLAELQKLSAGQSTLLN,N/A
+A18083,UPI0020C2D1D2/42-57,UniParc,A,Unclassified,LLLLVSGDIESNPGP,True,D,PDAVLAELQKLSAGQSTLLN,N/A
+A7972,UPI001896A7A7/152-167,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A25703,UPI001898B981/164-179,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A30410,UPI001898BD24/253-268,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A34267,UPI00189A1B86/251-266,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A20749,UPI00189A35AE/121-136,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A11727,UPI00189B8838/233-248,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A19974,UPI002100EE31/253-268,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A6940,UPI002101270B/51-66,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A11730,UPI0021018713/86-101,UniParc,A,Unclassified,ALLLLAGDVETNPGP,True,D,PDAVLDELKKLSAGQSQLLT,N/A
+A25486,UPI001B88760C/46-61,UniParc,A,Unclassified,LLIISGDVEKNPGP,True,D,PDCNEPTKQFTTKKRYNAYV,N/A
+A8728,UPI000770ECA6/28-44,UniParc,A,Host,RLLLLLSGDVETNPGP,True,D,PDDAVLIELQKLSAGQSQLL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A1929,tr|A0A131XQ75|A0A131XQ75_IXORI/28-44,UniProtKB,A,Host,RLLLLLSGDVETNPGP,True,D,PDDAVLIELQKLSAGQSQLL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A22794,UPI0007AA64DA/83-98,UniParc,A,Host,LLLLLSGDIETNPGP,True,D,PDDCPQLASILQTVQRIEQG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A27383,UPI001A9DA21B/151-166,UniParc,A,Unclassified,RDLLLSGDIESNPGP,True,D,PDDCQGGGNPTMEEMVKAIL,N/A
+A8239,UPI001A9E4FD7/151-166,UniParc,A,Unclassified,RDLLLSGDIESNPGP,True,D,PDDCQGGGNPTMEEMVKAIL,N/A
+A13921,UPI001C390081/254-269,UniParc,A,Unclassified,RDLLLSGDIESNPGP,True,D,PDDCQGGGNPTMEEMVKAIL,N/A
+A17151,UPI001A9E8E88/246-261,UniParc,A,Unclassified,RDLLSCGDIESNPGP,True,D,PDDDCIPTMEEMVKDILAKQ,N/A
+A34507,UPI001C389D35/246-261,UniParc,A,Unclassified,RDLLSCGDIESNPGP,True,D,PDDDCIPTMEEMVKDILAKQ,N/A
+A13199,UPI001FC738A5/52-67,UniParc,A,Host,LLLLLSGDIEVNPGP,True,D,PDDESKAERMLADLLAGQAR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A34490,UPI0014190949/51-65,UniParc,A,Host,KLLLCGDIESNPGP,True,D,PDDKVLTAIASLSAKVDSRH,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A17614,UPI00156D3A4A/36-50,UniParc,A,Host,KLLLCGDIESNPGP,True,D,PDDKVLTAIASLSAKVDSRH,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A10490,UPI001886C153/168-182,UniParc,A,Unclassified,KLLLCGDIESNPGP,True,D,PDDKVLTAIASLSAKVDSRH,N/A
+A26200,UPI00188748E0/343-357,UniParc,A,Unclassified,KLLLCGDIESNPGP,True,D,PDDKVLTAIASLSAKVDSRH,N/A
+A12002,UPI002037A7FF/280-294,UniParc,A,Host,KLLLCGDIESNPGP,True,D,PDDKVLTAIASLSAKVDWRH,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A17133,UPI002100DAC7/66-82,UniParc,A,Unclassified,FLLLLICGDVEMNPGP,True,D,PDDSVLKQLLDGQKEIKKEL,N/A
+A13916,UPI002155EB88/147-161,UniParc,A,Unclassified,LLLLSGDVETNPGP,True,D,PDDVTIAEQLKSIAKDIQEI,N/A
+A10967,UPI001FC6D856/75-89,UniParc,A,Host,LVKTCGDVELNPGP,True,D,PDDVTNNLSGELSNVVKAIT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A21874,UPI00144C6CA0/21-35,UniParc,A,Host,DLLSCGDIESNPGP,True,D,PDEGGTDTPLTMKEMAKSIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A5928,UPI001AA007A8/16-30,UniParc,A,Unclassified,RLLLSGDVEENPGP,True,D,PDENVEELLRQILANQSGIA,N/A
+A25715,UPI001C390054/16-30,UniParc,A,Unclassified,RLLLSGDVEENPGP,True,D,PDENVEELLRQILANQSGIA,N/A
+A16895,UPI001A9FCB33/16-30,UniParc,A,Unclassified,RLLLSGDVEENPGP,True,D,PDENVEEMLRQILSNQSGIA,N/A
+A8660,UPI001E6A4026/162-178,UniParc,A,Unclassified,RGSLTTCGDVEENPGP,True,D,PDEVGLNLAQVVKALEGLNI,N/A
+A23726,UPI001A9CE649/135-149,UniParc,A,Unclassified,LLMLAGDVESNPGP,True,D,PDEVPTRVLLEQLLATQKEI,N/A
+A15654,UPI001A9DD106/135-149,UniParc,A,Unclassified,LLMLAGDVESNPGP,True,D,PDEVPTRVLLEQLLATQKEI,N/A
+A6960,UPI002038705C/231-245,UniParc,A,Host,KLLCCGDIESNPGP,True,D,PDEWQKEVLTMLKELKAETG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A23987,UPI0007AA6A29/130-145,UniParc,A,Host,LLLLAGDIEENPGP,True,D,PDFEEMFNQLLLGQKKIGED,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A33812,UPI000770FE5B/46-59,UniParc,A,Host,LLAGDIEENPGP,True,D,PDFEKMCNQLFLGQKKIGED,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A12522,UPI00194C7B4B/105-121,UniParc,A,Host,LLLLLSGNVEPNPGP,True,D,PDFNYLSTPCDFKARSGLGV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Chordata, Craniata, Vertebrata, Gnathostomata, Teleostomi, Euteleostomi, Actinopterygii, Actinopteri, Neopterygii, Teleostei, Osteoglossocephalai, Clupeocephala, Euteleosteomorpha, Neoteleostei, Eurypterygia, Ctenosquamata, Acanthomorphata, Paracanthopterygii, Zeiogadaria, Gadariae, Gadiformes, Gadoidei, Gadidae, Gadus"
+A12981,UPI000DC0CAD8/23-40,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDFSVLQTIGDSLGSGVKQT,N/A
+A12982,UPI000DC0CAD8/60-77,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDFSVLQTIGDSLGSGVKQT,N/A
+A35040,UPI000DC0E593/23-40,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDFSVLQTIGDSLGSGVKQT,N/A
+A35041,UPI000DC0E593/60-77,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDFSVLQTIGDSLGSGVKQT,N/A
+A29717,UPI001A9D9607/145-161,UniParc,A,Unclassified,RFLLLLSGDVETNPGP,True,D,PDGAVLVELQKLCGGQSQLL,N/A
+A23986,UPI00144DCB62/151-167,UniParc,A,Host,RDLLLSGDIESNPGP,True,D,PDGCQEGSNPTMEEMVKAIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A29512,UPI00144F6267/151-167,UniParc,A,Host,RDLLLSGDIESNPGP,True,D,PDGCQEGSNPTMEEMVKAIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A15911,UPI002100E1B1/60-75,UniParc,A,Unclassified,LLLVLAGDVELNPGP,True,D,PDGNSNPQPSLESIAMAISR,N/A
+A10012,UPI00116157FA/215-228,UniParc,A,Unclassified,LLLSGDVEENPGP,True,D,PDGNVEDMVRQILSNQNRIA,N/A
+A23318,UPI001161593F/295-308,UniParc,A,Unclassified,LLLSGDVEENPGP,True,D,PDGNVEDMVRQILSNQNRIA,N/A
+A24744,UPI001C38CF86/135-148,UniParc,A,Unclassified,LLLSGDVEENPGP,True,D,PDGNVEDMVRQILSNQNRIA,N/A
+A28073,UPI0021C55737/28-41,UniParc,A,Unclassified,LLLCGDIESNPGP,True,D,PDHSNENASELLKQLVTAHT,N/A
+A27380,UPI0021C55BDC/136-149,UniParc,A,Unclassified,LLLCGDIESNPGP,True,D,PDHSNENASELLKQLVTAHT,N/A
+A5182,UPI001F868784/148-163,UniParc,A,Host,LLAMCGDIEPNPGP,True,D,PDIDNDVPLKFMFSNINSIG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Annelida, Polychaeta, Sedentaria, Canalipalpata, Sabellida, Oweniida, Oweniidae, Owenia"
+A11514,UPI0001E2368C/15-27,UniParc,A,Unclassified,QCGDVEENPGP,True,D,PDIELVY,N/A
+A31186,UPI0001E2368D/15-27,UniParc,A,Unclassified,QCGDVETNPGP,True,D,PDIELVY,N/A
+A18323,UPI0001E2368E/15-27,UniParc,A,Unclassified,QCGDVETNPGP,True,D,PDIELVY,N/A
+A11505,UPI0001E2368F/15-27,UniParc,A,Unclassified,QCGDVESNPGP,True,D,PDIELVY,N/A
+A18255,UPI000BADD7A3/894-911,UniParc,A,Virus,FWLLMLCGDVELNPGP,True,D,PDIELVYKNRGFYKHYGVRV,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, unclassified Picornaviridae"
+A121,tr|A0A248AAI2|A0A248AAI2_9PICO/894-911,UniProtKB,A,Virus,FWLLMLCGDVELNPGP,True,D,PDIELVYKNRGFYKHYGVRV,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, unclassified Picornaviridae"
+A25721,UPI00144EC229/149-163,UniParc,A,Host,LLLSGDVELNPGP,True,D,PDIEVLLEQISKDIAEIKTS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A4472,UPI001FC75A30/126-140,UniParc,A,Host,LLLSGDVETNPGP,True,D,PDIKVLVQGLCDGQKAIQAN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A18326,UPI001FC68F58/126-140,UniParc,A,Host,LLLSGDVETNPGP,True,D,PDIKVLVQGLCDRQKAIQAN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A15204,UPI00156D0795/42-56,UniParc,A,Host,SLLLSGDVGTNPGP,True,D,PDILAELKKLSQGQSAILSE,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A16705,UPI000810F69B/322-335,UniParc,A,Virus,ILVSGDVELNPGP,True,D,PDILVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A16706,UPI000DC78273/322-335,UniParc,A,Virus,ILVSGDVELNPGP,True,D,PDILVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A19748,UPI00000EC216/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A30438,UPI00006C6883/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A6707,UPI00006C6885/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A26225,UPI0001F25553/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A29280,UPI0001F2555B/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A15210,UPI0001F2559C/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A8756,UPI000217814E/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A16206,UPI00062E08F3/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A30932,UPI0006551222/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A24516,UPI0006A27986/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A33613,UPI00071FD516/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A10256,UPI00072F4B08/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A23330,UPI0007AACBD1/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A10025,UPI0007AAD3C1/320-334,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A20523,UPI0007AAD60D/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A31205,UPI0007AAD827/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A26224,UPI0007AADAEC/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A27399,UPI000C492242/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A27398,UPI001004DA88/309-323,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A24517,UPI00062DE49F/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A4965,UPI00071EF7B0/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A18096,UPI00071FB581/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A32699,UPI00072151AE/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A20000,UPI000722D492/321-335,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A25241,UPI001004D71F/308-322,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A10984,UPI001004F7F6/305-319,UniParc,A,Virus,KILISGDIELNPGP,True,D,PDILVTLNDYITKYQLKLEY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29538,UPI001E8034EF/322-335,UniParc,A,Unclassified,ILVSGDVELNPGP,True,D,PDILVTLNDYKTKYGLNIKC,N/A
+A29018,UPI00189A5F74/42-57,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLIAGQNQ,N/A
+A10954,UPI00189AFCC9/99-114,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLTAGQNQ,N/A
+A32915,UPI00189B381B/42-57,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLTAGQNQ,N/A
+A22059,UPI00189C47AA/42-57,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLTAGQNQ,N/A
+A5162,UPI00189C4EC4/42-57,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLTAGQNQ,N/A
+A34488,UPI002101953B/122-137,UniParc,A,Unclassified,LLILAGDVETNPGP,True,D,PDIPESLLTELRKLTAGQNQ,N/A
+A22536,UPI0018976B25/112-128,UniParc,A,Unclassified,SLLLLAGDVETNPGP,True,D,PDIQAVLNELKNLSAGQSQL,N/A
+A23048,UPI001898AC11/258-274,UniParc,A,Unclassified,SLLLLAGDVETNPGP,True,D,PDIQAVLNELKNLSAGQSQL,N/A
+A34677,UPI0014263B39/239-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDIQLTQSPSSLSASVGDRV,N/A
+A23056,UPI002031DED6/254-269,UniParc,A,Unclassified,LLLLAGDVETNPGP,True,D,PDISQLSRQLQQIADDLKVI,N/A
+A17860,UPI001E1D862C/104-121,UniParc,A,Unclassified,RLLLMLSGDIEKNPGP,True,D,PDITDACMSIFHQNIRSIRN,N/A
+A15356,UPI0021FD7311/96-106,UniParc,A,Unclassified,SGDVHPNPGP,True,D,PDIVSTHVERKYSKCVYYMR,N/A
+A22236,UPI00027B65FC/768-782,UniParc,A,Virus,LLKCGDVESNPGP,True,D,PDIWRNRITGCMAVQEGAAL,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Limnipivirus, Limnipivirus A"
+A118,tr|J7HCF4|J7HCF4_9PICO/768-782,UniProtKB,A,Virus,LLKCGDVESNPGP,True,D,PDIWRNRITGCMAVQEGAAL,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Limnipivirus, Limnipivirus A"
+A27602,UPI001C389A94/153-168,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDKAAMMEMLTNISVDIKEI,N/A
+A13210,UPI0010C6F581/140-153,UniParc,A,Host,LLLSGDIELNPGP,True,D,PDKKEVQTKEMSEMLVLLRG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A30917,UPI001871DC59/226-242,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,D,PDKKYSIGLDIGTNSVGWAV,N/A
+A31651,UPI00189BA9A8/102-117,UniParc,A,Unclassified,MLLQLSGDVEQNPGP,True,D,PDKLDEIFRAVTEIRTSHST,N/A
+A31183,UPI00189C159A/1-16,UniParc,A,Unclassified,MLLQLSGDVEQNPGP,True,D,PDKLDEILRAVTEIRTSHST,N/A
+A30428,UPI001FC744DD/54-68,UniParc,A,Host,LLVCCGDVETNPGP,True,D,PDKLDMIISALKDAATSRDA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A23058,UPI001894BB41/171-186,UniParc,A,Unclassified,MLLQLSGDVEENPGP,True,D,PDKLDQILAMVTSIKSSQAC,N/A
+A8734,UPI001895EB0B/171-186,UniParc,A,Unclassified,MLLQLSGDVEENPGP,True,D,PDKLDQILAMVTSIKSSQAC,N/A
+A32910,UPI001898A102/151-167,UniParc,A,Unclassified,RSLLLMCGDIESNPGP,True,D,PDKLDVILGELKKMSADQTE,N/A
+A6398,UPI002101CE63/67-83,UniParc,A,Unclassified,RSLLLMCGDIESNPGP,True,D,PDKLDVILGELKKTSAGQTE,N/A
+A14665,UPI002031BEA5/223-236,UniParc,A,Unclassified,LLLCGDVELNPGP,True,D,PDKQGTRELLEKLVEGQDKI,N/A
+A23055,UPI0007AA6FF5/409-424,UniParc,A,Host,LLLLLSGDVESNPGP,True,D,PDKVCKSCTQTKQSELTAIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A26216,UPI001886E832/20-35,UniParc,A,Unclassified,HLLICAGDVELNPGP,True,D,PDKVDQVVALVKEFTASNER,N/A
+A14906,UPI0018932FC5/146-161,UniParc,A,Unclassified,ALLLLSGDVETNPGP,True,D,PDKVVLDELRKLSAGQATLI,N/A
+A10489,UPI00189616F6/251-266,UniParc,A,Unclassified,ALLLLSGDVETNPGP,True,D,PDKVVLDELRKLSAGQATLI,N/A
+A24723,UPI0020C2565C/41-56,UniParc,A,Unclassified,ALLLLSGDVETNPGP,True,D,PDKVVLDELRKLSAGQATLI,N/A
+A11731,UPI0018877CFB/248-262,UniParc,A,Unclassified,LLLLAGDIESNPGP,True,D,PDLAQIAKQLKEVAVDIKEI,N/A
+A12229,UPI001887843A/149-163,UniParc,A,Unclassified,LLLLAGDIESNPGP,True,D,PDLAQIAKQLKEVAVDIKEI,N/A
+A17607,UPI001888209E/148-163,UniParc,A,Unclassified,KLLLLAGDIESNPGP,True,D,PDLAQIAKQLKEVAVDIKEI,N/A
+A35266,UPI001FC6D586/832-844,UniParc,A,Host,LLCGDVESNPGP,True,D,PDLEELINTILAELKQSKEE,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A28756,UPI0001ED087F/452-468,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDLGGELCIKIKNEDLTFIA,N/A
+A8692,UPI0014190565/29-45,UniParc,A,Host,RDLLLLAGDVETNPGP,True,D,PDLKQISQQLTQIAGDIKEI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A20234,UPI0020378066/168-181,UniParc,A,Host,LLLSGDVELNPGP,True,D,PDLKVLLKELPEGQKSIKAD,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A9255,UPI002031CB3C/207-221,UniParc,A,Unclassified,LLLLSGDVETNPGP,True,D,PDLSDLAEQLTQIAADIKTI,N/A
+A5684,UPI0002AEF210/100-114,UniParc,A,Host,LLLLAGDIETNPGP,True,D,PDLSQLSKQLQQIADDLKEI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A2278,tr|L7MM89|L7MM89_RHIPC/100-114,UniProtKB,A,Host,LLLLAGDIETNPGP,True,D,PDLSQLSKQLQQIADDLKEI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A12511,UPI002071701D/23-39,UniParc,A,Unclassified,RLILLAGDIETNPGP,True,D,PDMADLSSSFESTFTHDASL,N/A
+A28775,UPI00207187B0/23-39,UniParc,A,Unclassified,RLILLAGDIETNPGP,True,D,PDMADLSSSFESTFTHDASL,N/A
+A15914,UPI002071E2C9/23-39,UniParc,A,Unclassified,RLILLAGDIETNPGP,True,D,PDMADLSSSFESTFTHDASL,N/A
+A32909,UPI001FC7619D/380-396,UniParc,A,Unclassified,LLLLLAGDVESNPGP,True,D,PDMAELLAEIGKLSVDIKSI,N/A
+A35008,UPI001FC6C888/5-21,UniParc,A,Unclassified,MLLMLSGDVKSNPGP,True,D,PDMAQLMEQLQIIAEDVKDI,N/A
+A6962,UPI000DBB0F61/1009-1024,UniParc,A,Unclassified,LLLLGGDVETNPGP,True,D,PDMEARAKQELHPLLRRVAD,N/A
+A20503,UPI001A9E1AEE/254-270,UniParc,A,Unclassified,MLLLLSGDVEVNPGP,True,D,PDMKIIMEQLKAIAKDIQDI,N/A
+A29735,UPI001C386324/152-168,UniParc,A,Unclassified,MLLVLSGDVEVNPGP,True,D,PDMKIIMEQLKAIAKDIQDI,N/A
+A32685,UPI000770E88A/61-77,UniParc,A,Host,MLLVLSGDVEVNPGP,True,D,PDMKIIMEQLKTIAKDLQDI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A11500,UPI0008481693/743-760,UniParc,A,Virus,RSLLLRCGDIEENPGP,True,D,PDMKVERYAPDSDSGYESKN,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Yadokarivirales, Yadokariviridae, Betayadokarivirus, Betayadokarivirus ichibani"
+A2236,tr|A0A1B4ZA59|A0A1B4ZA59_9VIRU/743-760,UniProtKB,A,Virus,RSLLLRCGDIEENPGP,True,D,PDMKVERYAPDSDSGYESKN,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Yadokarivirales, Yadokariviridae, Betayadokarivirus, Betayadokarivirus ichibani"
+A22298,UPI0010C6F10F/104-119,UniParc,A,Unclassified,LLLLSGDIETNPGP,True,D,PDMNKIMKQLQVIADDIKEI,N/A
+A19535,UPI0018872737/205-218,UniParc,A,Unclassified,LLSGDIETNPGP,True,D,PDMNKIMKQLQVIADEIKEE,N/A
+A6427,UPI000DC0C45C/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQEARRIGDEA,N/A
+A6428,UPI000DC0C45C/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQEARRIGDEA,N/A
+A24778,UPI000DC101D7/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQEARRIGDEA,N/A
+A24779,UPI000DC101D7/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQEARRIGDEA,N/A
+A31939,UPI000DC05926/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31940,UPI000DC05926/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31941,UPI000DC05926/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31942,UPI000DC05926/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31943,UPI000DC05926/343-360,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31937,UPI000DC05926/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31944,UPI000DC05926/394-409,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31945,UPI000DC05926/445-462,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31946,UPI000DC05926/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31938,UPI000DC05926/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24521,UPI000DC06514/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24522,UPI000DC06514/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24523,UPI000DC06514/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24524,UPI000DC06514/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24519,UPI000DC06514/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A24520,UPI000DC06514/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30935,UPI000DC0711E/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30936,UPI000DC0711E/190-207,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30937,UPI000DC0711E/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30938,UPI000DC0711E/292-309,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30939,UPI000DC0711E/343-360,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30933,UPI000DC0711E/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30940,UPI000DC0711E/394-411,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30941,UPI000DC0711E/445-462,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30942,UPI000DC0711E/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A30934,UPI000DC0711E/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11765,UPI000DC09998/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11766,UPI000DC09998/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11767,UPI000DC09998/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11768,UPI000DC09998/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11769,UPI000DC09998/343-360,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11763,UPI000DC09998/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11770,UPI000DC09998/394-409,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11771,UPI000DC09998/445-462,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11772,UPI000DC09998/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A11764,UPI000DC09998/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31454,UPI000DC09BB2/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31455,UPI000DC09BB2/190-207,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31456,UPI000DC09BB2/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31452,UPI000DC09BB2/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A31453,UPI000DC09BB2/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32444,UPI000DC0A564/1004-1019,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32427,UPI000DC0A564/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32429,UPI000DC0A564/240-257,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32430,UPI000DC0A564/290-305,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32431,UPI000DC0A564/341-358,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32425,UPI000DC0A564/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32432,UPI000DC0A564/392-407,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32433,UPI000DC0A564/443-460,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32434,UPI000DC0A564/494-509,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32435,UPI000DC0A564/545-562,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32436,UPI000DC0A564/596-611,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32437,UPI000DC0A564/647-664,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32438,UPI000DC0A564/698-713,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32439,UPI000DC0A564/749-766,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32440,UPI000DC0A564/800-815,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32441,UPI000DC0A564/851-868,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32426,UPI000DC0A564/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32442,UPI000DC0A564/902-917,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A32443,UPI000DC0A564/953-970,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14940,UPI000DC0C537/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14941,UPI000DC0C537/190-207,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14942,UPI000DC0C537/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14943,UPI000DC0C537/292-309,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14944,UPI000DC0C537/343-360,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14938,UPI000DC0C537/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14945,UPI000DC0C537/394-411,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14946,UPI000DC0C537/445-462,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14947,UPI000DC0C537/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A14939,UPI000DC0C537/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21888,UPI000DC0D9A1/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21889,UPI000DC0D9A1/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21890,UPI000DC0D9A1/241-258,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21891,UPI000DC0D9A1/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21886,UPI000DC0D9A1/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A21887,UPI000DC0D9A1/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20269,UPI000DC10D01/1004-1019,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20252,UPI000DC10D01/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20254,UPI000DC10D01/240-257,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20255,UPI000DC10D01/290-305,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20256,UPI000DC10D01/341-358,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20250,UPI000DC10D01/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20257,UPI000DC10D01/392-407,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20258,UPI000DC10D01/443-460,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20259,UPI000DC10D01/494-509,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20260,UPI000DC10D01/545-562,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20261,UPI000DC10D01/596-611,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20262,UPI000DC10D01/647-664,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20263,UPI000DC10D01/698-713,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20264,UPI000DC10D01/749-766,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20265,UPI000DC10D01/800-815,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20266,UPI000DC10D01/851-868,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20251,UPI000DC10D01/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20267,UPI000DC10D01/902-917,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A20268,UPI000DC10D01/953-970,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A25741,UPI000DC126AE/139-156,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A25742,UPI000DC126AE/190-207,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A25743,UPI000DC126AE/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A25739,UPI000DC126AE/37-54,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A25740,UPI000DC126AE/88-105,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRPEIWIAQELRRIGDEF,N/A
+A19198,UPI0013E74A66/476-493,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDMRVPAQLLGLLLLWFPGS,N/A
+A32922,UPI0002AEF8D8/256-272,UniParc,A,Host,RSLLLVAGDIESNPGP,True,D,PDNAAILAELRKLTAGQSTV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A2302,tr|L7LVD0|L7LVD0_RHIPC/256-272,UniProtKB,A,Host,RSLLLVAGDIESNPGP,True,D,PDNAAILAELRKLTAGQSTV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A4,tr|L7LVD0|L7LVD0_RHIPC/258-271,UniProtKB,A,Host,LLLVAGDIESNPGP,True,D,PDNAAILAELRKLTAGQSTV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A19746,UPI001895310A/168-184,UniParc,A,Unclassified,RSLLLLTGDIESNPGP,True,D,PDNAALLAEMKKLSAGQAKM,N/A
+A32420,UPI001FC798CE/237-252,UniParc,A,Host,LLLALSGDVELNPGP,True,D,PDNATPTPVTLEFIASTLSR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A10225,UPI001C389CAF/160-176,UniParc,A,Unclassified,RFLLLLSGDVETNPGP,True,D,PDNAVLVELQKLSTGQSQLL,N/A
+A25953,UPI001888BF92/277-292,UniParc,A,Unclassified,LLLLLCGDVESNPGP,True,D,PDNLAELVKTMKDLNERTKR,N/A
+A22784,UPI001889BF9E/164-179,UniParc,A,Unclassified,LLLLLCGDVESNPGP,True,D,PDNLAELVKTMKDLNERTKR,N/A
+A30881,UPI001894F134/160-176,UniParc,A,Unclassified,RSLLLLAGDIESNPGP,True,D,PDNQAVLNELKKLSTGQTQL,N/A
+A19968,UPI0002AF167A/277-293,UniParc,A,Host,RSLLLLAGDIETNPGP,True,D,PDNQAVLNELKKLTAGQSQL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A1907,tr|L7LY12|L7LY12_RHIPC/277-293,UniProtKB,A,Host,RSLLLLAGDIETNPGP,True,D,PDNQAVLNELKKLTAGQSQL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A17616,UPI0020C20944/277-293,UniParc,A,Unclassified,RSLLLLAGDIEINPGP,True,D,PDNQAVLNELRKLSTGQTQL,N/A
+A34510,UPI00096B09FA/35-50,UniParc,A,Unclassified,LLLLMSGDVELNPGP,True,D,PDPKSILQKYSANLSKAISA,N/A
+A19257,UPI000A1351A8/22-37,UniParc,A,Host,LLLLMSGDVELNPGP,True,D,PDPKSILQKYSANLSKAISA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Porifera, Demospongiae, Heteroscleromorpha, Haplosclerida, Niphatidae, Amphimedon"
+A24758,UPI000D7DB518/321-335,UniParc,A,Virus,KILLSGDIELNPGP,True,D,PDPLIKLNDC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A20522,UPI000DC791C7/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDCKTEYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A23067,UPI0010AF0AC3/321-335,UniParc,A,Virus,RILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A23068,UPI0010AFDCDB/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A32691,UPI0010B29C7A/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A17870,UPI0010B3B8F9/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A21211,UPI0010B40998/321-335,UniParc,A,Virus,RILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29269,UPI0010B5058E/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A22076,UPI0010B6484C/321-335,UniParc,A,Virus,KILLSGDVESNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A6961,UPI0010B7C630/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A15199,UPI0010B86223/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A4952,UPI0010B8D47B/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A30925,UPI0010BA7808/321-335,UniParc,A,Virus,RILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A31196,UPI0010BABE12/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7454,UPI0010BC6D7A/321-335,UniParc,A,Virus,KILLSGDVESNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A35271,UPI0013972D0D/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A19740,UPI001BED8AB2/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,N/A
+A20514,UPI001BEDB154/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,N/A
+A10016,UPI001BEDD85A/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,N/A
+A7997,UPI001BF08602/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGIDIIC,N/A
+A27130,UPI0010BBA7F1/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A9259,UPI001BEF2705/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIIC,N/A
+A11249,UPI001BEF47C6/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIIC,N/A
+A18085,UPI001BF03431/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIIC,N/A
+A21212,UPI001BF0DEB4/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIIC,N/A
+A32423,UPI000D7E0F51/318-332,UniParc,A,Virus,KILLSGDIELNPGP,True,D,PDPLIKLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A21444,UPI000D7E41BB/190-204,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A20524,UPI001162B4B3/305-319,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A4953,UPI0010B40EDF/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINITC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A4477,UPI001BEEC544/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINITC,N/A
+A5176,UPI0010B5B6BF/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A24269,UPI0010B11E85/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINVIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A28788,UPI000D7EB6B6/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDCKTKYGINVTC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A5184,UPI0010BB2845/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A10762,UPI001BED64A5/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIKLNDCKTKYGISIIC,N/A
+A12519,UPI001BEDE058/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIKLNDCKTKYGISIIC,N/A
+A13689,UPI000DC7A760/321-335,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIKLNDYKTKYCINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A13213,UPI0010B53398/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGICIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29740,UPI0010B59663/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A25976,UPI0010BB1A6D/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A12253,UPI0012A1912B/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A25023,UPI001BF12ACC/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGIDIIC,N/A
+A4478,UPI0010B7C279/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYGIGIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A19745,UPI0011652B92/86-100,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIKLNDYKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A28559,UPI0010B55AF4/321-335,UniParc,A,Virus,RILISGDVEMNPGP,True,D,PDPLIKLNDYKTKYGINVLC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A20241,UPI000F0BEAA7/281-295,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDYKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A24280,UPI000F0C2726/269-283,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDYKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A24765,UPI000F0C7B88/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDYKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A21214,UPI000F0C8218/318-332,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIKLNDYKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A25025,UPI0010B1D482/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIKLNDYKTKYSIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A18611,UPI000F0CC76D/311-325,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIKLNNYKTRYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A4702,UPI000014B58E/4-18,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIRLN,N/A
+A23549,UPI0010B4BFDB/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYDIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A18344,UPI0010B9B03C/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYDIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A28093,UPI001BEFF6F1/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYDISIIC,N/A
+A18343,UPI00001389F9/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C, Porcine rotavirus C"
+A7998,UPI000D7DB935/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIRLNDCKTKYGIDIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A18093,UPI000D7D23F4/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGIEIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A10510,UPI000D7D25CF/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGIEIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A27623,UPI000D7EB6F0/320-334,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGIEIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A32944,UPI000DC7544C/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A20775,UPI000DC78228/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A5438,UPI0010AEF90E/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A6190,UPI0010B53531/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A5946,UPI0010BA0DC9/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A33612,UPI001BF0776C/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,N/A
+A14430,UPI001BF096F6/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIIC,N/A
+A32947,UPI000F0C317B/321-335,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIRLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A25028,UPI000F0C95E9/290-304,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIRLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A10985,UPI001163618E/321-335,UniParc,A,Virus,RILVSGDVELNPGP,True,D,PDPLIRLNDCKTKYGINILC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A19018,UPI0010AF976D/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A4486,UPI0010B0283B/321-335,UniParc,A,Virus,KILISGDVEQNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A11257,UPI0010B3BB50/279-293,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A11753,UPI0010B4AAC8/321-335,UniParc,A,Virus,KILLSGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A19028,UPI0010B60CE1/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A15209,UPI0010BB07E2/321-335,UniParc,A,Virus,KILISGDVEQNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A35280,UPI0010BBBAAA/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGINIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29279,UPI000DC76CF2/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A22571,UPI000DC7B3C7/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A33611,UPI000DC7E49E/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A28316,UPI0010B12A35/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A33421,UPI0010B9206A/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A6189,UPI0010BB503D/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29968,UPI001BEE1EB7/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGISIIC,N/A
+A6972,UPI0010BAC412/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDCKTKYGLNVLC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A28094,UPI0010B6C730/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNDYKTKYGISIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A8005,UPI0010B509D2/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLIRLNECKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7463,UPI0008110D52/312-326,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLITLNDWKTKYGISIVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A27132,UPI000F0C7679/311-325,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLVRLNDCKTKHGIHIIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A29969,UPI000DC76139/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLVRLNDCKTKYGISVIC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A32424,UPI0012A89E4D/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDPLVRLNDYKTKYGINVVC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A11494,UPI001E886542/31-46,UniParc,A,Host,SLLKLSGDIELNPGP,True,D,PDPNMQQTSYSVFTNHGLSI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A4954,UPI000A13AF24/312-328,UniParc,A,Host,HLLLFLSGDVELNPGP,True,D,PDPTEAYKKIKDILRSQYAT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Porifera, Demospongiae, Heteroscleromorpha, Haplosclerida, Niphatidae, Amphimedon"
+A29296,UPI000DC0DCC8/29-45,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDPVVEEHFRRSLGKNYKEG,N/A
+A29297,UPI000DC0DCC8/72-88,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDPVVEEHFRRSLGKNYKEG,N/A
+A7219,UPI000DC1148D/28-44,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDPVVEEHFRRSLGKNYKEG,N/A
+A7220,UPI000DC1148D/71-87,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDPVVEEHFRRSLGKNYKEG,N/A
+A23066,UPI00090C027E/338-353,UniParc,A,Virus,LLLQQAGDVEMNPGP,True,D,PDPWALFAQGEKYGPPPMAM,"Viruses, Riboviria, unclassified Riboviria, unclassified RN/A viruses ShiM-2016"
+A10733,UPI001A9E8839/152-167,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A19723,UPI001A9EB579/12-27,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A29019,UPI001A9FD7C7/129-144,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A31893,UPI001A9FF9DA/254-269,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A25001,UPI001C383560/152-167,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A32914,UPI001C38698E/254-269,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAAMMEMLTNISVDIKEI,N/A
+A8240,UPI001A9F2020/254-269,UniParc,A,Unclassified,DLLMLCGDIETNPGP,True,D,PDRAATMEMLTNISVDIKEI,N/A
+A14911,UPI001A3E32BD/26-42,UniParc,A,Host,RFLLLLAGDIERNPGP,True,D,PDRARRGALDLEAGFAPSTS,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Symbiodinium"
+A2244,tr|A0A812UGP0|A0A812UGP0_SYMPI/26-42,UniProtKB,A,Host,RFLLLLAGDIERNPGP,True,D,PDRARRGALDLEAGFAPSTS,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Symbiodinium"
+A16689,UPI001CEE79F0/136-151,UniParc,A,Unclassified,LLLLVSGDVESNPGP,True,D,PDRELLAKIELVLKNQTDIR,N/A
+A9506,UPI002155F033/243-260,UniParc,A,Unclassified,RILLLLSGDVETNPGP,True,D,PDRFDTVLAELQKLTAGQNA,N/A
+A22800,UPI001238D7C6/12-27,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIGIEKEFLKLSKLIGPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A13214,UPI00123C6EFD/62-77,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSDEEFIKLSTLIATC,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A14414,UPI001238DE5D/30-45,UniParc,A,Host,ILLKKSGDVETNPGP,True,D,PDRIVSEAEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A16916,UPI00123B8D36/38-53,UniParc,A,Host,ILLMRSGDVEINPGP,True,D,PDRIVSEAEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2360,tr|A0A7M7NBD4|A0A7M7NBD4_STRPU/30-45,UniProtKB,A,Host,ILLKKSGDVETNPGP,True,D,PDRIVSEAEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A30640,UPI001238DA67/19-34,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEDEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2271,tr|A0A7M7SVI4|A0A7M7SVI4_STRPU/19-34,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEDEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A26212,UPI00123943B4/19-34,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIAPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A33809,UPI00123A7F97/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIEPG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A34279,UPI0012398129/96-111,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A21663,UPI00123B2935/19-34,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A34017,UPI0005EF2BE4/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIKPY,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2341,tr|A0A7M7NFA1|A0A7M7NFA1_STRPU/30-45,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKLIKPY,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A6408,UPI001238F980/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKMIEPT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2454,tr|A0A7M7NCE8|A0A7M7NCE8_STRPU/30-45,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLSKMIEPT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A19015,UPI0012385549/55-70,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFIKLTTLIAPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A30425,UPI001238CED6/12-27,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFLKLSKLIEPA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A13930,UPI00123A2538/19-34,UniParc,A,Host,ILLVRSGDVETNPGP,True,D,PDRIVSEEEFMELSKLIAPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2534,tr|A0A7M7NLV2|A0A7M7NLV2_STRPU/19-34,UniProtKB,A,Host,ILLVRSGDVETNPGP,True,D,PDRIVSEEEFMELSKLIAPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A6413,UPI0010C6EA42/58-73,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEEEFMRLSKLIEPS,N/A
+A23538,UPI001239096F/44-59,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKDFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A17858,UPI0010C69149/19-34,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKKIDPS,N/A
+A10497,UPI00123AAC0A/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKLIEPN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A34504,UPI00123B3948/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKLIEPN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A25487,UPI00123B5B14/30-45,UniParc,A,Host,ILLMRSGDVEINPGP,True,D,PDRIVSEKEFLKLSKQIEPR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A6168,UPI0010C6475D/55-70,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A23310,UPI0010C67278/30-45,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A29730,UPI0010C6AC3F/55-70,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A25223,UPI0010C6D583/55-70,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A20765,UPI0010C6DB2C/12-27,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A8737,UPI0010C72F14/12-27,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A34271,UPI0010C743DA/30-45,UniParc,A,Unclassified,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,N/A
+A5705,UPI00123854FE/20-34,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A16454,UPI001238D256/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A30170,UPI001238EBF0/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A19733,UPI001238F9D1/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A18082,UPI00123A3EA2/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A26702,UPI00123A5CF1/12-27,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A6419,UPI00123AE45F/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A7457,UPI00123AF190/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A24760,UPI00123B2833/31-45,UniParc,A,Host,LVMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A4705,UPI00123B6B97/48-63,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A30920,UPI00123B7D87/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A7455,UPI00123BAAD8/105-120,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A23747,UPI00123BF618/31-45,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A9265,UPI00123C123C/31-45,UniParc,A,Host,LVMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A18334,UPI0012386908/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A25017,UPI0012388FC8/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A18596,UPI001238B5AA/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A8259,UPI001239D3AF/31-45,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A12249,UPI00123A481B/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A23064,UPI00123B5F8D/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLKLSKQIKPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A29263,UPI0012384067/52-67,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEKEFLMLSKQIGPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A9002,UPI001239FAE8/31-45,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEKEFLQLSKQIEPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A34505,UPI0012389822/30-45,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A24510,UPI00123A1659/61-75,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A23537,UPI00123A180C/60-75,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A18091,UPI00123A3641/31-45,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A35024,UPI00123AAE61/61-75,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A18603,UPI00123AB05A/31-45,UniParc,A,Host,LLVRSGDVETNPGP,True,D,PDRIVSEREFFKLSKQIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A7184,UPI0010C6F80A/45-60,UniParc,A,Unclassified,ILLIRSGDVESNPGP,True,D,PDRNVSEKEFLRLSKKIDPS,N/A
+A15418,UPI00123BACF8/26-41,UniParc,A,Host,ILLIRSGDVESNPGP,True,D,PDRNVSEKEFLRLSKKIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2451,tr|A0A7M7NAP0|A0A7M7NAP0_STRPU/26-41,UniProtKB,A,Host,ILLIRSGDVESNPGP,True,D,PDRNVSEKEFLRLSKKIDPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A17629,UPI001892F799/78-92,UniParc,A,Unclassified,LLLLSGDIEANPGP,True,D,PDRRTKALLDMDSLPDDPSE,N/A
+A34284,UPI002100C430/4-18,UniParc,A,Unclassified,LLLRSGDVEANPGP,True,D,PDRRTKALLDMDSLPDDPSE,N/A
+A7754,UPI00043ADBA0/825-840,UniParc,A,Virus,DRLLQAGDIEQNPGP,True,D,PDRVEEMRPYGKKITFSQRQ,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Aalivirus, Aalivirus A"
+A19,tr|X4YD30|X4YD30_9PICO/825-840,UniProtKB,A,Virus,DRLLQAGDIEQNPGP,True,D,PDRVEEMRPYGKKITFSQRQ,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Aalivirus, Aalivirus A"
+A22063,UPI00189400FB/151-168,UniParc,A,Unclassified,RFLLLLSGDIEQNPGP,True,D,PDSAAVLAELKKLSSGQSKL,N/A
+A17135,UPI00189580D8/40-57,UniParc,A,Unclassified,RFLLLLSGDIEQNPGP,True,D,PDSAAVLAELKKLSSGQSKL,N/A
+A30417,UPI001895DFDA/175-191,UniParc,A,Unclassified,FLLLLSGDIEQNPGP,True,D,PDSAAVLAELKKLSSGQSKL,N/A
+A9982,UPI00189C369D/87-104,UniParc,A,Unclassified,RSLLLLSGDIESNPGP,True,D,PDSADLVLIELQKLTAGQKE,N/A
+A13409,UPI001A48A2BB/3690-3705,UniParc,A,Host,DLTDDGDVESNPGP,True,D,PDSCRVLSWNAQGFNHMVEA,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Symbiodinium, unclassified Symbiodinium"
+A13410,UPI001A48A2BB/6060-6075,UniParc,A,Host,DLTDDGDVESNPGP,True,D,PDSCRVLSWNAQGFNHMVEA,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Symbiodinium, unclassified Symbiodinium"
+A24998,UPI0018973D07/120-136,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A29510,UPI00189808B6/120-136,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A11520,UPI001898741C/80-96,UniParc,A,Unclassified,ALLIMSGNVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A9995,UPI001898BFCC/163-179,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A12000,UPI001898C140/163-179,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A4698,UPI001898C4D9/231-247,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A18580,UPI00189A0269/41-57,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A11230,UPI00189BAB2F/285-301,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A25216,UPI00210096AC/285-301,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A28296,UPI002100B25E/120-136,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A30896,UPI00210131B2/120-136,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A35255,UPI0021013BC8/285-301,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A29247,UPI00210178D3/41-57,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A23988,UPI0021017D64/242-258,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A16176,UPI002101D128/242-258,UniParc,A,Unclassified,ALLMMSGDVESNPGP,True,D,PDSDALLAELKNLSAGQSQL,N/A
+A17123,UPI001C384D7D/9-24,UniParc,A,Unclassified,RLLLCGDVESNPGP,True,D,PDSDCLLDNILKGQAEILNG,N/A
+A16917,UPI0017595383/6-21,UniParc,A,Host,LLLSAGDIELNPGP,True,D,PDSDSSSQQKNKQQRTSRSF,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A16912,UPI00176FC9EC/88-103,UniParc,A,Host,LLLCAGDIELNPGP,True,D,PDSDSTRAHQKHRNKRSNGT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A11507,UPI00189C24BA/251-268,UniParc,A,Unclassified,HLLLIMCGDIEENPGP,True,D,PDSDVKGNLNPDSDVLQQIL,N/A
+A21430,UPI001E729A06/893-909,UniParc,A,Virus,SLLMQSGDVESNPGP,True,D,PDSHPVMEFLNAENDLVTLA,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Caphthovirinae, Senecavirus, unclassified Senecavirus"
+A18331,UPI001239B48F/30-46,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDSIVSEEEFIKLSEQIGPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2531,tr|A0A7M7NAZ1|A0A7M7NAZ1_STRPU/30-46,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDSIVSEEEFIKLSEQIGPS,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A26226,UPI000585DAFD/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Caphthovirinae, Mischivirus, Mischivirus B"
+A16466,UPI000585E5CD/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Shanbavirus, Shanbavirus A"
+A31206,UPI000585ED05/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Shanbavirus, Shanbavirus A"
+A8008,UPI000586102D/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Shanbavirus, Shanbavirus A"
+A18097,UPI00058629DB/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Shanbavirus, Shanbavirus A"
+A19542,UPI0005863220/948-965,UniParc,A,Virus,HSDILLGGDIEENPGP,True,D,PDSLMDAVLKDLTQEAANLP,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Shanbavirus, Shanbavirus A"
+A20999,UPI0012333293/19-30,UniParc,A,Unclassified,SGDVEQNPGP,True,D,PDSLMGYNDAMLKQMKKNDL,N/A
+A33822,UPI0011410179/42-56,UniParc,A,Host,LHLAGDVELNPGP,True,D,PDSLTILQLNINGVRSKVLE,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Cephalopoda, Coleoidea, Octopodiformes, Octopoda, Incirrata, Octopodidae, Octopus"
+A8485,UPI0021552ABA/40-57,UniParc,A,Unclassified,RSLLLLSGDIETNPGP,True,D,PDSNAILTELKKLSAGQSQL,N/A
+A15644,UPI0021551E00/156-173,UniParc,A,Unclassified,RSLLLLAGDIETNPGP,True,D,PDSQAVLKELKSLSAGHSQL,N/A
+A33996,UPI0021551029/146-163,UniParc,A,Unclassified,RSLLLLAGDIETNPGP,True,D,PDSQAVLKELKSLSAGQSQL,N/A
+A18565,UPI002155143E/266-283,UniParc,A,Unclassified,RSLLLLAGDIETNPGP,True,D,PDSQAVLKELKSLSAGQSQL,N/A
+A5398,UPI002155E93F/110-127,UniParc,A,Unclassified,RSLLLLAGDIETNPGP,True,D,PDSQAVLKELKSLSAGQSQL,N/A
+A7748,UPI001E846580/30-46,UniParc,A,Host,ILLLRGGDVHPNPGP,True,D,PDSSLDMSSSSLGISFSSSI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A34767,UPI001E8B0F34/39-55,UniParc,A,Host,ILLLRGGDVHPNPGP,True,D,PDSSLDMSSSSLGTSFSSSI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A24513,UPI001E8C0CBF/30-46,UniParc,A,Host,ILLLRGGDVHPNPGP,True,D,PDSSLDMSSSSSGTSFSSSI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A12523,UPI001E8C6838/39-55,UniParc,A,Host,ILLLRGGDVHPNPGP,True,D,PDSSLDMSSSSSVKMNLFLL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A20240,UPI001E81F9F4/71-87,UniParc,A,Host,LLLLCSGDVHPNPGP,True,D,PDSSSSSSLSGYSHILNNNG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Heteroconchia, Euheterodonta, Imparidentia, Neoheterodontei, Myida, Dreissenoidea, Dreissenidae, Dreissena"
+A6678,UPI002071F96B/42-58,UniParc,A,Unclassified,SLLLTCGDIETNPGP,True,D,PDSVDASTSSSGDLSATSFE,N/A
+A34029,UPI001C38B713/157-171,UniParc,A,Unclassified,LQLSGDIETNPGP,True,D,PDSVDSQVANILSIVTRIEI,N/A
+A25729,UPI0007AA6A62/157-171,UniParc,A,Host,LQLSGDIETNPGP,True,D,PDSVDTQVANILSIVTRIET,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A19976,UPI002071D687/109-125,UniParc,A,Unclassified,SLLLLCGDVETNPGP,True,D,PDSVETSTASSSNLSATSFE,N/A
+A9512,UPI00207258D3/109-125,UniParc,A,Unclassified,SLLLLCGDVETNPGP,True,D,PDSVETSTASSSNLSATSFE,N/A
+A16681,UPI0020728A30/109-125,UniParc,A,Unclassified,SLLLLCGDVETNPGP,True,D,PDSVETSTASSSNLSATSFE,N/A
+A24007,UPI0020718E0D/109-126,UniParc,A,Unclassified,FHLLLLSGDIHPNPGP,True,D,PDSVNSSIDISYSTSESFLD,N/A
+A8258,UPI002071C3A5/109-126,UniParc,A,Unclassified,FHLLLLSGDIHPNPGP,True,D,PDSVNSSIDISYSTSESFLD,N/A
+A34512,UPI002071C55C/62-79,UniParc,A,Unclassified,FHLLLLSGDIHPNPGP,True,D,PDSVNSSIDISYSTSESFLD,N/A
+A23740,UPI002071F621/109-126,UniParc,A,Unclassified,FHLLLLSGDIHPNPGP,True,D,PDSVNSSIDISYSTSESFLD,N/A
+A18795,UPI0020721C12/109-126,UniParc,A,Unclassified,FHLLLLSGDIHPNPGP,True,D,PDSVNSSIDISYSTSESFLD,N/A
+A24493,UPI00215502C2/339-355,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A9513,UPI002155284C/42-58,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A5680,UPI0021552E9D/256-272,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A31426,UPI0021554764/42-58,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A23307,UPI002155555B/149-165,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A4458,UPI0021559F57/42-58,UniParc,A,Unclassified,LLLLLSGDIETNPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A18793,UPI002155E5C4/256-272,UniParc,A,Unclassified,LLLLLSGDIEINPGP,True,D,PDTAAILAELKKISTGQSKL,N/A
+A5181,UPI0021C51452/167-181,UniParc,A,Unclassified,LLCCGDIETNPGP,True,D,PDTAALLQTILDGQNEIKAD,N/A
+A27597,UPI001A9D27FC/73-90,UniParc,A,Unclassified,FLLLLLCGDIELNPGP,True,D,PDTAATLQILLDGQNAIKAK,N/A
+A23522,UPI001A9D6676/41-58,UniParc,A,Unclassified,FLLLLLCGDIELNPGP,True,D,PDTAATLQILLDGQNAIKAK,N/A
+A28529,UPI0007AA5682/152-168,UniParc,A,Host,DLLMLCGDIETNPGP,True,D,PDTAAVMEMLTNISVDIKEI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A10481,UPI0007AA5A67/254-270,UniParc,A,Host,DLLMLCGDIETNPGP,True,D,PDTAAVMEMLTNISVDIKEI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A15430,UPI0010C743B6/2-13,UniParc,A,Unclassified,SGDVETNPGP,True,D,PDTAERTVSEKEFLKLAKAI,N/A
+A10239,UPI00123C16AB/19-35,UniParc,A,Host,LLLMRSGDVETNPGP,True,D,PDTAERTVSEKEFLKLAKAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2469,tr|A0A7M7NWB2|A0A7M7NWB2_STRPU/19-35,UniProtKB,A,Host,LLLMRSGDVETNPGP,True,D,PDTAERTVSEKEFLKLAKAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A19520,UPI0005EE204C/19-35,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A5605,UPI00123B3B10/19-35,UniParc,A,Host,LLLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A5173,UPI00123C6A76/19-35,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2417,tr|A0A7M7HP54|A0A7M7HP54_STRPU/19-35,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A124,tr|A0A7M7NWQ7|A0A7M7NWQ7_STRPU/19-35,UniProtKB,A,Host,LLLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2518,tr|A0A7M7NZW5|A0A7M7NZW5_STRPU/19-35,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A32153,UPI00123A6299/19-35,UniParc,A,Host,LLLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAYDI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2126,tr|A0A7M7NUD0|A0A7M7NUD0_STRPU/19-35,UniProtKB,A,Host,LLLMRSGDVETNPGP,True,D,PDTAESTVSDMEFLKLAYDI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A25964,UPI00123C00A0/19-35,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSEKEFLKLAQAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2436,tr|A0A7M7NV37|A0A7M7NV37_STRPU/19-35,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSEKEFLKLAQAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A25010,UPI00123BA168/19-35,UniParc,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSEMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A2437,tr|A0A7M7NUM4|A0A7M7NUM4_STRPU/19-35,UniProtKB,A,Host,ILLMRSGDVETNPGP,True,D,PDTAESTVSEMEFLKLAHAI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A10508,UPI001418F575/15-31,UniParc,A,Host,KLLLLGGDIKTNPGP,True,D,PDTALILKQLREIAADIKDI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A12246,UPI0020C318E4/351-366,UniParc,A,Unclassified,LLLLGGDIETNPGP,True,D,PDTAQILKQLREIAADIKDI,N/A
+A7199,UPI0018999505/234-248,UniParc,A,Unclassified,LLQSGDIETNPGP,True,D,PDTDAVLAELKKLSAGQTTI,N/A
+A14925,UPI002100A68D/147-161,UniParc,A,Unclassified,LLQSGDIETNPGP,True,D,PDTDAVLAELKKLSAGQTTI,N/A
+A10009,UPI002100FB65/33-47,UniParc,A,Unclassified,LLQSGDIETNPGP,True,D,PDTDAVLAELKKLSAGQTTI,N/A
+A24001,UPI002101C275/43-57,UniParc,A,Unclassified,LLQSGDIETNPGP,True,D,PDTDAVLAELKKLSARQTTI,N/A
+A21439,UPI0021016720/251-265,UniParc,A,Unclassified,LLQSGDIETNPGP,True,D,PDTDAVLAVLKKLSAGQTTI,N/A
+A27844,UPI001889564B/134-150,UniParc,A,Unclassified,ILILLAGDVEQNPGP,True,D,PDTDDLIKMVNTMLASQEEL,N/A
+A25951,UPI00144F35A2/164-180,UniParc,A,Host,SLLILAGDVEENPGP,True,D,PDTDMAIILQQLQKGQSAIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A10722,UPI0010C73418/147-163,UniParc,A,Host,SLLILAGDVEENPGP,True,D,PDTDMAIIPQQLQKGQSAIL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A27116,UPI001161603D/154-169,UniParc,A,Unclassified,LLLLSGDIESNPGP,True,D,PDTEETLQKLLVGQNKIFEA,N/A
+A14654,UPI001A9FE0AA/154-169,UniParc,A,Unclassified,LLLLSGDIESNPGP,True,D,PDTEETLQKLLVGQNKIFEA,N/A
+A23305,UPI001A9CF5CE/154-169,UniParc,A,Unclassified,LLLLSGDIESNPGP,True,D,PDTEETLQKLLVGQNKIFEV,N/A
+A33420,UPI0007AA6055/161-175,UniParc,A,Host,LLRGGDVEENPGP,True,D,PDTETMREILESQKEMAINI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A23546,UPI00144C257E/84-98,UniParc,A,Host,LLRGGDVEENPGP,True,D,PDTETMREILESQKEMAINI,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A25724,UPI001FC79DAA/64-78,UniParc,A,Host,LLMSGDIEENPGP,True,D,PDTKEMLEQILKNQKEASDA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A30414,UPI00144BCA18/162-177,UniParc,A,Host,LLLLSGDIETNPGP,True,D,PDTLVSEDVSSLSQILKLQF,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A16453,UPI002031CCE0/152-165,UniParc,A,Unclassified,KLSGDVEENPGP,True,D,PDTMEMIQQVIASQTEILSK,N/A
+A6937,UPI001161A4DD/141-158,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A20965,UPI001A9CD12B/141-158,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A29943,UPI001A9CEE16/141-158,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A19237,UPI001A9D95B6/141-158,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A21853,UPI001A9E591B/141-158,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A30885,UPI001AD63115/32-49,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKKLSTGQSKL,N/A
+A20212,UPI001A9D7579/139-156,UniParc,A,Unclassified,RSLLLQSGDIETNPGP,True,D,PDTNAILAELKRLFTGQSKL,N/A
+A13191,UPI00189ACB11/161-178,UniParc,A,Unclassified,RRLLILSGDIETNPGP,True,D,PDTNDVLKELQKISASQNTL,N/A
+A20969,UPI0021012086/144-161,UniParc,A,Unclassified,RRLLILSGDIETNPGP,True,D,PDTNDVLKELQKISASQNTL,N/A
+A4943,UPI001BB102E9/272-287,UniParc,A,Unclassified,LLLRSGDVEQNPGP,True,D,PDTNPGNLTEFELHLLADGM,N/A
+A22305,UPI001BB1D18C/272-287,UniParc,A,Unclassified,LLLRSGDVEQNPGP,True,D,PDTNPGNLTEFELHLLADGM,N/A
+A10248,UPI001BB136AC/289-304,UniParc,A,Unclassified,LLLRSGDVEPNPGP,True,D,PDTNPGNLTELELILLADGM,N/A
+A32936,UPI001BB183EE/291-306,UniParc,A,Unclassified,LLLRSGDVEPNPGP,True,D,PDTNPGNLTELELILLADGM,N/A
+A31440,UPI001BB1BFD9/241-256,UniParc,A,Unclassified,LLLRSGDVEPNPGP,True,D,PDTNPGNLTELELNLLADGM,N/A
+A27131,UPI001750B7E9/21-35,UniParc,A,Host,LITSGDVELNPGP,True,D,PDTNTSGNEQSRRVVNHPIM,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A28314,UPI0017584B96/38-52,UniParc,A,Host,LITSGDVELNPGP,True,D,PDTNTSGNEQSRRVVNHPIM,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A29273,UPI00176374DF/61-75,UniParc,A,Host,LITSGDVELNPGP,True,D,PDTNTSGNEQSRRVVNHPIM,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A14674,UPI0017734648/61-75,UniParc,A,Host,LITSGDVELNPGP,True,D,PDTNTSGNEQSRRVVNHPIM,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A10970,UPI001773A651/89-103,UniParc,A,Host,LITSGDVELNPGP,True,D,PDTNTSGNEQSRRVVNHPIM,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Octocorallia, Malacalcyonacea, Plexauridae, Paramuricea"
+A17139,UPI001A9EAA4E/25-40,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,D,PDTPNKQLDEMCKPLQDGQS,N/A
+A28558,UPI0010C6D207/86-102,UniParc,A,Unclassified,ILLLLSGQVEPNPGP,True,D,PDTPPTCVICKSDVSVNDKA,N/A
+A5606,UPI00123B3B10/836-852,UniParc,A,Host,ILLLLSGQVEPNPGP,True,D,PDTPPTCVICKSDVSVNDKA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A125,tr|A0A7M7NWQ7|A0A7M7NWQ7_STRPU/836-852,UniProtKB,A,Host,ILLLLSGQVEPNPGP,True,D,PDTPPTCVICKSDVSVNDKA,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Deuterostomia, Echinodermata, Eleutherozoa, Echinozoa, Echinoidea, Euechinoidea, Echinacea, Camarodonta, Echinidea, Strongylocentrotidae, Strongylocentrotus"
+A26196,UPI0007AA6267/157-172,UniParc,A,Host,MLLRSGDVESNPGP,True,D,PDTQVLLKQLLDGQAQIAAD,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A19725,UPI0021551A7C/128-143,UniParc,A,Unclassified,LLLRSGDVETNPGP,True,D,PDTRSASLLSLEDLPDDLAE,N/A
+A23732,UPI001897DBD7/242-257,UniParc,A,Unclassified,LLLCSGDVETNPGP,True,D,PDTRSASLLSLEDLPDDPAE,N/A
+A25694,UPI001893DBD1/106-123,UniParc,A,Unclassified,RCLLLLAGDIESNPGP,True,D,PDTSAVLSELRKLTTGQSQL,N/A
+A29241,UPI001895A55A/252-269,UniParc,A,Unclassified,RCLLLLAGDIESNPGP,True,D,PDTSAVLSELRKLTTGQSQL,N/A
+A7975,UPI00207233B7/75-91,UniParc,A,Unclassified,SLLLLSGDIEINPGP,True,D,PDTSDLSSSYESSSCTDASL,N/A
+A22789,UPI001C388FC7/133-147,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDTTLEKFIKQVLENQKQMS,N/A
+A6165,UPI001A9FE8E3/130-144,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDTTLEKLIKQVLENQKQMS,N/A
+A8246,UPI001A9D2D33/130-144,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDTTLEKMIKQVLENQKQMS,N/A
+A28542,UPI001A9D3065/133-147,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDTTLEKMIKQVLENQKQMS,N/A
+A17361,UPI001A9E059A/130-144,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDTTLEKMIKQVLENQKQMS,N/A
+A26904,UPI00090AEAD2/83-99,UniParc,A,Virus,DQLMLSGDVETNPGP,True,D,PDTTRPPLSQEQMSAHIREQ,"Viruses, Riboviria, unclassified Riboviria, unclassified RN/A viruses ShiM-2016"
+A5669,UPI001FC6B2E8/131-147,UniParc,A,Host,MLLLLAGDVELNPGP,True,D,PDTVHEMLEEHLKGQKTIAG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A30406,UPI002154FC53/152-168,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A12227,UPI002154FFDE/43-59,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A33581,UPI0021553089/253-269,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A7178,UPI0021556171/152-168,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A19239,UPI0021557517/275-291,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A10480,UPI0021558686/354-370,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A21850,UPI002155981C/51-67,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A7968,UPI002155E01E/152-168,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A24717,UPI002155E48C/152-168,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAELKKLSTGQSQLLA,N/A
+A8970,UPI0021550041/150-166,UniParc,A,Unclassified,TLLLLAGDIESNPGP,True,D,PDTVLAKLKKLSTGQSQLLA,N/A
+A26709,UPI001FC78A75/139-152,UniParc,A,Unclassified,LLLSGDVELNPGP,True,D,PDVKAMLKELCGGQKVILEE,N/A
+A28319,UPI00078D0422/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLIKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7209,UPI0011643110/301-315,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLIKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A23324,UPI001164CF56/144-158,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLIKLNNCKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A4488,UPI0010B0C07D/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLIKLNNYKTRYGLDIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A22572,UPI001E805DAD/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDVLIRLNDCKTKYGLNIKC,N/A
+A28796,UPI0011636739/200-214,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDCKTKYDLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus B, unclassified Rotavirus B"
+A19541,UPI0012A8E463/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDCKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A27619,UPI00220CA9D3/321-335,UniParc,A,Unclassified,KILLSGDVELNPGP,True,D,PDVLVKLNDCKTKYGLNIKC,N/A
+A13224,UPI0006BC6FBC/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDCVTKYNLKVKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A8006,UPI0012A7B3A2/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A4963,UPI0012A87BB7/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A11525,UPI0012A8CB65/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7752,UPI0012A95510/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7464,UPI001E6C9D3B/295-309,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,N/A
+A4714,UPI001E7AB5EC/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDVLVKLNDYKTKYGLNIKC,N/A
+A31448,UPI0010B0FFE8/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29041,UPI0010B5F0F8/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A25735,UPI0010B8D2BE/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A34764,UPI0010BAE43E/321-335,UniParc,A,Virus,KILMSGDVELNPGP,True,D,PDVLVKLNDYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A22809,UPI0010B3ED9E/321-335,UniParc,A,Virus,KILISGDVELNPGP,True,D,PDVLVKLNDYKTRYGLNVKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A9004,UPI001397860D/321-335,UniParc,A,Virus,KILMSGDVELNPGP,True,D,PDVLVKLNNYKTRYGLNIKC,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, Rotavirus C"
+A17879,UPI001E7C41E7/321-335,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDVLVRLNDCKTKYGLNIKC,N/A
+A5183,UPI001E811560/281-295,UniParc,A,Unclassified,KILISGDVELNPGP,True,D,PDVLVRLNDCKTKYGLNIKC,N/A
+A12244,UPI0020C1D62E/220-235,UniParc,A,Unclassified,SLLLLCGDVEPNPGP,True,D,PDVQKLLAELLDGQKSIRKR,N/A
+A28079,UPI0020C2DD27/127-142,UniParc,A,Unclassified,SLLLLCGDVEPNPGP,True,D,PDVQKLLAELLDGQKSIRKR,N/A
+A18594,UPI0020C38A2C/135-150,UniParc,A,Unclassified,SLLLLCGDVEPNPGP,True,D,PDVQKLLAELLDGQKSIRKR,N/A
+A33559,UPI0001B30697/259-275,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDVQMTQSPSNLAASPGESV,N/A
+A22535,UPI001316657A/21-36,UniParc,A,Virus,ILLLLSGDVETNPGP,True,D,PDYIDYKETCRRQHKRKRVS,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Dicistroviridae, unclassified Dicistroviridae"
+A31892,UPI001E74CE2F/161-176,UniParc,A,Unclassified,ILLLLSGDIESNPGP,True,D,PDYIDYKETCRRQHKRKRVS,N/A
+A30183,UPI001317CAA3/297-308,UniParc,A,Virus,LSGDVELNPGP,True,D,PDYISLLNYYSQTRDVKVDY,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus, unclassified Rotavirus"
+B652,UPI00094746F6/312-335,UniParc,B,Virus,KNSMWLRDLTREGVESNPGP,True,D,PDYISQLNIDAQRKQIHFPL,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+B64,tr|A0A1L6BXK6|A0A1L6BXK6_9VIRU/312-335,UniProtKB,B,Virus,KNSMWLRDLTREGVESNPGP,True,D,PDYISQLNIDAQRKQIHFPL,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A24748,UPI0014581789/143-156,UniParc,A,Unclassified,LLCCGDVEQNPGP,True,D,PDYKCLHQMCAASSAHFKSL,N/A
+A6906,UPI0021EF7F17/739-755,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDYKDDDDKPGESLFKGPRD,N/A
+A23267,UPI0021EF9639/739-755,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,D,PDYKDDDDKPGESLFKGPRD,N/A
+A35234,UPI0011628937/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A5652,UPI0011650A61/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A34251,UPI00116563C0/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A21644,UPI0011659904/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A27835,UPI001165B028/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A32138,UPI001165B97D/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A11722,UPI0013E43C2F/582-598,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A25446,UPI0013E494A3/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A11219,UPI001753B339/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A20491,UPI00175EF1D9/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A7965,UPI001764AF0F/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A18778,UPI001777743B/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A11994,UPI001C7430F0/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A5153,UPI001C748516/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A35245,UPI001C74A3EE/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A29672,UPI001C770467/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A6156,UPI001C779920/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A9983,UPI001C78D610/322-338,UniParc,A,Virus,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Resentoviricetes, Reovirales, Sedoreoviridae, Rotavirus"
+A6381,UPI001E6B91C9/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A35237,UPI001EAC1CDB/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYKDHDIDYKDD,N/A
+A7166,UPI001EA5E349/322-338,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,D,PDYKDHDGDYTFLYNHMVSN,N/A
+A16685,UPI00016522C7/92-105,UniParc,A,Virus,FDLLKLAGDVESNP,True,E,PE,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Caphthovirinae, Aphthovirus, Foot-and-mouth disease virus"
+A2275,tr|B0YK76|B0YK76_9PICO/92-105,UniProtKB,A,Virus,FDLLKLAGDVESNP,True,E,PE,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Caphthovirinae, Aphthovirus, Foot-and-mouth disease virus"
+A4482,UPI002031E8B7/269-281,UniParc,A,Unclassified,LLLSGDVELNPGP,True,E,PEAAKKLDEIIENQKVSSCE,N/A
+A28958,UPI001477A9A1/1378-1393,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEALYLVCGERGFFLSVYLK,N/A
+A28300,UPI001477EED6/175-190,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEALYLVCGERGFFLSVYLK,N/A
+A9251,UPI001477FB0C/199-214,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEALYLVCGERGFFLSVYLK,N/A
+A19019,UPI00221BE357/1752-1767,UniParc,A,Host,RLLLILSGDVEPNPGP,True,E,PEARDPLYKPRGELSNLVGL,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Cladocopium"
+A11716,UPI00022A342C/248-263,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEDAKNIKKGPAPFYPLEDG,N/A
+A18785,UPI0021C540F6/154-168,UniParc,A,Unclassified,LLLLTCGDVESNPGP,True,E,PEDLAQILQTMKDMNERSKR,N/A
+A6195,UPI000DC068AA/139-154,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6196,UPI000DC068AA/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6197,UPI000DC068AA/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6198,UPI000DC068AA/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6199,UPI000DC068AA/343-358,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6193,UPI000DC068AA/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6200,UPI000DC068AA/394-409,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6201,UPI000DC068AA/445-460,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6202,UPI000DC068AA/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A6194,UPI000DC068AA/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A30943,UPI000DC08468/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A30944,UPI000DC08468/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A33617,UPI000DC08822/139-154,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A33618,UPI000DC08822/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A33619,UPI000DC08822/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A33615,UPI000DC08822/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A33616,UPI000DC08822/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A8839,UPI000DC09B31/34-49,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A8840,UPI000DC09B31/82-97,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A32428,UPI000DC0A564/190-204,UniParc,A,Unclassified,FDLLKLAGDVENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A28334,UPI000DC0AA22/136-151,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A28335,UPI000DC0AA22/187-202,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A28336,UPI000DC0AA22/238-253,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A28332,UPI000DC0AA22/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5719,UPI000DC0C2B4/139-154,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5720,UPI000DC0C2B4/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5721,UPI000DC0C2B4/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5722,UPI000DC0C2B4/292-307,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5723,UPI000DC0C2B4/343-358,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5717,UPI000DC0C2B4/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5724,UPI000DC0C2B4/394-409,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5725,UPI000DC0C2B4/445-460,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5726,UPI000DC0C2B4/496-511,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A5718,UPI000DC0C2B4/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A21549,UPI000DC0DA58/34-49,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A21550,UPI000DC0DA58/82-97,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A10260,UPI000DC0DAD3/136-151,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A10261,UPI000DC0DAD3/187-202,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A10262,UPI000DC0DAD3/238-253,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A10258,UPI000DC0DAD3/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A27861,UPI000DC0F092/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A27862,UPI000DC0F092/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A20253,UPI000DC10D01/190-204,UniParc,A,Unclassified,FDLLKLAGDVENPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A23080,UPI000DC1159B/139-154,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A23081,UPI000DC1159B/190-205,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A23082,UPI000DC1159B/241-256,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A23078,UPI000DC1159B/37-52,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A23079,UPI000DC1159B/88-103,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDL,N/A
+A28333,UPI000DC0AA22/91-101,UniParc,A,Unclassified,KAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDN,N/A
+A10259,UPI000DC0DAD3/91-101,UniParc,A,Unclassified,KAGDVESNPGP,True,E,PEEQWAREIGAQLRRMADDN,N/A
+A16442,UPI0010C389E5/249-266,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEFATMAKPLSQEESTLIER,N/A
+A18972,UPI0008153822/318-335,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEFATMEDAKNIKKGPAPFY,N/A
+A26431,UPI0010A6C713/1502-1519,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEFMTEYKPTVRLATRDDVP,N/A
+A14639,UPI0010A6D95D/1022-1039,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEFMTEYKPTVRLATRDDVP,N/A
+A14394,UPI0010A70CF6/702-719,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEFMTEYKPTVRLATRDDVP,N/A
+A13670,UPI0010A710DC/1611-1628,UniParc,A,Unclassified,FSLLKQAGDVEENPGP,True,E,PEFMTEYKPTVRLATRDDVP,N/A
+A20754,UPI0010C3EA19/249-266,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEFMTEYKPTVRLATRDDVP,N/A
+A23493,UPI00081C8914/133-150,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEFMVSKGEEDNMAIIKEFM,N/A
+A31588,UPI0003E668E3/12-29,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PEFNMVGEDSV,N/A
+A10772,UPI00176BDBD6/975-989,UniParc,A,Virus,LQQAGDVEMNPGP,True,E,PEFRKADTQMTIDRKVTCFS,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Aalivirus, unclassified Aalivirus"
+A7755,UPI00043ADBA0/977-991,UniParc,A,Virus,LQQAGDVEMNPGP,True,E,PEFRKADTQMTVDKKVTCFS,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Aalivirus, Aalivirus A"
+A20,tr|X4YD30|X4YD30_9PICO/977-991,UniProtKB,A,Virus,LQQAGDVEMNPGP,True,E,PEFRKADTQMTVDKKVTCFS,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Pisoniviricetes, Picornavirales, Picornaviridae, Paavivirinae, Aalivirus, Aalivirus A"
+A16444,UPI000F85AD5D/416-433,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PEFTTATALTMPLNSSMASK,N/A
+A20158,UPI0004F5FA51/468-482,UniParc,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A7917,UPI0005A563E3/468-482,UniParc,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A30112,UPI0005A56449/468-482,UniParc,A,Virus,DILLSGDIEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A4877,UPI0005A5660E/468-482,UniParc,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A7919,UPI0005A578EE/468-482,UniParc,A,Virus,DILLSGDIEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A32094,UPI000655F7D8/469-482,UniParc,A,Virus,ILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A32091,UPI000676BF22/468-482,UniParc,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A25896,UPI001E7FA694/468-482,UniParc,A,Unclassified,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,N/A
+A174,tr|A0A060IEN0|A0A060IEN0_9VIRU/468-482,UniProtKB,A,Virus,DILLSGDIEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A179,tr|A0A060II10|A0A060II10_9VIRU/468-482,UniProtKB,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A231,tr|A0A060IIE0|A0A060IIE0_9VIRU/468-482,UniProtKB,A,Virus,DILLSGDIEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A134,tr|A0A060IPC2|A0A060IPC2_9VIRU/468-482,UniProtKB,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A366,tr|A0A0G2UNP2|A0A0G2UNP2_9VIRU/469-482,UniProtKB,A,Virus,ILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A138,tr|A0A0K0PM47|A0A0K0PM47_9VIRU/468-482,UniProtKB,A,Virus,DILLSGDVEENPGP,True,E,PEGMEQVSITPEQLQMILAM,"Viruses, Riboviria, Orthornavirae, Duplornaviricota, Chrymotiviricetes, Ghabrivirales, Totiviridae, unclassified Totiviridae"
+A6682,UPI0021553106/80-96,UniParc,A,Unclassified,HSLLMLSGDVEANPGP,True,E,PEGNAAVLAELQKLNAGQTL,N/A
+A33796,UPI0021553750/146-162,UniParc,A,Unclassified,HSLLMLSGDVETNPGP,True,E,PEGNAAVLAELQKLNAGQTL,N/A
+A5421,UPI0021554E34/80-96,UniParc,A,Unclassified,HSLLMLSGDVEANPGP,True,E,PEGNAAVLAELQKLNAGQTL,N/A
+A15408,UPI0021557730/146-162,UniParc,A,Unclassified,HSLLMLSGDVETNPGP,True,E,PEGNAAVLAELQKLNAGQTL,N/A
+A28768,UPI0021C51B22/260-276,UniParc,A,Unclassified,HSLLMLSGDVETNPGP,True,E,PEGNAAVLAELQKLNAGQTL,N/A
+A22792,UPI002155A453/40-56,UniParc,A,Unclassified,HSLLMLSGDVEANPGP,True,E,PEGNAAVLAELQKLNAVQTL,N/A
+A24735,UPI0021554FEE/40-56,UniParc,A,Unclassified,HSLLMLSGDVEANPGP,True,E,PEGNAAVLAELQKLNVGQTL,N/A
+A9728,UPI002155AE55/40-56,UniParc,A,Unclassified,HSLLMLSGDVETNPGP,True,E,PEGNAAVLTELQKLNAGQTL,N/A
+A18094,UPI002071DC77/40-54,UniParc,A,Unclassified,LLEQAGDIEKNPGP,True,E,PEHDQESDTSSSFPAFQGNF,N/A
+A25002,UPI0021019F73/138-154,UniParc,A,Unclassified,RLSLLLSGDVEENPGP,True,E,PEHDTITSTLESVLETMRRL,N/A
+A21204,UPI0021557D8E/251-265,UniParc,A,Unclassified,ALLLLSGDIETNPGP,True,E,PEKAVLDELKKLSTGQASLI,N/A
+A32414,UPI002155E06B/41-55,UniParc,A,Unclassified,ALLQLSGDIETNPGP,True,E,PEKAVLDELKKLSTGQATLI,N/A
+A17873,UPI001FC73D94/54-68,UniParc,A,Host,HLLVCAGDVETNPGP,True,E,PEKLDQVLTLVKELITSNHK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A5943,UPI000A87ADBC/7-22,UniParc,A,Unclassified,RLSLLISGDIEINPGP,True,E,PEKPCCQDISLCHWNLNGIA,N/A
+A24000,UPI0009E10EF0/248-263,UniParc,A,Unclassified,RGSLLTCGDVEENPGP,True,E,PELMVSKGEELFTGVVPILV,N/A
+A35027,UPI0018FDA766/40-53,UniParc,A,Unclassified,LLLVAGDIEENPGP,True,E,PELSQIAKQLKDIATDIKDI,N/A
+A31174,UPI001CAE19A3/63-76,UniParc,A,Host,LLLQAGDVETNPGP,True,E,PELTAQSDMKFLFSNINSIG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Annelida, Polychaeta, Sedentaria, Canalipalpata, Sabellida, Oweniida, Oweniidae, Owenia"
+A17136,UPI001CB2EC08/163-176,UniParc,A,Host,LLLQAGDVETNPGP,True,E,PELTAQSDMKFLFSNINSIG,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Annelida, Polychaeta, Sedentaria, Canalipalpata, Sabellida, Oweniida, Oweniidae, Owenia"
+A10004,UPI0021C50DB5/236-249,UniParc,A,Unclassified,LLLLAGDIETNPGP,True,E,PELTQISKQLEAIAGDIKSI,N/A
+A28062,UPI0018F91B42/110-126,UniParc,A,Unclassified,RDLLLLAGDIETNPGP,True,E,PEMANILAELKTLTAGQSKL,N/A
+A34256,UPI0018FB8F16/31-47,UniParc,A,Unclassified,RDLLLLAGDIETNPGP,True,E,PEMANILAELKTLTAGQSKL,N/A
+A27378,UPI0022044156/743-760,UniParc,A,Virus,RSLLLRCGDIEENPGP,True,E,PEMEKRRYASDSDSGYESKN,"Viruses, Riboviria, Orthornavirae, Pisuviricota, Yadokarivirales, Yadokariviridae, unclassified Yadokariviridae"
+A30411,UPI001FC6E3F1/141-157,UniParc,A,Host,LLLLLSGDVETNPGP,True,E,PEMQEILTELQKISAGQATL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Haemaphysalinae, Haemaphysalis"
+A12022,UPI001232F4FA/38-51,UniParc,A,Unclassified,LLYLCGDVEKNPGP,True,E,PENHLQITEFNKALDEINDI,N/A
+A8508,UPI001233219E/7-20,UniParc,A,Unclassified,LLYLCGDVEKNPGP,True,E,PENHLQITEFNKALDEINDI,N/A
+A34297,UPI00106908A4/12-24,UniParc,A,Unclassified,LFLSGDVELNPGP,True,E,PENISNISVLTTRLARIGRK,N/A
+A21450,UPI0020721D58/50-62,UniParc,A,Unclassified,LLQAGDIETNPGP,True,E,PENVHDLSILHLNIRSIRSK,N/A
+A5710,UPI002072A053/50-62,UniParc,A,Unclassified,LLQAGDIETNPGP,True,E,PENVHDLSILHLNIRSIRSK,N/A
+A11748,UPI000FDF7024/688-701,UniParc,A,Unclassified,DLLRSGDVETNPGP,True,E,PEPNWEKSYVVHFANYVRRC,N/A
+A17637,UPI001A9E0D69/44-56,UniParc,A,Unclassified,SLLLLCGDIESNP,True,E,PEPVELKDIMDRLTVIASDV,N/A
+A6177,UPI000D524059/31-47,UniParc,A,Host,SLLLCSGDVELNPGP,True,E,PEQDSENTDPKASSRDVGSN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Gastropoda, Caenogastropoda, Architaenioglossa, Ampullarioidea, Ampullariidae, Pomacea"
+A34003,UPI000C00A618/2-16,UniParc,A,Host,NLLRSGDVELNPGP,True,E,PEQNVNNQTNLSVDSSTLLN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Hexacorallia, Scleractinia, Astrocoeniina, Pocilloporidae, Stylophora"
+A14677,UPI000C00BD43/2-16,UniParc,A,Host,NLLRSGDVELNPGP,True,E,PEQNVNNQTNLSVDSSTLLN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Hexacorallia, Scleractinia, Astrocoeniina, Pocilloporidae, Stylophora"
+A27616,UPI000C0131A8/2-16,UniParc,A,Host,NLLRSGDVELNPGP,True,E,PEQNVNNQTNLSVDSSTLLN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Hexacorallia, Scleractinia, Astrocoeniina, Pocilloporidae, Stylophora"
+A4704,UPI000C038F9B/300-316,UniParc,A,Unclassified,RMNLLRSGDVELNPGP,True,E,PEQNVNNQTNLSVDSSTLLN,N/A
+A1837,tr|A0A2B4RRV7|A0A2B4RRV7_STYPI/2-16,UniProtKB,A,Host,NLLRSGDVELNPGP,True,E,PEQNVNNQTNLSVDSSTLLN,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Hexacorallia, Scleractinia, Astrocoeniina, Pocilloporidae, Stylophora"
+A24515,UPI000C000EE3/89-104,UniParc,A,Host,RLVQCGDIEINPGP,True,E,PEQSLSPGLSTTRKKPLWKC,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Cnidaria, Anthozoa, Hexacorallia, Scleractinia, Astrocoeniina, Pocilloporidae, Stylophora"
+A19242,UPI00221B4E77/827-842,UniParc,A,Host,RMLLLLAGDVERNPGP,True,E,PERPPAHAPRGELNMDIGFA,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Cladocopium"
+A25730,UPI0019C20030/282-295,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIE,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A16204,UPI0015796E85/73-86,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A32946,UPI0015799FDA/73-86,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A10763,UPI00157A156A/73-86,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A10498,UPI0019A6F7DA/73-86,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A11248,UPI0019AFB4FE/29-42,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A32419,UPI0019BC7A45/29-42,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A10501,UPI0019BF29E4/29-42,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A34516,UPI001B48CD7B/394-407,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A34282,UPI001B5232FF/29-42,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A15197,UPI001B5311DA/36-49,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A28310,UPI001B5794DB/36-49,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A18610,UPI001B65FBA2/290-303,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A18797,UPI001B69F533/36-49,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A11522,UPI001B6C2938/36-49,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A16455,UPI001B73FCAF/36-49,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A14926,UPI001B764FD7/29-42,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTHEYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A26710,UPI001579DB31/73-86,UniParc,A,Host,LLIICGDIEPNPGP,True,E,PERTKEHSGKTLSIFHCNIK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A13938,UPI001B536BA2/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A31907,UPI001B56A4D1/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A12968,UPI001B6174A5/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A21440,UPI001B659F37/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A32932,UPI001B6AC121/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A31441,UPI001B6BF709/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A13474,UPI001B6C00DF/11-24,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A20513,UPI001B6C3267/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A34025,UPI001B6EE0BE/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A24276,UPI001B6F59B7/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A25022,UPI001B712C9A/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A28552,UPI001B7409ED/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A31193,UPI001B79A0FC/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A12974,UPI0022451B81/71-84,UniParc,A,Unclassified,LLLICGDIEPNPGP,True,E,PERTPEISEKTLSIFHGNIR,N/A
+A25975,UPI001579589D/71-84,UniParc,A,Host,LLLICGDIEPNPGP,True,E,PERTPEISENTLSIFHGNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A34031,UPI0015798CE4/29-42,UniParc,A,Host,LLIICGDIEPNPGP,True,E,PERTQAYSEKTLSIFHCNIR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Spiralia, Lophotrochozoa, Mollusca, Bivalvia, Autobranchia, Pteriomorphia, Mytilida, Mytiloidea, Mytilidae, Mytilinae, Mytilus"
+A23541,UPI001D5DF831/206-220,UniParc,A,Host,LLLKAGDVEKNPGP,True,E,PESGVVVAVELQRRRPGMSV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Mandibulata, Pancrustacea, Crustacea, Multicrustacea, Malacostraca, Eumalacostraca, Eucarida, Decapoda, Pleocyemata, Brachyura, Eubrachyura, Heterotremata, Majoidea, Majidae, Chionoecetes"
+A16199,UPI001DC0BB40/213-227,UniParc,A,Host,LLLKAGDVEKNPGP,True,E,PESGVVVAVELQRRRPGMSV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Mandibulata, Pancrustacea, Crustacea, Multicrustacea, Malacostraca, Eumalacostraca, Eucarida, Decapoda, Pleocyemata, Brachyura, Eubrachyura, Heterotremata, Majoidea, Majidae, Chionoecetes"
+A24767,UPI001E1A6C2D/157-171,UniParc,A,Host,LLLKAGDVEKNPGP,True,E,PESGVVVAVELQRRRPGMSV,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Mandibulata, Pancrustacea, Crustacea, Multicrustacea, Malacostraca, Eumalacostraca, Eucarida, Decapoda, Pleocyemata, Brachyura, Eubrachyura, Heterotremata, Majoidea, Majidae, Chionoecetes"
+A22308,UPI00221B5729/383-400,UniParc,A,Host,RILLLLAGDIERNPGP,True,E,PESMGPRKYQPRGPLDLNVG,"cellular organisms, Eukaryota, Sar, Alveolata, Dinophyceae, Suessiales, Symbiodiniaceae, Cladocopium"
+A7973,UPI0002AEF10E/145-160,UniParc,A,Host,TLLLLSGDIETNPGP,True,E,PESNAILAELKKLSAGQSQL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A2260,tr|L7LTN7|L7LTN7_RHIPC/145-160,UniProtKB,A,Host,TLLLLSGDIETNPGP,True,E,PESNAILAELKKLSAGQSQL,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Rhipicephalus"
+A26386,UPI0021EDC6B5/905-920,UniParc,A,Unclassified,LLKLAGDVESNPGP,True,E,PESPSAPPHRWCIPWQRLLL,N/A
+A34264,UPI0021EDCE83/905-920,UniParc,A,Unclassified,LLKLAGDVESNPGP,True,E,PESPSAPPHRWCIPWQRLLL,N/A
+A20680,UPI0021EE5ADB/1467-1482,UniParc,A,Unclassified,LLKLAGDVESNPGP,True,E,PESPSAPPHRWCIPWQRLLL,N/A
+A22035,UPI0021EEAF02/1478-1487,UniParc,A,Unclassified,DIETNPGP,True,E,PESPSAPPHRWCIPWQRLLL,N/A
+A16193,UPI0018988F91/332-347,UniParc,A,Unclassified,LLLLGGDIETNPGP,True,E,PETAQILKQLKEIAADIKDI,N/A
+A25007,UPI00096B5F68/118-135,UniParc,A,Unclassified,FLLILLSGDVELNPGP,True,E,PETDKPDAPSLLCSASAELT,N/A
+A16894,UPI000A13FE0B/118-135,UniParc,A,Host,FLLILLSGDVELNPGP,True,E,PETDKPDAPSLLCSASAELT,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Porifera, Demospongiae, Heteroscleromorpha, Haplosclerida, Niphatidae, Amphimedon"
+A30415,UPI00189B323C/52-67,UniParc,A,Unclassified,LLILCGDVELNPGP,True,E,PETDKQYKELFAAISALSEK,N/A
+A21389,UPI0002B64B14/256-273,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETDTLLLWVLLLWVPGSTG,N/A
+A11453,UPI001426FC55/490-507,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETDTLLLWVLLLWVPGSTG,N/A
+A9273,UPI000DC0879A/23-41,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFEHWWAQLTSGSGVKQT,N/A
+A9274,UPI000DC0879A/60-78,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFEHWWAQLTSGSGVKQT,N/A
+A4970,UPI000DC0564D/23-41,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFEHWWSQLLSGSGVKQT,N/A
+A4971,UPI000DC0564D/60-78,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFEHWWSQLLSGSGVKQT,N/A
+A26232,UPI000DC057B6/23-41,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFSDLWKLLPEGSGVKQT,N/A
+A26233,UPI000DC057B6/60-78,UniParc,A,Unclassified,FDLLKLAGDVESNPGP,True,E,PETFSDLWKLLPEGSGVKQT,N/A
+A13189,UPI001C39002F/23-40,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIAQDIQEI,N/A
+A31906,UPI001A9D819C/57-74,UniParc,A,Unclassified,RMLLLLSGNVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A9989,UPI001A9DCE33/20-37,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A9732,UPI001A9E6224/141-158,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A22546,UPI001A9ECE06/149-166,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A23524,UPI001A9FF11F/57-74,UniParc,A,Unclassified,RMLLLLSGDVEINPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A35001,UPI001C380137/58-75,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A33797,UPI001C38359C/149-166,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A5922,UPI001C393169/149-166,UniParc,A,Unclassified,RMLLLLSGDVEVNPGP,True,E,PETGAILQKLKEIARDIQEI,N/A
+A9736,UPI00189735D3/62-77,UniParc,A,Unclassified,LLLLAGDVELNPGP,True,E,PETNATSHSLESIAQALSRL,N/A
+A30889,UPI0003D10870/133-149,UniParc,A,Host,LLLLLSGDVERNPGP,True,E,PETRLETMISQVLENQKQLK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A22544,UPI001A9DDA58/133-149,UniParc,A,Unclassified,LLLLLSGDVERNPGP,True,E,PETRLETMISQVLENQKQLK,N/A
+A22783,UPI001C3891E0/221-237,UniParc,A,Unclassified,LLLLLSGDVERNPGP,True,E,PETRLETMISQVLENQKQLK,N/A
+A19509,UPI001C39119A/221-237,UniParc,A,Unclassified,LLLLLSGDVERNPGP,True,E,PETRLETMISQVLENQKQLK,N/A
+A2037,tr|V5IDD8|V5IDD8_IXORI/133-149,UniProtKB,A,Host,LLLLLSGDVERNPGP,True,E,PETRLETMISQVLENQKQLK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Ixodinae, Ixodes"
+A7447,UPI001A9D5361/129-144,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A33805,UPI001A9D5C0D/150-165,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A14930,UPI001A9D7F14/235-249,UniParc,A,Unclassified,LMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A25009,UPI001A9D8945/248-263,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A31187,UPI001A9DC6DF/228-243,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A9740,UPI001A9F98B6/150-165,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A7980,UPI001A9FBF5E/150-165,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A32409,UPI001AD64C8D/147-162,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A4470,UPI001C37F2DF/234-249,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A12970,UPI001C38FE40/248-263,UniParc,A,Unclassified,LLRLCGDVEVNPGP,True,E,PETRNKQLDDMCKLLQDGQS,N/A
+A27847,UPI001C38A6D6/150-165,UniParc,A,Unclassified,LLMLCGDVEVNPGP,True,E,PETRNKQLDNMCKLLQDGQS,N/A
+A14413,UPI001C381D57/30-47,UniParc,A,Unclassified,RLRLLVAGDVESNPGP,True,E,PETRSADVQTTILATVQRIE,N/A
+A11254,UPI002031CF2B/254-266,UniParc,A,Unclassified,LLLSGDVELNPGP,True,E,PEVAKKLDEIIENQKVSSCE,N/A
+A6191,UPI00203842A3/200-215,UniParc,A,Host,RMLLLLWGDVESNPGP,True,E,PEVEDMLRELLSGHTKIAQE,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A11998,UPI001FC6E905/1-15,UniParc,A,Unclassified,MLLLVCGDVESNPGP,True,E,PEVEDMLRELLSGQTKITQE,N/A
+A5415,UPI0018873967/154-168,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQSKLLAK,N/A
+A8241,UPI0018877779/96-110,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQSKLLAK,N/A
+A22067,UPI002037A4DC/154-168,UniParc,A,Host,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQSKLLAK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A32158,UPI001886E4C2/154-168,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,N/A
+A32671,UPI0018872F57/155-169,UniParc,A,Host,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A22065,UPI001887DD65/80-94,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,N/A
+A34734,UPI001887EEAD/262-276,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,N/A
+A12725,UPI0018888446/168-182,UniParc,A,Host,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A7183,UPI0018896CC7/96-110,UniParc,A,Unclassified,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,N/A
+A19980,UPI0020381100/155-169,UniParc,A,Host,LLLKLSGDVEENPGP,True,E,PEVEKMLEEILSNQTKLLAK,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Eumetazoa, Bilateria, Protostomia, Ecdysozoa, Panarthropoda, Arthropoda, Chelicerata, Arachnida, Acari, Parasitiformes, Ixodida, Ixodoidea, Ixodidae, Rhipicephalinae, Rhipicephalus, Boophilus"
+A25726,UPI00096B2DA0/166-179,UniParc,A,Unclassified,LIICGDVESNPGP,True,E,PEYDAEELLRKEPKVSDFQR,N/A
+A16698,UPI000A130A9C/298-311,UniParc,A,Host,LIICGDVESNPGP,True,E,PEYDAEELLRKEPKVSDFQR,"cellular organisms, Eukaryota, Opisthokonta, Metazoa, Porifera, Demospongiae, Heteroscleromorpha, Haplosclerida, Niphatidae, Amphimedon"

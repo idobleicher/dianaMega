@@ -1,0 +1,50 @@
+{
+  "rna_total": 7291,
+  "rna_db": {
+    "IMGVR": 1700,
+    "MGnify": 2383,
+    "UniProtKB": 3208
+  },
+  "rna_unique_acc": 6119,
+  "rna_unique_seq": 1824,
+  "prior_total": 36008,
+  "prior_db": {
+    "UniProtKB": 2644,
+    "MGnify": 2240,
+    "UniParc": 31124
+  },
+  "prior_unique_acc": 25641,
+  "prior_unique_seq": 1989,
+  "overlap_aid": 656,
+  "overlap_acc": 3984,
+  "overlap_seq": 355,
+  "rna_hits_in_S2_by_aid": 692,
+  "rna_hits_in_S2_by_seq": 1378,
+  "rna_acc_not_in_S2": 2135,
+  "rna_seq_not_in_S2": 1469,
+  "S2_acc_not_in_rna": 21657,
+  "rna_PDE_hits": 231,
+  "rna_PDE_db": {
+    "IMGVR": 38,
+    "MGnify": 58,
+    "UniProtKB": 103
+  },
+  "rna_PDE_unique_seq": 88,
+  "rna_PDE_in_prior_893_by_seq": 1,
+  "rna_PDE_new_vs_prior": 186,
+  "rna_PDE_new_unique_seq": 66,
+  "prior_893_PDE": 893,
+  "prior_327_PDE_unique": 209,
+  "pos2_resolved": 5991,
+  "pos2_unresolved": 1300,
+  "pos2_unresolved_by_db": {
+    "MGnify": 969,
+    "UniProtKB": 328,
+    "IMGVR": 3
+  },
+  "rna_PDE_by_db": {
+    "IMGVR": 53,
+    "MGnify": 58,
+    "UniProtKB": 120
+  }
+}

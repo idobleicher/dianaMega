@@ -1,0 +1,29 @@
+{
+  "TOTAL_instances": 38180,
+  "TOTAL_unique_sequences": 3103,
+  "instances_by_db": {
+    "UniProtKB": 3044,
+    "MGnify": 2955,
+    "UniParc": 30525,
+    "IMGVR": 1656
+  },
+  "instances_by_source": {
+    "both": 4022,
+    "TableS2": 31334,
+    "repo": 2824
+  },
+  "pos2_resolved_instances": 35573,
+  "pos2_resolved_pct": 93.2,
+  "UBR3_PDE_instances": 942,
+  "UBR3_PDE_unique_sequences": 280,
+  "UBR3_PDE_instances_by_db": {
+    "UniProtKB": 112,
+    "MGnify": 57,
+    "UniParc": 720,
+    "IMGVR": 53
+  },
+  "UBR3_PDE_by_pos2": {
+    "D": 726,
+    "E": 216
+  }
+}

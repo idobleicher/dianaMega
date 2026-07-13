@@ -1,0 +1,281 @@
+twoA_seq,n_instances,databases,pos2_observed,example_organism
+KILISGDVELNPGP,64,UniParc,D,
+FDLLKLAGDVESNPGP,57,UniParc,DE,
+ILLMRSGDVETNPGP,54,UniParc|UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+KILLSGDVELNPGP,35,UniParc,D,
+LLLICGDIEPNPGP,32,UniParc,E,
+FSLLKQAGDVEENPGP,27,UniParc,DE,
+LLMRSGDVETNPGPD,27,UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+KILISGDIELNPGP,26,UniParc,D,
+LLMRCGDVESNPGPD,22,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+GGWVKDLTDEGIEPNPGPDM,16,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300035590_000201)
+ALLMMSGDVESNPGP,14,UniParc,D,
+FSLLKQAGDVEENPGPD,10,UniProtKB,D,(obsolete/removed from UniProt)
+LLMLCGDVEVNPGP,10,UniParc,DE,
+LLLSGDVELNPGP,10,UniParc,DE,
+LLLKLSGDVEENPGP,10,UniParc,E,
+TLLLLAGDIESNPGP,10,UniParc,D,
+DLLMLCGDIETNPGP,10,UniParc,D,
+ALLLLAGDVETNPGP,9,UniParc,D,
+DILLSGDVEENPGP,8,UniParc|UniProtKB,E,
+LLVRSGDVETNPGP,8,UniParc,D,
+RGSLLTCGDVEENPGP,8,UniParc,DE,
+RDLLLSGDIESNPGP,7,UniParc|UniProtKB,D,(obsolete/removed from UniProt)
+LLLLLSGDIETNPGP,7,UniParc,D,
+RMLLLLSGDVEVNPGP,7,UniParc,E,
+RSLLLQSGDIETNPGP,7,UniParc,D,
+RILVSGDVELNPGP,7,UniParc,D,
+TGWVRDLTEEGIEPNPG,7,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300032625_000023)
+LLLMRSGDVETNPGP,6,UniParc|UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+LLILAGDVETNPGP,6,UniParc,D,
+HSDILLGGDIEENPGP,6,UniParc,D,
+ILLSGDVEENPGP,5,UniParc|UniProtKB,E,
+LLLLLSGDVERNPGP,5,UniParc|UniProtKB,E,Ixodes ricinus (Common tick) (Acarus ricinus)
+DLLHLAGDIETNPGPD,5,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RSLLLLAGDIETNPGP,5,UniParc,D,
+LLQSGDIETNPGP,5,UniParc,D,
+FHLLLLSGDIHPNPGP,5,UniParc,D,
+KLLLCGDIESNPGP,5,UniParc,D,
+LITSGDVELNPGP,5,UniParc,D,
+LQQAGDVEMNPGP,4,IMGVR|UniParc|UniProtKB,E,aalivirus A1
+DILLSGDIEENPGP,4,UniParc|UniProtKB,E,
+NLLRSGDVELNPGP,4,UniParc|UniProtKB,E,
+LLLMRAGDVETNPGP,4,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+HSLLMLSGDVEANPGP,4,UniParc,E,
+LLLLVSGDIESNPGP,4,UniParc,D,
+ILLLRGGDVHPNPGP,4,UniParc,D,
+HSLLMLSGDVETNPGP,4,UniParc,E,
+LLKLAGDVESNPGP,4,UniParc,DE,
+LLKLSGDVEENPGP,4,UniProtKB,E,Rhipicephalus microplus (Cattle tick) (Boophilus microplus)
+ILLLLSGQVEPNPGP,3,UniParc|UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+ILLIRSGDVESNPGP,3,UniParc|UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+LLLLLSGDVELNPGP,3,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+LLRAGDVESNPGPD,3,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RLLLSGDVEENPGP,3,UniParc,D,
+LLLLSGDVETNPGP,3,UniParc|UniProtKB,DE,
+SLLLLCGDVETNPGP,3,UniParc,D,
+LLLSGDVEENPGP,3,UniParc,D,
+LLLRSGDVEPNPGP,3,UniParc,D,
+ALLLLSGDVETNPGP,3,UniParc,D,
+SLLLLCGDVEPNPGP,3,UniParc,D,
+RLILLAGDIETNPGP,3,UniParc,D,
+LLLLSGDIESNPGP,3,UniParc,D,
+LLLKAGDVEKNPGP,3,UniParc,E,
+ILVSGDVELNPGP,3,UniParc,D,
+RILLSGDVELNPGP,3,UniParc,D,
+LLLCGDIESNPGPD,3,UniProtKB,D,Rhipicephalus microplus (Cattle tick) (Boophilus microplus)
+DLTRYGIEPNPGPD,3,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300020081_000993)
+DRLLQAGDIEQNPGP,2,UniParc|UniProtKB,D,aalivirus A1
+LLKCGDVESNPGPD,2,IMGVR|UniProtKB,D,limnipivirus A1
+FWLLMLCGDVELNPGPD,2,IMGVR|UniProtKB,D,parechovirus E1
+ILLLLSGDVETNPGP,2,UniParc|UniProtKB,D,(obsolete/removed from UniProt)
+DLLMLCGDIETNPGPD,2,UniProtKB,D,(obsolete/removed from UniProt)
+SLLILAGDVEENPGPD,2,UniProtKB,D,(obsolete/removed from UniProt)
+LLLLLSGDVESNPGP,2,UniParc|UniProtKB,D,(obsolete/removed from UniProt)
+RSLLLRCGDIEENPGPD,2,IMGVR|UniProtKB,D,Fusarium poae mycovirus 2
+RFLLLLAGDIERNPGP,2,UniParc|UniProtKB,D,Symbiodinium pilosum (Dinoflagellate)
+TLLLLSGDIETNPGP,2,UniParc|UniProtKB,E,
+FDLLKLAGDVESNP,2,UniParc|UniProtKB,E,Foot-and-mouth disease virus A
+ILLKKSGDVETNPGP,2,UniParc|UniProtKB,D,Strongylocentrotus purpuratus (Purple sea urchin)
+ILLVRSGDVETNPGP,2,UniParc|UniProtKB,D,
+ILLLISGDVESNPGP,2,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+GAWVEDLTQDGDVESNPGPDWI,2,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+LLLSGDVETNPGP,2,UniParc,D,
+KILISGDVEQNPGP,2,UniParc,D,
+LLLRSGDVEQNPGP,2,UniParc,D,
+LLLLAGDIETNPGP,2,UniParc,DE,
+LLQAGDIETNPGP,2,UniParc,E,
+RMLLLLWGDVESNPGP,2,UniParc|UniProtKB,E,
+RSLLLMCGDIESNPGP,2,UniParc,D,
+KILLSGDVESNPGP,2,UniParc,D,
+LLYLCGDVEKNPGP,2,UniParc,E,
+MLLQLSGDVEENPGP,2,UniParc,D,
+KILMSGDVELNPGP,2,UniParc,D,
+LVMRSGDVETNPGP,2,UniParc,D,
+RFLLLLSGDVETNPGP,2,UniParc,D,
+KAGDVESNPGP,2,UniParc,E,
+SLLILAGDVEENPGP,2,UniParc,D,
+RSLLLRCGDIEENPGP,2,UniParc,DE,
+LLLLAGDIESNPGP,2,UniParc,D,
+LLLLGGDIETNPGP,2,UniParc,DE,
+RRLLILSGDIETNPGP,2,UniParc,D,
+LLMLAGDVESNPGP,2,UniParc,D,
+LIICGDVESNPGP,2,UniParc,E,
+FLLILLSGDVELNPGP,2,UniParc,E,
+ILLMRSGDVEINPGP,2,UniParc,D,
+RFLLLLSGDIEQNPGP,2,UniParc,D,
+LLLQAGDVETNPGP,2,UniParc,E,
+RDLLSCGDIESNPGP,2,UniParc,D,
+QCGDVETNPGP,2,UniParc,D,
+RMLLLLAGDVERNPGP,2,UniParc|UniProtKB,E,
+LLLLMSGDVELNPGP,2,UniParc,D,
+FDLLKLAGDVENPGP,2,UniParc,E,
+LLLLSGDIETNPGP,2,UniParc,D,
+SLLLLAGDVETNPGP,2,UniParc,D,
+LLLLLCGDVESNPGP,2,UniParc,D,
+FLLLLLCGDIELNPGP,2,UniParc,D,
+LLRGGDVEENPGP,2,UniParc,D,
+KILLSGDIELNPGP,2,UniParc,D,
+RCLLLLAGDIESNPGP,2,UniParc,D,
+LQLSGDIETNPGP,2,UniParc,D,
+LLIICGDIEPNPGP,2,UniParc,E,
+LLLCGDIESNPGP,2,UniParc,D,
+RDLLLLAGDIETNPGP,2,UniParc,E,
+MLLVLSGDVEVNPGP,2,UniParc,D,
+MLLQLSGDVEQNPGP,2,UniParc,D,
+NSMWLRDLTREGVESNPGPDYIS,2,IMGVR|UniProtKB,D,Rotavirus J
+LLLSGDVESNPGPD,2,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+ILLSGDIEENPGP,2,UniProtKB,E,Penaeid shrimp infectious myonecrosis virus
+DLTRFGIEPNPG,2,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300020070_000884)
+RDLTRYGVEPNPGP,2,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300003162_000147)
+LVREGIEENPGPDYG,2,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300010854_000098)
+GAWVRDLTTEGVEPNPGPDTI,2,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300022512_000019)
+DLTVFGIEPNPGPE,2,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300022711_000101)
+GWVRRLVQEGIEPHPGPDFH,2,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RSLLLVAGDIESNPGPD,1,UniProtKB,D,Rhipicephalus pulchellus (Yellow backed tick) (Dermacentor pulchellus)
+RDLLLLAGDVETNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+RSLLLLAGDIETNPGPD,1,UniProtKB,D,Rhipicephalus pulchellus (Yellow backed tick) (Dermacentor pulchellus)
+RLLLLLSGDVETNPGPD,1,UniProtKB,D,Ixodes ricinus (Common tick) (Acarus ricinus)
+LLLLAGDIEENPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+LLLLSGDIETNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+SLLMQSGDVESNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+LLLLAGDIETNPGPD,1,UniProtKB,D,Rhipicephalus pulchellus (Yellow backed tick) (Dermacentor pulchellus)
+KLLLCGNVESNPGPD,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+SLLLQCGDVEQNPGPD,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RLLLLWSGDVETNPGPD,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+LLLKCAGDIESNPGP,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+YLLILSGDVELNPGP,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+HILLLISGDVESNPGP,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RMNLLRSGDVELNPGP,1,UniParc,E,
+HLLLFLSGDVELNPGP,1,UniParc,D,
+LLCCGDIETNPGP,1,UniParc,D,
+LLAMCGDIEPNPGP,1,UniParc,D,
+MLLLLAGDVELNPGP,1,UniParc,D,
+RLSLLISGDIEINPGP,1,UniParc,E,
+SLLLCSGDVELNPGP,1,UniParc,E,
+SLLLTCGDIETNPGP,1,UniParc,D,
+KLLCCGDIESNPGP,1,UniParc,D,
+LLLLGGDVETNPGP,1,UniParc,D,
+SLLLLSGDIEINPGP,1,UniParc,D,
+RSLLLLSGDIETNPGP,1,UniParc,D,
+RGSLTTCGDVEENPGP,1,UniParc,D,
+RDLLLLAGDVETNPGP,1,UniParc,D,
+RLLLLLSGDVETNPGP,1,UniParc,D,
+RILLLLSGDVETNPGP,1,UniParc,D,
+LLLLAGDVELNPGP,1,UniParc,E,
+RSLLLLSGDIESNPGP,1,UniParc,D,
+KLLLLGGDIKTNPGP,1,UniParc,D,
+LVKTCGDVELNPGP,1,UniParc,D,
+SLLKLSGDIELNPGP,1,UniParc,D,
+QCGDVESNPGP,1,UniParc,D,
+HLLLIMCGDIEENPGP,1,UniParc,D,
+QCGDVEENPGP,1,UniParc,D,
+ALLIMSGNVESNPGP,1,UniParc,D,
+DLLRSGDVETNPGP,1,UniParc,E,
+MLLLVCGDVESNPGP,1,UniParc,E,
+LLLLLSGNVEPNPGP,1,UniParc,D,
+LLRLCGDVEVNPGP,1,UniParc,E,
+LLLLLSGDIEVNPGP,1,UniParc,D,
+LLLSGDIELNPGP,1,UniParc,D,
+DLTDDGDVESNPGP,1,UniParc,D,
+RLRLLVAGDVESNPGP,1,UniParc,E,
+LLLCGDVELNPGP,1,UniParc,D,
+LMLCGDVEVNPGP,1,UniParc,E,
+SLLLSGDVGTNPGP,1,UniParc,D,
+SGDVHPNPGP,1,UniParc,D,
+SGDVETNPGP,1,UniParc,D,
+LLLVLAGDVELNPGP,1,UniParc,D,
+KLSGDVEENPGP,1,UniParc,D,
+LLLLVSGDVESNPGP,1,UniParc,D,
+LLLCAGDIELNPGP,1,UniParc,D,
+LLLSAGDIELNPGP,1,UniParc,D,
+RLLLCGDVESNPGP,1,UniParc,D,
+FLLLLICGDVEMNPGP,1,UniParc,D,
+KLLLLAGDIESNPGP,1,UniParc,D,
+RSLLLLAGDIEINPGP,1,UniParc,D,
+LLLLSGDIEANPGP,1,UniParc,D,
+SLLLLCGDIESNP,1,UniParc,E,
+RLLLMLSGDIEKNPGP,1,UniParc,D,
+HLLVCAGDVETNPGP,1,UniParc,E,
+LLEQAGDIEKNPGP,1,UniParc,E,
+FWLLMLCGDVELNPGP,1,UniParc,D,
+LLLLTCGDVESNPGP,1,UniParc,E,
+LLLLLSGDIEINPGP,1,UniParc,D,
+RLLLILSGDVEPNPGP,1,UniParc,E,
+LLSGDIETNPGP,1,UniParc,D,
+LLLRSGDVETNPGP,1,UniParc,D,
+RSLLLLTGDIESNPGP,1,UniParc,D,
+LLLLCSGDVHPNPGP,1,UniParc,D,
+MLLLLSGDVEVNPGP,1,UniParc,D,
+SGDVEQNPGP,1,UniParc,D,
+ALLLLSGDIETNPGP,1,UniParc,E,
+SLLMQSGDVESNPGP,1,UniParc,D,
+DLLSCGDIESNPGP,1,UniParc,D,
+DIETNPGP,1,UniParc,E,
+LLKCGDVESNPGP,1,UniParc,D,
+RILLLLAGDIERNPGP,1,UniParc,E,
+LLLLAGDVETNPGP,1,UniParc,D,
+LLLQQAGDVEMNPGP,1,UniParc,D,
+RMLLLLSGDVEINPGP,1,UniParc,E,
+LLLCSGDVETNPGP,1,UniParc,D,
+LLLLAGDIEENPGP,1,UniParc,D,
+RLVQCGDIEINPGP,1,UniParc,E,
+LLCCGDVEQNPGP,1,UniParc,D,
+RLSLLLSGDVEENPGP,1,UniParc,E,
+LLIISGDVEKNPGP,1,UniParc,D,
+LLMSGDIEENPGP,1,UniParc,D,
+MLLRSGDVESNPGP,1,UniParc,D,
+HLLICAGDVELNPGP,1,UniParc,D,
+DQLMLSGDVETNPGP,1,UniParc,D,
+ILILLAGDVEQNPGP,1,UniParc,D,
+RILISGDVEMNPGP,1,UniParc,D,
+LSGDVELNPGP,1,UniParc,D,
+LLLLLSGDVETNPGP,1,UniParc,E,
+LLILCGDVELNPGP,1,UniParc,E,
+FLLLLSGDIEQNPGP,1,UniParc,D,
+LLVCCGDVETNPGP,1,UniParc,D,
+RSLLLLAGDIESNPGP,1,UniParc,D,
+ILLLLSGDIESNPGP,1,UniParc,D,
+RMLLLLSGNVEVNPGP,1,UniParc,E,
+ALLQLSGDIETNPGP,1,UniParc,E,
+LLLALSGDVELNPGP,1,UniParc,D,
+LLLLLAGDVESNPGP,1,UniParc,D,
+RSLLLVAGDIESNPGP,1,UniParc,D,
+LLAGDIEENPGP,1,UniParc,D,
+LHLAGDVELNPGP,1,UniParc,D,
+LLLRSGDVEANPGP,1,UniParc,D,
+LFLSGDVELNPGP,1,UniParc,E,
+MLLMLSGDVKSNPGP,1,UniParc,D,
+LLLVAGDIEENPGP,1,UniParc,E,
+LLCGDVESNPGP,1,UniParc,D,
+STWIRDLTEEGVEPHPGPETTS,1,MGnify,E,Environmental metagenome (MGnify; no host assignment)
+GGWIRDLVEEGIEPNPGPERY,1,MGnify,E,Environmental metagenome (MGnify; no host assignment)
+KNSMWLRDLTREGVESNPGP,1,UniParc,D,
+RLLQAGDIEQNPGPD,1,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 2700989091_000001)
+LRSGDVEENPGPD,1,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300009587_000129)
+LLTCGDVESNPGP,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300010140_000090)
+CGDVESNPGPD,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+RLLLLRSGDVETNPGPD,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+LLRSGDVELNPGP,1,UniProtKB,E,Stylophora pistillata (Smooth cauliflower coral)
+SLLKLSGDIELNPGPD,1,UniProtKB,D,Dreissena polymorpha (Zebra mussel) (Mytilus polymorpha)
+MLLLLAGDVELNPGPD,1,UniProtKB,D,Haemaphysalis longicornis (Bush tick)
+TDDGDVESNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+LLCGDVESNPGPD,1,UniProtKB,D,Haemaphysalis longicornis (Bush tick)
+LVKTCGDVELNPGPD,1,UniProtKB,D,Haemaphysalis longicornis (Bush tick)
+LLLSGDVETNPGPD,1,UniProtKB,D,Haemaphysalis longicornis (Bush tick)
+LLSGDVEENPGP,1,UniProtKB,E,Penaeid shrimp infectious myonecrosis virus
+LLRSGDVESNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+KDLCQYGIEPNPGPE,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300030972_000004)
+WVDLTRYGIEPDPGPDI,1,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300010865_000264)
+NNWILDLTRYGIESNPGPEY,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300020080_000694)
+SDWIRDLTAEGIEPNPGP,1,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300012769_000056)
+NEWIRDLTRECIESNPGPD,1,IMGVR,D,Uncultivated virus (IMG/VR metagenome; UViG 3300041949_000089)
+GGWERDLTREGIEPNPGPE,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300046647_000144)
+QGWVRDLTEEGIEPLPG,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300030546_000012)
+VRDLTRYGIEPNPGPE,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300017790_000027)
+SRWERDLTQDGDVESNPGPEWT,1,IMGVR,E,Uncultivated virus (IMG/VR metagenome; UViG 3300011333_000339)
+TVWVRDLTEEGIEPNPGPDT,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+TVWVRDLTEEGIESNPGPDT,1,MGnify,D,Environmental metagenome (MGnify; no host assignment)
+GIEPNPGPD,1,UniProtKB,D,(obsolete/removed from UniProt)
+TVWVRDLTEEGVEPNPGPDT,1,UniProtKB,D,(obsolete/removed from UniProt)
+VRDLTRENVEPNPGPD,1,UniProtKB,D,Rotavirus I

@@ -1,0 +1,128 @@
+﻿query,source,term_id,term_name,p_value,term_size,query_size,intersection_size
+UBR3ring (38),GO:BP,GO:0007049,cell cycle,0.036920891268792666,1668,38,12
+UBR3ring (38),GO:BP,GO:0006457,protein folding,0.0413561107252331,196,38,5
+UBR3ring (38),GO:CC,GO:0032991,protein-containing complex,2.4677252777756723e-06,7979,38,31
+UBR3ring (38),GO:CC,GO:0005654,nucleoplasm,0.0002532371777477074,4334,38,21
+UBR3ring (38),GO:CC,GO:0005829,cytosol,0.004477738775430225,5607,38,22
+UBR3ring (38),GO:CC,GO:0099080,supramolecular complex,0.013728381428691094,1938,38,12
+UBR3ring (38),GO:CC,GO:0031981,nuclear lumen,0.01847104994554865,5622,38,21
+UBR3ring (38),GO:CC,GO:0031974,membrane-enclosed lumen,0.02999541071860554,6791,38,23
+UBR3ring (38),GO:CC,GO:0043233,organelle lumen,0.02999541071860554,6791,38,23
+UBR3ring (38),GO:CC,GO:0070013,intracellular organelle lumen,0.02999541071860554,6791,38,23
+UBR3ring (38),GO:CC,GO:1902494,catalytic complex,0.03674401090300521,1814,38,11
+UBR3ring (38),GO:CC,GO:0140535,intracellular protein-containing complex,0.04691518074877039,976,38,8
+UBR3ring (38),GO:MF,GO:0031072,heat shock protein binding,0.03964437544700919,128,38,4
+UBR3ring (38),GO:MF,GO:0051087,protein-folding chaperone binding,0.04336607016912713,131,38,4
+UBR3ring (38),KEGG,KEGG:03460,Fanconi anemia pathway,0.018395812404516824,54,21,3
+UBR3ring (38),REAC,REAC:R-HSA-72203,Processing of Capped Intron-Containing Pre-mRNA,0.04089977978462677,276,32,6
+UBR3ring (38),REAC,REAC:R-HSA-69278,"Cell Cycle, Mitotic",0.04357384532387263,549,32,8
+UBR3wt (50),CORUM,CORUM:2728,SRC-1 complex,0.049652489207577824,3,19,2
+UBR3wt (50),CORUM,CORUM:6147,BAFL-BAF-LAP2beta complex,0.049652489207577824,3,19,2
+UBR3wt (50),GO:BP,GO:0010604,positive regulation of macromolecule metabolic process,0.005455245164406336,3152,42,19
+UBR3wt (50),GO:BP,GO:0009892,negative regulation of metabolic process,0.009800283591753051,3276,42,19
+UBR3wt (50),GO:BP,GO:0051254,positive regulation of RNA metabolic process,0.01122534172973878,1804,42,14
+UBR3wt (50),GO:BP,GO:0060255,regulation of macromolecule metabolic process,0.01160038979985515,6392,42,27
+UBR3wt (50),GO:BP,GO:0051252,regulation of RNA metabolic process,0.011651535928743743,3654,42,20
+UBR3wt (50),GO:BP,GO:0010558,negative regulation of macromolecule biosynthetic process,0.015846188871769622,2733,42,17
+UBR3wt (50),GO:BP,GO:0009893,positive regulation of metabolic process,0.017881690537403804,3410,42,19
+UBR3wt (50),GO:BP,GO:0010605,negative regulation of macromolecule metabolic process,0.018105222740682363,3080,42,18
+UBR3wt (50),GO:BP,GO:1904017,cellular response to Thyroglobulin triiodothyronine,0.021724461858901617,3,42,2
+UBR3wt (50),GO:BP,GO:0009890,negative regulation of biosynthetic process,0.022208571629771953,2802,42,17
+UBR3wt (50),GO:BP,GO:0019219,regulation of nucleobase-containing compound metabolic process,0.039652689447441186,3954,42,20
+UBR3wt (50),GO:BP,GO:0010468,regulation of gene expression,0.04707596848838211,5549,42,24
+UBR3wt (50),GO:BP,GO:0043488,regulation of mRNA stability,0.04817022105591678,176,42,5
+UBR3wt (50),GO:CC,GO:0005654,nucleoplasm,6.459474212743504e-07,4334,45,27
+UBR3wt (50),GO:CC,GO:0005634,nucleus,3.149014994921922e-06,10153,45,39
+UBR3wt (50),GO:CC,GO:0005694,chromosome,5.733872541149109e-06,2010,45,18
+UBR3wt (50),GO:CC,GO:0036464,cytoplasmic ribonucleoprotein granule,1.2232690698679968e-05,264,45,8
+UBR3wt (50),GO:CC,GO:0043228,membraneless organelle,0.0001089470761897737,7128,45,31
+UBR3wt (50),GO:CC,GO:0043232,intracellular membraneless organelle,0.0001089470761897737,7128,45,31
+UBR3wt (50),GO:CC,GO:0031981,nuclear lumen,0.0002062259311285276,5622,45,27
+UBR3wt (50),GO:CC,GO:0035770,ribonucleoprotein granule,0.0006042783924394258,773,45,10
+UBR3wt (50),GO:CC,GO:0000785,chromatin,0.0006422100331287499,1409,45,13
+UBR3wt (50),GO:CC,GO:0043233,organelle lumen,0.0027193606756718393,6791,45,28
+UBR3wt (50),GO:CC,GO:0070013,intracellular organelle lumen,0.0027193606756718393,6791,45,28
+UBR3wt (50),GO:CC,GO:0031974,membrane-enclosed lumen,0.0027193606756718393,6791,45,28
+UBR3wt (50),GO:CC,GO:0090537,CERF complex,0.005486750623776555,4,45,2
+UBR3wt (50),GO:CC,GO:0010494,cytoplasmic stress granule,0.009781728692737489,96,45,4
+UBR3wt (50),GO:CC,GO:0000932,P-body,0.011478229394279813,100,45,4
+UBR3wt (50),GO:CC,GO:0016589,NURF complex,0.019129201948906546,7,45,2
+UBR3wt (50),GO:CC,GO:0005622,intracellular anatomical structure,0.019984933555349894,18007,45,45
+UBR3wt (50),GO:CC,GO:0000228,nuclear chromosome,0.024779355304528506,234,45,5
+UBR3wt (50),GO:CC,GO:0043231,intracellular membrane-bounded organelle,0.03379356290693602,14817,45,41
+UBR3wt (50),GO:CC,GO:0000786,nucleosome,0.037841728635095016,136,45,4
+UBR3wt (50),GO:MF,GO:0003676,nucleic acid binding,6.935264871414129e-09,5437,45,34
+UBR3wt (50),GO:MF,GO:0003682,chromatin binding,0.00031671673117104486,603,45,10
+UBR3wt (50),GO:MF,GO:0003677,DNA binding,0.0016603065427700972,2540,45,18
+UBR3wt (50),GO:MF,GO:0140658,ATP-dependent chromatin remodeler activity,0.00561551440057595,20,45,3
+UBR3wt (50),GO:MF,GO:0140097,"catalytic activity, acting on DNA",0.008599645440360846,248,45,6
+UBR3wt (50),GO:MF,GO:0060090,molecular adaptor activity,0.011936041202465206,1334,45,12
+UBR3wt (50),GO:MF,GO:0005515,protein binding,0.015081948710696083,15082,45,44
+UBR3wt (50),GO:MF,GO:0140750,nucleosome array spacer activity,0.02366793502607202,5,45,2
+UBR3wt (50),GO:MF,GO:0003723,RNA binding,0.026969148291913592,3099,45,18
+UBR3wt (50),GO:MF,GO:0140751,histone octamer slider activity,0.03545155650334508,6,45,2
+UBR3wt (50),GO:MF,GO:0030527,structural constituent of chromatin,0.03667795110371758,101,45,4
+UBR3wt (50),KEGG,KEGG:03082,ATP-dependent chromatin remodeling,0.00833697170002754,117,20,4
+UBR3wt (50),KEGG,KEGG:05322,Systemic lupus erythematosus,0.01490769354348306,136,20,4
+UBR3wt (50),REAC,REAC:R-HSA-9018519,Estrogen-dependent gene expression,0.00038831321925907514,147,27,6
+UBR3wt (50),REAC,REAC:R-HSA-8939211,ESR-mediated signaling,0.0035132608774168764,215,27,6
+UBR3wt (50),REAC,REAC:R-HSA-9006931,Signaling by Nuclear Receptors,0.01868046707863393,289,27,6
+UBR3wt (50),REAC,REAC:R-HSA-201722,Formation of the beta-catenin:TCF transactivating complex,0.02067771413277896,90,27,4
+UBR3wt (50),REAC,REAC:R-HSA-1912408,Pre-NOTCH Transcription and Translation,0.022536269182820767,92,27,4
+UBR3wt (50),REAC,REAC:R-HSA-8936459,RUNX1 regulates genes involved in megakaryocyte differentiation and platelet function,0.025548817696025,95,27,4
+UBR3wt (50),REAC,REAC:R-HSA-9029569,NR1H3 & NR1H2 regulate gene expression linked to cholesterol transport and efflux,0.029103656587006577,36,27,3
+UBR3wt (50),REAC,REAC:R-HSA-195721,Signaling by WNT,0.037041023294232325,327,27,6
+UBR3wt (50),REAC,REAC:R-HSA-73894,DNA Repair,0.03830528266641983,329,27,6
+UBR3wt (50),REAC,REAC:R-HSA-426496,Post-transcriptional silencing by small RNAs,0.039638478226379587,7,27,2
+UBR3wt (50),REAC,REAC:R-HSA-1912422,Pre-NOTCH Expression and Processing,0.042086262680089,108,27,4
+union (82),GO:BP,GO:0006974,DNA damage response,0.006926409731510358,929,74,14
+union (82),GO:BP,GO:0051246,regulation of protein metabolic process,0.011649263435242778,1574,74,18
+union (82),GO:BP,GO:0048518,positive regulation of biological process,0.01302979449398917,6150,74,40
+union (82),GO:BP,GO:0022402,cell cycle process,0.015451322671105577,1290,74,16
+union (82),GO:BP,GO:0009892,negative regulation of metabolic process,0.016738023157481855,3276,74,27
+union (82),GO:BP,GO:0043170,macromolecule metabolic process,0.017820542578461197,11942,74,60
+union (82),GO:BP,GO:1903047,mitotic cell cycle process,0.019717785531377603,747,74,12
+union (82),GO:BP,GO:0000278,mitotic cell cycle,0.023296039568006986,893,74,13
+union (82),GO:BP,GO:0007049,cell cycle,0.025841519478643632,1668,74,18
+union (82),GO:BP,GO:0010604,positive regulation of macromolecule metabolic process,0.026250802122585147,3152,74,26
+union (82),GO:BP,GO:0033554,cellular response to stress,0.029749298625324647,1856,74,19
+union (82),GO:BP,GO:0044770,cell cycle phase transition,0.03131397957599273,534,74,10
+union (82),GO:BP,GO:0009893,positive regulation of metabolic process,0.035425128694327616,3410,74,27
+union (82),GO:BP,GO:0060255,regulation of macromolecule metabolic process,0.0359952121196184,6392,74,40
+union (82),GO:BP,GO:0080090,regulation of primary metabolic process,0.04197470991491965,5215,74,35
+union (82),GO:CC,GO:0005654,nucleoplasm,1.681147330367768e-11,4334,77,45
+union (82),GO:CC,GO:0031981,nuclear lumen,2.1162866845276514e-07,5622,77,45
+union (82),GO:CC,GO:0032991,protein-containing complex,3.231546858117546e-07,7979,77,54
+union (82),GO:CC,GO:0043228,membraneless organelle,1.018061779168711e-06,7128,77,50
+union (82),GO:CC,GO:0043232,intracellular membraneless organelle,1.018061779168711e-06,7128,77,50
+union (82),GO:CC,GO:0005694,chromosome,2.324675171691965e-06,2010,77,25
+union (82),GO:CC,GO:0005634,nucleus,2.3487213496198683e-06,10153,77,60
+union (82),GO:CC,GO:0031974,membrane-enclosed lumen,9.574819054347156e-06,6791,77,47
+union (82),GO:CC,GO:0043233,organelle lumen,9.574819054347156e-06,6791,77,47
+union (82),GO:CC,GO:0070013,intracellular organelle lumen,9.574819054347156e-06,6791,77,47
+union (82),GO:CC,GO:0035770,ribonucleoprotein granule,1.5981624443017647e-05,773,77,15
+union (82),GO:CC,GO:0005622,intracellular anatomical structure,3.1839298734225275e-05,18007,77,77
+union (82),GO:CC,GO:0005829,cytosol,4.0633320886578846e-05,5607,77,41
+union (82),GO:CC,GO:0036464,cytoplasmic ribonucleoprotein granule,9.448185329572827e-05,264,77,9
+union (82),GO:CC,GO:0099080,supramolecular complex,0.00011865478218789638,1938,77,22
+union (82),GO:CC,GO:0043229,intracellular organelle,0.0002701892489040372,16204,77,73
+union (82),GO:CC,GO:0000228,nuclear chromosome,0.004831513890264558,234,77,7
+union (82),GO:CC,GO:0043226,organelle,0.005121357114725043,16993,77,73
+union (82),GO:CC,GO:0010494,cytoplasmic stress granule,0.005963707437805807,96,77,5
+union (82),GO:CC,GO:0043231,intracellular membrane-bounded organelle,0.013146214448485453,14817,77,67
+union (82),GO:CC,GO:0090537,CERF complex,0.020004111246349585,4,77,2
+union (82),GO:CC,GO:0000785,chromatin,0.02462824782792749,1409,77,15
+union (82),GO:CC,GO:0140513,nuclear protein-containing complex,0.028611812574459394,2725,77,22
+union (82),GO:MF,GO:0005515,protein binding,2.484772920725594e-06,15082,77,76
+union (82),GO:MF,GO:0003676,nucleic acid binding,4.4202608522777084e-05,5437,77,43
+union (82),GO:MF,GO:0003682,chromatin binding,0.0016260693685949958,603,77,12
+union (82),GO:MF,GO:0003677,DNA binding,0.008482188507545164,2540,77,24
+union (82),GO:MF,GO:0060090,molecular adaptor activity,0.020383231191937873,1334,77,16
+union (82),GO:MF,GO:0140097,"catalytic activity, acting on DNA",0.025932272151851964,248,77,7
+union (82),GO:MF,GO:0140658,ATP-dependent chromatin remodeler activity,0.03364744885073947,20,77,3
+union (82),KEGG,KEGG:03460,Fanconi anemia pathway,0.007784496572934486,54,39,4
+union (82),REAC,REAC:R-HSA-1640170,Cell Cycle,0.0014902097934456483,680,55,14
+union (82),REAC,REAC:R-HSA-69278,"Cell Cycle, Mitotic",0.004594861079087836,549,55,12
+union (82),REAC,REAC:R-HSA-68886,M Phase,0.01012286636486072,407,55,10
+union (82),REAC,REAC:R-HSA-73894,DNA Repair,0.011636576716410232,329,55,9
+union (82),REAC,REAC:R-HSA-9018519,Estrogen-dependent gene expression,0.03155058331189528,147,55,6

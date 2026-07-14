@@ -1,0 +1,83 @@
+﻿gene,cellular_role
+H3-7,Histones & chromatin
+BANF1,Histones & chromatin
+H2AC6,Histones & chromatin
+MACROH2A1,Histones & chromatin
+TMPO,Histones & chromatin
+H3C1,Histones & chromatin
+H4C1,Histones & chromatin
+H2AC18,Histones & chromatin
+H2BC13,Histones & chromatin
+CHD7,Chromatin remodeling / DNA modification
+TDRD3,Chromatin remodeling / DNA modification
+SMARCA1,Chromatin remodeling / DNA modification
+TET1,Chromatin remodeling / DNA modification
+SMARCA5,Chromatin remodeling / DNA modification
+FANCI,DNA replication & repair
+POLE,DNA replication & repair
+BLM,DNA replication & repair
+FANCB,DNA replication & repair
+MPG,DNA replication & repair
+CDC45,DNA replication & repair
+TELO2,DNA replication & repair
+NCAPG2,Cell cycle & mitosis
+KNTC1,Cell cycle & mitosis
+CDC23,Cell cycle & mitosis
+HAUS5,Cell cycle & mitosis
+CEP78,Cell cycle & mitosis
+BCL9,Transcription & coregulators
+MCRIP2,Transcription & coregulators
+RAI1,Transcription & coregulators
+TLE4,Transcription & coregulators
+ISL1,Transcription & coregulators
+GTF3C5,Transcription & coregulators
+NCOA2,Transcription & coregulators
+NCOA1,Transcription & coregulators
+POLR3A,Transcription & coregulators
+BRAT1,Transcription & coregulators
+FRG1,RNA processing & splicing
+GCFC2,RNA processing & splicing
+FTSJ3,RNA processing & splicing
+RBM6,RNA processing & splicing
+CSTF2T,RNA processing & splicing
+PSPC1,RNA processing & splicing
+KHDRBS1,RNA processing & splicing
+RNPS1,RNA processing & splicing
+SART1,RNA processing & splicing
+THOC3,RNA processing & splicing
+PPIL3,RNA processing & splicing
+ELP6,RNA processing & splicing
+DCP1A,mRNA silencing & translation
+LARP1B,mRNA silencing & translation
+EIF3G,mRNA silencing & translation
+TNRC6C,mRNA silencing & translation
+TNRC6B,mRNA silencing & translation
+GIGYF2,mRNA silencing & translation
+UBR3,Ubiquitin & proteostasis
+OTUD4,Ubiquitin & proteostasis
+N4BP2L2,Ubiquitin & proteostasis
+UFD1,Ubiquitin & proteostasis
+UBAP2,Ubiquitin & proteostasis
+UBAP2L,Ubiquitin & proteostasis
+MAGED2,Ubiquitin & proteostasis
+BAG6,Ubiquitin & proteostasis
+BAG2,Ubiquitin & proteostasis
+TNPO1,"Protein folding, ER & transport"
+STT3A,"Protein folding, ER & transport"
+MVB12A,"Protein folding, ER & transport"
+TBCD,"Protein folding, ER & transport"
+SDF2L1,"Protein folding, ER & transport"
+AP1G2,"Protein folding, ER & transport"
+AAAS,"Protein folding, ER & transport"
+TAB2,mTOR & signaling
+RPTOR,mTOR & signaling
+TSC2,mTOR & signaling
+COL14A1,Cytoskeleton & structural
+LRCH3,Cytoskeleton & structural
+GPHN,Cytoskeleton & structural
+CCHCR1,Cytoskeleton & structural
+HOOK1,Cytoskeleton & structural
+PLEKHG4,Cytoskeleton & structural
+RYR2,Cytoskeleton & structural
+CLECL1P,Mitochondria & other
+NDUFB10,Mitochondria & other

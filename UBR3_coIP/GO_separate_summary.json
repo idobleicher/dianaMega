@@ -1,0 +1,29 @@
+{
+  "genotypes": {
+    "WT": {
+      "n_best_hits": 50,
+      "n_enriched_terms": 59
+    },
+    "RING": {
+      "n_best_hits": 38,
+      "n_enriched_terms": 17
+    }
+  },
+  "best_hits_definition": "significant co-IP interactors per genotype (q<0.05 vs 293T)",
+  "parameters": {
+    "tool": "g:Profiler g:GOSt REST API",
+    "organism": "hsapiens",
+    "sources": [
+      "GO:BP",
+      "GO:CC",
+      "GO:MF",
+      "KEGG",
+      "REAC",
+      "CORUM"
+    ],
+    "correction": "g_SCS",
+    "user_threshold": 0.05,
+    "background": "whole annotated genome",
+    "analysed_separately": true
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "source": "C:\\Users\\User\\Downloads\\Supplementary Table 1 (3).xlsx",
+  "source_note": "Yi et al. (2023) Supplementary Table 1, 'Degradomics' sheet. No half-life column exists; half-lives are derived here by log-linear fit to the 0/5/10/15 h WT untreated ratio series.",
+  "wt_best_hits": 50,
+  "matched_in_degradomics": 47,
+  "quantified": 45,
+  "not_quantified": [
+    "H3-7",
+    "H2AC6",
+    "CLECL1P",
+    "TNRC6C",
+    "H3C1"
+  ],
+  "matched_by": {
+    "accession": 45,
+    "not found": 3,
+    "protein group": 2
+  },
+  "background_proteins": 8097,
+  "fraction_remaining_15h": {
+    "n_hits": 45,
+    "n_background": 8097,
+    "median_hits": 0.8292311877874783,
+    "median_background": 0.8154638315225203,
+    "mannwhitney_U": 186248.0,
+    "p_value": 0.7960072316929696
+  },
+  "decay_rate_k": {
+    "n_hits": 45,
+    "n_background": 8093,
+    "median_hits": 0.012478647355160577,
+    "median_background": 0.013390894436986758,
+    "mannwhitney_U": 177660.0,
+    "p_value": 0.7779461416035762
+  },
+  "derived_halflife": {
+    "hits_median_h": 40.78314614040187,
+    "background_median_h": 41.218372820115405,
+    "hits_with_no_measurable_decay": 7,
+    "hits_beyond_15h_window": 39,
+    "background_beyond_15h_window_pct": 85.56255403235767
+  },
+  "modules": [
+    {
+      "module": 1,
+      "label": "cytoplasmic ribonucleoprotein granule",
+      "n": 12,
+      "median_frac_remaining_15h": 0.8444696196692245,
+      "median_halflife_h": 65.0066839827589,
+      "p_vs_background": 0.4793880169009218,
+      "p_bonferroni": 1.0,
+      "genes": "BCL9;DCP1A;MCRIP2;TLE4;LARP1B;NCOA2;TNRC6B;GIGYF2;H2BC13;UBAP2;NCOA1;UBAP2L"
+    },
+    {
+      "module": 2,
+      "label": "CERF complex",
+      "n": 9,
+      "median_frac_remaining_15h": 0.5755097296249156,
+      "median_halflife_h": 19.02356318553106,
+      "p_vs_background": 0.06932731989342886,
+      "p_bonferroni": 0.27730927957371543,
+      "genes": "CHD7;SMARCA5;BLM;SMARCA1;TET1;MACROH2A1;UFD1;POLE;H2BC13"
+    },
+    {
+      "module": 3,
+      "label": "Systemic lupus erythematosus",
+      "n": 4,
+      "median_frac_remaining_15h": 0.8457933001607274,
+      "median_halflife_h": 64.42934529156719,
+      "p_vs_background": 0.9887239853080113,
+      "p_bonferroni": 1.0,
+      "genes": "BCL9;TLE4;MACROH2A1;H2BC13"
+    },
+    {
+      "module": 4,
+      "label": "BAFL-BAF-LAP2beta complex",
+      "n": 2,
+      "median_frac_remaining_15h": 1.0185139197309356,
+      "median_halflife_h": 67.53198103483896,
+      "p_vs_background": 0.19302017991665274,
+      "p_bonferroni": 0.772080719666611,
+      "genes": "BANF1;TMPO"
+    }
+  ],
+  "by_Ndegron_class": {
+    "Stabilizing": {
+      "n": 45,
+      "median_frac_remaining_15h": 0.8292311877874783,
+      "p_vs_background": 0.7960072316929696,
+      "genes": "UBR3;CHD7;TDRD3;SMARCA5;BCL9;DCP1A;COL14A1;MCRIP2;BLM;BANF1;RAI1;TAB2;SMARCA1;TLE4;ISL1;TET1;OTUD4;N4BP2L2;LRCH3;LARP1B;TNPO1;MACROH2A1;FRG1;GPHN;TMPO;RBM6;EIF3G;UFD1;POLE;MVB12A;GCFC2;CCHCR1;H4C1;CSTF2T;NCOA2;TNRC6B;PSPC1;GIGYF2;H2AC18;KHDRBS1;FTSJ3;H2BC13;UBAP2;NCOA1;UBAP2L"
+    }
+  },
+  "by_RING_vs_WT_class": {
+    "WT-preferring (RING-dependent binding)": {
+      "n": 40,
+      "median_frac_remaining_15h": 0.8301301511341512,
+      "p_vs_background": 0.6903329833521454,
+      "genes": "CHD7;TDRD3;SMARCA5;BCL9;DCP1A;MCRIP2;BLM;BANF1;RAI1;TAB2;SMARCA1;TLE4;ISL1;TET1;OTUD4;N4BP2L2;LRCH3;LARP1B;TNPO1;MACROH2A1;FRG1;GPHN;TMPO;RBM6;EIF3G;UFD1;MVB12A;CCHCR1;H4C1;CSTF2T;NCOA2;TNRC6B;PSPC1;GIGYF2;H2AC18;KHDRBS1;H2BC13;UBAP2;NCOA1;UBAP2L"
+    },
+    "shared / RING-independent": {
+      "n": 3,
+      "median_frac_remaining_15h": 0.6419184589028857,
+      "p_vs_background": 0.5527130797163363,
+      "genes": "UBR3;COL14A1;GCFC2"
+    }
+  },
+  "parameters": {
+    "timepoints_h": [
+      0,
+      0,
+      5,
+      5,
+      10,
+      10,
+      15,
+      15
+    ],
+    "condition": "WT extract, untreated (UT), ratio to 0 h",
+    "fit": "linregress of ln(ratio) on time; t_half = ln2 / k",
+    "measurement_window_h": 15.0,
+    "test": "Mann-Whitney U, two-sided"
+  }
+}

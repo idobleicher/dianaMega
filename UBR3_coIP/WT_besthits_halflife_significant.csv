@@ -1,0 +1,10 @@
+#,WT rank,Gene,Half-life (h),Remaining at 15 h,Decay rate k (1/h),Slope q (BH),Fit R2,Percentile vs proteome,Evidence,Module,Role
+1,36,CCHCR1,7.6,0.239,0.091,0.0028,0.85,96.8,measured (crosses 50% inside the assay),,Cytoskeleton & structural
+2,17,ISL1,7.7,0.25,0.0905,5.6e-05,0.97,96.7,measured (crosses 50% inside the assay),,Transcription & coregulators
+3,1,UBR3,9.7,0.333,0.0713,0.0018,0.87,93.5,measured (crosses 50% inside the assay),,Ubiquitin & proteostasis
+4,18,TET1,11.6,0.399,0.0595,0.00044,0.93,90.5,measured (crosses 50% inside the assay),M2,Chromatin remodeling / DNA modification
+5,44,H2AC18,13.2,0.452,0.0526,0.00012,0.97,88.2,measured (crosses 50% inside the assay),,Histones & chromatin
+6,32,POLE,14.5,0.474,0.0477,0.00092,0.91,86.3,measured (crosses 50% inside the assay),M2,DNA replication & repair
+7,31,UFD1,16.2,0.521,0.0428,2.3e-05,0.99,84.0,extrapolated (still >50% at 15 h),M2,Ubiquitin & proteostasis
+8,2,CHD7,17.0,0.541,0.0409,2.9e-05,0.98,82.9,extrapolated (still >50% at 15 h),M2,Chromatin remodeling / DNA modification
+9,10,BLM,19.0,0.576,0.0364,2.1e-05,0.99,80.0,extrapolated (still >50% at 15 h),M2,DNA replication & repair

@@ -1,0 +1,51 @@
+gene,WT_rank,pathway_modules,cellular_role,Yi_extract_t_half_h,Yi_remaining_15h,Yi_status,Li2021_HEK293T_t_half_h,Li2021_HEK293T_R2,Li2021_HEK293T_short_lived,Li2021_U2OS_t_half_h,Li2021_HCT116_t_half_h,Li2021_RPE1_t_half_h,Mathieson_primary_median_t_half_h,n_Li_cell_lines_degraded,in_Li_HEK293T,short_in_both
+UBR3,1,,Ubiquitin & proteostasis,9.7,0.333,measured,,,,,11.44,,21.9,1,False,False
+CHD7,2,2,Chromatin remodeling / DNA modification,17.0,0.541,extrapolated,23.89,0.88,,,20.19,13.07,,3,True,True
+TDRD3,3,,Chromatin remodeling / DNA modification,,1.151,no decay,,,,,,,,0,False,False
+H3-7,4,3,Histones & chromatin,,,not quantified,,,,,,,,0,False,False
+SMARCA5,5,2,Chromatin remodeling / DNA modification,55.5,0.811,extrapolated,,,,,,,63.4,0,False,False
+BCL9,6,1;3,Transcription & coregulators,21.6,0.602,extrapolated,,,,,,,,0,False,False
+DCP1A,7,1,mRNA silencing & translation,602.8,0.97,extrapolated,,,,,,,54.4,0,False,False
+COL14A1,8,,Cytoskeleton & structural,23.7,0.642,extrapolated,,,,,,,,0,False,False
+MCRIP2,9,1,Transcription & coregulators,427.5,0.945,extrapolated,,,,,,,,0,False,False
+BLM,10,2,DNA replication & repair,19.0,0.576,extrapolated,,,,,19.81,,,1,False,False
+BANF1,11,4,Histones & chromatin,,1.17,no decay,,,,,,,104.1,0,False,False
+H2AC6,12,1;2;3,Histones & chromatin,,,not quantified,,,,,,,,0,False,False
+RAI1,13,,Transcription & coregulators,81.2,0.859,extrapolated,,,,,15.91,17.92,,2,False,False
+TAB2,14,,mTOR & signaling,63.7,0.85,extrapolated,,,,,,,68.7,0,False,False
+SMARCA1,15,2,Chromatin remodeling / DNA modification,31.5,0.71,extrapolated,,,,,24.16,26.29,17.9,2,False,False
+TLE4,16,1;3,Transcription & coregulators,41.9,0.79,extrapolated,,,,,,,35.5,0,False,False
+ISL1,17,,Transcription & coregulators,7.7,0.25,measured,,,,,,,,0,False,False
+TET1,18,2,Chromatin remodeling / DNA modification,11.6,0.399,measured,10.25,0.93,,,,,,1,True,True
+OTUD4,19,,Ubiquitin & proteostasis,,1.045,no decay,,,,,,,71.5,0,False,False
+N4BP2L2,20,,Ubiquitin & proteostasis,21.8,0.6,extrapolated,5.25,0.99,short-lived,8.78,8.8,7.47,,4,True,True
+LRCH3,21,,Cytoskeleton & structural,33.9,0.744,extrapolated,,,,,,,44.3,0,False,False
+LARP1B,22,1,mRNA silencing & translation,52.2,0.806,extrapolated,,,,,,,,0,False,False
+TNPO1,23,,"Protein folding, ER & transport",206.3,0.962,extrapolated,,,,,,,89.6,0,False,False
+CLECL1P,24,,Mitochondria & other,,,not quantified,,,,,,,,0,False,False
+MACROH2A1,25,2;3,Histones & chromatin,87.0,0.902,extrapolated,,,,,,,,0,False,False
+FRG1,26,,RNA processing & splicing,52.8,0.831,extrapolated,,,,,,22.48,110.8,1,False,False
+GPHN,27,,Cytoskeleton & structural,424.7,0.972,extrapolated,,,,,,,87.2,0,False,False
+TMPO,28,4,Histones & chromatin,67.5,0.867,extrapolated,,,,,,,484.6,0,False,False
+RBM6,29,,RNA processing & splicing,120.0,0.923,extrapolated,,,,,,,44.5,0,False,False
+EIF3G,30,,mRNA silencing & translation,,1.144,no decay,,,,,,,65.2,0,False,False
+UFD1,31,2,Ubiquitin & proteostasis,16.2,0.521,extrapolated,,,,30.39,,,,1,False,False
+POLE,32,2,DNA replication & repair,14.5,0.474,measured,,,,,,,,0,False,False
+TNRC6C,33,1,mRNA silencing & translation,,,not quantified,,,,,,,,0,False,False
+MVB12A,34,,"Protein folding, ER & transport",27.3,0.687,extrapolated,,,,,,,65.0,0,False,False
+GCFC2,35,,RNA processing & splicing,,1.014,no decay,,,,,,,64.1,0,False,False
+CCHCR1,36,,Cytoskeleton & structural,7.6,0.239,measured,3.65,0.98,short-lived,3.63,1.67,,,3,True,True
+H3C1,37,,Histones & chromatin,,,not quantified,,,,,,,,0,False,False
+H4C1,38,,Histones & chromatin,,1.195,no decay,,,,,,,,0,False,False
+CSTF2T,39,,RNA processing & splicing,95.3,0.907,extrapolated,32.36,0.86,,,,,50.7,1,True,True
+NCOA2,40,1,Transcription & coregulators,35.1,0.746,extrapolated,,,,,30.79,,31.6,1,False,False
+TNRC6B,41,1,mRNA silencing & translation,56.7,0.829,extrapolated,,,,,,,33.0,0,False,False
+PSPC1,42,,RNA processing & splicing,39.7,0.773,extrapolated,,,,,,,125.1,0,False,False
+GIGYF2,43,1,mRNA silencing & translation,175.0,0.936,extrapolated,,,,,,,30.0,0,False,False
+H2AC18,44,,Histones & chromatin,13.2,0.452,measured,,,,,,,,0,False,False
+KHDRBS1,45,,RNA processing & splicing,35.7,0.752,extrapolated,,,,,,,101.2,0,False,False
+FTSJ3,46,,RNA processing & splicing,,1.114,no decay,,,,,,,47.6,0,False,False
+H2BC13,47,1;2;3,Histones & chromatin,90.9,0.904,extrapolated,,,,,,,,0,False,False
+UBAP2,48,1,Ubiquitin & proteostasis,202.6,0.945,extrapolated,,,,,,,22.3,0,False,False
+NCOA1,49,1,Transcription & coregulators,33.3,0.734,extrapolated,22.15,0.92,,24.33,26.82,19.02,25.6,4,True,True
+UBAP2L,50,1,Ubiquitin & proteostasis,73.3,0.86,extrapolated,,,,,,,38.1,0,False,False

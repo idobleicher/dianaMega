@@ -1,0 +1,80 @@
+{
+  "question": "Is D/E at position 2 of the 2A downstream product (UBR3 motif) enriched or depleted vs background?",
+  "foreground_source": "2a_combined_UBR3\\combined_all_instances.csv",
+  "background_source": "UniProt Swiss-Prot, reviewed viral proteins (taxonomy 10239)",
+  "background_proteins": 17517,
+  "background_residues": 7989533,
+  "background_proteins_starting_with_Met": 17136,
+  "foregrounds": {
+    "All 2A instances (raw)": 35573,
+    "Unique source accession": 25326,
+    "Unique 2A core peptide": 1430,
+    "Unique downstream context": 2693,
+    "Viral 2A instances (raw)": 4268,
+    "Viral, unique downstream context": 522
+  },
+  "headline": {
+    "Unique downstream context": {
+      "All amino acids, all positions": {
+        "observed_pct": 12.143,
+        "background_pct": 11.053,
+        "fold": 1.099,
+        "p": 0.07456933508713534,
+        "direction": "enriched"
+      },
+      "Position 2 of viral proteins": {
+        "observed_pct": 12.143,
+        "background_pct": 21.242,
+        "fold": 0.572,
+        "p": 1.140511143861197e-30,
+        "direction": "depleted"
+      },
+      "Residue after any proline (P+1)": {
+        "observed_pct": 12.143,
+        "background_pct": 11.149,
+        "fold": 1.089,
+        "p": 0.10358934780631741,
+        "direction": "enriched"
+      }
+    },
+    "All 2A instances (raw)": {
+      "All amino acids, all positions": {
+        "observed_pct": 2.648,
+        "background_pct": 11.053,
+        "fold": 0.24,
+        "p": 0.0,
+        "direction": "depleted"
+      },
+      "Position 2 of viral proteins": {
+        "observed_pct": 2.648,
+        "background_pct": 21.242,
+        "fold": 0.125,
+        "p": 0.0,
+        "direction": "depleted"
+      },
+      "Residue after any proline (P+1)": {
+        "observed_pct": 2.648,
+        "background_pct": 11.149,
+        "fold": 0.238,
+        "p": 0.0,
+        "direction": "depleted"
+      }
+    }
+  },
+  "parameters": {
+    "target_residues": [
+      "D",
+      "E"
+    ],
+    "test": "Fisher exact (two-sided) and chi-square on 2x2 counts",
+    "ci": "exact binomial 95% CI on the observed proportion"
+  },
+  "primary_foreground": "Unique downstream context",
+  "redundancy": {
+    "instances": 35573,
+    "unique_accessions": 25326,
+    "unique_downstream_contexts": 2693,
+    "instances_per_unique_downstream_context": 12.3,
+    "pct_instances_from_UniParc": 83.9
+  }
+}

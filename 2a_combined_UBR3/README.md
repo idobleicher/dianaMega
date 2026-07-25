@@ -1,5 +1,14 @@
 # Combined maximal 2A dataset + UBR3 P–[D/E] screen
 
+> **⚠ Correction (see `../2a_enrichment/`).** The claim below that the UBR3 P–[D/E]
+> motif occurs in "only 2.4% ... so it is genuinely uncommon" is a **database-redundancy
+> artefact**. 84% of instances come from UniParc, which deposits every sequence variant
+> separately; the 35,573 resolved instances collapse to 2,693 distinct downstream
+> contexts. Counted properly, D/E at position 2 is **12.1%** — statistically
+> indistinguishable from viral background composition (11.1%) and from the residue after
+> any proline (11.1%). The motif is ordinary, not rare. The 942 hits / 280 distinct
+> peptides remain valid as a candidate list; only the "uncommon" claim changes.
+
 This screens the **largest 2A dataset we can assemble** for the UBR3 downstream motif,
 combining both data drops of the *same project* (Rao et al. 2025, *Cell Reports*;
 its pipeline is the repo **github.com/rnabioco/2a-peptide-search** cited in the paper's

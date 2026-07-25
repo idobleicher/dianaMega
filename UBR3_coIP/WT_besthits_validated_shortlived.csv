@@ -1,0 +1,7 @@
+#,gene,WT_rank,pathway_modules,cellular_role,Yi_extract_t_half_h,Yi_remaining_15h,Li2021_HEK293T_t_half_h,Li2021_U2OS_t_half_h,Li2021_HCT116_t_half_h,Li2021_RPE1_t_half_h,Li_n_lines,Li_min_t_half_h,Mathieson_primary_median_t_half_h,evidence_datasets
+1,CCHCR1,36,,Cytoskeleton & structural,7.6,0.239,3.65,3.63,1.67,,3,1.67,,4
+2,TET1,18,2,Chromatin remodeling / DNA modification,11.6,0.399,10.25,,,,1,10.25,,2
+3,UBR3,1,,Ubiquitin & proteostasis,9.7,0.333,,,11.44,,1,11.44,21.9,3
+4,CHD7,2,2,Chromatin remodeling / DNA modification,17.0,0.541,23.89,,20.19,13.07,3,13.07,,4
+5,BLM,10,2,DNA replication & repair,19.0,0.576,,,19.81,,1,19.81,,2
+6,UFD1,31,2,Ubiquitin & proteostasis,16.2,0.521,,30.39,,,1,30.39,,2

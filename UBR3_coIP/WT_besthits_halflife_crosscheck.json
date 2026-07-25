@@ -1,0 +1,41 @@
+{
+  "question": "Do the UBR3-WT best-hit half-lives reproduce in independent datasets?",
+  "datasets": {
+    "Yi2023": "in-extract degradation 0-15 h; half-lives derived by us",
+    "Li2021": "cycloheximide chase in living cells 0-8 h; ['HEK293T', 'U2OS', 'HCT116', 'RPE1']; Table S2 lists only proteins losing >15% at 8 h with R2>0.8",
+    "Mathieson2018": "dynamic SILAC, 4 human primary cell types (mouse neurons excluded)"
+  },
+  "proteome_wide_concordance": {
+    "Li2021_HEK293T": {
+      "n_shared_proteins": 1112,
+      "spearman_rho_Yi_k_vs_halflife": -0.6324287669774913,
+      "p_value": 2.9182934431279996e-125,
+      "spearman_rho_Yi_15h_remaining_vs_halflife": 0.6422757758274227,
+      "p_value_15h": 2.305778213729621e-130,
+      "expected_sign": "negative for k (faster decay = shorter half-life), positive for 15h remaining"
+    },
+    "Mathieson2018_primary_cells": {
+      "n_shared_proteins": 5249,
+      "spearman_rho_Yi_k_vs_halflife": -0.44477686999505434,
+      "p_value": 1.7436179735836267e-253,
+      "spearman_rho_Yi_15h_remaining_vs_halflife": 0.4424488890279984,
+      "p_value_15h": 1.4914934153378243e-250,
+      "expected_sign": "negative for k (faster decay = shorter half-life), positive for 15h remaining"
+    }
+  },
+  "per_hit": {
+    "wt_best_hits": 50,
+    "in_Li_HEK293T_degraded_list": 6,
+    "in_any_Li_cell_line": 13,
+    "with_Mathieson_halflife": 27,
+    "short_in_Yi_and_Li_HEK293T": [
+      "CHD7",
+      "TET1",
+      "N4BP2L2",
+      "CCHCR1",
+      "CSTF2T",
+      "NCOA1"
+    ]
+  },
+  "caveat": "Absence from Li Table S2 means the protein either was not degraded >15% in 8 h or was not quantified; Table S1 is needed to separate those. Do not read absence as proof of stability."
+}

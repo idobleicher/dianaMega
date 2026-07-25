@@ -1,0 +1,137 @@
+{
+  "question": "Do the UBR3-WT best hits share mutual pathways?",
+  "wt_best_hits": 50,
+  "wt_enriched_terms": 59,
+  "wt_specific_terms": 29,
+  "terms_supported_by_multiple_hits": 59,
+  "hits_in_at_least_one_specific_term": 25,
+  "hits_in_no_specific_term": 25,
+  "hits_sharing_a_specific_term_with_another_hit": 22,
+  "pathway_modules": 4,
+  "robust_pathway_modules": 3,
+  "gene_modules": 4,
+  "mutual_with_RING": 5,
+  "wt_exclusive": 54,
+  "histones_in_wt_hits": [
+    "H3-7",
+    "H2AC6",
+    "MACROH2A1",
+    "H3C1",
+    "H4C1",
+    "H2AC18",
+    "H2BC13"
+  ],
+  "terms_lost_without_histones": 21,
+  "parameters": {
+    "tool": "g:Profiler g:GOSt REST API (no_evidences=False)",
+    "organism": "hsapiens",
+    "sources": [
+      "GO:BP",
+      "GO:CC",
+      "GO:MF",
+      "KEGG",
+      "REAC",
+      "CORUM"
+    ],
+    "correction": "g_SCS",
+    "user_threshold": 0.05,
+    "background": "whole annotated genome",
+    "specific_term_max_size": 500,
+    "term_edge_overlap_coefficient": 0.5,
+    "gene_edge_min_shared_specific_terms": 2,
+    "community_detection": "greedy modularity (networkx)"
+  },
+  "modules": [
+    {
+      "module": 1,
+      "label": "cytoplasmic ribonucleoprotein granule",
+      "n_terms": 15,
+      "best_p": 1.2232690698679968e-05,
+      "robust_to_histone_removal": true,
+      "string_edges_within_module": 17,
+      "genes_in_one_STRING_cluster": 7,
+      "core_genes": [
+        "TNRC6C",
+        "TNRC6B"
+      ],
+      "all_genes": [
+        "BCL9",
+        "DCP1A",
+        "GIGYF2",
+        "H2AC6",
+        "H2BC13",
+        "LARP1B",
+        "MCRIP2",
+        "NCOA1",
+        "NCOA2",
+        "TLE4",
+        "TNRC6B",
+        "TNRC6C",
+        "UBAP2",
+        "UBAP2L"
+      ]
+    },
+    {
+      "module": 2,
+      "label": "CERF complex",
+      "n_terms": 9,
+      "best_p": 0.005486750623776555,
+      "robust_to_histone_removal": true,
+      "string_edges_within_module": 16,
+      "genes_in_one_STRING_cluster": 6,
+      "core_genes": [
+        "SMARCA5",
+        "SMARCA1"
+      ],
+      "all_genes": [
+        "BLM",
+        "CHD7",
+        "H2AC6",
+        "H2BC13",
+        "MACROH2A1",
+        "POLE",
+        "SMARCA1",
+        "SMARCA5",
+        "TET1",
+        "UFD1"
+      ]
+    },
+    {
+      "module": 3,
+      "label": "Systemic lupus erythematosus",
+      "n_terms": 4,
+      "best_p": 0.01490769354348306,
+      "robust_to_histone_removal": false,
+      "string_edges_within_module": 5,
+      "genes_in_one_STRING_cluster": 5,
+      "core_genes": [
+        "H2AC6",
+        "H2BC13",
+        "H3-7",
+        "MACROH2A1"
+      ],
+      "all_genes": [
+        "BCL9",
+        "H2AC6",
+        "H2BC13",
+        "H3-7",
+        "MACROH2A1",
+        "TLE4"
+      ]
+    },
+    {
+      "module": 4,
+      "label": "BAFL-BAF-LAP2beta complex",
+      "n_terms": 1,
+      "best_p": 0.049652489207577824,
+      "robust_to_histone_removal": true,
+      "string_edges_within_module": 1,
+      "genes_in_one_STRING_cluster": 2,
+      "core_genes": [],
+      "all_genes": [
+        "BANF1",
+        "TMPO"
+      ]
+    }
+  ]
+}

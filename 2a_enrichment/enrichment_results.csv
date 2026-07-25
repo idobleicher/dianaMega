@@ -1,0 +1,19 @@
+foreground,foreground_n,observed_DE_n,observed_DE_pct,observed_CI95_low_pct,observed_CI95_high_pct,background,background_n,background_DE_pct,fold_change,depletion_fold,odds_ratio,fisher_p,chi2_p,direction
+All 2A instances (raw),35573,942,2.648,2.484,2.82,"All amino acids, all positions",7989533,11.053,0.24,4.17,0.219,0.0,0.0,depleted
+All 2A instances (raw),35573,942,2.648,2.484,2.82,Position 2 of viral proteins,17136,21.242,0.125,8.02,0.101,0.0,0.0,depleted
+All 2A instances (raw),35573,942,2.648,2.484,2.82,Residue after any proline (P+1),394082,11.149,0.238,4.21,0.217,0.0,0.0,depleted
+Unique source accession,25326,876,3.459,3.237,3.691,"All amino acids, all positions",7989533,11.053,0.313,3.2,0.288,0.0,0.0,depleted
+Unique source accession,25326,876,3.459,3.237,3.691,Position 2 of viral proteins,17136,21.242,0.163,6.14,0.133,0.0,0.0,depleted
+Unique source accession,25326,876,3.459,3.237,3.691,Residue after any proline (P+1),394082,11.149,0.31,3.22,0.286,0.0,0.0,depleted
+Unique 2A core peptide,1430,158,11.049,9.47,12.789,"All amino acids, all positions",7989533,11.053,1.0,1.0,1.0,1.0,1.0,depleted
+Unique 2A core peptide,1430,158,11.049,9.47,12.789,Position 2 of viral proteins,17136,21.242,0.52,1.92,0.461,1.6581825098804673e-22,5.917098756956794e-20,depleted
+Unique 2A core peptide,1430,158,11.049,9.47,12.789,Residue after any proline (P+1),394082,11.149,0.991,1.01,0.99,0.9329490669410873,0.9381940079800559,depleted
+Unique downstream context,2693,327,12.143,10.932,13.436,"All amino acids, all positions",7989533,11.053,1.099,0.91,1.112,0.07456933508713534,0.07624547246895379,enriched
+Unique downstream context,2693,327,12.143,10.932,13.436,Position 2 of viral proteins,17136,21.242,0.572,1.75,0.512,1.140511143861197e-30,6.875154582389384e-28,depleted
+Unique downstream context,2693,327,12.143,10.932,13.436,Residue after any proline (P+1),394082,11.149,1.089,0.92,1.101,0.10358934780631741,0.10914480201069196,enriched
+Viral 2A instances (raw),4268,183,4.288,3.7,4.939,"All amino acids, all positions",7989533,11.053,0.388,2.58,0.361,1.605626374612871e-56,5.876728325520328e-45,depleted
+Viral 2A instances (raw),4268,183,4.288,3.7,4.939,Position 2 of viral proteins,17136,21.242,0.202,4.95,0.166,1.303695174573715e-187,2.3236946037003924e-147,depleted
+Viral 2A instances (raw),4268,183,4.288,3.7,4.939,Residue after any proline (P+1),394082,11.149,0.385,2.6,0.357,2.5010192634138946e-57,1.1930423733636987e-45,depleted
+"Viral, unique downstream context",522,65,12.452,9.743,15.594,"All amino acids, all positions",7989533,11.053,1.127,0.89,1.145,0.29548027081561423,0.34214862323773343,enriched
+"Viral, unique downstream context",522,65,12.452,9.743,15.594,Position 2 of viral proteins,17136,21.242,0.586,1.71,0.527,3.418086192488227e-07,1.5552203663551261e-06,depleted
+"Viral, unique downstream context",522,65,12.452,9.743,15.594,Residue after any proline (P+1),394082,11.149,1.117,0.9,1.134,0.3304027227064008,0.38107656903013765,enriched

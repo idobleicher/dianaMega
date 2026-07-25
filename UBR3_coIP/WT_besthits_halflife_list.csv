@@ -1,0 +1,51 @@
+Order,WT_rank,Gene,Half-life (h),Remaining at 15 h,Decay fit R2,Pathway module(s),Basis
+1,36,CCHCR1,7.6,0.239,0.85,,measured - drops below 50% inside the 15 h assay
+2,17,ISL1,7.7,0.25,0.97,,measured - drops below 50% inside the 15 h assay
+3,1,UBR3,9.7,0.333,0.87,,measured - drops below 50% inside the 15 h assay
+4,18,TET1,11.6,0.399,0.93,M2,measured - drops below 50% inside the 15 h assay
+5,44,H2AC18,13.2,0.452,0.97,,measured - drops below 50% inside the 15 h assay
+6,32,POLE,14.5,0.474,0.91,M2,measured - drops below 50% inside the 15 h assay
+7,31,UFD1,16.2,0.521,0.99,M2,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+8,2,CHD7,17.0,0.541,0.98,M2,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+9,10,BLM,19.0,0.576,0.99,M2,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+10,6,BCL9,21.6,0.602,0.89,M1;M3,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+11,20,N4BP2L2,21.8,0.6,0.36,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+12,8,COL14A1,23.7,0.642,0.92,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+13,34,MVB12A,27.3,0.687,0.82,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+14,15,SMARCA1,31.5,0.71,0.95,M2,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+15,49,NCOA1,33.3,0.734,0.64,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+16,21,LRCH3,33.9,0.744,0.85,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+17,40,NCOA2,35.1,0.746,0.94,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+18,45,KHDRBS1,35.7,0.752,0.86,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+19,42,PSPC1,39.7,0.773,0.95,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+20,16,TLE4,41.9,0.79,0.94,M1;M3,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+21,22,LARP1B,52.2,0.806,0.58,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+22,26,FRG1,52.8,0.831,0.72,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+23,5,SMARCA5,55.5,0.811,0.67,M2,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+24,41,TNRC6B,56.7,0.829,0.92,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+25,14,TAB2,63.7,0.85,0.54,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+26,28,TMPO,67.5,0.867,0.89,M4,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+27,50,UBAP2L,73.3,0.86,0.71,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+28,13,RAI1,81.2,0.859,0.62,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+29,25,MACROH2A1,87.0,0.902,0.58,M2;M3,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+30,47,H2BC13,90.9,0.904,0.58,M1;M2;M3,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+31,39,CSTF2T,95.3,0.907,0.75,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+32,29,RBM6,120.0,0.923,0.82,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+33,43,GIGYF2,175.0,0.936,0.32,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+34,48,UBAP2,202.6,0.945,0.43,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+35,23,TNPO1,206.3,0.962,0.31,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+36,27,GPHN,424.7,0.972,0.29,,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+37,9,MCRIP2,427.5,0.945,0.0,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+38,7,DCP1A,602.8,0.97,0.03,M1,"extrapolated - still above 50% at 15 h, fitted beyond the assay"
+39,3,TDRD3,,1.151,,,no decay detected in 15 h - half-life not determinable
+40,4,H3-7,,,,M3,no data - protein not quantified in the degradomics set
+41,11,BANF1,,1.17,,M4,no decay detected in 15 h - half-life not determinable
+42,12,H2AC6,,,,M1;M2;M3,no data - protein not quantified in the degradomics set
+43,19,OTUD4,,1.045,,,no decay detected in 15 h - half-life not determinable
+44,24,CLECL1P,,,,,no data - protein not quantified in the degradomics set
+45,30,EIF3G,,1.144,,,no decay detected in 15 h - half-life not determinable
+46,33,TNRC6C,,,,M1,no data - protein not quantified in the degradomics set
+47,35,GCFC2,,1.014,,,no decay detected in 15 h - half-life not determinable
+48,37,H3C1,,,,,no data - protein not quantified in the degradomics set
+49,38,H4C1,,1.195,,,no decay detected in 15 h - half-life not determinable
+50,46,FTSJ3,,1.114,,,no decay detected in 15 h - half-life not determinable

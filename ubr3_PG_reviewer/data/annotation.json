@@ -1,0 +1,434 @@
+{
+ "NOB1": {
+  "uniprot": "Q9ULX3",
+  "protein_name": "RNA-binding protein NOB1",
+  "function": "May play a role in mRNA degradation.",
+  "localization": "Nucleus",
+  "go_biological_process": "maturation of SSU-rRNA; rRNA processing",
+  "protein_length": 412
+ },
+ "DDX31": {
+  "uniprot": "Q9H8H2",
+  "protein_name": "ATP-dependent DNA helicase DDX31",
+  "function": "May have DNA helicase activity and RNA helicase activity. Probably have ssDNA and RNA dependent ATPase activity.",
+  "localization": "Nucleus, nucleolus",
+  "go_biological_process": "ribosome biogenesis",
+  "protein_length": 851
+ },
+ "GBP2": {
+  "uniprot": "P32456",
+  "protein_name": "Guanylate-binding protein 2",
+  "function": "Interferon (IFN)-inducible GTPase that plays important roles in innate immunity against a diverse range of bacterial, viral and protozoan pathogens.",
+  "localization": "Cytoplasmic vesicle membrane; Golgi apparatus membrane; Cytoplasm; Cytoplasm, perinuclear region",
+  "go_biological_process": "activation of innate immune response; cellular response to interleukin-1; cellular response to lipopolysaccharide; cellular response to tumor necrosis factor; cellular response to type II interferon; cytolysis in another organism",
+  "protein_length": 591
+ },
+ "FCHSD1": {
+  "uniprot": "Q86WN1",
+  "protein_name": "F-BAR and double SH3 domains protein 1",
+  "function": "Promotes actin polymerization mediated by SNX9 and WASL.",
+  "localization": "Cytoplasm; Perikaryon; Cell projection; Cytoplasmic vesicle",
+  "go_biological_process": "membrane organization; neuromuscular synaptic transmission; positive regulation of actin filament polymerization; regulation of actin filament polymerization",
+  "protein_length": 690
+ },
+ "CNPPD1": {
+  "uniprot": "Q9BV87",
+  "protein_name": "Protein CNPPD1",
+  "function": "",
+  "localization": "Membrane",
+  "go_biological_process": "",
+  "protein_length": 410
+ },
+ "UQCC3": {
+  "uniprot": "Q6UW78",
+  "protein_name": "Ubiquinol-cytochrome-c reductase complex assembly factor 3",
+  "function": "Required for the assembly of the ubiquinol-cytochrome c reductase complex (mitochondrial respiratory chain complex III or cytochrome b-c1 complex), mediating cytochrome b recruitment and probably stabilization within the complex. Thereby, plays an important.",
+  "localization": "Mitochondrion inner membrane",
+  "go_biological_process": "ATP biosynthetic process; cristae formation; mitochondrial electron transport, ubiquinol to cytochrome c; mitochondrial respiratory chain complex III assembly",
+  "protein_length": 93
+ },
+ "CXCR3": {
+  "uniprot": "P49682",
+  "protein_name": "C-X-C chemokine receptor type 3",
+  "function": "Receptor for the C-X-C chemokines CXCL9, CXCL10 and CXCL11, and mediates the proliferation, survival and angiogenic activity of human mesangial cells (HMC) through a heterotrimeric G-protein signaling pathway.",
+  "localization": "Cell membrane",
+  "go_biological_process": "adenylate cyclase-activating G protein-coupled receptor signaling pathway; angiogenesis; apoptotic process; calcium-mediated signaling; cell adhesion; cell chemotaxis",
+  "protein_length": 368
+ },
+ "BTNL2": {
+  "uniprot": "Q9UIR0",
+  "protein_name": "Butyrophilin-like protein 2",
+  "function": "Negative regulator of T-cell proliferation.",
+  "localization": "Membrane",
+  "go_biological_process": "regulation of cytokine production; T cell receptor signaling pathway",
+  "protein_length": 482
+ },
+ "AGBL5": {
+  "uniprot": "Q8NDL9",
+  "protein_name": "Cytosolic carboxypeptidase-like protein 5",
+  "function": "Metallocarboxypeptidase that mediates deglutamylation of tubulin and non-tubulin target proteins. Catalyzes the removal of polyglutamate side chains present on the gamma-carboxyl group of glutamate residues within the C-terminal tail of alpha- and.",
+  "localization": "Cytoplasm, cytosol; Nucleus; Cytoplasm, cytoskeleton, spindle; Midbody",
+  "go_biological_process": "defense response to virus; proteolysis",
+  "protein_length": 886
+ },
+ "ZNF718": {
+  "uniprot": "Q3SXZ3",
+  "protein_name": "Zinc finger protein 718",
+  "function": "May be involved in transcriptional regulation.",
+  "localization": "Nucleus",
+  "go_biological_process": "DNA-templated transcription; negative regulation of transcription by RNA polymerase II; regulation of DNA-templated transcription",
+  "protein_length": 478
+ },
+ "CU633980.2": {
+  "uniprot": "",
+  "protein_name": "",
+  "function": "",
+  "localization": "",
+  "go_biological_process": "",
+  "protein_length": null
+ },
+ "ZFAT": {
+  "uniprot": "Q9P243",
+  "protein_name": "Zinc finger protein ZFAT",
+  "function": "May be involved in transcriptional regulation. Overexpression causes down-regulation of a number of genes involved in the immune response. Some genes are also up-regulated.",
+  "localization": "Nucleus; Cytoplasm, cytosol",
+  "go_biological_process": "DNA-templated transcription; regulation of DNA-templated transcription",
+  "protein_length": 1243
+ },
+ "FARP1": {
+  "uniprot": "Q9Y4F1",
+  "protein_name": "FERM, ARHGEF and pleckstrin domain-containing protein 1",
+  "function": "Functions as a guanine nucleotide exchange factor for RAC1. May play a role in semaphorin signaling. Plays a role in the assembly and disassembly of dendritic filopodia, the formation of dendritic spines, regulation of dendrite length and ultimately the.",
+  "localization": "Cell membrane; Synapse; Synapse, synaptosome; Cytoplasm, cytosol; Cell projection, filopodium; Cell projection, dendrite",
+  "go_biological_process": "dendrite morphogenesis; enzyme-linked receptor protein signaling pathway; postsynaptic actin cytoskeleton organization; Rac protein signal transduction; regulation of presynapse assembly; retrograde trans-synaptic signaling by trans-synaptic protein complex",
+  "protein_length": 1045
+ },
+ "C17orf51": {
+  "uniprot": "A8MQB3",
+  "protein_name": "Putative uncharacterized protein LINC02693",
+  "function": "",
+  "localization": "",
+  "go_biological_process": "",
+  "protein_length": 221
+ },
+ "MYLK": {
+  "uniprot": "Q15746",
+  "protein_name": "Myosin light chain kinase, smooth muscle",
+  "function": "Calcium/calmodulin-dependent myosin light chain kinase implicated in smooth muscle contraction via phosphorylation of myosin light chains (MLC). Also regulates actin-myosin interaction through a non-kinase activity. Phosphorylates PTK2B/PYK2 and myosin.",
+  "localization": "Cytoplasm; Cell projection, lamellipodium; Cleavage furrow; Cytoplasm, cytoskeleton, stress fiber",
+  "go_biological_process": "aorta smooth muscle tissue morphogenesis; bleb assembly; cellular hypotonic response; positive regulation of calcium ion transport; positive regulation of cell migration; positive regulation of wound healing",
+  "protein_length": 1914
+ },
+ "FBXO24": {
+  "uniprot": "O75426",
+  "protein_name": "F-box only protein 24",
+  "function": "Substrate recognition component of an SCF (SKP1-CUL1-F-box protein) E3 ubiquitin-protein ligase complex that mediates the ubiquitination and subsequent proteasomal degradation of target proteins. Specifically recognizes the deacetylated form of nucleoside.",
+  "localization": "Mitochondrion; Nucleus",
+  "go_biological_process": "protein ubiquitination; SCF-dependent proteasomal ubiquitin-dependent protein catabolic process",
+  "protein_length": 580
+ },
+ "FARP2": {
+  "uniprot": "O94887",
+  "protein_name": "FERM, ARHGEF and pleckstrin domain-containing protein 2",
+  "function": "Functions as a guanine nucleotide exchange factor that activates RAC1. May have relatively low activity. Plays a role in the response to class 3 semaphorins and remodeling of the actin cytoskeleton. Plays a role in TNFSF11-mediated osteoclast differentiation,.",
+  "localization": "",
+  "go_biological_process": "actin cytoskeleton organization; cell adhesion; neuron remodeling; osteoclast differentiation; podosome assembly; Rac protein signal transduction",
+  "protein_length": 1054
+ },
+ "KIAA1211": {
+  "uniprot": "Q6ZU35",
+  "protein_name": "Capping protein-inhibiting regulator of actin dynamics",
+  "function": "Involved in epithelial cell integrity by acting on the maintenance of the actin cytoskeleton. Positively regulates the actin polymerization, by inhibiting the interaction of actin-capping proteins with actin.",
+  "localization": "Cytoplasm, cytosol",
+  "go_biological_process": "epithelial structure maintenance; maintenance of gastrointestinal epithelium; negative regulation of barbed-end actin filament capping; positive regulation of actin filament polymerization",
+  "protein_length": 1233
+ },
+ "SPECC1": {
+  "uniprot": "Q5M775",
+  "protein_name": "Cytospin-B",
+  "function": "",
+  "localization": "Nucleus",
+  "go_biological_process": "actin cytoskeleton organization",
+  "protein_length": 1068
+ },
+ "KLK12": {
+  "uniprot": "Q9UKR0",
+  "protein_name": "Kallikrein-12",
+  "function": "",
+  "localization": "Secreted",
+  "go_biological_process": "protein maturation; proteolysis",
+  "protein_length": 248
+ },
+ "LTBP4": {
+  "uniprot": "Q8N2S1",
+  "protein_name": "Latent-transforming growth factor beta-binding protein 4",
+  "function": "Key regulator of transforming growth factor beta (TGFB1, TGFB2 and TGFB3) that controls TGF-beta activation by maintaining it in a latent state during storage in extracellular space. Associates specifically via disulfide bonds with the Latency-associated.",
+  "localization": "Secreted, extracellular space, extracellular matrix",
+  "go_biological_process": "elastic fiber assembly; protein folding; regulation of cell growth; regulation of transforming growth factor beta receptor signaling pathway",
+  "protein_length": 1624
+ },
+ "SLC25A4": {
+  "uniprot": "P12235",
+  "protein_name": "ADP/ATP translocase 1",
+  "function": "ADP:ATP antiporter that mediates import of ADP into the mitochondrial matrix for ATP synthesis, and export of ATP out to fuel the cell.",
+  "localization": "Mitochondrion inner membrane; Membrane",
+  "go_biological_process": "adaptive thermogenesis; ADP transport; generation of precursor metabolites and energy; mitochondrial ADP transmembrane transport; mitochondrial ATP transmembrane transport; negative regulation of necroptotic process",
+  "protein_length": 298
+ },
+ "ATF7": {
+  "uniprot": "P17544",
+  "protein_name": "Cyclic AMP-dependent transcription factor ATF-7",
+  "function": "Stress-responsive chromatin regulator that plays a role in various biological processes including innate immunological memory, adipocyte differentiation or telomerase regulation.",
+  "localization": "Nucleus; Nucleus, nucleoplasm; Chromosome, telomere",
+  "go_biological_process": "DNA-templated transcription; negative regulation of transcription by RNA polymerase II; positive regulation of transcription by RNA polymerase II; regulation of DNA-templated transcription; regulation of transcription by RNA polymerase II",
+  "protein_length": 483
+ },
+ "LPIN1": {
+  "uniprot": "Q14693",
+  "protein_name": "Phosphatidate phosphatase LPIN1",
+  "function": "Acts as a magnesium-dependent phosphatidate phosphatase enzyme which catalyzes the conversion of phosphatidic acid to diacylglycerol during triglyceride, phosphatidylcholine and phosphatidylethanolamine biosynthesis and therefore controls the metabolism of.",
+  "localization": "Cytoplasm, cytosol; Endoplasmic reticulum membrane; Nucleus membrane",
+  "go_biological_process": "animal organ regeneration; cellular response to insulin stimulus; DNA-templated transcription; fatty acid catabolic process; mitotic nuclear membrane disassembly; negative regulation of myelination",
+  "protein_length": 890
+ },
+ "SLC7A9": {
+  "uniprot": "P82251",
+  "protein_name": "b(0,+)-type amino acid transporter 1",
+  "function": "Associates with SLC3A1 to form a functional transporter complex that mediates the electrogenic exchange between cationic amino acids and neutral amino acids, with a stoichiometry of 1:1.",
+  "localization": "Apical cell membrane; Cell membrane",
+  "go_biological_process": "amino acid transmembrane transport; L-cystine transport; neutral amino acid transport; protein-containing complex assembly",
+  "protein_length": 487
+ },
+ "THEG": {
+  "uniprot": "Q9P2T0",
+  "protein_name": "Sperm microtubule associated protein 2",
+  "function": "May be involved (but not essential) in spermatogenesis.",
+  "localization": "Nucleus",
+  "go_biological_process": "cell differentiation; chaperone-mediated protein complex assembly; spermatogenesis",
+  "protein_length": 379
+ },
+ "SLITRK3": {
+  "uniprot": "O94933",
+  "protein_name": "SLIT and NTRK-like protein 3",
+  "function": "Suppresses neurite outgrowth.",
+  "localization": "Membrane",
+  "go_biological_process": "axonogenesis; positive regulation of synapse assembly; regulation of presynapse assembly; synaptic membrane adhesion",
+  "protein_length": 977
+ },
+ "SH3PXD2A": {
+  "uniprot": "Q5TCZ1",
+  "protein_name": "SH3 and PX domain-containing protein 2A",
+  "function": "Adapter protein involved in invadopodia and podosome formation, extracellular matrix degradation and invasiveness of some cancer cells.",
+  "localization": "Cytoplasm; Cell projection, podosome",
+  "go_biological_process": "osteoclast fusion; superoxide anion generation; superoxide metabolic process",
+  "protein_length": 1133
+ },
+ "RDH12": {
+  "uniprot": "Q96NR8",
+  "protein_name": "Retinol dehydrogenase 12",
+  "function": "Retinoids dehydrogenase/reductase with a clear preference for NADP. Displays high activity towards 9-cis, 11-cis and all-trans-retinal. Shows very weak activity towards 13-cis-retinol.",
+  "localization": "Endoplasmic reticulum membrane",
+  "go_biological_process": "cellular detoxification of aldehyde; photoreceptor cell maintenance; retinoid metabolic process; retinol metabolic process; visual perception",
+  "protein_length": 316
+ },
+ "UNC13B": {
+  "uniprot": "O14795",
+  "protein_name": "Protein unc-13 homolog B",
+  "function": "Plays a role in vesicle maturation during exocytosis as a target of the diacylglycerol second messenger pathway. Is involved in neurotransmitter release by acting in synaptic vesicle priming prior to vesicle fusion and participates in the activity-depending.",
+  "localization": "Cytoplasm; Membrane; Cell membrane; Synapse",
+  "go_biological_process": "acrosomal vesicle exocytosis; cellular response to glucose stimulus; chemical synaptic transmission; dense core granule priming; neuronal dense core vesicle exocytosis; positive regulation of apoptotic process",
+  "protein_length": 1591
+ },
+ "FARSB": {
+  "uniprot": "Q9NSD9",
+  "protein_name": "Phenylalanine--tRNA ligase beta subunit",
+  "function": "",
+  "localization": "Cytoplasm",
+  "go_biological_process": "phenylalanyl-tRNA aminoacylation; protein heterotetramerization; translation",
+  "protein_length": 589
+ },
+ "PGBD5": {
+  "uniprot": "Q8N414",
+  "protein_name": "PiggyBac transposable element-derived protein 5",
+  "function": "Transposase that mediates sequence-specific genomic rearrangements.",
+  "localization": "Nucleus",
+  "go_biological_process": "non-replicative DNA transposition",
+  "protein_length": 524
+ },
+ "B3GNTL1": {
+  "uniprot": "Q67FW5",
+  "protein_name": "Queuosine-tRNA galactosyltransferase",
+  "function": "Glycosyltransferase that specifically catalyzes galactosylation of cytoplasmic tRNA(Tyr) modified with queuosine at position 34 (queuosine(34)).",
+  "localization": "Cytoplasm",
+  "go_biological_process": "regulation of translation; tRNA modification; tRNA wobble guanine modification",
+  "protein_length": 346
+ },
+ "ZNF496": {
+  "uniprot": "Q96IT1",
+  "protein_name": "Zinc finger protein 496",
+  "function": "DNA-binding transcription factor that can both act as an activator and a repressor.",
+  "localization": "Nucleus",
+  "go_biological_process": "DNA-templated transcription; positive regulation of DNA-templated transcription; regulation of transcription by RNA polymerase II",
+  "protein_length": 587
+ },
+ "FAM193B": {
+  "uniprot": "Q96PV7",
+  "protein_name": "Protein FAM193B",
+  "function": "",
+  "localization": "Cytoplasm; Nucleus",
+  "go_biological_process": "",
+  "protein_length": 902
+ },
+ "ERMAP": {
+  "uniprot": "Q96PL5",
+  "protein_name": "Erythroid membrane-associated protein",
+  "function": "Possible role as a cell-adhesion or receptor molecule of erythroid cells.",
+  "localization": "Cell membrane; Cytoplasm",
+  "go_biological_process": "regulation of cytokine production; T cell receptor signaling pathway",
+  "protein_length": 475
+ },
+ "GPN3": {
+  "uniprot": "Q9UHW5",
+  "protein_name": "GPN-loop GTPase 3",
+  "function": "Small GTPase involved in the correct assembly of RNA polymerase II (RNAPII) complex, ensuring proper nuclear import of RNAPII.",
+  "localization": "Cytoplasm; Nucleus",
+  "go_biological_process": "protein import into nucleus",
+  "protein_length": 284
+ },
+ "INTS14": {
+  "uniprot": "Q96SY0",
+  "protein_name": "Integrator complex subunit 14",
+  "function": "Component of the integrator complex, a multiprotein complex that terminates RNA polymerase II (Pol II) transcription in the promoter-proximal region of genes.",
+  "localization": "Nucleus",
+  "go_biological_process": "regulation of transcription elongation by RNA polymerase II; RNA polymerase II transcription initiation surveillance; snRNA 3'-end processing; snRNA processing",
+  "protein_length": 518
+ },
+ "UVRAG": {
+  "uniprot": "Q9P2Y5",
+  "protein_name": "UV radiation resistance-associated gene protein",
+  "function": "Versatile protein that is involved in regulation of different cellular pathways implicated in membrane trafficking. Involved in regulation of the COPI-dependent retrograde transport from Golgi and the endoplasmic reticulum by associating with the NRZ complex;.",
+  "localization": "Late endosome; Lysosome; Cytoplasmic vesicle, autophagosome; Early endosome; Endoplasmic reticulum; Midbody; Chromosome,",
+  "go_biological_process": "autophagosome maturation; autophagy; centrosome cycle; chromosome segregation; DNA repair; double-strand break repair via classical nonhomologous end joining",
+  "protein_length": 699
+ },
+ "GPS2": {
+  "uniprot": "Q13227",
+  "protein_name": "G protein pathway suppressor 2",
+  "function": "Key regulator of inflammation, lipid metabolism and mitochondrion homeostasis that acts by inhibiting the activity of the ubiquitin-conjugating enzyme UBE2N/Ubc13, thereby inhibiting 'Lys-63'-linked ubiquitination.",
+  "localization": "Nucleus; Mitochondrion; Cytoplasm, cytosol",
+  "go_biological_process": "B cell differentiation; DNA-templated transcription; JNK cascade; negative regulation of B cell receptor signaling pathway; negative regulation of fat cell differentiation; negative regulation of inflammatory response",
+  "protein_length": 327
+ },
+ "NDOR1": {
+  "uniprot": "Q9UHB4",
+  "protein_name": "NADPH-dependent diflavin oxidoreductase 1",
+  "function": "NADPH-dependent reductase which is a central component of the cytosolic iron-sulfur (Fe-S) protein assembly (CIA) machinery.",
+  "localization": "Cytoplasm, perinuclear region",
+  "go_biological_process": "cellular response to oxidative stress; electron transport chain; iron-sulfur cluster assembly",
+  "protein_length": 597
+ },
+ "NDRG4": {
+  "uniprot": "Q9ULP0",
+  "protein_name": "Protein NDRG4",
+  "function": "Contributes to the maintenance of intracerebral BDNF levels within the normal range, which is necessary for the preservation of spatial learning and the resistance to neuronal cell death caused by ischemic stress.",
+  "localization": "Cytoplasm, cytosol",
+  "go_biological_process": "cardiac muscle cell proliferation; cell differentiation; cell migration involved in heart development; clustering of voltage-gated sodium channels; embryonic heart tube development; heart looping",
+  "protein_length": 352
+ },
+ "KCNMB3": {
+  "uniprot": "Q9NPA1",
+  "protein_name": "Calcium-activated potassium channel subunit beta-3",
+  "function": "Regulatory subunit of the calcium activated potassium KCNMA1 (maxiK) channel. Modulates the calcium sensitivity and gating kinetics of KCNMA1, thereby contributing to KCNMA1 channel diversity. Alters the functional properties of the current expressed by the.",
+  "localization": "Membrane",
+  "go_biological_process": "action potential; detection of calcium ion; neuronal action potential; potassium ion transport",
+  "protein_length": 279
+ },
+ "SOD2": {
+  "uniprot": "P04179",
+  "protein_name": "Superoxide dismutase [Mn], mitochondrial",
+  "function": "Destroys superoxide anion radicals which are normally produced within the cells and which are toxic to biological systems.",
+  "localization": "Mitochondrion matrix",
+  "go_biological_process": "acetylcholine-mediated vasodilation involved in regulation of systemic arterial blood pressure; cellular response to ethanol; cellular response to oxidative stress; hydrogen peroxide biosynthetic process; intracellular oxygen homeostasis; negative regulation of cell population proliferation",
+  "protein_length": 222
+ },
+ "PCK2": {
+  "uniprot": "Q16822",
+  "protein_name": "Phosphoenolpyruvate carboxykinase [GTP], mitochondrial",
+  "function": "Mitochondrial phosphoenolpyruvate carboxykinase that catalyzes the conversion of oxaloacetate (OAA) to phosphoenolpyruvate (PEP), the rate-limiting step in the metabolic pathway that produces glucose from lactate and other precursors derived from the citric.",
+  "localization": "Mitochondrion",
+  "go_biological_process": "cellular response to dexamethasone stimulus; cellular response to glucose stimulus; cellular response to insulin stimulus; gluconeogenesis; glycerol biosynthetic process from pyruvate; hepatocyte differentiation",
+  "protein_length": 640
+ },
+ "ACIN1": {
+  "uniprot": "Q9UKV3",
+  "protein_name": "Apoptotic chromatin condensation inducer in the nucleus",
+  "function": "Auxiliary component of the splicing-dependent multiprotein exon junction complex (EJC) deposited at splice junction on mRNAs. The EJC is a dynamic structure consisting of core proteins and several peripheral nuclear and cytoplasmic associated factors that.",
+  "localization": "Nucleus; Nucleus speckle; Nucleus, nucleoplasm",
+  "go_biological_process": "apoptotic chromosome condensation; erythrocyte differentiation; mRNA processing; negative regulation of mRNA splicing, via spliceosome; positive regulation of apoptotic process; positive regulation of monocyte differentiation",
+  "protein_length": 1341
+ },
+ "MOV10L1": {
+  "uniprot": "Q9BXT6",
+  "protein_name": "RNA helicase Mov10l1",
+  "function": "ATP-dependent 5'-3' RNA helicase required during spermatogenesis to repress transposable elements and prevent their mobilization, which is essential for germline integrity. Acts via the piRNA metabolic process, which mediates the repression of transposable.",
+  "localization": "Cytoplasm",
+  "go_biological_process": "germ cell development; male meiosis I; piRNA processing; regulatory ncRNA-mediated post-transcriptional gene silencing; spermatogenesis; transposable element silencing by piRNA-mediated DNA methylation",
+  "protein_length": 1211
+ },
+ "SLC41A2": {
+  "uniprot": "Q96JW4",
+  "protein_name": "Solute carrier family 41 member 2",
+  "function": "Acts as a plasma-membrane magnesium transporter.",
+  "localization": "Cell membrane",
+  "go_biological_process": "cobalt ion transport; iron ion transport; magnesium ion transport; manganese ion transport; metal ion transport; nickel cation transport",
+  "protein_length": 573
+ },
+ "KLHDC3": {
+  "uniprot": "Q9BQ90",
+  "protein_name": "Kelch domain-containing protein 3",
+  "function": "Substrate-recognition component of a Cul2-RING (CRL2) E3 ubiquitin-protein ligase complex of the DesCEND (destruction via C-end degrons) pathway, which recognizes a C-degron located at the extreme C terminus of target proteins, leading to their ubiquitination.",
+  "localization": "Cytoplasm",
+  "go_biological_process": "proteasome-mediated ubiquitin-dependent protein catabolic process; protein ubiquitination; reciprocal meiotic recombination; ubiquitin-dependent protein catabolic process via the C-end degron rule pathway",
+  "protein_length": 382
+ },
+ "KCNJ10": {
+  "uniprot": "P78508",
+  "protein_name": "ATP-sensitive inward rectifier potassium channel 10",
+  "function": "May be responsible for potassium buffering action of glial cells in the brain.",
+  "localization": "Membrane; Basolateral cell membrane",
+  "go_biological_process": "cellular response to potassium ion; non-motile cilium assembly; potassium ion import across plasma membrane; potassium ion transmembrane transport; potassium ion transport",
+  "protein_length": 379
+ },
+ "KRT9": {
+  "uniprot": "P35527",
+  "protein_name": "Keratin, type I cytoskeletal 9",
+  "function": "Structural component of intermediate filaments in suprabasal keratinocytes of palmoplantar epidermis. Forms heteropolymers with a type II keratin, assembling into keratin intermediate filament networks that maintain the mechanical integrity of the.",
+  "localization": "",
+  "go_biological_process": "epidermis development; epithelial cell differentiation; intermediate filament organization; morphogenesis of an epithelium; skin development; spermatogenesis",
+  "protein_length": 623
+ },
+ "ARFIP2": {
+  "uniprot": "P53365",
+  "protein_name": "Arfaptin-2",
+  "function": "Plays a role in constitutive metalloproteinase (MMP) secretion from the trans Golgi network.",
+  "localization": "Golgi apparatus; Golgi apparatus, trans-Golgi network membrane",
+  "go_biological_process": "actin cytoskeleton organization; intracellular protein transport; lamellipodium assembly; mitophagy; protein localization to phagophore assembly site; regulation of Arp2/3 complex-mediated actin nucleation",
+  "protein_length": 341
+ },
+ "MITF": {
+  "uniprot": "O75030",
+  "protein_name": "Microphthalmia-associated transcription factor",
+  "function": "Transcription factor that acts as a master regulator of melanocyte survival and differentiation as well as melanosome biogenesis.",
+  "localization": "Nucleus; Cytoplasm; Lysosome membrane",
+  "go_biological_process": "DNA-templated transcription; melanocyte differentiation; negative regulation of cell migration; negative regulation of transcription by RNA polymerase II; positive regulation of DNA-templated transcription; positive regulation of DNA-templated transcription initiation",
+  "protein_length": 526
+ },
+ "NMRAL1": {
+  "uniprot": "Q9HBL8",
+  "protein_name": "NmrA-like family domain-containing protein 1",
+  "function": "Redox sensor protein. Undergoes restructuring and subcellular redistribution in response to changes in intracellular NADPH/NADP(+) levels. At low NADPH concentrations the protein is found mainly as a monomer, and binds argininosuccinate synthase (ASS1), the.",
+  "localization": "Cytoplasm; Cytoplasm, perinuclear region; Nucleus",
+  "go_biological_process": "",
+  "protein_length": 299
+ }
+}

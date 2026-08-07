@@ -930,6 +930,146 @@ def p8d(ax, C):
     panel_tag(ax, 'D', C)
 
 
+# ============================================================ FIGURE 9
+def p9a(ax, C):
+    """2x2 mosaic of the motif-bearing peptides."""
+    lib, CUT = C['lib'], C['CUT']
+    m = lib[lib.motif_class == '[P/G]-[E/D]']
+    cells = [('unstable', 'yes'), ('unstable', 'no'), ('stable', 'yes'), ('stable', 'no')]
+    counts = {(s, u): int(((m.stability_class == s) & (m.UBR3_substrate == u)).sum())
+              for s, u in cells}
+    n_un = counts[('unstable', 'yes')] + counts[('unstable', 'no')]
+    n_st = counts[('stable', 'yes')] + counts[('stable', 'no')]
+    total = n_un + n_st
+    wu, ws_ = n_un / total, n_st / total
+    x0 = 0.0
+    for stab, wcol in [('unstable', wu), ('stable', ws_)]:
+        k = counts[(stab, 'yes')]
+        n = counts[(stab, 'yes')] + counts[(stab, 'no')]
+        frac = k / n
+        ax.add_patch(Rectangle((x0, 0), wcol - 0.012, frac, facecolor=ORANGE,
+                               edgecolor=SURFACE, lw=2, zorder=3))
+        ax.add_patch(Rectangle((x0, frac), wcol - 0.012, 1 - frac, facecolor='#dedcd4',
+                               edgecolor=SURFACE, lw=2, zorder=3))
+        cx = x0 + (wcol - 0.012) / 2
+        # a thin substrate band cannot hold its own label - park it just above
+        if frac > 0.11:
+            ax.text(cx, frac / 2, f'{k}', ha='center', va='center', fontsize=17,
+                    fontweight='bold', color='white', zorder=5)
+        else:
+            ax.text(cx, frac + 0.018, f'{k}', ha='center', va='bottom', fontsize=17,
+                    fontweight='bold', color=ORANGE, zorder=5)
+        ax.text(cx, frac + (1 - frac) / 2, f'{n - k}', ha='center', va='center',
+                fontsize=17, fontweight='bold', color=INK2, zorder=5)
+        ax.text(cx, -0.045,
+                f'{stab}\ncontrol PSI {"<" if stab == "unstable" else "$\\geq$"} {CUT:g}\n'
+                f'n = {n}   ({100 * frac:.1f}% substrates)',
+                ha='center', va='top', fontsize=9.2, color=INK)
+        x0 += wcol
+    ax.set_xlim(-0.02, 1.02)
+    ax.set_ylim(-0.46, 1.02)
+    ax.axis('off')
+    ax.legend(handles=[Patch(color=ORANGE, label='UBR3 substrate'),
+                       Patch(color='#dedcd4', label='Not a substrate')],
+              loc='lower center', bbox_to_anchor=(0.5, 0.0), ncol=2, columnspacing=1.8)
+    title(ax, f'The {total} [P/G]-[E/D] peptides, classified two ways',
+          'Column width is the share of peptides in that stability class; height is substrate share')
+    panel_tag(ax, 'A', C)
+
+
+def p9b(ax, C):
+    """Substrate rate per stratum for each motif group."""
+    lib = C['lib']
+    groups = [('[P/G]-[E/D]', lib[lib.motif_class == '[P/G]-[E/D]']),
+              ('[P/G]-other', lib[lib.motif_class == '[P/G]-other']),
+              ('non-P/G', lib[lib.motif_class == 'non-P/G'])]
+    w, x = 0.36, np.arange(len(groups))
+    for j, (stab, col) in enumerate([('unstable', VIOLET), ('stable', AQUA)]):
+        rates, labs = [], []
+        for _, g in groups:
+            s = g[g.stability_class == stab]
+            rates.append(100 * s.is_UBR3_substrate.mean())
+            labs.append(f'{int(s.is_UBR3_substrate.sum())}/{len(s):,}')
+        pos = x + (j - 0.5) * w
+        ax.bar(pos, rates, width=w * 0.92, color=col, zorder=3, edgecolor=SURFACE,
+               linewidth=1.1, label=stab)
+        for xi, r, lb in zip(pos, rates, labs):
+            ax.text(xi, r + 0.3, f'{r:.2f}%', ha='center', fontsize=8.2, fontweight='bold')
+            ax.text(xi, 0.015, lb, ha='center', va='bottom', fontsize=7.2, color=MUTED,
+                    transform=ax.get_xaxis_transform())
+    ax.set_xticks(x)
+    ax.set_xticklabels([g for g, _ in groups], fontsize=9.4)
+    ax.set_ylabel('UBR3 substrates (% of that cell)')
+    ax.set_ylim(-2.0, 16.5)
+    ax.grid(axis='y', zorder=0)
+    ax.legend(title='Baseline stability', title_fontsize=8.5, loc='upper right')
+    title(ax, 'Substrate rate in each stability x motif cell',
+          'Counts under each bar are substrates / peptides in that cell')
+    panel_tag(ax, 'B', C)
+
+
+def p9c(ax, C):
+    """The 16 motif substrates: where they start and where they end."""
+    lib, CUT = C['lib'], C['CUT']
+    m = lib[(lib.motif_class == '[P/G]-[E/D]') & lib.is_UBR3_substrate].copy()
+    m = m.sort_values('mean_PSI_control')
+    y = np.arange(len(m))
+    for yi, (_, r) in zip(y, m.iterrows()):
+        col = VIOLET if r.stability_class == 'unstable' else AQUA
+        ax.annotate('', xy=(r.mean_PSI_UBR3KO, yi), xytext=(r.mean_PSI_control, yi),
+                    arrowprops=dict(arrowstyle='-|>', color=col, lw=2.0,
+                                    shrinkA=0, shrinkB=0), zorder=3)
+        ax.scatter([r.mean_PSI_control], [yi], s=34, color=col, zorder=4,
+                   edgecolors=SURFACE, linewidths=0.8)
+    ax.axvline(CUT, color=INK, lw=1.4, ls='--', zorder=5)
+    ax.text(CUT + 0.03, len(m) - 0.4, f'PSI {CUT:g}', fontsize=8.4, color=INK, fontweight='bold')
+    ax.set_yticks(y)
+    ax.set_yticklabels(m.Gene_ID, fontsize=8.6)
+    for t, s in zip(ax.get_yticklabels(), m.stability_class):
+        t.set_color(VIOLET if s == 'unstable' else AQUA)
+        t.set_fontweight('bold')
+    ax.set_xlabel('PSI   (arrow runs from control to UBR3 KO)')
+    ax.set_xlim(1.2, 4.0)
+    ax.set_ylim(-0.8, len(m) - 0.2)
+    ax.grid(axis='x', zorder=0)
+    ax.legend(handles=[Line2D([], [], color=VIOLET, lw=2.4, label='starts unstable'),
+                       Line2D([], [], color=AQUA, lw=2.4, label='starts stable')],
+              loc='lower right')
+    title(ax, 'Every motif-bearing substrate gains stability',
+          'Each arrow runs from control PSI to UBR3-KO PSI; all 16 point right')
+    panel_tag(ax, 'C', C, xoff=-72)
+
+
+def p9d(ax, C):
+    """How the motif-bearing peptides split, as a flow of counts."""
+    lib = C['lib']
+    m = lib[lib.motif_class == '[P/G]-[E/D]']
+    steps = [
+        ('[P/G]-[E/D] peptides', len(m), MUTED),
+        ('unstable at baseline', int((m.stability_class == 'unstable').sum()), VIOLET),
+        ('  ... and a UBR3 substrate',
+         int(((m.stability_class == 'unstable') & m.is_UBR3_substrate).sum()), ORANGE),
+        ('stable at baseline', int((m.stability_class == 'stable').sum()), AQUA),
+        ('  ... and a UBR3 substrate',
+         int(((m.stability_class == 'stable') & m.is_UBR3_substrate).sum()), ORANGE),
+    ]
+    ys = np.arange(len(steps))[::-1]
+    for yv, (lab, n, c) in zip(ys, steps):
+        ax.barh(yv, n, color=c, height=0.6, zorder=3, edgecolor=SURFACE, linewidth=1.0)
+        ax.text(n + 3, yv, f'{n}', va='center', fontweight='bold', fontsize=11.5, color=INK)
+        ax.text(2, yv + 0.40, lab, va='bottom', ha='left', fontsize=8.8, color=INK2)
+    ax.set_yticks([])
+    ax.set_xlim(0, len(m) * 1.13)
+    ax.set_ylim(-0.7, len(steps) - 0.15)
+    ax.set_xlabel('Number of peptides')
+    ax.grid(axis='x', zorder=0)
+    ax.spines['left'].set_visible(False)
+    title(ax, 'Where the 179 motif-bearing peptides end up',
+          '11 of the 16 substrates start unstable; the other 5 were already stable and '
+          'gained more')
+    panel_tag(ax, 'D', C)
+
+
 # ---------------------------------------------------------------- registry
 PANELS = {
     '1A': p1a, '1B': p1b, '1C': p1c, '1D': p1d,
@@ -940,6 +1080,7 @@ PANELS = {
     '6A': p6a, '6B': p6b, '6C': p6c, '6D': p6d,
     '7A': p7a, '7B': p7b, '7C': p7c, '7D': p7d,
     '8A': p8a, '8B': p8b, '8C': p8c, '8D': p8d,
+    '9A': p9a, '9B': p9b, '9C': p9c, '9D': p9d,
 }
 
 # aspect ratio hint per panel for standalone rendering (width, height) in inches
@@ -952,4 +1093,5 @@ PANEL_SIZE = {
     '6A': (9.6, 6.4), '6B': (8.8, 7.2), '6C': (9.4, 6.4), '6D': (8.4, 6.6),
     '7A': (9.6, 6.6), '7B': (9.2, 6.4), '7C': (9.8, 5.8), '7D': (9.2, 6.4),
     '8A': (9.2, 6.8), '8B': (9.6, 6.4), '8C': (9.4, 6.4), '8D': (9.8, 5.6),
+    '9A': (9.0, 6.8), '9B': (9.4, 6.4), '9C': (8.8, 7.2), '9D': (9.8, 5.8),
 }

@@ -130,6 +130,18 @@ def figure8(C):
             'construction.', hspace=0.50)
 
 
+def figure9(C):
+    grid2x2(C, ['9A', '9B', '9C', '9D'], 'Figure9_stability_x_substrate_classification',
+            f'Figure 9 | Motif-bearing peptides classified by baseline stability and substrate status',
+            f'Every [P/G]-[E/D] peptide falls into one of four cells: unstable or stable at control '
+            f'PSI {C["CUT"]:g}, and a UBR3 substrate or not. 11 of the 16 substrates start unstable; '
+            'the remaining 5 were already stable and gained further stability on UBR3 loss. The '
+            'unstable-vs-stable difference within the motif class is directional only '
+            '(Fisher OR 2.85, p = 0.067) - it is the motif, not the stability class, that is '
+            'strongly significant.',
+            hspace=0.50)
+
+
 def main():
     os.makedirs(U.FIGS, exist_ok=True)
     lib, hit = U.load()
@@ -139,7 +151,8 @@ def main():
     print('  running 480 position x residue Fisher tests ...')
     sig = U.enrichment_test(list(hit.peptide_24mer), list(lib.peptide_24mer))
     C = P.context(lib, hit, sig, enr, tags=True, standalone=False)
-    for fn in (figure1, figure2, figure3, figure4, figure5, figure6, figure7, figure8):
+    for fn in (figure1, figure2, figure3, figure4, figure5, figure6, figure7, figure8,
+               figure9):
         fn(C)
     print('done ->', U.FIGS)
 

@@ -75,6 +75,11 @@ FIGURES = {
           'principle be enriched for that reason alone. Stratifying by control PSI shows it is '
           'not: the motif is evenly distributed across strata yet enriches for substrates within '
           'each one, with essentially the same odds ratio.'),
+    '9': ('Figure 9 | Motif-bearing peptides classified by stability and substrate status',
+          'Crosses the [P/G]-[E/D] motif with the baseline stability call to give a clean four-cell '
+          'classification, and annotates the 16 substrates within it. Answers directly: how many '
+          'motif-bearing peptides are stable, how many unstable, and which of each are UBR3 '
+          'substrates.'),
     '8': ('Figure 8 | Why control PSI, not ΔPSI - and why the cut does not matter',
           'Answers two methodological objections. First, ΔPSI cannot define the stability '
           'strata because the substrates were selected on it. Second, the PSI 2.6 cut is the '
@@ -589,6 +594,78 @@ PANELS = {
          'Lead the manuscript with this analysis and present the stratified figures as the intuitive '
          'illustration. A cutoff-free model leaves nothing for a reviewer to attack on the '
          'threshold question.'),
+    ]),
+
+    # ---------------------------------------------------------------- FIG 9
+    '9A': ('The 179 motif-bearing peptides, classified two ways', [
+        ('What is plotted',
+         'A mosaic of the 179 [P/G]-[E/D] peptides. Column WIDTH is the share of peptides in that '
+         'baseline-stability class; block HEIGHT within a column is the share that are UBR3 '
+         'substrates (orange) versus not (grey). Every number is an actual peptide count.'),
+        ('The four cells',
+         'Unstable and a substrate: 11. Unstable and not: 71. Stable and a substrate: 5. Stable and '
+         'not: 92. Totals: 82 unstable, 97 stable, 16 substrates, 163 non-substrates.'),
+        ('What it shows',
+         'The motif-bearing peptides split almost evenly between the two stability classes - 82 '
+         'versus 97 - so carrying the motif does not by itself make a peptide unstable. The '
+         'substrate share is 2.6x higher in the unstable column (13.4% vs 5.2%).'),
+        ('Do not over-read the 2.6x',
+         'Within these 179 peptides that difference is NOT statistically significant: Fisher '
+         'OR 2.85, p = 0.067, because it rests on 11 substrates versus 5. Library-wide the same '
+         'comparison IS significant (OR 2.97, p = 3 x 10^-4). Report the direction, not a '
+         'significant effect within the motif class.'),
+    ]),
+    '9B': ('Substrate rate in each stability x motif cell', [
+        ('What is plotted',
+         'The same classification extended to all three motif groups. Each pair of bars is one motif '
+         'group split by baseline stability; bar height is the percentage of peptides in that cell '
+         'that are UBR3 substrates. Counts beneath each bar are substrates / peptides in the cell.'),
+        ('What it shows',
+         '[P/G]-[E/D]: 13.41% (11/82) unstable, 5.15% (5/97) stable. [P/G]-other: 0.71% (9/1,261) '
+         'and 0.15% (1/660). non-P/G: 0.30% (20/6,769) and 0.10% (8/7,645).'),
+        ('The two effects are separable',
+         'Reading ACROSS groups, the motif multiplies the substrate rate by roughly 45-50x within '
+         'either stability class - that is the large, highly significant effect. Reading WITHIN a '
+         'pair, being unstable multiplies it by about 2.5-3x - a real but much smaller effect.'),
+        ('Which comparisons are powered',
+         'The motif comparison is significant in both strata (p = 2.5 x 10^-14 unstable, '
+         'p = 3.3 x 10^-7 stable). The stability comparison is significant library-wide '
+         '(OR 2.97, p = 3 x 10^-4) but NOT within any single motif group - within [P/G]-[E/D] it is '
+         'OR 2.85, p = 0.067. Treat the within-pair differences as directional only.'),
+    ]),
+    '9C': ('Every motif-bearing substrate gains stability', [
+        ('What is plotted',
+         'One arrow per motif-bearing substrate, running from its control PSI (dot) to its UBR3-KO '
+         'PSI (arrowhead). Genes are sorted by starting PSI. Purple = starts unstable (below the '
+         'dashed line at PSI 2.6), green = starts stable.'),
+        ('What it shows',
+         'All 16 arrows point right - every motif-bearing substrate gains stability when UBR3 is '
+         'lost, with no exceptions. Nine of the 11 purple arrows cross the dashed line; the two that '
+         'do not (ERMAP, UVRAG) start so low that even a substantial gain leaves them below it.'),
+        ('The five green ones',
+         'MYLK, LPIN1, ATF7, THEG and SLC7A9 start ABOVE the line, so they are already relatively '
+         'stable proteins - yet they still gain 0.57 to 0.93 PSI. They are genuinely UBR3-regulated; '
+         'they simply had a higher starting point.'),
+        ('Why this panel matters',
+         'It shows the stability classification does not sort substrates from non-substrates. It '
+         'sorts substrates by where they begin. UBR3 dependence is present in both classes.'),
+    ]),
+    '9D': ('Where the 179 motif-bearing peptides end up', [
+        ('What is plotted',
+         'The classification as a simple count cascade. The top grey bar is all 179 motif-bearing '
+         'peptides; beneath it the split into 82 unstable and 97 stable, each followed by the '
+         'orange count of UBR3 substrates within that class.'),
+        ('The numbers to quote',
+         '179 peptides carry [P/G]-[E/D]. 82 are unstable at baseline, of which 11 are UBR3 '
+         'substrates. 97 are stable at baseline, of which 5 are substrates. 16 substrates in total, '
+         '163 non-substrates.'),
+        ('How to read it in the manuscript',
+         'Roughly two thirds of the motif-bearing substrates (11 of 16) come from the unstable half '
+         'of the library, but the stable half still contributes 5. Restricting attention to '
+         'low-PSI peptides would therefore have missed nearly a third of them.'),
+        ('Watch out for',
+         'The bars are counts, not nested subsets in the same sense as Figure 1C - the two stability '
+         'bars are siblings that sum to 179, and each orange bar is a subset of the bar above it.'),
     ]),
 }
 

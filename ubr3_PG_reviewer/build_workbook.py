@@ -144,6 +144,17 @@ def readme_sheet(stats_d):
                                          'stratum on each side and whether it crosses PSI = 3 upward.'),
         ('17_dPSI_by_control_PSI_bin', 'dPSI, substrate count and crossing rate in 0.5-wide bins of '
                                        'control PSI - the ceiling effect, in numbers.'),
+        ('19_stability_x_substrate', f'THE CLASSIFICATION TABLE. Every motif group crossed with the '
+                                     f'stability call at control PSI {CUT:g} and with substrate status: how '
+                                     'many peptides are unstable vs stable, how many of each are UBR3 '
+                                     'substrates, and the Fisher test comparing the two strata. NOTE: the '
+                                     'unstable-vs-stable contrast is significant library-wide (OR 2.97, '
+                                     'p = 3e-4) but NOT within [P/G]-[E/D] alone (OR 2.85, p = 0.067, only '
+                                     '11 vs 5 substrates). Within the motif class treat it as directional.'),
+        ('20_PGED_substrates_annotated', f'The {s["n_hit_pged"]} [P/G]-[E/D] peptides that ARE UBR3 '
+                                         'substrates, split by stability class and fully annotated '
+                                         '(UniProt accession, protein name, function, localisation, GO), '
+                                         'with control PSI, UBR3-KO PSI and whether each crosses the line.'),
         ('18_PSI_cutoff_robustness', 'Shows the PSI = 3 cut is not doing the work: the motif odds ratio '
                                      'across cutoffs 2.0-3.4, a logistic regression using control PSI as a '
                                      'CONTINUOUS covariate (no cutoff at all), the peaks and valleys of the '
@@ -236,7 +247,8 @@ def main():
 
     # ---------- sheet 02 : the reviewer's [P/G]-[E/D] table ----------
     key = ['Gene_ID', 'gene_symbol_repaired', 'ENST_ID', 'peptide_24mer', 'pos2', 'pos3',
-           'Nterm_motif', 'Nterm_after_MetAP', 'Met_excised_pred', 'UBR3_substrate'] + QUANT + PROP
+           'Nterm_motif', 'Nterm_after_MetAP', 'Met_excised_pred', 'UBR3_substrate',
+           'stability_class', 'classification'] + QUANT + PROP
     s02 = pged[key].copy().sort_values('mean_dPSI', ascending=False)
     ann_map = hit.set_index('Gene_ID')[['protein_name', 'function']].to_dict('index')
     s02['protein_name'] = [ann_map.get(g, {}).get('protein_name', '') for g in s02.Gene_ID]
@@ -440,6 +452,49 @@ def main():
                          'p_value': [float(f'{rho.pvalue:.3g}')]})
     s18 = pd.concat([sens, logit, shape, orth], ignore_index=True)
 
+    # ---------- sheet 19 : stability x substrate cross-classification --------
+    rows = []
+    for mc in ['[P/G]-[E/D]', '[P/G]-other', 'non-P/G', 'ALL P/G at pos2', 'WHOLE LIBRARY']:
+        grp = {'ALL P/G at pos2': lib[lib.is_PG], 'WHOLE LIBRARY': lib}.get(
+            mc, lib[lib.motif_class == mc])
+        for stab in ['unstable', 'stable']:
+            g = grp[grp.stability_class == stab]
+            k = int(g.is_UBR3_substrate.sum())
+            rows.append({'group': mc, 'stability_class': f'{stab} (control PSI '
+                                                         f'{"<" if stab == "unstable" else ">="} {CUT:g})',
+                         'n_peptides': len(g), 'n_UBR3_substrates': k,
+                         'n_not_substrates': len(g) - k,
+                         'substrate_rate_pct': round(100 * k / len(g), 3) if len(g) else np.nan,
+                         'pct_of_group_in_this_stratum': round(100 * len(g) / len(grp), 1),
+                         'median_control_PSI': round(g.mean_PSI_control.median(), 3),
+                         'median_dPSI': round(g.mean_dPSI.median(), 4)})
+        k_all = int(grp.is_UBR3_substrate.sum())
+        u, s_ = grp[grp.stability_class == 'unstable'], grp[grp.stability_class == 'stable']
+        orv, pv = stats.fisher_exact([[int(u.is_UBR3_substrate.sum()), int((~u.is_UBR3_substrate).sum())],
+                                      [int(s_.is_UBR3_substrate.sum()), int((~s_.is_UBR3_substrate).sum())]])
+        rows.append({'group': mc, 'stability_class': 'BOTH (total)', 'n_peptides': len(grp),
+                     'n_UBR3_substrates': k_all, 'n_not_substrates': len(grp) - k_all,
+                     'substrate_rate_pct': round(100 * k_all / len(grp), 3),
+                     'pct_of_group_in_this_stratum': 100.0,
+                     'median_control_PSI': round(grp.mean_PSI_control.median(), 3),
+                     'median_dPSI': round(grp.mean_dPSI.median(), 4),
+                     'unstable_vs_stable_Fisher': f'OR={orv:.2f}, p={pv:.3g}'})
+    s19 = pd.DataFrame(rows)
+
+    # ---------- sheet 20 : the motif-bearing substrates, annotated ----------
+    ann = hit.set_index('peptide_24mer')[['uniprot', 'protein_name', 'function',
+                                          'localization', 'go_biological_process']].to_dict('index')
+    mm = lib[(lib.motif_class == '[P/G]-[E/D]') & lib.is_UBR3_substrate].copy()
+    mm = mm.sort_values(['stability_class', 'mean_dPSI'], ascending=[True, False])
+    for c in ['uniprot', 'protein_name', 'function', 'localization', 'go_biological_process']:
+        mm[c] = [ann.get(p, {}).get(c, '') for p in mm.peptide_24mer]
+    s20 = mm[['Gene_ID', 'uniprot', 'ENST_ID', 'peptide_24mer', 'Nterm_motif',
+              'Nterm_after_MetAP', 'stability_class', 'classification',
+              'mean_PSI_control', 'mean_PSI_UBR3KO', 'crosses_PSI3_up',
+              U.D1, U.D2, 'mean_dPSI', 'protein_name', 'function', 'localization',
+              'go_biological_process']].copy()
+    s20.insert(0, 'rank_by_dPSI', np.arange(1, len(s20) + 1))
+
     sheets = {
         '00_README': readme_sheet(S),
         '01_UBR3_substrates': s01,
@@ -460,6 +515,8 @@ def main():
         '16_substrates_PSI_transition': s16,
         '17_dPSI_by_control_PSI_bin': s17,
         '18_PSI_cutoff_robustness': s18,
+        '19_stability_x_substrate': s19,
+        '20_PGED_substrates_annotated': s20,
     }
 
     with pd.ExcelWriter(OUT, engine='openpyxl') as xw:

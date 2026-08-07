@@ -148,6 +148,8 @@ def annotate(df):
     lo_ko = df.mean_PSI_UBR3KO < PSI_CUT
     df['PSI_class_control'] = np.where(lo_ctrl, f'PSI < {PSI_CUT}', f'PSI >= {PSI_CUT}')
     df['PSI_class_UBR3KO'] = np.where(lo_ko, f'PSI < {PSI_CUT}', f'PSI >= {PSI_CUT}')
+    # plain-language stability call, and the joint stability x substrate class
+    df['stability_class'] = np.where(lo_ctrl, 'unstable', 'stable')
     df['PSI_transition'] = np.select(
         [lo_ctrl & ~lo_ko, ~lo_ctrl & lo_ko, lo_ctrl & lo_ko],
         ['crosses up (unstable -> stable)', 'crosses down (stable -> unstable)',
@@ -174,6 +176,11 @@ def load():
     hitset = set(hit.peptide_24mer)
     lib['is_UBR3_substrate'] = lib.peptide_24mer.isin(hitset)
     lib['UBR3_substrate'] = np.where(lib.is_UBR3_substrate, 'yes', 'no')
+    hit['is_UBR3_substrate'] = True
+    hit['UBR3_substrate'] = 'yes'
+    for d in (lib, hit):
+        d['classification'] = (d.stability_class + ' / ' +
+                               np.where(d.is_UBR3_substrate, 'UBR3 substrate', 'not a substrate'))
 
     ann = json.load(open(os.path.join(DATA, 'annotation.json'), encoding='utf-8'))
     for col in ['uniprot', 'protein_name', 'function', 'localization',

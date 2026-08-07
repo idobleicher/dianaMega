@@ -101,10 +101,10 @@ def title_slide(prs):
     para(tf, 'Pro/Gly N-termini and the [P/G]-[E/D] motif', 30, bold=True, color=ACCENT,
          space_after=0)
     tf2 = textbox(s, Inches(0.9), Inches(4.1), Inches(10.4), Inches(2.0))
-    para(tf2, 'Every figure panel on its own slide, with a detailed explanation of what is '
+    para(tf2, 'Every panel on its own slide, with a detailed explanation of what is '
               'plotted, how it was computed, what it shows, and what to watch out for.',
          14, color=INK2, first=True, space_after=10)
-    para(tf2, f'{len(T.PANELS)} panels across {len(T.FIGURES)} figures  ·  '
+    para(tf2, f'{len(T.PANELS)} panels in {len(T.FIGURES)} groups  ·  '
               'Source: Supplemental Data 1.xlsx  ·  Companion workbook: '
               'UBR3_PG_substrate_tables.xlsx', 11, color=MUTED)
 
@@ -130,24 +130,23 @@ def figure_slide(prs, key):
     para(tf, blurb, 12.5, color=INK2, first=True)
     # the composed figure as a reference thumbnail
     name = {
-        '1': 'Figure1_PG_landscape', '2': 'Figure2_motif_necessary_not_sufficient',
+        '2': 'Figure2_motif_necessary_not_sufficient',
         '3': 'Figure3_sequence_logos', '4': 'Figure4_AA_class_analysis',
         '5': 'Figure5_position_residue_heatmaps', '6': 'Figure6_PSI_baseline_stability',
-        '7': 'Figure7_motif_vs_baseline_stability',
-        '8': 'Figure8_PSI_vs_dPSI_and_cutoff_robustness',
-        '9': 'Figure9_stability_x_substrate_classification'}[key]
+        '9': 'Figure9_stability_x_substrate_classification',
+        '10': 'Figure10_downstream_of_motif'}[key]
     path = os.path.join(FIGS_DIR, name + '.png')
     if os.path.exists(path):
         w, h = fit(path, Inches(11.2), Inches(4.75))
         s.shapes.add_picture(path, Emu(int((W - w) / 2)), Inches(2.18), w, h)
     tf = textbox(s, Inches(0.7), Inches(7.05), Inches(12.0), Inches(0.3))
-    para(tf, 'The composed figure. The following slides show each panel full size.',
+    para(tf, 'The composed panel set. The following slides show each panel full size.',
          9.5, color=MUTED, italic=True, first=True)
 
 
 def panel_slide(prs, key):
     ttl, secs = T.PANELS[key]
-    fig_no, letter = key[0], key[1]
+    fig_no, letter = key[:-1], key[-1]     # keys may be two digits, e.g. '10A'
     path = os.path.join(PANELS_DIR, f'Fig{key}.png')
     iw, ih = Image.open(path).size
     wide = (iw / ih) > WIDE_ASPECT
@@ -157,7 +156,7 @@ def panel_slide(prs, key):
     p = tf.paragraphs[0]
     p.space_after = Pt(0)
     r = p.add_run()
-    r.text = f'Figure {fig_no}{letter}'
+    r.text = f'{fig_no}{letter}'
     r.font.size, r.font.bold, r.font.name = Pt(18), True, FONT
     r.font.color.rgb = ORANGE
     r = p.add_run()
@@ -201,10 +200,10 @@ def main():
     title_slide(prs)
     definitions_slide(prs)
     n = 2
-    for fig in sorted(T.FIGURES):
+    for fig in sorted(T.FIGURES, key=int):
         figure_slide(prs, fig)
         n += 1
-        for key in sorted(k for k in T.PANELS if k[0] == fig):
+        for key in sorted((k for k in T.PANELS if k[:-1] == fig), key=lambda k: k[-1]):
             panel_slide(prs, key)
             n += 1
     closing_slide(prs)

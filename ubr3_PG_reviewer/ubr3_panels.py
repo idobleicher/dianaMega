@@ -14,13 +14,10 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import statsmodels.api as sm
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch, Rectangle
 from scipy import stats
-from scipy.signal import argrelextrema
-from scipy.stats import gaussian_kde
 
 import ubr3_core as U
 
@@ -80,12 +77,12 @@ def title(ax, text, sub=None):
                     va='bottom', ha='left')
 
 
-def context(lib, hit, sig, enr, tags=True, standalone=False):
+def context(lib, hit, sig, tags=True, standalone=False):
     """Everything the panels need, computed once."""
     hs, ls = list(hit.peptide_24mer), list(lib.peptide_24mer)
     CUT = U.PSI_CUT
     lo = lib.mean_PSI_control < CUT
-    C = dict(lib=lib, hit=hit, sig=sig, enr=enr, tags=tags, standalone=standalone,
+    C = dict(lib=lib, hit=hit, sig=sig, tags=tags, standalone=standalone,
              hs=hs, ls=ls, CUT=CUT, lo=lo,
              fh=U.freq_matrix(hs), fl=U.freq_matrix(ls),
              ch=U.class_matrix(hs), cl=U.class_matrix(ls),
@@ -95,129 +92,6 @@ def context(lib, hit, sig, enr, tags=True, standalone=False):
                      (f'PSI $\\geq$ {CUT:g} (stable)', ~lo, AQUA)])
     C['clr'], C['clq'], _ = U.enrichment_test(hs, ls, groups=U.CLASS_MEMBERS)
     return C
-
-
-# ============================================================ FIGURE 1
-def p1a(ax, C):
-    lib, hit = C['lib'], C['hit']
-    lf = 100 * lib.pos2.value_counts(normalize=True).reindex(U.AAS).fillna(0)
-    hf = 100 * hit.pos2.value_counts(normalize=True).reindex(U.AAS).fillna(0)
-    order = lf.sort_values(ascending=False).index.tolist()
-    y = np.arange(len(order))
-    ax.barh(y + 0.21, lf[order], height=0.4, color=MUTED, label=f'Library (n={len(lib):,})',
-            zorder=3, edgecolor=SURFACE, linewidth=0.8)
-    ax.barh(y - 0.21, hf[order], height=0.4, color=BLUE,
-            label=f'UBR3 substrates (n={len(hit)})', zorder=3, edgecolor=SURFACE, linewidth=0.8)
-    for i, a in enumerate(order):
-        if a in 'PG':
-            ax.add_patch(Rectangle((0, i - 0.5), 100, 1, color=YELLOW, alpha=0.16, zorder=0))
-        if hf[a] > 0:
-            ax.text(hf[a] + 0.5, i - 0.21, f'{hf[a]:.0f}%', va='center', fontsize=7.4, color=BLUE)
-    ax.set_yticks(y)
-    ax.set_yticklabels(order, fontsize=8.5)
-    for t in ax.get_yticklabels():
-        if t.get_text() in 'PG':
-            t.set_fontweight('bold')
-            t.set_color(INK)
-    ax.invert_yaxis()
-    ax.set_xlabel('Peptides with this residue at position 2 (%)')
-    ax.set_ylabel('Residue at position 2')
-    ax.grid(axis='x', zorder=0)
-    ax.legend(loc='lower right')
-    ax.set_xlim(0, max(lf.max(), hf.max()) * 1.14)
-    title(ax, 'Position 2 is Pro/Gly in half the substrates',
-          'Shaded rows = Pro and Gly, the residues exposed after initiator-Met excision')
-    panel_tag(ax, 'A', C)
-
-
-def p1b(ax, C):
-    e = C['enr'].dropna(subset=['log2_fold']).sort_values('log2_fold')
-    cols = [BLUE if v > 0 else RED for v in e.log2_fold]
-    yy = np.arange(len(e))
-    ax.barh(yy, e.log2_fold, color=cols, height=0.66, zorder=3,
-            edgecolor=SURFACE, linewidth=0.8)
-    ax.axvline(0, color=AXIS, lw=1)
-    for i, (_, r) in enumerate(e.iterrows()):
-        off = 0.09 if r.log2_fold > 0 else -0.09
-        ha = 'left' if r.log2_fold > 0 else 'right'
-        lab = f'{stars(r["q_value_BH"])}  n={r.n_hits}' if r['q_value_BH'] < 0.05 else f'n={r.n_hits}'
-        ax.text(r.log2_fold + off, i, lab, va='center', ha=ha, fontsize=7.4,
-                color=INK if r['q_value_BH'] < 0.05 else MUTED,
-                fontweight='bold' if r['q_value_BH'] < 0.05 else 'normal')
-    ax.set_yticks(yy)
-    ax.set_yticklabels(e.residue_at_pos2, fontsize=8.5)
-    ax.set_xlabel('log$_2$ fold enrichment (substrates / library)')
-    ax.set_ylabel('Residue at position 2')
-    ax.grid(axis='x', zorder=0)
-    ax.set_xlim(-2.9, 3.2)
-    title(ax, 'Pro and Gly are the only enriched residues',
-          'Two-sided Fisher exact, Benjamini-Hochberg FDR;  *** q<0.001, * q<0.05')
-    panel_tag(ax, 'B', C)
-
-
-def p1c(ax, C):
-    lib = C['lib']
-    steps = [('All library peptides', len(lib), MUTED),
-             ('Pro or Gly at position 2', int(lib.is_PG.sum()), AQUA),
-             ('[P/G]-[E/D] motif', int(lib.is_PG_ED.sum()), YELLOW),
-             ('[P/G]-[E/D] and UBR3-stabilised',
-              int(lib[lib.is_PG_ED].is_UBR3_substrate.sum()), ORANGE)]
-    ys = np.arange(len(steps))[::-1]
-    for yv, (lab, n, c) in zip(ys, steps):
-        ax.barh(yv, np.log10(n), color=c, height=0.62, zorder=3,
-                edgecolor=SURFACE, linewidth=0.9)
-        ax.text(np.log10(n) + 0.06, yv, f'{n:,}', va='center', fontweight='bold',
-                fontsize=10.5, color=INK)
-        ax.text(0.06, yv + 0.40, lab, va='bottom', ha='left', fontsize=8.6, color=INK2)
-    for i in range(len(steps) - 1):
-        a, b = steps[i][1], steps[i + 1][1]
-        ax.text(np.log10(b) + 0.62, ys[i] - 0.5, f'{100 * b / a:.1f}% retained',
-                va='center', fontsize=7.6, color=MUTED, style='italic')
-    ax.set_yticks([])
-    ax.set_xlabel('Number of peptides (log$_{10}$ scale)')
-    ax.set_xlim(0, np.log10(len(lib)) * 1.22)
-    ax.grid(axis='x', zorder=0)
-    ax.spines['left'].set_visible(False)
-    title(ax, 'From 16,514 peptides to 16 motif-bearing substrates',
-          'Each bar is a nested subset of the one above it')
-    panel_tag(ax, 'C', C)
-
-
-def p1d(ax, C):
-    lib, groups = C['lib'], C['groups']
-    cols3 = [ORANGE, AQUA, MUTED]
-    rate, ns, ks = [], [], []
-    for g in groups:
-        s = lib[lib.motif_class == g]
-        rate.append(100 * s.is_UBR3_substrate.mean())
-        ns.append(len(s))
-        ks.append(int(s.is_UBR3_substrate.sum()))
-    x = np.arange(3)
-    ax.bar(x, rate, color=cols3, width=0.56, zorder=3, edgecolor=SURFACE, linewidth=1.2)
-    tops = []
-    for i, (r, n, k) in enumerate(zip(rate, ns, ks)):
-        z, p, nn = 1.96, k / n, n
-        c = (p + z * z / (2 * nn)) / (1 + z * z / nn)
-        h = z * np.sqrt(p * (1 - p) / nn + z * z / (4 * nn * nn)) / (1 + z * z / nn)
-        lo_, hi_ = 100 * (c - h), 100 * (c + h)
-        tops.append(hi_)
-        ax.plot([i, i], [lo_, hi_], color=INK2, lw=1.3, zorder=4)
-        ax.text(i + 0.34, r, f'{r:.2f}%', ha='left', va='center', fontweight='bold', fontsize=10.5)
-        ax.text(i, -0.75, f'{k} / {n:,}', ha='center', fontsize=8.2, color=INK2)
-    ax.set_xticks(x)
-    ax.set_xticklabels(groups, fontsize=9.5)
-    ax.set_ylabel('UBR3-stabilised peptides (% of group)')
-    top = max(tops)
-    ax.set_ylim(-1.4, top * 1.30)
-    ax.set_xlim(-0.6, 2.95)
-    ax.grid(axis='y', zorder=0)
-    yb = top * 1.10
-    ax.plot([0, 0, 2, 2], [yb - 0.3, yb, yb, yb - 0.3], color=INK2, lw=1.1, zorder=5)
-    ax.text(1, yb + 0.18, 'Fisher exact  OR = 50.4,  p = 4.1 $\\times$ 10$^{-20}$',
-            ha='center', fontsize=8.4, color=INK)
-    title(ax, 'The acidic residue at position 3 is what matters',
-          'Error bars are Wilson 95% confidence intervals;  counts below each bar')
-    panel_tag(ax, 'D', C)
 
 
 # ============================================================ FIGURE 2
@@ -686,250 +560,6 @@ def p6d(ax, C):
     panel_tag(ax, 'D', C)
 
 
-# ============================================================ FIGURE 7
-def p7a(ax, C):
-    lib, groups, strata = C['lib'], C['groups'], C['strata']
-    w = 0.36
-    x = np.arange(len(groups))
-    for j, (slab, m, col) in enumerate(strata):
-        sub = lib[m]
-        rates, ns, ks = [], [], []
-        for gname in groups:
-            g = sub[sub.motif_class == gname]
-            rates.append(100 * g.is_UBR3_substrate.mean())
-            ns.append(len(g))
-            ks.append(int(g.is_UBR3_substrate.sum()))
-        pos = x + (j - 0.5) * w
-        ax.bar(pos, rates, width=w * 0.92, color=col, zorder=3,
-               edgecolor=SURFACE, linewidth=1.1, label=slab)
-        for xi, r, k, n in zip(pos, rates, ks, ns):
-            ax.text(xi, r + 0.28, f'{r:.2f}%', ha='center', fontsize=7.8, fontweight='bold')
-            ax.text(xi, 0.015, f'{k}/{n:,}', ha='center', va='bottom', fontsize=7,
-                    color=MUTED, transform=ax.get_xaxis_transform())
-    ax.set_xticks(x)
-    ax.set_xticklabels(groups, fontsize=9.4)
-    ax.set_ylabel('UBR3-stabilised peptides (% of that group)')
-    ax.set_ylim(-1.9, 15.6)
-    ax.grid(axis='y', zorder=0)
-    ax.legend(loc='upper right', title='Baseline stratum', title_fontsize=8.5)
-    ors_ = []
-    for _, m, _ in strata:
-        s_ = lib[m]
-        a_, b_ = s_[s_.motif_class == '[P/G]-[E/D]'], s_[s_.motif_class == 'non-P/G']
-        ors_.append(stats.fisher_exact(
-            [[int(a_.is_UBR3_substrate.sum()), int((~a_.is_UBR3_substrate).sum())],
-             [int(b_.is_UBR3_substrate.sum()), int((~b_.is_UBR3_substrate).sum())]])[0])
-    title(ax, 'The motif effect survives stratification',
-          f'Fisher OR = {ors_[0]:.0f} among unstable peptides and {ors_[1]:.0f} among stable ones - '
-          'essentially identical, i.e. no interaction with baseline stability')
-    panel_tag(ax, 'A', C)
-
-
-def p7b(ax, C):
-    lib, strata = C['lib'], C['strata']
-    w = 0.36
-    labs = ['[P/G]-[E/D]', 'P or G at pos 2']
-    vals = [[100 * lib[m].is_PG_ED.mean() for _, m, _ in strata],
-            [100 * lib[m].is_PG.mean() for _, m, _ in strata]]
-    x2 = np.arange(2)
-    for j, (slab, m, col) in enumerate(strata):
-        ax.bar(x2 + (j - 0.5) * w, [vals[0][j], vals[1][j]], width=w * 0.92, color=col,
-               zorder=3, edgecolor=SURFACE, linewidth=1.1, label=slab)
-        for xi, v in zip(x2 + (j - 0.5) * w, [vals[0][j], vals[1][j]]):
-            ax.text(xi, v + 0.22, f'{v:.2f}%', ha='center', fontsize=8, fontweight='bold')
-    ax.set_xticks(x2)
-    ax.set_xticklabels(labs, fontsize=9.4)
-    ax.set_ylabel('Peptides carrying the feature (% of stratum)')
-    ax.set_ylim(0, 19)
-    ax.grid(axis='y', zorder=0)
-    ax.legend(loc='upper left', title='Baseline stratum', title_fontsize=8.5)
-    title(ax, '[P/G]-[E/D] is not over-represented among unstable peptides',
-          f'{vals[0][0]:.2f}% vs {vals[0][1]:.2f}% - evenly split. Bare Pro/Gly is skewed '
-          f'({vals[1][0]:.1f}% vs {vals[1][1]:.1f}%), so the acidic residue carries the UBR3 dependence.')
-    panel_tag(ax, 'B', C)
-
-
-def p7c(ax, C):
-    lib, hit, CUT, lo = C['lib'], C['hit'], C['CUT'], C['lo']
-    below_lib = lib[lo]
-    sets = [('UBR3 substrates', hit[hit.mean_PSI_control < CUT], ORANGE),
-            ('[P/G]-[E/D], not stabilised',
-             below_lib[(below_lib.motif_class == '[P/G]-[E/D]') & ~below_lib.is_UBR3_substrate],
-             YELLOW),
-            ('All library peptides', below_lib, MUTED)]
-    ys = np.arange(len(sets))[::-1]
-    for yv, (lab, s, col) in zip(ys, sets):
-        pct = 100 * (s.crosses_PSI3_up == 'yes').mean()
-        ax.barh(yv, pct, color=col, height=0.5, zorder=3, edgecolor=SURFACE, linewidth=1.2)
-        ax.text(pct + 1.2, yv, f'{pct:.1f}%   ({int((s.crosses_PSI3_up == "yes").sum())} of {len(s):,})',
-                va='center', fontsize=9, fontweight='bold', color=INK)
-        ax.text(0.6, yv + 0.36, lab, va='bottom', fontsize=8.8, color=INK2)
-    ax.set_yticks([])
-    ax.set_xlim(0, 100)
-    ax.set_xlabel(f'Peptides rising above PSI {CUT:g} on UBR3 loss (%)')
-    ax.grid(axis='x', zorder=0)
-    ax.spines['left'].set_visible(False)
-    title(ax, 'Crossing is graded, not all-or-nothing',
-          f'Peptides starting below PSI {CUT:g}; non-substrates with the motif still cross at '
-          'twice background')
-    panel_tag(ax, 'C', C)
-
-
-def p7d(ax, C):
-    lib, groups, CUT, lo = C['lib'], C['groups'], C['CUT'], C['lo']
-    data, labels, cols = [], [], []
-    for gname, col in zip(groups, [ORANGE, AQUA, MUTED]):
-        v = lib[lo & (lib.motif_class == gname)].mean_dPSI.values
-        data.append(v)
-        labels.append(f'{gname}\n(n={len(v):,})')
-        cols.append(col)
-    bp = ax.boxplot(data, patch_artist=True, widths=0.5, showfliers=False,
-                    medianprops=dict(color=INK, lw=1.6),
-                    whiskerprops=dict(color=INK2, lw=1), capprops=dict(color=INK2, lw=1),
-                    boxprops=dict(edgecolor=SURFACE, lw=1.2))
-    for patch, c in zip(bp['boxes'], cols):
-        patch.set_facecolor(c)
-    for i, v in enumerate(data, 1):
-        if len(v) < 400:
-            jitter = (np.random.default_rng(0).random(len(v)) - 0.5) * 0.26
-            ax.scatter(i + jitter, v, s=5, color=INK2, alpha=0.35, linewidths=0, zorder=4)
-    ax.axhline(0, color=AXIS, lw=1)
-    ax.set_xticks(range(1, 4))
-    ax.set_xticklabels(labels, fontsize=8.8)
-    ax.set_ylabel('Mean $\\Delta$PSI')
-    ax.grid(axis='y', zorder=0)
-    p = stats.mannwhitneyu(data[0], data[2])[1]
-    ax.text(0.5, 0.96, f'[P/G]-[E/D] vs non-P/G\nMann-Whitney p = {p:.1e}',
-            transform=ax.transAxes, ha='center', va='top', fontsize=8.4, color=INK)
-    title(ax, 'Within unstable peptides, the motif still shifts $\\Delta$PSI',
-          f'Only peptides starting below PSI {CUT:g}; boxes are median and quartiles')
-    panel_tag(ax, 'D', C)
-
-
-# ============================================================ FIGURE 8
-CUTS8 = [2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4]
-
-
-def p8a(ax, C):
-    lib, hit, CUT = C['lib'], C['hit'], C['CUT']
-    ax.scatter(lib.mean_PSI_control, lib.mean_dPSI, s=2.5, color='#e6e4dc',
-               linewidths=0, zorder=1, label=f'Library (n={len(lib):,})')
-    ax.scatter(hit.mean_PSI_control, hit.mean_dPSI, s=40, color=ORANGE,
-               edgecolors=SURFACE, linewidths=0.8, zorder=4,
-               label=f'UBR3 substrates (n={len(hit)})')
-    ax.axvline(CUT, color=INK, lw=1.2, ls='--', zorder=3)
-    ax.axhline(0, color=AXIS, lw=1)
-    rho = stats.spearmanr(lib.mean_PSI_control, lib.mean_dPSI)
-    r2 = stats.pearsonr(lib.mean_PSI_control, lib.mean_dPSI)[0] ** 2
-    ax.text(0.03, 0.97, f'Spearman $\\rho$ = {rho.statistic:.2f}\nshared variance {100 * r2:.1f}%',
-            transform=ax.transAxes, va='top', fontsize=8.6, color=INK)
-    ax.set_xlabel('Control PSI  (baseline stability)')
-    ax.set_ylabel('Mean $\\Delta$PSI  (UBR3 dependence)')
-    ax.set_xlim(1, 4)
-    ax.set_ylim(-1.0, 1.8)
-    ax.grid(zorder=0)
-    ax.legend(loc='lower right', markerscale=1.3)
-    title(ax, 'PSI and $\\Delta$PSI measure different things',
-          'Baseline stability explains ~3% of the variance in UBR3 dependence - they are near-orthogonal')
-    panel_tag(ax, 'A', C)
-
-
-def p8b(ax, C):
-    lib, CUT = C['lib'], C['CUT']
-    gx = np.linspace(1, 4, 900)
-    gy = gaussian_kde(lib.mean_PSI_control, bw_method=0.25)(gx)
-    ax.fill_between(gx, gy, color=BLUE, alpha=0.16, zorder=2)
-    ax.plot(gx, gy, color=BLUE, lw=2, zorder=3)
-    vall, peaks = gx[argrelextrema(gy, np.less)[0]], gx[argrelextrema(gy, np.greater)[0]]
-    for v in peaks:
-        h = gy[np.argmin(abs(gx - v))]
-        ax.plot([v, v], [0, h], color=MUTED, lw=0.9, ls=':', zorder=4)
-        ax.text(v, h + 0.008, f'{v:.2f}', ha='center', fontsize=7.6, color=MUTED)
-    for v in vall:
-        ax.scatter([v], [gy[np.argmin(abs(gx - v))]], s=46, color=RED, zorder=6,
-                   edgecolors=SURFACE, linewidths=0.8)
-    anti = vall[np.argmin(abs(vall - CUT))]
-    ax.axvline(CUT, color=INK, lw=1.5, ls='--', zorder=5)
-    ax.annotate(f'cut at PSI {CUT:g} sits on\nthe antimode at {anti:.2f}',
-                xy=(anti, gy[np.argmin(abs(gx - anti))]),
-                xytext=(2.72, max(gy) * 0.86), fontsize=8.8, color=INK, fontweight='bold',
-                arrowprops=dict(arrowstyle='->', color=INK2, lw=1.1))
-    ax.set_xlabel('Control PSI')
-    ax.set_ylabel('Kernel density')
-    ax.set_xlim(1, 4)
-    ax.set_ylim(0, max(gy) * 1.16)
-    ax.grid(zorder=0)
-    ax.legend(handles=[Line2D([], [], marker='o', ls='none', color=RED, markersize=7,
-                              label='density minimum (antimode)')], loc='upper left')
-    title(ax, 'The cut is data-driven, not a round number',
-          f'Three robust modes ({", ".join(f"{p:.2f}" for p in peaks)}); the split is placed at the '
-          'antimode between the unstable modes and the stable one')
-    panel_tag(ax, 'B', C)
-
-
-def p8c(ax, C):
-    lib, CUT = C['lib'], C['CUT']
-    ors, ps = [], []
-    for c in CUTS8:
-        s = lib[lib.mean_PSI_control < c]
-        a, b = s[s.motif_class == '[P/G]-[E/D]'], s[s.motif_class == 'non-P/G']
-        o, p = stats.fisher_exact([[int(a.is_UBR3_substrate.sum()), int((~a.is_UBR3_substrate).sum())],
-                                   [int(b.is_UBR3_substrate.sum()), int((~b.is_UBR3_substrate).sum())]])
-        ors.append(o)
-        ps.append(p)
-    cols = [ORANGE if c == CUT else BLUE for c in CUTS8]
-    ax.plot(CUTS8, ors, color=BLUE, lw=1.8, zorder=3)
-    ax.scatter(CUTS8, ors, s=[95 if c == CUT else 52 for c in CUTS8], color=cols,
-               edgecolors=SURFACE, linewidths=1.1, zorder=4)
-    for c, o in zip(CUTS8, ors):
-        ax.text(c, o * 1.10, f'{o:.0f}', ha='center', fontsize=7.8, fontweight='bold',
-                color=ORANGE if c == CUT else INK)
-    ax.annotate('the cut used\nin Figures 6-7', xy=(CUT, ors[CUTS8.index(CUT)]),
-                xytext=(3.05, 26), fontsize=8.4, color=ORANGE, fontweight='bold',
-                arrowprops=dict(arrowstyle='->', color=ORANGE, lw=1.1))
-    ax.set_yscale('log')
-    ax.set_ylim(18, 190)
-    ax.set_xlabel('PSI cutoff defining "unstable at baseline"')
-    ax.set_ylabel('Odds ratio, [P/G]-[E/D] vs non-P/G\n(within the unstable stratum)')
-    ax.grid(zorder=0, which='both')
-    ax.text(0.97, 0.06, f'every cutoff: p $\\leq$ {max(ps):.0e}', transform=ax.transAxes,
-            ha='right', fontsize=8.4, color=INK)
-    title(ax, 'The conclusion does not depend on where the line goes',
-          f'Odds ratio stays between {min(ors):.0f} and {max(ors):.0f} for every cutoff '
-          f'from {min(CUTS8):g} to {max(CUTS8):g}')
-    panel_tag(ax, 'C', C)
-
-
-def p8d(ax, C):
-    d = C['lib'].copy()
-    d['y'] = d.is_UBR3_substrate.astype(int)
-    d['PGED'] = (d.motif_class == '[P/G]-[E/D]').astype(int)
-    d['PGother'] = (d.motif_class == '[P/G]-other').astype(int)
-    fit = sm.Logit(d.y, sm.add_constant(d[['PGED', 'PGother', 'mean_PSI_control']])).fit(disp=0)
-    ci = fit.conf_int()
-    terms = ['PGED', 'PGother', 'mean_PSI_control']
-    labs = ['[P/G]-[E/D]\nvs non-P/G', '[P/G]-other\nvs non-P/G', 'control PSI\n(per +1 unit)']
-    y = np.arange(len(terms))[::-1]
-    for yv, t, c in zip(y, terms, [ORANGE, AQUA, VIOLET]):
-        o, lo_, hi_ = np.exp(fit.params[t]), np.exp(ci.loc[t, 0]), np.exp(ci.loc[t, 1])
-        ax.plot([lo_, hi_], [yv, yv], color=c, lw=2.4, zorder=3, solid_capstyle='round')
-        ax.scatter([o], [yv], s=95, color=c, edgecolors=SURFACE, linewidths=1.2, zorder=4)
-        ax.text(hi_ * 1.25, yv, f'OR {o:.2f}   p = {fit.pvalues[t]:.1e}', va='center',
-                fontsize=8.6, fontweight='bold', color=INK)
-    ax.axvline(1, color=AXIS, lw=1.2, ls='--', zorder=2)
-    ax.set_xscale('log')
-    ax.set_xlim(0.28, 700)
-    ax.set_yticks(y)
-    ax.set_yticklabels(labs, fontsize=9)
-    ax.set_xlabel('Adjusted odds ratio for being a UBR3 substrate (log scale)')
-    ax.grid(axis='x', zorder=0, which='both')
-    ax.spines['left'].set_visible(False)
-    ax.set_ylim(-0.7, len(terms) - 0.3)
-    title(ax, 'With no cutoff at all, the motif effect stands',
-          'Logistic regression with control PSI as a continuous covariate; bars are 95% CIs')
-    panel_tag(ax, 'D', C)
-
-
 # ============================================================ FIGURE 9
 def p9a(ax, C):
     """2x2 mosaic of the motif-bearing peptides."""
@@ -1070,28 +700,175 @@ def p9d(ax, C):
     panel_tag(ax, 'D', C)
 
 
+# ============================================================ FIGURE 10
+# Downstream of the motif: what separates motif-bearing substrates from
+# motif-bearing non-substrates at positions 4-24, where both sets are identical
+# by construction at positions 1-3.
+def _down(C):
+    if 'down' not in C:
+        m = C['lib'][C['lib'].motif_class == '[P/G]-[E/D]']
+        A = list(m[m.is_UBR3_substrate].peptide_24mer)
+        B = list(m[~m.is_UBR3_substrate].peptide_24mer)
+        C['down'] = U.downstream_compare(A, B) + (len(A), len(B))
+    return C['down']
+
+
+def p10a(ax, C):
+    per_res, per_cls, _, na, nb = _down(C)
+    piv = per_cls.pivot(index='position', columns='group', values='log2_enrichment')[U.CLASS_ORDER]
+    qv = per_cls.pivot(index='position', columns='group', values='q_value_BH')[U.CLASS_ORDER]
+    m, q = piv.T.values, qv.T.values
+    v = np.nanmax(np.abs(m))
+    im = ax.imshow(m, cmap=DIVERGE, norm=TwoSlopeNorm(0, -v, v), aspect='auto')
+    ax.set_yticks(range(len(U.CLASS_ORDER)))
+    ax.set_yticklabels(U.CLASS_ORDER, fontsize=9)
+    for t, c in zip(ax.get_yticklabels(), U.CLASS_ORDER):
+        t.set_color(CLASS_COLOR[c])
+        t.set_fontweight('bold')
+    pos = list(piv.index)
+    ax.set_xticks(range(len(pos)))
+    ax.set_xticklabels(pos, fontsize=7.8)
+    ax.set_xlabel('Position in the 24-mer')
+    for i in range(m.shape[0]):
+        for k in range(m.shape[1]):
+            if q[i, k] < 0.05:
+                ax.add_patch(Rectangle((k - 0.5, i - 0.5), 1, 1, fill=False,
+                                       edgecolor=INK, lw=2.2, zorder=6))
+                ax.text(k, i, '*', ha='center', va='center', fontsize=15,
+                        fontweight='bold', color=INK, zorder=7)
+    cb = ax.get_figure().colorbar(im, ax=ax, fraction=0.046, pad=0.02)
+    cb.set_label('log$_2$ (substrate / non-substrate)', fontsize=8.5)
+    cb.ax.tick_params(labelsize=7.5)
+    nsig = int((q < 0.05).sum())
+    title(ax, 'Chemical class by position, downstream of the motif',
+          f'{na} motif-bearing substrates vs {nb} motif-bearing non-substrates. Boxed * = q < 0.05 '
+          f'({nsig} of {q.size} cells): Basic at position 5.')
+    panel_tag(ax, 'A', C, xoff=-70)
+
+
+def p10b(ax, C):
+    """Volcano over all position x residue cells - the null result, shown honestly."""
+    per_res, _, _, na, nb = _down(C)
+    x = per_res.log2_enrichment.values
+    y = -np.log10(per_res.p_value.values)
+    sig = per_res.q_value_BH.values < 0.05
+    ax.scatter(x[~sig], y[~sig], s=16, color=MUTED, alpha=0.55, linewidths=0, zorder=3,
+               label=f'not significant (n={int((~sig).sum())})')
+    if sig.any():
+        ax.scatter(x[sig], y[sig], s=44, color=ORANGE, edgecolors=SURFACE, linewidths=0.8,
+                   zorder=4, label=f'q < 0.05 (n={int(sig.sum())})')
+    ax.axhline(-np.log10(0.05), color=RED, lw=1.1, ls=':', zorder=2)
+    ax.text(ax.get_xlim()[1], -np.log10(0.05) + 0.06, 'p = 0.05', ha='right',
+            fontsize=7.8, color=RED)
+    ax.axvline(0, color=AXIS, lw=1)
+    placed = []
+    for _, r in per_res.nsmallest(4, 'p_value').iterrows():
+        x0, y0 = r.log2_enrichment, -np.log10(r.p_value)
+        for dx, dy in [(7, 3), (7, -11), (-7, 5), (-7, -12)]:
+            if all(abs(x0 + dx / 60 - px) > 0.45 or abs(y0 + dy / 60 - py) > 0.22
+                   for px, py in placed):
+                break
+        placed.append((x0 + dx / 60, y0 + dy / 60))
+        ax.annotate(f'{r.group}{int(r.position)}', (x0, y0), textcoords='offset points',
+                    xytext=(dx, dy), fontsize=8.2, fontweight='bold', color=INK,
+                    ha='left' if dx > 0 else 'right')
+    n_nom = int((per_res.p_value < 0.05).sum())
+    exp = 0.05 * len(per_res)
+    ax.set_xlabel('log$_2$ (substrate / non-substrate)')
+    ax.set_ylabel('$-$log$_{10}$ $p$   (Fisher exact)')
+    ax.grid(zorder=0)
+    ax.legend(loc='upper left')
+    title(ax, 'No individual residue distinguishes them',
+          f'{n_nom} of {len(per_res)} cells reach p < 0.05 - fewer than the {exp:.0f} '
+          'expected by chance; none survive FDR')
+    panel_tag(ax, 'B', C)
+
+
+def p10c(ax, C):
+    """Aggregate class composition over the whole downstream window."""
+    from scipy import stats as st
+    _, _, pep, na, nb = _down(C)
+    A = pep[pep.group == 'UBR3 substrate']
+    B = pep[pep.group == 'not a substrate']
+    x = np.arange(len(U.CLASS_ORDER))
+    w = 0.36
+    for j, (df, lab, col) in enumerate([(A, f'substrates (n={na})', ORANGE),
+                                        (B, f'non-substrates (n={nb})', MUTED)]):
+        vals = [df[f'n_{c}'].mean() for c in U.CLASS_ORDER]
+        errs = [df[f'n_{c}'].sem() for c in U.CLASS_ORDER]
+        ax.bar(x + (j - 0.5) * w, vals, yerr=errs, width=w * 0.92, color=col, zorder=3,
+               edgecolor=SURFACE, linewidth=1.1, label=lab,
+               error_kw=dict(ecolor=INK2, lw=1.1))
+    for i, c in enumerate(U.CLASS_ORDER):
+        p = st.mannwhitneyu(A[f'n_{c}'], B[f'n_{c}'])[1]
+        hi = max(A[f'n_{c}'].mean(), B[f'n_{c}'].mean())
+        ax.text(i, hi + 0.55, f'p = {p:.3f}' if p >= 0.001 else f'p = {p:.0e}',
+                ha='center', fontsize=7.8,
+                fontweight='bold' if p < 0.05 else 'normal',
+                color=INK if p < 0.05 else MUTED)
+    ax.set_xticks(x)
+    ax.set_xticklabels(U.CLASS_ORDER, rotation=20, ha='right', fontsize=8.8)
+    ax.set_ylabel('Residues per peptide, positions 4-24')
+    ax.set_ylim(0, 8.6)
+    ax.grid(axis='y', zorder=0)
+    ax.legend(loc='upper right')
+    title(ax, 'Only basic residues differ, and only in aggregate',
+          'Mean per peptide over positions 4-24; bars are SEM, p from Mann-Whitney')
+    panel_tag(ax, 'C', C)
+
+
+def p10d(ax, C):
+    """Net charge downstream - the headline separation."""
+    from scipy import stats as st
+    _, _, pep, na, nb = _down(C)
+    A = pep[pep.group == 'UBR3 substrate'].net_charge.values
+    B = pep[pep.group == 'not a substrate'].net_charge.values
+    bp = ax.boxplot([A, B], patch_artist=True, widths=0.45, showfliers=False,
+                    medianprops=dict(color=INK, lw=1.8),
+                    whiskerprops=dict(color=INK2, lw=1), capprops=dict(color=INK2, lw=1),
+                    boxprops=dict(edgecolor=SURFACE, lw=1.2))
+    for patch, c in zip(bp['boxes'], [ORANGE, MUTED]):
+        patch.set_facecolor(c)
+    rng = np.random.default_rng(0)
+    for i, v in enumerate([A, B], 1):
+        ax.scatter(i + (rng.random(len(v)) - 0.5) * 0.28, v, s=13, color=INK2,
+                   alpha=0.4, linewidths=0, zorder=4)
+    ax.axhline(0, color=AXIS, lw=1)
+    p = st.mannwhitneyu(A, B)[1]
+    ax.set_xticks([1, 2])
+    ax.set_xticklabels([f'UBR3 substrate\n(n={na})', f'not a substrate\n(n={nb})'], fontsize=9.2)
+    ax.set_ylabel('Net charge over positions 4-24')
+    ax.grid(axis='y', zorder=0)
+    top = max(A.max(), B.max())
+    ax.plot([1, 1, 2, 2], [top + 0.7, top + 1.3, top + 1.3, top + 0.7], color=INK2, lw=1.1)
+    ax.text(1.5, top + 1.5, f'Mann-Whitney p = {p:.4f}', ha='center', fontsize=9,
+            fontweight='bold', color=INK)
+    ax.text(0.03, 0.03, f'means:  {A.mean():+.2f}   vs   {B.mean():+.2f}',
+            transform=ax.transAxes, fontsize=9, color=INK)
+    ax.set_ylim(min(A.min(), B.min()) - 1, top + 2.6)
+    title(ax, 'Substrates carry a net positive charge downstream',
+          'Both groups carry the motif - only the downstream window differs')
+    panel_tag(ax, 'D', C)
+
+
 # ---------------------------------------------------------------- registry
 PANELS = {
-    '1A': p1a, '1B': p1b, '1C': p1c, '1D': p1d,
     '2A': p2a, '2B': p2b, '2C': p2c, '2D': p2d,
     '3A': p3a, '3B': p3b, '3C': p3c,
     '4A': p4a, '4B': p4b, '4C': p4c, '4D': p4d,
     '5A': p5a, '5B': p5b,
     '6A': p6a, '6B': p6b, '6C': p6c, '6D': p6d,
-    '7A': p7a, '7B': p7b, '7C': p7c, '7D': p7d,
-    '8A': p8a, '8B': p8b, '8C': p8c, '8D': p8d,
     '9A': p9a, '9B': p9b, '9C': p9c, '9D': p9d,
+    '10A': p10a, '10B': p10b, '10C': p10c, '10D': p10d,
 }
 
 # aspect ratio hint per panel for standalone rendering (width, height) in inches
 PANEL_SIZE = {
-    '1A': (9.0, 7.4), '1B': (9.0, 7.4), '1C': (9.6, 6.2), '1D': (8.6, 6.6),
     '2A': (9.8, 6.4), '2B': (9.2, 6.6), '2C': (9.8, 6.0), '2D': (8.8, 7.2),
     '3A': (14.0, 5.2), '3B': (14.0, 5.2), '3C': (14.0, 5.6),
     '4A': (14.0, 5.4), '4B': (14.0, 5.0), '4C': (11.0, 5.2), '4D': (9.0, 6.4),
     '5A': (9.4, 8.6), '5B': (9.4, 8.6),
     '6A': (9.6, 6.4), '6B': (8.8, 7.2), '6C': (9.4, 6.4), '6D': (8.4, 6.6),
-    '7A': (9.6, 6.6), '7B': (9.2, 6.4), '7C': (9.8, 5.8), '7D': (9.2, 6.4),
-    '8A': (9.2, 6.8), '8B': (9.6, 6.4), '8C': (9.4, 6.4), '8D': (9.8, 5.6),
     '9A': (9.0, 6.8), '9B': (9.4, 6.4), '9C': (8.8, 7.2), '9D': (9.8, 5.8),
+    '10A': (12.4, 5.2), '10B': (9.4, 6.6), '10C': (9.6, 6.4), '10D': (8.6, 6.8),
 }

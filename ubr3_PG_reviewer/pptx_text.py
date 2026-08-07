@@ -33,8 +33,8 @@ DEFINITIONS = [
      'the acidic residue; "non-P/G" is everything else.'),
     ('Baseline strata',
      'Control PSI < 2.6 = unstable at baseline (8,112 peptides); >= 2.6 = already stable (8,402). '
-     'The cut is the antimode of the control-PSI density, not a round number. Figure 8 shows '
-     'nothing depends on this choice.'),
+     'The cut is the antimode of the control-PSI density, not a round number. A sweep across '
+     'cutoffs from 2.0 to 3.4 (workbook sheet 18) shows nothing depends on this choice.'),
     ('Amino-acid classes',
      'Acidic D,E | Basic K,R,H | Polar S,T,N,Q,C | Hydrophobic A,V,L,I,M | Aromatic F,W,Y | '
      'Special G,P.'),
@@ -45,120 +45,118 @@ DEFINITIONS = [
 ]
 
 FIGURES = {
-    '1': ('Figure 1 | Pro/Gly N-termini and the [P/G]-[E/D] motif in the screen',
-          'Establishes the basic observation: Pro and Gly at position 2 are the only residues '
-          'enriched among UBR3 substrates, and adding an acidic residue at position 3 sharpens '
-          'that enrichment enormously. Panels A-B characterise position 2; C-D show what the '
-          'motif buys you.'),
-    '2': ('Figure 2 | The motif is necessary but not sufficient',
+    '2': ('The motif is necessary but not sufficient',
           'The reviewer\'s central point, argued four ways. The [P/G]-[E/D] motif enriches for '
           'substrates 27-fold, yet 163 of the 179 peptides carrying it are not stabilised at all. '
           'The motif biases stability without determining it.'),
-    '3': ('Figure 3 | Sequence logos of the substrate N-termini',
+    '3': ('Sequence logos of the substrate N-termini',
           'Where along the 24-mer the constraint actually lives. Panels A-B compare substrates '
           'against the library background on an identical scale; panel C converts the comparison '
           'into a statistical enrichment logo so only real signal is drawn.'),
-    '4': ('Figure 4 | Chemical-class architecture across all 24 positions',
+    '4': ('Chemical-class architecture across all 24 positions',
           'The same question at the level of chemical classes rather than individual residues. '
           'Panels A-B show composition position by position, C tests every class x position cell '
           'for significance, and D checks whole-peptide composition as a control.'),
-    '5': ('Figure 5 | Position-by-residue heatmaps',
+    '5': ('Position-by-residue heatmaps',
           'The full 24 x 20 picture. Panel A is raw substrate frequency; panel B is enrichment '
           'over the library with non-significant cells masked, which reduces the whole dataset to '
           'four surviving cells.'),
-    '6': ('Figure 6 | Baseline stability: peptides above and below PSI 2.6',
+    '6': ('Baseline stability: peptides above and below PSI 2.6',
           'Splits the library by how stable each peptide is BEFORE UBR3 is removed. A degron '
           'substrate should start unstable and gain stability when its E3 ligase is lost - which '
           'is what the substrates do. Also exposes the assay\'s ceiling effect.'),
-    '7': ('Figure 7 | The motif effect is not a by-product of baseline instability',
-          'The key control. Pro/Gly N-termini are themselves destabilising, so the motif could in '
-          'principle be enriched for that reason alone. Stratifying by control PSI shows it is '
-          'not: the motif is evenly distributed across strata yet enriches for substrates within '
-          'each one, with essentially the same odds ratio.'),
-    '9': ('Figure 9 | Motif-bearing peptides classified by stability and substrate status',
+    '10': ('Positions 4-24: substrates vs non-substrates, both motif-bearing',
+           'The comparison that controls for the motif. Every other analysis contrasts the 54 '
+           'substrates with the whole library, so positions 2-3 dominate. Here both groups carry '
+           'M-[P/G]-[E/D], making positions 1-3 identical by construction, so anything that '
+           'separates them must lie downstream. 16 substrates vs 163 non-substrates.'),
+    '9': ('Motif-bearing peptides classified by stability and substrate status',
           'Crosses the [P/G]-[E/D] motif with the baseline stability call to give a clean four-cell '
           'classification, and annotates the 16 substrates within it. Answers directly: how many '
           'motif-bearing peptides are stable, how many unstable, and which of each are UBR3 '
           'substrates.'),
-    '8': ('Figure 8 | Why control PSI, not ΔPSI - and why the cut does not matter',
-          'Answers two methodological objections. First, ΔPSI cannot define the stability '
-          'strata because the substrates were selected on it. Second, the PSI 2.6 cut is the '
-          'empirical antimode, and every conclusion survives both a cutoff sweep and a fully '
-          'cutoff-free model.'),
 }
 
 PANELS = {
-    # ---------------------------------------------------------------- FIG 1
-    '1A': ('Position 2 is Pro/Gly in half the substrates', [
+    # ---------------------------------------------------------------- FIG 10
+    '10A': ('Chemical class by position, downstream of the motif', [
         ('What is plotted',
-         'Each of the 20 amino acids as a pair of horizontal bars: grey = its frequency at position '
-         '2 across all 16,514 library peptides, blue = its frequency among the 54 UBR3 substrates. '
-         'Rows are ordered by library frequency, so the grey bars descend. The two shaded rows are '
-         'Pro and Gly.'),
-        ('Why position 2',
-         'Position 1 is Met in every peptide. When position 2 carries a small side chain, MetAP '
-         'clips the initiator Met and position 2 becomes the residue actually exposed at the '
-         'N-terminus - which is what an N-degron pathway would read.'),
+         'A heatmap of log2(substrate / non-substrate) for each of the six chemical classes at each '
+         'position from 4 to 24. Red = over-represented in the 16 motif-bearing substrates, blue = '
+         'over-represented in the 163 motif-bearing non-substrates. A boxed cell with an asterisk '
+         'passed FDR at q < 0.05.'),
+        ('Why this comparison and not the earlier ones',
+         'Every other figure compares substrates against the whole library, where positions 2 and 3 '
+         'carry almost all the signal and swamp everything else. Here BOTH groups carry '
+         'M-[P/G]-[E/D], so positions 1-3 are identical between them and cannot contribute. Any '
+         'difference that appears is genuinely downstream.'),
         ('What it shows',
-         'Pro and Gly together account for 12.7% of the library but 48% of the substrates (26% Gly '
-         '+ 22% Pro). Alanine shows the opposite pattern: it is the single most common residue at '
-         'position 2 in the library (21%) yet appears in only 6% of substrates.'),
+         'One cell of 126 survives correction: Basic at position 5, present in 50% of substrates '
+         '(8/16) versus 9.8% of non-substrates (16/163), q = 0.026. Basic also trends up at '
+         'positions 7, 8 and 14 without reaching significance individually - a coherent direction '
+         'rather than scattered noise.'),
         ('Watch out for',
-         'These are raw frequencies, not a significance test. Because the library base rates differ '
-         'so much between residues, judge enrichment from panel B, not from bar length here.'),
+         'With 16 substrates, one peptide moves a cell by 6.25%, so individual cells are volatile. '
+         'Read the repeated Basic signal across nearby positions, not any one square. Panel C tests '
+         'that aggregate properly.'),
     ]),
-    '1B': ('Pro and Gly are the only enriched residues at position 2', [
+    '10B': ('No individual residue distinguishes them', [
         ('What is plotted',
-         'log2 fold enrichment of each residue at position 2 in substrates versus the library, '
-         'sorted from most depleted to most enriched. Blue bars point right (enriched), red bars '
-         'point left (depleted). The label on each bar gives the number of substrates carrying that '
-         'residue, with asterisks when the FDR-corrected q value clears 0.05.'),
-        ('How it was computed',
-         'A two-sided Fisher exact test per residue - substrates carrying it versus not, against the '
-         'library carrying it versus not - followed by Benjamini-Hochberg correction across all 20 '
-         'tests.'),
+         'A volcano over all 420 position x residue cells in the window: x is log2(substrate / '
+         'non-substrate), y is -log10 of the Fisher exact p value. The dotted line is nominal '
+         'p = 0.05. The four smallest p values are labelled by residue and position.'),
         ('What it shows',
-         'Only three residues survive correction. Pro is enriched 4.3-fold (q = 3.4 x 10^-4) and Gly '
-         '3.4-fold (q = 3.7 x 10^-4). Alanine is significantly DEPLETED at 0.27-fold (q = 0.025). '
-         'Everything else, including Thr and Gln which look elevated, is non-significant once the '
-         '20 tests are accounted for.'),
-        ('Watch out for',
-         'Bars with n = 1 or 2 substrates carry almost no information; their apparent depletion is '
-         'driven by small numbers and none of them reach significance.'),
+         'Nothing survives FDR - not one of the 420 cells. Only 11 reach even nominal p < 0.05, '
+         'which is FEWER than the ~21 you would expect by chance alone at that threshold. The '
+         'strongest single cell is Arg at position 7 (37.5% vs 4.9%, p = 0.0004, q = 0.16).'),
+        ('The correct interpretation',
+         'At the resolution of "which residue sits at which position", motif-bearing substrates and '
+         'motif-bearing non-substrates are indistinguishable. There is no second sequence motif '
+         'downstream waiting to be found - at least not one this dataset can detect with 16 '
+         'substrates.'),
+        ('Why the asymmetry',
+         'Almost all points sit right of zero because a residue absent from all 16 substrates gives '
+         'a bounded negative log ratio, while one enriched in a few gives a large positive one. That '
+         'is a small-sample artefact of the axis, not a biological signal.'),
     ]),
-    '1C': ('From 16,514 peptides down to 16 motif-bearing substrates', [
+    '10C': ('Only basic residues differ, and only in aggregate', [
         ('What is plotted',
-         'A nested funnel on a log10 x-axis. Each bar is a strict subset of the bar above it, so '
-         'the counts only ever shrink. The italic label between bars gives the percentage retained '
-         'at that step.'),
+         'For each chemical class, the mean number of residues of that class per peptide summed '
+         'across all 21 downstream positions. Orange = the 16 substrates, grey = the 163 '
+         'non-substrates. Error bars are SEM; the p value above each pair is Mann-Whitney on the '
+         'per-peptide counts.'),
+        ('Why aggregate rather than per position',
+         'Summing over 21 positions turns 21 underpowered tests into one well-powered one. If '
+         'substrates carry more basic residues but at no fixed position, this is the only test that '
+         'can see it - and panel B shows that is exactly the situation.'),
         ('What it shows',
-         'The full library is 16,514 peptides. Requiring Pro or Gly at position 2 keeps 2,100 '
-         '(12.7%). Additionally requiring Asp or Glu at position 3 collapses that to 179 (8.5% of '
-         'the P/G set, about 1% of the library). Of those 179, 16 are UBR3 substrates.'),
-        ('Why it matters',
-         'It shows how specific the motif is as a filter: roughly one library peptide in a hundred '
-         'carries it. That rarity is what makes the enrichment in panel D so large.'),
+         'Basic residues: 4.19 per substrate versus 2.91 per non-substrate, p = 0.014. Every other '
+         'class is flat: Acidic p = 0.12, Polar p = 0.11, Aromatic p = 0.14, Hydrophobic p = 0.33, '
+         'Special p = 0.80.'),
         ('Watch out for',
-         'The log scale compresses the differences - the top bar is 1,000x the bottom one. Read the '
-         'printed numbers, not the bar lengths, and note that the final 8.9% is the substrate hit '
-         'rate, not another sequence filter.'),
+         'These six tests are not FDR-corrected against each other; at q < 0.05 across six, Basic '
+         'would sit right at the boundary. The net-charge test in panel D is the stronger and more '
+         'interpretable version of the same observation.'),
     ]),
-    '1D': ('The acidic residue at position 3 is what matters', [
+    '10D': ('Substrates carry a net positive charge downstream', [
         ('What is plotted',
-         'The percentage of peptides in each motif class that are UBR3 substrates. Error bars are '
-         'Wilson 95% confidence intervals; the counts below each bar give substrates over group '
-         'size.'),
+         'Net charge summed over positions 4-24 for every peptide (Lys and Arg +1, Asp and Glu -1, '
+         'His +0.1), substrates versus non-substrates. Boxes are median and quartiles; every '
+         'individual peptide is overlaid as a dot.'),
         ('What it shows',
-         'The gradient is steep and monotonic: 8.94% for [P/G]-[E/D] (16 of 179), 0.52% for '
-         '[P/G]-other (10 of 1,921), and 0.19% for non-P/G (28 of 14,414). The bracket reports the '
-         'Fisher test comparing the two ends: odds ratio 50.4, p = 4.1 x 10^-20.'),
-        ('The key inference',
-         'Pro/Gly alone raises the substrate rate only from 0.19% to 0.52%. Adding the acidic '
-         'residue at position 3 raises it to 8.94% - a further 17-fold jump. The acidic residue, '
-         'not the Pro/Gly by itself, is what carries UBR3 dependence.'),
-        ('Watch out for',
-         'The [P/G]-[E/D] confidence interval is wide (roughly 5.6% to 14%) because it rests on only '
-         '16 substrates. The ordering of the three groups is solid; the exact 8.94% is not precise.'),
+         'Motif-bearing substrates average a net charge of +2.16 across the window; motif-bearing '
+         'non-substrates average -0.22. Mann-Whitney p = 0.0021. This is the single strongest '
+         'downstream difference in the whole comparison.'),
+        ('Why it is the better statistic',
+         'It combines the basic enrichment and the acidic depletion - which individually reach '
+         'p = 0.014 and p = 0.12 - into one physically meaningful quantity, and it needs no '
+         'position-by-position testing at all.'),
+        ('How to read it biologically, and carefully',
+         'It is consistent with a positively charged region downstream of the degron contributing to '
+         'recognition, which would fit a ligase engaging an acidic surface. But it rests on 16 '
+         'peptides, the distributions overlap heavily, and it is an observational correlation in a '
+         'reporter assay. It should be presented as a hypothesis worth testing, not an established '
+         'requirement.'),
     ]),
 
     # ---------------------------------------------------------------- FIG 2
@@ -284,7 +282,7 @@ PANELS = {
          'the level you would expect from chance across this many tests.'),
         ('Watch out for',
          'Letters between the two red lines are nominally significant but do not survive correction '
-         'for multiple testing. Treat them as noise; the FDR-corrected version is Figure 5B.'),
+         'for multiple testing. Treat them as noise; the FDR-corrected version is panel 5B.'),
     ]),
 
     # ---------------------------------------------------------------- FIG 4
@@ -335,7 +333,7 @@ PANELS = {
          '(+1.2). Everything else is beige.'),
         ('Why the masking',
          'With 54 substrates, an unmasked version of this heatmap shows vivid red and blue cells '
-         'scattered to position 24 that are pure sampling noise. Masking is what makes the figure '
+         'scattered to position 24 that are pure sampling noise. Masking is what keeps this panel '
          'honest.'),
     ]),
     '4D': ('Whole-peptide composition is unchanged', [
@@ -399,8 +397,8 @@ PANELS = {
          'splits it almost evenly (49% / 51%). 74% of the substrates sit in the unstable half.'),
         ('Why control PSI and not ΔPSI',
          'Control PSI is measured before UBR3 is touched, so it describes the peptide\'s intrinsic '
-         'stability. ΔPSI is the variable the substrates were selected on and cannot be used '
-         'to stratify them - see Figure 8A.'),
+         'stability. ΔPSI is the variable the substrates were selected on, so '
+         'stratifying on it would be circular.'),
         ('Watch out for',
          'The substrate ticks are not uniformly spread through the unstable half; they concentrate '
          'between roughly 2.0 and 2.9. Very unstable peptides (PSI < 1.5) are also poor substrates, '
@@ -418,7 +416,7 @@ PANELS = {
         ('Why the diagonal matters',
          'Distance above the diagonal is ΔPSI. Plotting the two PSI values instead of ΔPSI '
          'alone shows both how much a peptide moved and where it started, which is what the '
-         'stratified analysis in Figure 7 depends on.'),
+         'stratified analysis depends on.'),
         ('Watch out for',
          'The pale cloud is thickest along the diagonal at both extremes because peptides pinned at '
          'PSI 1 or PSI 4 cannot move. That is the ceiling effect quantified in panel C.'),
@@ -451,150 +449,13 @@ PANELS = {
          'This is the one result in the whole package that is genuinely sensitive to where the cut '
          'is placed: at PSI 3 the same comparison gives 16-fold. The reason is the ceiling effect '
          'in panel C - a higher cut mechanically herds substrates into the low stratum. The 3-fold '
-         'figure at the data-driven cut is the more honest number.'),
+         'value at the data-driven cut is the more honest number.'),
         ('What is NOT cutoff-sensitive',
-         'The motif results in Figure 7 are stable across every cut from 2.0 to 3.4 (Figure 8C). '
-         'Only this baseline-stability contrast moves.'),
+         'The motif results are stable across every cut from 2.0 to 3.4 '
+         '(workbook sheet 18). Only this baseline-stability contrast moves.'),
     ]),
 
-    # ---------------------------------------------------------------- FIG 7
-    '7A': ('The motif effect survives stratification', [
-        ('What is plotted',
-         'Substrate rate for each motif class, computed separately WITHIN each baseline-stability '
-         'stratum. Purple bars are peptides that start unstable, green bars those that start stable. '
-         'Counts are printed under each bar.'),
-        ('What it shows',
-         'Among unstable peptides: 13.41% for [P/G]-[E/D] versus 0.295% for non-P/G, Fisher OR 52.3, '
-         'p = 2.5 x 10^-14. Among stable peptides: 5.15% versus 0.105%, OR 51.9, p = 3.3 x 10^-7.'),
-        ('The point of the panel',
-         'The two odds ratios are 52 and 52 - essentially identical. That is what "no interaction '
-         'with baseline stability" looks like. The motif multiplies a peptide\'s chance of being a '
-         'substrate by the same factor regardless of how stable it started.'),
-        ('Watch out for',
-         'The absolute rates differ between strata (13.4% vs 5.2%) even though the odds ratios do '
-         'not. That is the ceiling effect again: stabilisation is simply harder to detect at high '
-         'baseline PSI.'),
-    ]),
-    '7B': ('[P/G]-[E/D] is not over-represented among unstable peptides', [
-        ('What is plotted',
-         'How common each sequence feature is within each stratum. Left pair: the [P/G]-[E/D] motif. '
-         'Right pair: bare Pro or Gly at position 2, with no requirement at position 3.'),
-        ('What it shows',
-         'The motif is carried by 1.01% of unstable and 1.15% of stable peptides - evenly split. '
-         'Bare Pro/Gly is very unevenly split: 16.56% of unstable versus 9.01% of stable peptides.'),
-        ('Why this is the crucial control',
-         'If [P/G]-[E/D] were simply a marker of intrinsically unstable peptides, it would be '
-         'concentrated in the purple bars. It is not. So its association with substrate status '
-         'cannot be operating through baseline stability - the confound is empirically excluded, '
-         'not just argued away.'),
-        ('The mechanistic reading',
-         'Pro/Gly N-termini ARE destabilising - that is the right-hand pair. But that instability is '
-         'not UBR3-dependent. The acidic residue at position 3 is what converts a generically '
-         'unstable N-terminus into a UBR3 substrate.'),
-    ]),
-    '7C': ('Crossing is graded, not all-or-nothing', [
-        ('What is plotted',
-         'Among peptides that start below PSI 2.6, the percentage that rise above it when UBR3 is '
-         'lost. Three groups: the substrates, motif-bearing peptides that are NOT substrates, and '
-         'all library peptides as background.'),
-        ('What it shows',
-         'A three-tier gradient: 77.5% of substrates cross (31 of 40), 21.1% of motif-bearing '
-         'non-substrates (15 of 71), and 8.9% of library peptides overall (726 of 8,112).'),
-        ('The finding worth flagging',
-         'The 163 motif-bearing "non-responders" are not inert. They cross at more than twice the '
-         'background rate. Carrying the motif produces a real effect that simply falls below the '
-         'threshold for being called a substrate.'),
-        ('How to phrase it',
-         'This slightly softens "necessary but not sufficient" in a useful direction: substrate '
-         'status is the top of a continuum rather than a distinct category. The motif confers a '
-         'graded increase in UBR3 sensitivity.'),
-    ]),
-    '7D': ('Within unstable peptides, the motif still shifts ΔPSI', [
-        ('What is plotted',
-         'Box plots of mean ΔPSI by motif class, restricted to peptides that start below PSI '
-         '2.6. Boxes give median and quartiles, whiskers the 1.5 IQR range. Individual points are '
-         'overlaid where the group is small enough to show them.'),
-        ('What it shows',
-         'The [P/G]-[E/D] box sits visibly higher than the other two, with a longer upper whisker. '
-         'Mann-Whitney against non-P/G gives p = 1.7 x 10^-6.'),
-        ('Why restrict to the unstable stratum',
-         'It removes baseline stability as an explanation by construction. Every peptide in this '
-         'panel started in the same stability regime, so the remaining difference between boxes has '
-         'to come from the sequence motif itself.'),
-        ('Watch out for',
-         'The boxes overlap substantially. As in Figure 2B, the effect is a distributional shift, '
-         'not a separation - most motif-bearing peptides still behave like the background.'),
-    ]),
 
-    # ---------------------------------------------------------------- FIG 8
-    '8A': ('PSI and ΔPSI measure different things', [
-        ('What is plotted',
-         'Control PSI against mean ΔPSI for all 16,514 peptides, with the 54 substrates in '
-         'orange. The dashed vertical line is the stratification cut.'),
-        ('What it shows',
-         'The two axes are nearly independent: Spearman rho = -0.20, meaning baseline stability '
-         'explains only about 3% of the variance in UBR3 dependence.'),
-        ('Why ΔPSI cannot define the strata',
-         'The 54 substrates were SELECTED on ΔPSI. Splitting the library on ΔPSI and then '
-         'asking where the substrates fall is circular - at every threshold tested (0.1, 0.2, 0.3, '
-         '0.5) all 54 land in the high group by construction. Control PSI is measured before UBR3 '
-         'is perturbed and is therefore a legitimate stratifier.'),
-        ('Watch out for',
-         'The mild negative correlation is itself the ceiling effect: peptides starting at high PSI '
-         'have less room to gain, which pushes their ΔPSI down.'),
-    ]),
-    '8B': ('The cut is data-driven, not a round number', [
-        ('What is plotted',
-         'A kernel density estimate of control PSI. Grey dotted lines mark the modes; red dots mark '
-         'the density minima (antimodes). The dashed black line is the cut used throughout.'),
-        ('What it shows',
-         'Three robust modes at approximately 1.52, 2.25 and 3.49, with antimodes at 1.94 and 2.61. '
-         'The cut at 2.6 sits on the second antimode - the natural boundary between the two unstable '
-         'modes and the stable one.'),
-        ('A modal structure that is NOT claimed',
-         'At narrow kernel bandwidths a fourth mode appears near 2.9, which would make PSI 3 look '
-         'like an antimode too. It disappears by bandwidth 0.20 and is therefore not reproducible. '
-         'An earlier version of this analysis used PSI 3 on that basis; it was corrected.'),
-        ('Why it matters less than it seems',
-         'Panel C shows the conclusions are cutoff-independent anyway. The antimode is the '
-         'principled choice, but nothing rests on it.'),
-    ]),
-    '8C': ('The conclusion does not depend on where the line goes', [
-        ('What is plotted',
-         'The Fisher odds ratio for [P/G]-[E/D] versus non-P/G within the unstable stratum, '
-         'recomputed at every cutoff from 2.0 to 3.4. The y-axis is log-scaled. The orange point is '
-         'the cut actually used.'),
-        ('What it shows',
-         'The odds ratio stays between 42 and 88 across the entire range, and the p value is at most '
-         '6 x 10^-5 at every single cutoff. There is no threshold at which the motif result '
-         'disappears or even weakens materially.'),
-        ('Why include it',
-         'It pre-empts the obvious methodological objection - that the cut was chosen to produce the '
-         'result. Showing the full sweep is more convincing than defending any single choice.'),
-        ('Watch out for',
-         'The bounce at 2.2 (OR 88) is a small-sample artefact: at low cutoffs the unstable stratum '
-         'contains few motif-bearing peptides, so the estimate is unstable. The trend across the '
-         'range, not any individual point, is the message.'),
-    ]),
-    '8D': ('With no cutoff at all, the motif effect stands', [
-        ('What is plotted',
-         'A forest plot of adjusted odds ratios from a single logistic regression predicting '
-         'substrate status from motif class plus control PSI as a CONTINUOUS covariate. Points are '
-         'odds ratios, bars are 95% confidence intervals, and the dashed line at 1 is no effect. '
-         'The x-axis is log-scaled.'),
-        ('The model',
-         'substrate ~ [P/G]-[E/D] + [P/G]-other + control PSI, fitted across all 16,514 peptides. No '
-         'threshold appears anywhere in it, so the stratification question is bypassed entirely.'),
-        ('What it shows',
-         '[P/G]-[E/D] gives an adjusted OR of 52.8 (95% CI 27.9-99.9, p = 3.6 x 10^-34). '
-         '[P/G]-other gives 2.33 (p = 0.023). Control PSI gives 0.61 per unit (p = 0.006) - more '
-         'stable peptides are less likely to be substrates. Both effects are real and independent '
-         'of each other.'),
-        ('Recommended use',
-         'Lead the manuscript with this analysis and present the stratified figures as the intuitive '
-         'illustration. A cutoff-free model leaves nothing for a reviewer to attack on the '
-         'threshold question.'),
-    ]),
 
     # ---------------------------------------------------------------- FIG 9
     '9A': ('The 179 motif-bearing peptides, classified two ways', [
@@ -664,8 +525,8 @@ PANELS = {
          'of the library, but the stable half still contributes 5. Restricting attention to '
          'low-PSI peptides would therefore have missed nearly a third of them.'),
         ('Watch out for',
-         'The bars are counts, not nested subsets in the same sense as Figure 1C - the two stability '
-         'bars are siblings that sum to 179, and each orange bar is a subset of the bar above it.'),
+         'The two stability bars are siblings that sum to 179; each orange bar is a '
+         'subset of the stability bar directly above it, not of the bar before it.'),
     ]),
 }
 

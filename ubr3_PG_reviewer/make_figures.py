@@ -3,14 +3,13 @@
 
 Panels live in ubr3_panels.py and are shared with make_panels.py (the slide deck),
 so the two outputs can never drift apart.
-Renders 8 figures as 300-dpi PNG + vector PDF into figures/.
+Renders 7 figures as 300-dpi PNG + vector PDF into figures/.
 Light/print mode only - these are manuscript figures, not screen artifacts.
 """
 import os
 import warnings
 
 import matplotlib.pyplot as plt
-import pandas as pd
 
 import ubr3_core as U
 import ubr3_panels as P
@@ -40,13 +39,6 @@ def grid2x2(C, keys, name, ttl, sub, hspace=0.46):
         P.PANELS[k](fig.add_subplot(cell), C)
     header(fig, 0.07, 0.968, 0.938, ttl, sub)
     save(fig, name)
-
-
-def figure1(C):
-    grid2x2(C, ['1A', '1B', '1C', '1D'], 'Figure1_PG_landscape',
-            'Figure 1 | Pro/Gly N-termini and the [P/G]-[E/D] motif in the N24mer stability screen',
-            'GPS screen of 16,514 human N-terminal 24-mers in control-KO vs UBR3-KO cells. '
-            'Position 2 becomes the N-terminal residue after initiator-Met excision.')
 
 
 def figure2(C):
@@ -112,24 +104,6 @@ def figure6(C):
             'the 54 substrates do.', hspace=0.50)
 
 
-def figure7(C):
-    grid2x2(C, ['7A', '7B', '7C', '7D'], 'Figure7_motif_vs_baseline_stability',
-            'Figure 7 | The [P/G]-[E/D] effect is not a by-product of baseline instability',
-            'Substrates start unstable, so the motif could in principle be enriched simply because '
-            'Pro/Gly N-termini are unstable. Stratifying by control PSI shows it is not: the motif '
-            'is evenly distributed across strata yet enriches for substrates within each one.',
-            hspace=0.50)
-
-
-def figure8(C):
-    grid2x2(C, ['8A', '8B', '8C', '8D'], 'Figure8_PSI_vs_dPSI_and_cutoff_robustness',
-            'Figure 8 | Why baseline stability is measured by control PSI, not by $\\Delta$PSI',
-            'Control PSI is how stable a peptide is before UBR3 is removed; $\\Delta$PSI is how '
-            'much it changes when UBR3 goes. The 54 substrates were selected on $\\Delta$PSI, so '
-            'splitting on it would be circular - every $\\Delta$PSI cut contains all 54 by '
-            'construction.', hspace=0.50)
-
-
 def figure9(C):
     grid2x2(C, ['9A', '9B', '9C', '9D'], 'Figure9_stability_x_substrate_classification',
             f'Figure 9 | Motif-bearing peptides classified by baseline stability and substrate status',
@@ -142,17 +116,31 @@ def figure9(C):
             hspace=0.50)
 
 
+def figure10(C):
+    """Downstream of the motif: substrates vs non-substrates, both motif-bearing."""
+    fig = plt.figure(figsize=(16.0, 10.4))
+    gs = fig.add_gridspec(2, 3, hspace=0.55, wspace=0.30, height_ratios=[0.85, 1.0],
+                          left=0.055, right=0.975, top=0.845, bottom=0.07)
+    P.PANELS['10A'](fig.add_subplot(gs[0, :]), C)
+    for k, col in zip(['10B', '10C', '10D'], range(3)):
+        P.PANELS[k](fig.add_subplot(gs[1, col]), C)
+    header(fig, 0.055, 0.968, 0.928,
+           'Positions 4-24: what separates motif-bearing substrates from motif-bearing '
+           'non-substrates',
+           'Both groups carry M-[P/G]-[E/D], so positions 1-3 are identical by construction and only '
+           'the downstream window can differ. No single residue or position separates them, but the '
+           'substrates carry a markedly more positive net charge across the window.')
+    save(fig, 'Figure10_downstream_of_motif')
+
+
 def main():
     os.makedirs(U.FIGS, exist_ok=True)
     lib, hit = U.load()
-    enr = pd.read_excel(os.path.join(U.HERE, 'UBR3_PG_substrate_tables.xlsx'),
-                        '06_enrich_pos2_residue')
     print('rendering figures ...')
     print('  running 480 position x residue Fisher tests ...')
     sig = U.enrichment_test(list(hit.peptide_24mer), list(lib.peptide_24mer))
-    C = P.context(lib, hit, sig, enr, tags=True, standalone=False)
-    for fn in (figure1, figure2, figure3, figure4, figure5, figure6, figure7, figure8,
-               figure9):
+    C = P.context(lib, hit, sig, tags=True, standalone=False)
+    for fn in (figure2, figure3, figure4, figure5, figure6, figure9, figure10):
         fn(C)
     print('done ->', U.FIGS)
 

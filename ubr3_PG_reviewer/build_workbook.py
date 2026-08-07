@@ -119,7 +119,7 @@ def readme_sheet(stats_d):
                               '[P/G]-[E/D], stabilised and non-stabilised side by side, sorted by mean dPSI.'),
         ('03_PG_library_all', f'All {s["n_pg"]:,} peptides with Pro or Gly at pos2, sorted by mean dPSI.'),
         ('04_substrates_PG_only', f'The {s["n_hit_pg"]} substrates that carry P/G at pos2 (subset of sheet 01).'),
-        ('05_counts_summary', 'Every count behind Figure 1 and Figure 2, as a flat table.'),
+        ('05_counts_summary', 'Every count behind the motif-class comparisons, as a flat table.'),
         ('06_enrich_pos2_residue', 'Fisher exact enrichment of each of the 20 residues at pos2, substrates '
                                    'vs library, BH-FDR corrected.'),
         ('07_enrich_motif_class', 'Same test at the level of the three motif classes and of pos3 identity.'),
@@ -155,6 +155,9 @@ def readme_sheet(stats_d):
                                          'substrates, split by stability class and fully annotated '
                                          '(UniProt accession, protein name, function, localisation, GO), '
                                          'with control PSI, UBR3-KO PSI and whether each crosses the line.'),
+        ('21_downstream_residue', 'THE DOWNSTREAM COMPARISON. Positions 4-24 only, comparing the 16 motif-bearing SUBSTRATES with the 163 motif-bearing NON-substrates. Both groups carry M-[P/G]-[E/D], so positions 1-3 are identical by construction and the motif itself cannot drive any difference. Fisher exact per position x residue with BH-FDR over all 420 cells. RESULT: nothing survives; only 11 cells reach nominal p<0.05, fewer than the ~21 expected by chance.'),
+        ('22_downstream_class', 'Same comparison at the level of the six chemical classes (126 cells). One survives FDR: Basic at position 5 (50% of substrates vs 9.8% of non-substrates, q = 0.026).'),
+        ('23_downstream_composition', 'The better-powered aggregate view: per-peptide counts of each class summed over positions 4-24, plus net charge and GRAVY, compared by Mann-Whitney. RESULT: substrates carry more basic residues (4.19 vs 2.91, p = 0.014) and a markedly more positive net charge (+2.16 vs -0.22, p = 0.0021). Nothing else differs.'),
         ('18_PSI_cutoff_robustness', 'Shows the PSI = 3 cut is not doing the work: the motif odds ratio '
                                      'across cutoffs 2.0-3.4, a logistic regression using control PSI as a '
                                      'CONTINUOUS covariate (no cutoff at all), the peaks and valleys of the '
@@ -495,6 +498,29 @@ def main():
               'go_biological_process']].copy()
     s20.insert(0, 'rank_by_dPSI', np.arange(1, len(s20) + 1))
 
+    # ---------- sheet 21-23 : downstream of the motif ------------------------
+    mA = list(mm.peptide_24mer)
+    mB = list(lib[(lib.motif_class == '[P/G]-[E/D]') & ~lib.is_UBR3_substrate].peptide_24mer)
+    s21, s22, pep = U.downstream_compare(mA, mB)
+    s21 = s21.rename(columns={'group': 'residue'}).sort_values('p_value')
+    s22 = s22.rename(columns={'group': 'chemical_class'}).sort_values('p_value')
+
+    rows = []
+    A = pep[pep.group == 'UBR3 substrate']
+    B = pep[pep.group == 'not a substrate']
+    for col, lab in ([(f'n_{c}', f'{c} residues') for c in U.CLASS_ORDER] +
+                     [('net_charge', 'net charge'), ('GRAVY', 'GRAVY hydropathy')]):
+        u, pv = stats.mannwhitneyu(A[col], B[col], alternative='two-sided')
+        rows.append({'measure': f'{lab}, positions {U.DOWN_FROM}-{U.DOWN_TO}',
+                     'substrates_mean': round(A[col].mean(), 3),
+                     'substrates_median': round(A[col].median(), 3),
+                     'non_substrates_mean': round(B[col].mean(), 3),
+                     'non_substrates_median': round(B[col].median(), 3),
+                     'difference': round(A[col].mean() - B[col].mean(), 3),
+                     'MannWhitney_p': float(f'{pv:.4g}'),
+                     'significant_p<0.05': 'yes' if pv < 0.05 else 'no'})
+    s23 = pd.DataFrame(rows).sort_values('MannWhitney_p')
+
     sheets = {
         '00_README': readme_sheet(S),
         '01_UBR3_substrates': s01,
@@ -517,6 +543,9 @@ def main():
         '18_PSI_cutoff_robustness': s18,
         '19_stability_x_substrate': s19,
         '20_PGED_substrates_annotated': s20,
+        '21_downstream_residue': s21,
+        '22_downstream_class': s22,
+        '23_downstream_composition': s23,
     }
 
     with pd.ExcelWriter(OUT, engine='openpyxl') as xw:

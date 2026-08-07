@@ -9,7 +9,6 @@ import os
 import warnings
 
 import matplotlib.pyplot as plt
-import pandas as pd
 
 import ubr3_core as U
 import ubr3_panels as P
@@ -22,12 +21,10 @@ OUT = os.path.join(U.HERE, 'panels')
 def main():
     os.makedirs(OUT, exist_ok=True)
     lib, hit = U.load()
-    enr = pd.read_excel(os.path.join(U.HERE, 'UBR3_PG_substrate_tables.xlsx'),
-                        '06_enrich_pos2_residue')
     sig = U.enrichment_test(list(hit.peptide_24mer), list(lib.peptide_24mer))
     # tags off (the slide title carries the panel letter), standalone on
     # (panels that relied on a figure-level legend draw their own)
-    C = P.context(lib, hit, sig, enr, tags=False, standalone=True)
+    C = P.context(lib, hit, sig, tags=False, standalone=True)
 
     print(f'rendering {len(P.PANELS)} standalone panels ...')
     for key, fn in P.PANELS.items():

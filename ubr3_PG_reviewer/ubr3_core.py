@@ -223,6 +223,60 @@ def class_matrix(seqs, positions=24):
     return pd.DataFrame({c: f[CLASS_MEMBERS[c]].sum(1) for c in CLASS_ORDER})
 
 
+DOWN_FROM, DOWN_TO = 4, 24     # the window downstream of the M-[P/G]-[E/D] motif
+
+
+def downstream_compare(seqs_a, seqs_b, lo=DOWN_FROM, hi=DOWN_TO):
+    """Compare two peptide sets position by position over a window.
+
+    Built for the motif-matched comparison: both sets carry M-[P/G]-[E/D], so
+    positions 1-3 are constant between them and only positions >= lo can differ.
+
+    Returns (per_residue, per_class, per_peptide) frames. The first two are
+    Fisher tests with BH-FDR applied within each frame; the third holds the
+    aggregate composition of each peptide, for distribution-level tests that
+    are far better powered than 420 single cells.
+    """
+    from scipy import stats as _st
+    from statsmodels.stats.multitest import multipletests
+
+    na, nb = len(seqs_a), len(seqs_b)
+    win = range(lo, hi + 1)
+
+    def frame(labels, member):
+        rows = []
+        for p in win:
+            for lab in labels:
+                ka = sum(member(s[p - 1], lab) for s in seqs_a)
+                kb = sum(member(s[p - 1], lab) for s in seqs_b)
+                _, pv = _st.fisher_exact([[ka, na - ka], [kb, nb - kb]])
+                fa, fb = (ka + 0.5) / (na + 1), (kb + 0.5) / (nb + 1)
+                rows.append({'position': p, 'group': lab,
+                             'n_substrates': ka, 'pct_substrates': round(100 * ka / na, 2),
+                             'n_non_substrates': kb, 'pct_non_substrates': round(100 * kb / nb, 2),
+                             'log2_enrichment': round(np.log2(fa / fb), 3),
+                             'p_value': pv})
+        df = pd.DataFrame(rows)
+        df['q_value_BH'] = multipletests(df.p_value, method='fdr_bh')[1]
+        df['significant_q<0.05'] = np.where(df.q_value_BH < 0.05, 'yes', 'no')
+        return df
+
+    per_res = frame(AAS, lambda a, lab: a == lab)
+    per_cls = frame(CLASS_ORDER, lambda a, lab: AA_CLASS.get(a) == lab)
+
+    rows = []
+    for s, grp in [(x, 'UBR3 substrate') for x in seqs_a] + \
+                  [(x, 'not a substrate') for x in seqs_b]:
+        w = s[lo - 1:hi]
+        r = {'peptide_24mer': s, 'group': grp,
+             'net_charge': sum(CHARGE[a] for a in w),
+             'GRAVY': round(float(np.mean([KD[a] for a in w])), 3)}
+        for c in CLASS_ORDER:
+            r[f'n_{c}'] = sum(AA_CLASS[a] == c for a in w)
+        rows.append(r)
+    return per_res, per_cls, pd.DataFrame(rows)
+
+
 def enrichment_test(hit_seqs, lib_seqs, groups=None, positions=24):
     """Per position x residue (or x class) Fisher exact, BH-FDR over all cells.
 

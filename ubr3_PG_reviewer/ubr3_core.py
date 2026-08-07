@@ -5,6 +5,7 @@ Sheet (A) is the full N24mer GPS library; sheet (B) is the author-defined list o
 candidate UBR3 substrates.  Everything downstream (workbook + figures) imports
 `load()` from here so the two deliverables can never drift apart.
 """
+import datetime
 import json
 import os
 
@@ -23,7 +24,10 @@ D1, D2 = 'dPSI_rep1', 'dPSI_rep2'
 AAS = list('ACDEFGHIKLMNPQRSTVWY')
 
 # PSI cut separating unstable from stable peptides at baseline.
-PSI_CUT = 3.0
+# Data-driven: the control-PSI density has three robust modes (~1.52, ~2.25, ~3.49);
+# the antimode between the unstable modes and the stable one sits at 2.59-2.63
+# across kernel bandwidths 0.20-0.35, so 2.6 is that boundary rounded.
+PSI_CUT = 2.6
 
 # MetAP removes the initiator Met when residue 2 has a small side chain
 # (Sherman's rule: radius of gyration <= 1.29 A).
@@ -69,6 +73,40 @@ def _tidy(df):
         n = n.replace('Nucleotide Sequence', 'nucleotide_seq')
         ren[c] = n.strip()
     return df.rename(columns=ren)
+
+
+def fix_gene_symbols(df):
+    """Repair gene symbols that Excel turned into dates in the source file.
+
+    MARCH/SEPT family symbols (MARCH5, SEPT2, ...) are auto-converted to dates by
+    Excel on entry. 36 rows of sheet (A) are affected. The month encodes the family
+    and the day the member, so the symbol is recoverable; where Ensembl resolves the
+    transcript we use its current symbol, otherwise we fall back to that rule.
+    Column `gene_symbol_repaired` flags every row we touched.
+    """
+    fixmap = {}
+    path = os.path.join(DATA, 'gene_symbol_fix.json')
+    if os.path.exists(path):
+        fixmap = {k: v for k, v in json.load(open(path, encoding='utf-8')).items() if v}
+
+    def is_date(v):
+        return isinstance(v, (datetime.datetime, datetime.date, pd.Timestamp))
+
+    repaired, out = [], []
+    for enst, g in zip(df.ENST_ID.astype(str), df.Gene_ID):
+        if not is_date(g):
+            out.append(g)
+            repaired.append('no')
+            continue
+        sym = fixmap.get(enst)
+        if not sym:                       # retired transcript - use the date rule
+            fam = {3: 'MARCHF', 9: 'SEPTIN'}.get(g.month)
+            sym = f'{fam}{g.day}' if fam else str(g.date())
+        out.append(sym)
+        repaired.append('yes')
+    df['Gene_ID'] = out
+    df['gene_symbol_repaired'] = repaired
+    return df
 
 
 def annotate(df):
@@ -130,6 +168,7 @@ def load():
     lib.columns = _flatten(lib.columns)
     hit.columns = list(lib.columns)
     lib, hit = _tidy(lib), _tidy(hit)
+    lib, hit = fix_gene_symbols(lib), fix_gene_symbols(hit)
     lib, hit = annotate(lib), annotate(hit)
 
     hitset = set(hit.peptide_24mer)

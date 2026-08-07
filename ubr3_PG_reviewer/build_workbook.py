@@ -4,7 +4,7 @@ import os
 
 import numpy as np
 import pandas as pd
-from openpyxl.formatting.rule import CellIsRule, ColorScaleRule
+from openpyxl.formatting.rule import ColorScaleRule, FormulaRule
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 import statsmodels.api as sm
@@ -53,6 +53,7 @@ def fisher_table(hit_counts, bg_counts, labels, label_name):
 
 def readme_sheet(stats_d):
     s = stats_d
+    CUT = U.PSI_CUT
     rows = [
         ('SOURCE', 'Supplemental Data 1.xlsx - sheet (A) N24mer library, sheet (B) UBR3 substrates'),
         ('ASSAY', 'GPS (Global Protein Stability): each N-terminal 24-mer is fused to a fluorescent '
@@ -80,6 +81,23 @@ def readme_sheet(stats_d):
         ('non-P/G', 'pos2 is neither Pro nor Gly.'),
         ('CAVEAT', 'Met excision at Xaa-Pro is less efficient than at Xaa-Gly; the predicted N-terminus for '
                    'Pro-starting peptides should be read as a prediction, not a measurement.'),
+        ('', ''),
+        ('DATA REPAIR: GENE SYMBOLS', '36 gene symbols in sheet (A) of the source file are stored as DATES '
+                                      '(e.g. 2005-03-01), the well-known Excel corruption of MARCH and SEPT '
+                                      'family symbols - MARCH5 becomes 1-Mar, SEPT2 becomes 1-Sep. All 36 '
+                                      'have been restored here from their Ensembl transcript IDs, which are '
+                                      'not corrupted. Column "gene_symbol_repaired" = yes flags every '
+                                      'repaired row. NONE of the 54 substrates are affected, so no result in '
+                                      'this workbook changes - but the source supplementary file should be '
+                                      'corrected before publication.'),
+        ('', ''),
+        ('HOW SUBSTRATES ARE MARKED', 'On every peptide listing that mixes substrates with non-substrates '
+                                      '(sheets 02 and 03) the ENTIRE ROW of a UBR3 substrate is shaded '
+                                      'orange and bolded, so the handful of substrates are visible while '
+                                      'scrolling thousands of rows. The column "UBR3_substrate" also reads '
+                                      'yes/no, and every sheet is auto-filtered - filter it to yes to '
+                                      'isolate them. Sheet 01 is substrates only, so nothing is highlighted '
+                                      'there.'),
         ('', ''),
         ('HEADLINE NUMBERS (sheet 05)', ''),
         ('Library size', f'{s["n_lib"]:,} N24mer peptides, all 24 aa long, all starting with Met.'),
@@ -141,24 +159,34 @@ def readme_sheet(stats_d):
                                   'and stratifying on dPSI is not.'),
         ('', ''),
         ('BASELINE STABILITY (PSI) ANALYSIS', ''),
-        ('Why split at PSI = 3', 'PSI runs ~1-4 (read-weighted mean FACS bin). PSI = 3 splits the library '
-                                 f'into {s["n_lo"]:,} unstable ({s["pct_lo"]:.1f}%) and {s["n_hi"]:,} '
-                                 'already-stable peptides, and is the point above which stabilisation '
-                                 'saturates.'),
+        (f'Why split at PSI = {CUT:g}', 'PSI runs ~1-4 (read-weighted mean FACS bin). The control-PSI '
+                                        'density has three robust modes (~1.52, ~2.25, ~3.49); the antimode '
+                                        'between the unstable modes and the stable one sits at 2.59-2.63 '
+                                        f'across kernel bandwidths, so the cut is placed at {CUT:g}. It '
+                                        f'splits the library into {s["n_lo"]:,} unstable ({s["pct_lo"]:.1f}%) '
+                                        f'and {s["n_hi"]:,} already-stable peptides. Sheet 18 shows nothing '
+                                        'depends on this choice.'),
         ('Substrates start unstable', f'{s["n_hit_lo"]} of the {s["n_hits"]} substrates ({s["pct_hit_lo"]:.1f}%) '
-                                      'have control PSI < 3 - exactly what a degron substrate should look '
-                                      'like. Substrate rate is '
-                                      f'{s["rate_lo"]:.3f}% below the line vs {s["rate_hi"]:.3f}% above it.'),
-        ('Substrates cross the line', f'{s["n_cross"]} of the {s["n_hit_lo"]} substrates starting below PSI 3 '
-                                      f'({s["pct_cross"]:.1f}%) rise above it when UBR3 is lost, against a '
-                                      f'library background of {s["pct_cross_lib"]:.1f}%.'),
-        ('Ceiling effect', 'Mean dPSI peaks in the 2.5-3.0 bin and turns negative above 3.5: peptides that '
-                           'are already maximally stable cannot be stabilised further. Sheet 17.'),
-        ('The motif is not a stability artefact', '[P/G]-[E/D] is carried by 1.05% of unstable and 1.14% of '
-                                                  'stable peptides - i.e. it is NOT over-represented among '
-                                                  'intrinsically unstable peptides. Within the unstable '
-                                                  'stratum alone it still gives 13.1% vs 0.33% '
-                                                  '(Fisher OR 45.9, p = 3e-17). Sheet 15.'),
+                                      f'have control PSI < {CUT:g}. Substrate rate is {s["rate_lo"]:.3f}% below '
+                                      f'the line vs {s["rate_hi"]:.3f}% above it '
+                                      f'({s["rate_lo"] / s["rate_hi"]:.1f}-fold). NOTE: this particular '
+                                      'contrast is cutoff-sensitive (it is ~16-fold at PSI 3) because the '
+                                      'assay ceiling suppresses detectable stabilisation at high PSI; the '
+                                      'motif result in sheet 15 is not.'),
+        ('Substrates cross the line', f'{s["n_cross"]} of the {s["n_hit_lo"]} substrates starting below PSI '
+                                      f'{CUT:g} ({s["pct_cross"]:.1f}%) rise above it when UBR3 is lost, '
+                                      f'against a library background of {s["pct_cross_lib"]:.1f}%.'),
+        ('Ceiling effect', 'Mean dPSI peaks in the 2.5-3.0 bin (+0.150) and turns negative above 3.5 '
+                           '(-0.067): peptides that are already maximally stable cannot be stabilised '
+                           'further. Sheet 17.'),
+        ('The motif is not a stability artefact', f'[P/G]-[E/D] is carried by {s["pged_lo"]:.2f}% of unstable '
+                                                  f'and {s["pged_hi"]:.2f}% of stable peptides - i.e. it is '
+                                                  'NOT over-represented among intrinsically unstable '
+                                                  f'peptides. Fisher OR for [P/G]-[E/D] vs non-P/G is '
+                                                  f'{s["or_lo"]:.0f} within the unstable stratum and '
+                                                  f'{s["or_hi"]:.0f} within the stable one - essentially '
+                                                  'identical, so there is no interaction with baseline '
+                                                  'stability. Sheet 15.'),
         ('', ''),
         ('AMINO ACID CLASSES', 'Acidic D,E | Basic K,R,H | Polar S,T,N,Q,C | Hydrophobic A,V,L,I,M | '
                                'Aromatic F,W,Y | Special G,P'),
@@ -194,15 +222,21 @@ def main():
         'rate_hi': 100 * lib[~_lo].is_UBR3_substrate.mean(),
         'n_cross': int((hit.crosses_PSI3_up == 'yes').sum()),
         'pct_cross': 100 * (hit.crosses_PSI3_up == 'yes').sum() / max(int(_hlo.sum()), 1),
-        'pct_cross_lib': 100 * (lib[_lo].crosses_PSI3_up == 'yes').mean()})
+        'pct_cross_lib': 100 * (lib[_lo].crosses_PSI3_up == 'yes').mean(),
+        'pged_lo': 100 * lib[_lo].is_PG_ED.mean(), 'pged_hi': 100 * lib[~_lo].is_PG_ED.mean()})
+    for key, mask in [('or_lo', _lo), ('or_hi', ~_lo)]:
+        _s = lib[mask]
+        _a, _b = _s[_s.motif_class == '[P/G]-[E/D]'], _s[_s.motif_class == 'non-P/G']
+        S[key] = stats.fisher_exact([[int(_a.is_UBR3_substrate.sum()), int((~_a.is_UBR3_substrate).sum())],
+                                     [int(_b.is_UBR3_substrate.sum()), int((~_b.is_UBR3_substrate).sum())]])[0]
 
     # ---------- sheet 01 : annotated substrates ----------
     s01 = hit[ID_COLS + NT_COLS + ANN_COLS + QUANT + PROP + ['peptide_24mer']].copy()
     s01 = s01.loc[:, ~s01.columns.duplicated()]
 
     # ---------- sheet 02 : the reviewer's [P/G]-[E/D] table ----------
-    key = ['Gene_ID', 'ENST_ID', 'peptide_24mer', 'pos2', 'pos3', 'Nterm_motif',
-           'Nterm_after_MetAP', 'Met_excised_pred', 'UBR3_substrate'] + QUANT + PROP
+    key = ['Gene_ID', 'gene_symbol_repaired', 'ENST_ID', 'peptide_24mer', 'pos2', 'pos3',
+           'Nterm_motif', 'Nterm_after_MetAP', 'Met_excised_pred', 'UBR3_substrate'] + QUANT + PROP
     s02 = pged[key].copy().sort_values('mean_dPSI', ascending=False)
     ann_map = hit.set_index('Gene_ID')[['protein_name', 'function']].to_dict('index')
     s02['protein_name'] = [ann_map.get(g, {}).get('protein_name', '') for g in s02.Gene_ID]
@@ -442,7 +476,13 @@ def main():
 def style(wb, sheets):
     hdr_fill = PatternFill('solid', fgColor='1F4E78')
     hdr_font = Font(bold=True, color='FFFFFF', size=10)
-    yes_fill = PatternFill('solid', fgColor='C6EFCE')
+    # Conditional-format fills live in a <dxf>, and Excel reads bgColor there -
+    # not fgColor as it does for ordinary cell styles. Set both so the fill shows.
+    def cf_fill(rgb):
+        return PatternFill(fill_type='solid', start_color=rgb, end_color=rgb)
+
+    row_fill = cf_fill('FFF8CBAD')                        # tint of the figure orange
+    row_font = Font(bold=True, color='FF7A2E0E')
     for name, ws in ((s.title, s) for s in wb.worksheets):
         df = sheets[name]
         ws.freeze_panes = 'B2' if name != '00_README' else 'A2'
@@ -458,13 +498,16 @@ def style(wb, sheets):
                     if ws.cell(r, c).value is not None]
             head = len(str(ws.cell(1, c).value or ''))
             ws.column_dimensions[col].width = min(max((max(vals) if vals else 8), min(head, 18)) + 2, 46)
-        # highlight the substrate flag and colour-scale the dPSI columns
+        # mark substrates: the flag cell in green, and - on the long library
+        # listings - the whole row, so the handful of substrates are findable
+        # among thousands of rows without filtering
         cols = list(df.columns)
-        for target in ('UBR3_substrate',):
-            if target in cols:
-                L = get_column_letter(cols.index(target) + 1)
-                ws.conditional_formatting.add(f'{L}2:{L}{ws.max_row}',
-                                              CellIsRule(operator='equal', formula=['"yes"'], fill=yes_fill))
+        if 'UBR3_substrate' in cols:
+            L = get_column_letter(cols.index('UBR3_substrate') + 1)
+            last = get_column_letter(ws.max_column)
+            ws.conditional_formatting.add(
+                f'A2:{last}{ws.max_row}',
+                FormulaRule(formula=[f'${L}2="yes"'], fill=row_fill, font=row_font, stopIfTrue=False))
         for target in ('mean_dPSI', 'log2_fold', 'fold_enrichment'):
             if target in cols:
                 L = get_column_letter(cols.index(target) + 1)

@@ -159,6 +159,8 @@ def readme_sheet(stats_d):
         ('22_downstream_class', 'Same comparison at the level of the six chemical classes (126 cells). One survives FDR: Basic at position 5 (50% of substrates vs 9.8% of non-substrates, q = 0.026).'),
         ('23_downstream_composition', 'The better-powered aggregate view: per-peptide counts of each class summed over positions 4-24, plus net charge and GRAVY, compared by Mann-Whitney. RESULT: substrates carry more basic residues (4.19 vs 2.91, p = 0.014) and a markedly more positive net charge (+2.16 vs -0.22, p = 0.0021). Nothing else differs.'),
         ('24_PG_substrate_class_composition', 'Chemical-class composition at each of the 24 positions for three groups side by side: the 26 substrates with Pro/Gly at position 2, the 2,100 P/G library peptides (the motif-matched background) and the whole library. Also gives log2 enrichment and FDR q of the P/G substrates against the P/G background - only Acidic at position 3 survives.'),
+        ('25_PGsub_vs_PGnonsub_class', 'The cleanest motif-controlled comparison: the 26 P/G peptides that ARE substrates against the 2,074 P/G peptides that are NOT. Class composition per position for both, with log2 enrichment and FDR q. Only Acidic at position 3 survives.'),
+        ('26_PGsub_vs_PGnonsub_residue', 'The same comparison per individual residue, all 480 position x residue cells sorted by q. Three survive: Asp at position 3 (q = 5e-5), Glu at position 3 (q = 0.034) and Arg at position 7 (q = 0.034).'),
         ('18_PSI_cutoff_robustness', 'Shows the PSI = 3 cut is not doing the work: the motif odds ratio '
                                      'across cutoffs 2.0-3.4, a logistic regression using control PSI as a '
                                      'CONTINUOUS covariate (no cutoff at all), the peaks and valleys of the '
@@ -536,6 +538,28 @@ def main():
         s24[c + '_log2_vs_PGlibrary'] = lrp[c].round(3).values
         s24[c + '_q_vs_PGlibrary'] = qvp[c].round(4).values
 
+
+    # ---------- sheet 25 : P/G substrates vs P/G non-substrates --------------
+    pgA = list(lib[lib.is_PG & lib.is_UBR3_substrate].peptide_24mer)
+    pgB = list(lib[lib.is_PG & ~lib.is_UBR3_substrate].peptide_24mer)
+    cA, cB = U.class_matrix(pgA), U.class_matrix(pgB)
+    lrc2, qc2, _ = U.enrichment_test(pgA, pgB, groups=U.CLASS_MEMBERS)
+    lrr2, qr2, _ = U.enrichment_test(pgA, pgB)
+    s25 = pd.DataFrame({'position': cA.index})
+    for c in U.CLASS_ORDER:
+        s25[c + '_substrates_pct'] = (100 * cA[c]).round(2).values
+        s25[c + '_nonsubstrates_pct'] = (100 * cB[c]).round(2).values
+        s25[c + '_log2'] = lrc2[c].round(3).values
+        s25[c + '_q'] = qc2[c].round(4).values
+    rows = []
+    for pos in qr2.index:
+        for a in qr2.columns:
+            rows.append({'position': pos, 'residue': a, 'chemical_class': U.AA_CLASS[a],
+                         'log2_enrichment': round(lrr2.loc[pos, a], 3),
+                         'q_value_BH': float(f'{qr2.loc[pos, a]:.3g}'),
+                         'significant_q<0.05': 'yes' if qr2.loc[pos, a] < 0.05 else 'no'})
+    s26 = pd.DataFrame(rows).sort_values('q_value_BH')
+
     sheets = {
         '00_README': readme_sheet(S),
         '01_UBR3_substrates': s01,
@@ -562,6 +586,8 @@ def main():
         '22_downstream_class': s22,
         '23_downstream_composition': s23,
         '24_PG_substrate_class_composition': s24,
+        '25_PGsub_vs_PGnonsub_class': s25,
+        '26_PGsub_vs_PGnonsub_residue': s26,
     }
 
     with pd.ExcelWriter(OUT, engine='openpyxl') as xw:

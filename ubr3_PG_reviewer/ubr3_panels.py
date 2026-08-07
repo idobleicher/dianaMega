@@ -915,6 +915,115 @@ def p11d(ax, C):
     panel_tag(ax, 'D', C, xoff=-70)
 
 
+
+# ============================================================ FIGURE 12
+# The same composition view, but splitting the P/G peptides into substrates and
+# non-substrates - two mutually exclusive groups, unlike figure 11 where the
+# background contained the substrates.
+def _pgsplit(C):
+    if 'pgsplit' not in C:
+        pg = C['lib'][C['lib'].is_PG]
+        A = list(pg[pg.is_UBR3_substrate].peptide_24mer)
+        B = list(pg[~pg.is_UBR3_substrate].peptide_24mer)
+        lrc, qc, _ = U.enrichment_test(A, B, groups=U.CLASS_MEMBERS)
+        lrr, qr, _ = U.enrichment_test(A, B)
+        C['pgsplit'] = (A, B, U.class_matrix(A), U.class_matrix(B), lrc, qc, lrr, qr)
+    return C['pgsplit']
+
+
+def p12a(ax, C):
+    A, _, cA, _, _, _, _, _ = _pgsplit(C)
+    _stack4(ax, C, cA, f'{len(A)} P/G peptides that ARE UBR3 substrates', 'A',
+            'Pro/Gly at position 2 by definition; position 3 is 62% Acidic', legend=True)
+
+
+def p12b(ax, C):
+    _, B, _, cB, _, _, _, _ = _pgsplit(C)
+    _stack4(ax, C, cB, f'{len(B):,} P/G peptides that are NOT UBR3 substrates', 'B',
+            'The same position-2 constraint, but no UBR3 dependence - position 3 is only 8% Acidic',
+            legend=C.get('standalone', False))
+
+
+def _heat12(ax, C, lr, qv, cols, ylab, tag, ttl, sub, colorbar_label):
+    m, q = lr[cols].T.values, qv[cols].T.values
+    shown = np.where(q < 0.05, m, np.nan)
+    v = np.nanmax(np.abs(shown)) if np.isfinite(shown).any() else 1.0
+    ax.imshow(np.zeros_like(m), cmap=mpl.colors.ListedColormap(['#f2f1ec']), aspect='auto')
+    im = ax.imshow(shown, cmap=DIVERGE, norm=TwoSlopeNorm(0, -v, v), aspect='auto')
+    ax.set_yticks(range(len(cols)))
+    ax.set_yticklabels(cols, fontsize=8.6, fontweight='bold')
+    for t, c in zip(ax.get_yticklabels(), cols):
+        t.set_color(CLASS_COLOR[c] if c in CLASS_COLOR else CLASS_COLOR[U.AA_CLASS[c]])
+    ax.set_xticks(range(24))
+    ax.set_xticklabels(range(1, 25), fontsize=7.6)
+    ax.set_xlabel('Position in the 24-mer')
+    ax.set_ylabel(ylab)
+    for i in range(m.shape[0]):
+        for k in range(m.shape[1]):
+            if q[i, k] < 0.05:
+                ax.text(k, i, f'{m[i, k]:+.1f}', ha='center', va='center', fontsize=6.4,
+                        color='white' if abs(m[i, k]) > v * 0.55 else INK, fontweight='bold')
+    cb = ax.get_figure().colorbar(im, ax=ax, fraction=0.046, pad=0.02)
+    cb.set_label(colorbar_label, fontsize=8.5)
+    cb.ax.tick_params(labelsize=7.5)
+    title(ax, ttl, sub)
+    panel_tag(ax, tag, C, xoff=-70)
+
+
+def p12c(ax, C):
+    _, _, _, _, lrc, qc, _, _ = _pgsplit(C)
+    n = int((qc.values < 0.05).sum())
+    _heat12(ax, C, lrc, qc, U.CLASS_ORDER, 'Chemical class', 'C',
+            'Class enrichment, substrates vs non-substrates (FDR-masked)',
+            f'Beige = not significant. {n} of {qc.size} cells survive q < 0.05: Acidic at '
+            'position 3 only.',
+            'log$_2$ (substrate / non-substrate)')
+
+
+def p12d(ax, C):
+    _, _, _, _, _, _, lrr, qr = _pgsplit(C)
+    n = int((qr.values < 0.05).sum())
+    _heat12(ax, C, lrr, qr, AA_BY_CLASS, 'Amino acid (grouped by class)', 'D',
+            'Residue enrichment, substrates vs non-substrates (FDR-masked)',
+            f'{n} of {qr.size} cells survive q < 0.05: Asp and Glu at position 3, and Arg at '
+            'position 7.',
+            'log$_2$ (substrate / non-substrate)')
+
+
+def p12e(ax, C):
+    """Aggregate composition over positions 4-24 for the P/G split."""
+    from scipy import stats as st
+    A, B, *_ = _pgsplit(C)
+    _, _, pep = U.downstream_compare(A, B)
+    S = pep[pep.group == 'UBR3 substrate']
+    N = pep[pep.group == 'not a substrate']
+    x = np.arange(len(U.CLASS_ORDER))
+    w = 0.36
+    for j, (df, lab, col) in enumerate([(S, f'substrates (n={len(A)})', ORANGE),
+                                        (N, f'non-substrates (n={len(B):,})', MUTED)]):
+        vals = [df[f'n_{c}'].mean() for c in U.CLASS_ORDER]
+        errs = [df[f'n_{c}'].sem() for c in U.CLASS_ORDER]
+        ax.bar(x + (j - 0.5) * w, vals, yerr=errs, width=w * 0.92, color=col, zorder=3,
+               edgecolor=SURFACE, linewidth=1.1, label=lab, error_kw=dict(ecolor=INK2, lw=1.1))
+    for i, c in enumerate(U.CLASS_ORDER):
+        p = st.mannwhitneyu(S[f'n_{c}'], N[f'n_{c}'])[1]
+        hi = max(S[f'n_{c}'].mean(), N[f'n_{c}'].mean())
+        ax.text(i, hi + 0.6, f'p = {p:.3f}' if p >= 0.001 else f'p = {p:.0e}', ha='center',
+                fontsize=7.8, fontweight='bold' if p < 0.05 else 'normal',
+                color=INK if p < 0.05 else MUTED)
+    pc = st.mannwhitneyu(S.net_charge, N.net_charge)[1]
+    ax.set_xticks(x)
+    ax.set_xticklabels(U.CLASS_ORDER, rotation=20, ha='right', fontsize=8.8)
+    ax.set_ylabel('Residues per peptide, positions 4-24')
+    ax.set_ylim(0, 9.4)
+    ax.grid(axis='y', zorder=0)
+    ax.legend(loc='upper right')
+    title(ax, 'Downstream aggregate: only basic residues differ',
+          f'Mean per peptide over positions 4-24. Net charge also separates them: '
+          f'{S.net_charge.mean():+.2f} vs {N.net_charge.mean():+.2f}, p = {pc:.4f}.')
+    panel_tag(ax, 'E', C)
+
+
 # ---------------------------------------------------------------- registry
 PANELS = {
     '2A': p2a, '2B': p2b, '2C': p2c, '2D': p2d,
@@ -925,6 +1034,7 @@ PANELS = {
     '9A': p9a, '9B': p9b, '9C': p9c, '9D': p9d,
     '10A': p10a, '10B': p10b, '10C': p10c, '10D': p10d,
     '11A': p11a, '11B': p11b, '11C': p11c, '11D': p11d,
+    '12A': p12a, '12B': p12b, '12C': p12c, '12D': p12d, '12E': p12e,
 }
 
 # aspect ratio hint per panel for standalone rendering (width, height) in inches
@@ -937,4 +1047,6 @@ PANEL_SIZE = {
     '9A': (9.0, 6.8), '9B': (9.4, 6.4), '9C': (8.8, 7.2), '9D': (9.8, 5.8),
     '10A': (12.4, 5.2), '10B': (9.4, 6.6), '10C': (9.6, 6.4), '10D': (8.6, 6.8),
     '11A': (14.0, 5.4), '11B': (14.0, 5.0), '11C': (14.0, 5.0), '11D': (12.6, 5.2),
+    '12A': (14.0, 5.4), '12B': (14.0, 5.0), '12C': (12.6, 4.6), '12D': (12.6, 8.4),
+    '12E': (9.8, 6.2),
 }

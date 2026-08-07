@@ -3,7 +3,7 @@
 
 Panels live in ubr3_panels.py and are shared with make_panels.py (the slide deck),
 so the two outputs can never drift apart.
-Renders 8 figures as 300-dpi PNG + vector PDF into figures/.
+Renders 9 figures as 300-dpi PNG + vector PDF into figures/.
 Light/print mode only - these are manuscript figures, not screen artifacts.
 """
 import os
@@ -148,6 +148,20 @@ def figure11(C):
     save(fig, 'Figure11_PG_substrates_vs_library')
 
 
+def figure12(C):
+    """P/G substrates vs P/G non-substrates - two mutually exclusive groups."""
+    fig = plt.figure(figsize=(14.8, 19.0))
+    gs = fig.add_gridspec(5, 1, hspace=0.52, height_ratios=[0.85, 0.85, 0.55, 1.5, 0.9],
+                          left=0.085, right=0.955, top=0.915, bottom=0.035)
+    for k, row in zip(['12A', '12B', '12C', '12D', '12E'], range(5)):
+        P.PANELS[k](fig.add_subplot(gs[row]), C)
+    header(fig, 0.085, 0.977, 0.962,
+           'Pro/Gly substrates versus Pro/Gly non-substrates',
+           'Both groups carry Pro or Gly at position 2, so that selection cannot drive any '
+           'difference. 26 substrates against the 2,074 P/G peptides that are not substrates.')
+    save(fig, 'Figure12_PG_substrates_vs_nonsubstrates')
+
+
 def main():
     os.makedirs(U.FIGS, exist_ok=True)
     lib, hit = U.load()
@@ -155,7 +169,7 @@ def main():
     print('  running 480 position x residue Fisher tests ...')
     sig = U.enrichment_test(list(hit.peptide_24mer), list(lib.peptide_24mer))
     C = P.context(lib, hit, sig, tags=True, standalone=False)
-    for fn in (figure2, figure3, figure4, figure5, figure6, figure9, figure10, figure11):
+    for fn in (figure2, figure3, figure4, figure5, figure6, figure9, figure10, figure11, figure12):
         fn(C)
     print('done ->', U.FIGS)
 

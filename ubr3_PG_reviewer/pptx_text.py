@@ -74,6 +74,10 @@ FIGURES = {
            'The stacked-composition view applied to the 26 substrates carrying Pro or Gly at '
            'position 2. Panel B supplies the P/G-matched background and C the whole library, so '
            'the position-2 selection can be separated from anything the substrates do differently.'),
+    '12': ('Pro/Gly substrates versus Pro/Gly non-substrates',
+           'The cleanest motif-controlled comparison in the package. Both groups carry Pro or '
+           'Gly at position 2, and unlike the 11 series the two groups are mutually exclusive - the '
+           'background does not contain the substrates. 26 against 2,074.'),
     '9': ('Motif-bearing peptides classified by stability and substrate status',
           'Crosses the [P/G]-[E/D] motif with the baseline stability call to give a clean four-cell '
           'classification, and annotates the 16 substrates within it. Answers directly: how many '
@@ -228,6 +232,90 @@ PANELS = {
          'This tests composition one position at a time. It cannot see a property distributed '
          'across many positions - and there is one: the downstream net-charge difference in the 10 '
          'series, which this panel is blind to by construction.'),
+    ]),
+
+    # ---------------------------------------------------------------- FIG 12
+    '12A': ('Class composition per position - the 26 P/G substrates', [
+        ('What is plotted',
+         'For each of the 24 positions, a 100% stacked bar giving the fraction of the 26 P/G UBR3 '
+         'substrates whose residue at that position falls in each chemical class.'),
+        ('What it shows',
+         'Position 1 all Hydrophobic (initiator Met), position 2 all Special (Pro or Gly, the '
+         'selection criterion), and position 3 is 62% Acidic. From position 4 the bars become an '
+         'ordinary mixture.'),
+        ('Compare with panel B',
+         'Panel B is the identical calculation on the 2,074 P/G peptides that are NOT substrates. '
+         'Because both groups are constrained at position 2, any difference between the two panels '
+         'is about UBR3 dependence, not about Pro/Gly.'),
+        ('Watch out for',
+         'One substrate is 3.8% of a bar. Treat position-by-position wobble after position 3 as '
+         'noise; panels C and D apply the tests.'),
+    ]),
+    '12B': ('Class composition per position - the 2,074 P/G non-substrates', [
+        ('What is plotted',
+         'Every library peptide with Pro or Gly at position 2 that is NOT a UBR3 substrate - the '
+         'matched comparison group for panel A.'),
+        ('Why this differs from the 11 series',
+         'There the background was all 2,100 P/G library peptides, which INCLUDES the 26 '
+         'substrates. Here the two groups are mutually exclusive, which is the cleaner contrast and '
+         'slightly sharpens every estimate.'),
+        ('What it shows',
+         'Positions 1 and 2 are constrained exactly as in panel A. Position 3 is only 8% Acidic - '
+         'against 62% in the substrates. Everything from position 4 onward is flat and typical.'),
+        ('Watch out for',
+         'With n = 2,074 this panel is precisely estimated, so essentially all of the visible '
+         'difference between A and B comes from sampling error in A, not here.'),
+    ]),
+    '12C': ('Class enrichment, substrates vs non-substrates (FDR-masked)', [
+        ('What is plotted',
+         'log2(substrate / non-substrate) for each chemical class at each position, with cells '
+         'failing q < 0.05 left beige. Fisher exact per cell, Benjamini-Hochberg across all 144.'),
+        ('What it shows',
+         'One cell survives out of 144: Acidic at position 3, log2 = +2.9, q = 1.5 x 10^-9. Not one '
+         'of the other 143 cells reaches significance.'),
+        ('The claim this supports',
+         'Among peptides that all carry Pro/Gly at position 2, the acidic residue at position 3 is '
+         'the only chemical-class feature that separates UBR3 substrates from non-substrates. It is '
+         'the sharpest single statement of the motif result.'),
+        ('Watch out for',
+         'This tests one position at a time and is blind to properties spread across many '
+         'positions. Panel E supplies that view and does find one.'),
+    ]),
+    '12D': ('Residue enrichment, substrates vs non-substrates (FDR-masked)', [
+        ('What is plotted',
+         'The same comparison at the level of individual amino acids: all 480 position x residue '
+         'cells, FDR-corrected across the whole matrix, non-significant cells left beige. Rows are '
+         'grouped by chemical class.'),
+        ('What it shows',
+         'Three cells survive. Asp at position 3 (log2 +3.5, q = 5 x 10^-5), Glu at position 3 '
+         '(+2.6, q = 0.034), and Arg at position 7 (+2.1, q = 0.034).'),
+        ('The Arg-7 signal, finally on solid ground',
+         'Arg at position 7 appeared earlier as a borderline hit against the whole library and then '
+         'failed FDR inside the 179 motif-bearing peptides. In this better-powered, motif-matched '
+         'comparison it survives correction. It is still one cell out of 480 and needs '
+         'experimental follow-up, but it is no longer dismissible as noise.'),
+        ('Watch out for',
+         'Asp and Glu at position 3 are partly the definition of the [P/G]-[E/D] motif, so their '
+         'appearance here confirms the motif rather than adding to it. Arg-7 is the genuinely new '
+         'observation.'),
+    ]),
+    '12E': ('Downstream aggregate: only basic residues differ', [
+        ('What is plotted',
+         'Mean number of residues of each chemical class per peptide, summed over positions 4-24 '
+         'only. Orange = the 26 substrates, grey = the 2,074 non-substrates, error bars are SEM, '
+         'p from Mann-Whitney on per-peptide counts.'),
+        ('Why aggregate',
+         'A property spread thinly across 21 positions never concentrates enough in any single cell '
+         'to survive 480 tests - panel D is blind to it by construction. Summing first converts 21 '
+         'underpowered tests into one well-powered one.'),
+        ('What it shows',
+         'Basic residues: 3.92 per substrate versus 2.80 per non-substrate, p = 0.002. Net charge '
+         'over the same window: +1.73 versus +0.36, p = 0.0075. Hydrophobic trends down (5.85 vs '
+         '6.92, p = 0.072); Acidic, Polar, Aromatic and Special are flat.'),
+        ('How to read it',
+         'Two separable features. A hard positional requirement at position 3 (panels C and D), and '
+         'a soft distributed preference for positive charge downstream. The second is a hypothesis '
+         'worth testing by charge-swap mutants, not an established requirement.'),
     ]),
 
     # ---------------------------------------------------------------- FIG 2

@@ -70,6 +70,10 @@ FIGURES = {
            'substrates with the whole library, so positions 2-3 dominate. Here both groups carry '
            'M-[P/G]-[E/D], making positions 1-3 identical by construction, so anything that '
            'separates them must lie downstream. 16 substrates vs 163 non-substrates.'),
+    '11': ('Class composition of the Pro/Gly substrates against the library',
+           'The stacked-composition view applied to the 26 substrates carrying Pro or Gly at '
+           'position 2. Panel B supplies the P/G-matched background and C the whole library, so '
+           'the position-2 selection can be separated from anything the substrates do differently.'),
     '9': ('Motif-bearing peptides classified by stability and substrate status',
           'Crosses the [P/G]-[E/D] motif with the baseline stability call to give a clean four-cell '
           'classification, and annotates the 16 substrates within it. Answers directly: how many '
@@ -157,6 +161,73 @@ PANELS = {
          'peptides, the distributions overlap heavily, and it is an observational correlation in a '
          'reporter assay. It should be presented as a hypothesis worth testing, not an established '
          'requirement.'),
+    ]),
+
+    # ---------------------------------------------------------------- FIG 11
+    '11A': ('Class composition per position - the 26 Pro/Gly substrates', [
+        ('What is plotted',
+         'For each of the 24 positions, a 100% stacked bar giving the fraction of the 26 P/G '
+         'substrates whose residue at that position belongs to each chemical class.'),
+        ('What it shows',
+         'Position 1 is entirely Hydrophobic (the invariant initiator Met) and position 2 entirely '
+         'Special, because Pro/Gly at position 2 is the selection criterion - 14 Gly and 12 Pro. '
+         'Position 3 is 42% Acidic. From position 4 the bars become an ordinary mixture.'),
+        ('The right way to read it',
+         'Positions 1 and 2 are constrained by definition and carry no information. The only place '
+         'these substrates can reveal something is position 3 onward - compare against panel B, '
+         'which has the identical position-2 constraint.'),
+        ('Watch out for',
+         'With 26 peptides one substrate is 3.8% of a bar, so bar-to-bar wobble after position 3 is '
+         'sampling noise. Panel D applies the significance test.'),
+    ]),
+    '11B': ('Class composition per position - the 2,100 P/G library peptides', [
+        ('What is plotted',
+         'The same calculation over every library peptide carrying Pro or Gly at position 2, '
+         'regardless of UBR3 dependence. This is the motif-matched background.'),
+        ('Why this is the right background',
+         'Comparing P/G substrates against the WHOLE library confounds two things: that they were '
+         'selected for Pro/Gly, and whatever else makes them substrates. Holding position 2 fixed '
+         'on both sides removes the first and leaves only the second.'),
+        ('What it shows',
+         'Positions 1 and 2 are constrained exactly as in panel A. From position 3 onward the '
+         'composition is flat and typical - roughly 36% Hydrophobic, 22% Polar, 13% Special, '
+         '12% Basic, 10% Acidic, 7% Aromatic.'),
+        ('Watch out for',
+         'Position 3 already carries a small Acidic bump here relative to the whole library, so '
+         'even the matched background is not perfectly neutral at that position.'),
+    ]),
+    '11C': ('Class composition per position - the whole library', [
+        ('What is plotted',
+         'All 16,514 library peptides, the global background. Included so the figure is '
+         'self-contained and the effect of the position-2 selection is visible directly.'),
+        ('What it shows',
+         'Position 1 is Met. Position 2 is unconstrained here and looks like ordinary protein '
+         'sequence, which is precisely the difference from panels A and B. Everything from '
+         'position 3 onward is flat.'),
+        ('What comparing A with C would tell you',
+         'It would show a huge Special signal at position 2 - but that is the selection criterion '
+         'restated, not a finding. That is why panel D compares A with B instead.'),
+        ('Watch out for',
+         'With n = 16,514 these proportions are precise to well under a percentage point, so treat '
+         'this panel as a fixed reference rather than an estimate.'),
+    ]),
+    '11D': ('P/G substrates vs the P/G-matched library, FDR-masked', [
+        ('What is plotted',
+         'log2(P/G substrates / P/G library) for every class at every position, with cells failing '
+         'q < 0.05 left beige. Fisher exact per cell, Benjamini-Hochberg across all 144.'),
+        ('What it shows',
+         'Exactly one cell survives: Acidic at position 3, log2 = +2.8. Once the position-2 '
+         'selection is held constant on both sides, the acidic residue at position 3 is the ONLY '
+         'single-position compositional feature separating the substrates from their own '
+         'background.'),
+        ('Why this matters',
+         'It is the cleanest statement of the central result. Pro/Gly alone is not what makes a '
+         'peptide a UBR3 substrate; among peptides that all carry Pro/Gly, only the acidic residue '
+         'at position 3 distinguishes the ones that are.'),
+        ('The limit of the method',
+         'This tests composition one position at a time. It cannot see a property distributed '
+         'across many positions - and there is one: the downstream net-charge difference in the 10 '
+         'series, which this panel is blind to by construction.'),
     ]),
 
     # ---------------------------------------------------------------- FIG 2

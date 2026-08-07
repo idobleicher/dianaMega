@@ -3,7 +3,7 @@
 
 Panels live in ubr3_panels.py and are shared with make_panels.py (the slide deck),
 so the two outputs can never drift apart.
-Renders 7 figures as 300-dpi PNG + vector PDF into figures/.
+Renders 8 figures as 300-dpi PNG + vector PDF into figures/.
 Light/print mode only - these are manuscript figures, not screen artifacts.
 """
 import os
@@ -133,6 +133,21 @@ def figure10(C):
     save(fig, 'Figure10_downstream_of_motif')
 
 
+def figure11(C):
+    """The 4A/4B composition view for the P/G substrates against both backgrounds."""
+    fig = plt.figure(figsize=(14.6, 14.6))
+    gs = fig.add_gridspec(4, 1, hspace=0.60, height_ratios=[1, 1, 1, 0.62],
+                          left=0.075, right=0.965, top=0.878, bottom=0.05)
+    for k, row in zip(['11A', '11B', '11C', '11D'], range(4)):
+        P.PANELS[k](fig.add_subplot(gs[row]), C)
+    header(fig, 0.075, 0.972, 0.950,
+           'Amino-acid class composition of the Pro/Gly substrates against the library',
+           'Panel A is the 26 substrates carrying Pro or Gly at position 2. B is the P/G-matched '
+           'library background and C the whole library. D tests A against B, which is the '
+           'comparison that removes the position-2 selection.')
+    save(fig, 'Figure11_PG_substrates_vs_library')
+
+
 def main():
     os.makedirs(U.FIGS, exist_ok=True)
     lib, hit = U.load()
@@ -140,7 +155,7 @@ def main():
     print('  running 480 position x residue Fisher tests ...')
     sig = U.enrichment_test(list(hit.peptide_24mer), list(lib.peptide_24mer))
     C = P.context(lib, hit, sig, tags=True, standalone=False)
-    for fn in (figure2, figure3, figure4, figure5, figure6, figure9, figure10):
+    for fn in (figure2, figure3, figure4, figure5, figure6, figure9, figure10, figure11):
         fn(C)
     print('done ->', U.FIGS)
 

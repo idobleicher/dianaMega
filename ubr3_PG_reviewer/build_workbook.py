@@ -158,6 +158,7 @@ def readme_sheet(stats_d):
         ('21_downstream_residue', 'THE DOWNSTREAM COMPARISON. Positions 4-24 only, comparing the 16 motif-bearing SUBSTRATES with the 163 motif-bearing NON-substrates. Both groups carry M-[P/G]-[E/D], so positions 1-3 are identical by construction and the motif itself cannot drive any difference. Fisher exact per position x residue with BH-FDR over all 420 cells. RESULT: nothing survives; only 11 cells reach nominal p<0.05, fewer than the ~21 expected by chance.'),
         ('22_downstream_class', 'Same comparison at the level of the six chemical classes (126 cells). One survives FDR: Basic at position 5 (50% of substrates vs 9.8% of non-substrates, q = 0.026).'),
         ('23_downstream_composition', 'The better-powered aggregate view: per-peptide counts of each class summed over positions 4-24, plus net charge and GRAVY, compared by Mann-Whitney. RESULT: substrates carry more basic residues (4.19 vs 2.91, p = 0.014) and a markedly more positive net charge (+2.16 vs -0.22, p = 0.0021). Nothing else differs.'),
+        ('24_PG_substrate_class_composition', 'Chemical-class composition at each of the 24 positions for three groups side by side: the 26 substrates with Pro/Gly at position 2, the 2,100 P/G library peptides (the motif-matched background) and the whole library. Also gives log2 enrichment and FDR q of the P/G substrates against the P/G background - only Acidic at position 3 survives.'),
         ('18_PSI_cutoff_robustness', 'Shows the PSI = 3 cut is not doing the work: the motif odds ratio '
                                      'across cutoffs 2.0-3.4, a logistic regression using control PSI as a '
                                      'CONTINUOUS covariate (no cutoff at all), the peaks and valleys of the '
@@ -521,6 +522,20 @@ def main():
                      'significant_p<0.05': 'yes' if pv < 0.05 else 'no'})
     s23 = pd.DataFrame(rows).sort_values('MannWhitney_p')
 
+
+    # ---------- sheet 24 : P/G substrate class composition -------------------
+    pgS = list(hit[hit.is_PG].peptide_24mer)
+    pgL = list(lib[lib.is_PG].peptide_24mer)
+    cS, cL, cAll = U.class_matrix(pgS), U.class_matrix(pgL), U.class_matrix(lib_seqs)
+    lrp, qvp, _ = U.enrichment_test(pgS, pgL, groups=U.CLASS_MEMBERS)
+    s24 = pd.DataFrame({'position': cS.index})
+    for c in U.CLASS_ORDER:
+        s24[c + '_PGsubstrates_pct'] = (100 * cS[c]).round(2).values
+        s24[c + '_PGlibrary_pct'] = (100 * cL[c]).round(2).values
+        s24[c + '_wholeLibrary_pct'] = (100 * cAll[c]).round(2).values
+        s24[c + '_log2_vs_PGlibrary'] = lrp[c].round(3).values
+        s24[c + '_q_vs_PGlibrary'] = qvp[c].round(4).values
+
     sheets = {
         '00_README': readme_sheet(S),
         '01_UBR3_substrates': s01,
@@ -546,6 +561,7 @@ def main():
         '21_downstream_residue': s21,
         '22_downstream_class': s22,
         '23_downstream_composition': s23,
+        '24_PG_substrate_class_composition': s24,
     }
 
     with pd.ExcelWriter(OUT, engine='openpyxl') as xw:

@@ -134,7 +134,8 @@ def figure_slide(prs, key):
         '3': 'Figure3_sequence_logos', '4': 'Figure4_AA_class_analysis',
         '5': 'Figure5_position_residue_heatmaps', '6': 'Figure6_PSI_baseline_stability',
         '9': 'Figure9_stability_x_substrate_classification',
-        '10': 'Figure10_downstream_of_motif'}[key]
+        '10': 'Figure10_downstream_of_motif',
+        '11': 'Figure11_PG_substrates_vs_library'}[key]
     path = os.path.join(FIGS_DIR, name + '.png')
     if os.path.exists(path):
         w, h = fit(path, Inches(11.2), Inches(4.75))

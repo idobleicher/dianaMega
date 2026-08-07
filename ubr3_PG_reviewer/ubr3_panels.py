@@ -851,6 +851,70 @@ def p10d(ax, C):
     panel_tag(ax, 'D', C)
 
 
+# ============================================================ FIGURE 11
+# The 4A/4B stacked-composition view, but for the P/G substrates against both
+# the whole library and the P/G-matched background.
+def _pg(C):
+    if 'pg' not in C:
+        lib, hit = C['lib'], C['hit']
+        sub = list(hit[hit.is_PG].peptide_24mer)
+        pglib = list(lib[lib.is_PG].peptide_24mer)
+        C['pg'] = (sub, pglib, U.class_matrix(sub), U.class_matrix(pglib))
+    return C['pg']
+
+
+def p11a(ax, C):
+    sub, _, cs, _ = _pg(C)
+    _stack4(ax, C, cs, f'{len(sub)} UBR3 substrates with Pro/Gly at position 2', 'A',
+            'Position 2 is Pro or Gly by definition (14 Gly, 12 Pro); position 3 is 42% Acidic',
+            legend=True)
+
+
+def p11b(ax, C):
+    _, pglib, _, cl = _pg(C)
+    _stack4(ax, C, cl, f'{len(pglib):,} library peptides with Pro/Gly at position 2', 'B',
+            'The motif-matched background: same position-2 constraint, no selection for '
+            'UBR3 dependence', legend=C.get('standalone', False))
+
+
+def p11c(ax, C):
+    _stack4(ax, C, C['cl'], f'{len(C["ls"]):,} library peptides (whole library)', 'C',
+            'The global background, for reference - position 2 here is unconstrained',
+            legend=C.get('standalone', False))
+
+
+def p11d(ax, C):
+    """P/G substrates vs the P/G-matched library, FDR-masked."""
+    sub, pglib, _, _ = _pg(C)
+    lr, qv, _ = U.enrichment_test(sub, pglib, groups=U.CLASS_MEMBERS)
+    m, q = lr[U.CLASS_ORDER].T.values, qv[U.CLASS_ORDER].T.values
+    shown = np.where(q < 0.05, m, np.nan)
+    v = np.nanmax(np.abs(shown)) if np.isfinite(shown).any() else np.nanmax(np.abs(m))
+    ax.imshow(np.zeros_like(m), cmap=mpl.colors.ListedColormap(['#f2f1ec']), aspect='auto')
+    im = ax.imshow(shown, cmap=DIVERGE, norm=TwoSlopeNorm(0, -v, v), aspect='auto')
+    ax.set_yticks(range(len(U.CLASS_ORDER)))
+    ax.set_yticklabels(U.CLASS_ORDER, fontsize=9)
+    for t, c in zip(ax.get_yticklabels(), U.CLASS_ORDER):
+        t.set_color(CLASS_COLOR[c])
+        t.set_fontweight('bold')
+    ax.set_xticks(range(24))
+    ax.set_xticklabels(range(1, 25), fontsize=7.6)
+    ax.set_xlabel('Position in the 24-mer')
+    for i in range(m.shape[0]):
+        for k in range(m.shape[1]):
+            if q[i, k] < 0.05:
+                ax.text(k, i, f'{m[i, k]:+.1f}', ha='center', va='center', fontsize=6.4,
+                        color='white' if abs(m[i, k]) > v * 0.55 else INK, fontweight='bold')
+    cb = ax.get_figure().colorbar(im, ax=ax, fraction=0.046, pad=0.02)
+    cb.set_label('log$_2$ (P/G substrates / P/G library)', fontsize=8.5)
+    cb.ax.tick_params(labelsize=7.5)
+    nsig = int((q < 0.05).sum())
+    title(ax, 'P/G substrates vs the P/G-matched library (FDR-masked)',
+          f'Beige = not significant. {nsig} of {q.size} cells survive q < 0.05 - only Acidic at '
+          'position 3. Beyond position 3 the substrates match their own background.')
+    panel_tag(ax, 'D', C, xoff=-70)
+
+
 # ---------------------------------------------------------------- registry
 PANELS = {
     '2A': p2a, '2B': p2b, '2C': p2c, '2D': p2d,
@@ -860,6 +924,7 @@ PANELS = {
     '6A': p6a, '6B': p6b, '6C': p6c, '6D': p6d,
     '9A': p9a, '9B': p9b, '9C': p9c, '9D': p9d,
     '10A': p10a, '10B': p10b, '10C': p10c, '10D': p10d,
+    '11A': p11a, '11B': p11b, '11C': p11c, '11D': p11d,
 }
 
 # aspect ratio hint per panel for standalone rendering (width, height) in inches
@@ -871,4 +936,5 @@ PANEL_SIZE = {
     '6A': (9.6, 6.4), '6B': (8.8, 7.2), '6C': (9.4, 6.4), '6D': (8.4, 6.6),
     '9A': (9.0, 6.8), '9B': (9.4, 6.4), '9C': (8.8, 7.2), '9D': (9.8, 5.8),
     '10A': (12.4, 5.2), '10B': (9.4, 6.6), '10C': (9.6, 6.4), '10D': (8.6, 6.8),
+    '11A': (14.0, 5.4), '11B': (14.0, 5.0), '11C': (14.0, 5.0), '11D': (12.6, 5.2),
 }

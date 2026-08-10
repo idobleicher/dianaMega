@@ -1,0 +1,26 @@
+Position,Residue,Category,log2FC,Fold change,Significance
+4,Y,Aromatic,2.686,6.43,*
+5,K,Basic,2.101,4.29,**
+5,R,Basic,2.023,4.06,*
+6,C,Polar,3.271,9.65,**
+6,V,Hydrophobic,1.949,3.86,*
+7,R,Basic,1.534,2.89,***
+8,K,Basic,2.271,4.82,*
+8,R,Basic,2.048,4.14,***
+12,W,Aromatic,3.271,9.65,*
+12,F,Aromatic,2.855,7.24,**
+12,Q,Polar,2.271,4.82,**
+14,W,Aromatic,3.271,9.65,*
+14,A,Aliphatic,1.57,2.97,*
+15,S,Polar,2.101,4.29,**
+15,G,Aliphatic,1.463,2.76,*
+16,M,Aliphatic,3.271,9.65,*
+17,R,Basic,0.892,1.86,***
+18,K,Basic,2.271,4.82,*
+18,S,Polar,1.505,2.84,*
+19,W,Aromatic,3.271,9.65,*
+19,G,Aliphatic,2.271,4.82,**
+21,P,Aliphatic,1.949,3.86,*
+22,Q,Polar,2.048,4.14,*
+23,C,Polar,3.271,9.65,*
+23,S,Polar,1.592,3.02,*

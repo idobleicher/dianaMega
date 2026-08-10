@@ -1,0 +1,26 @@
+Position,Residue,Class,log2FC,Fold change,Significance
+4,Y,polar,2.686,6.43,*
+5,K,basic,2.101,4.29,**
+5,R,basic,2.023,4.06,*
+6,C,polar,3.271,9.65,**
+6,V,hydrophobic,1.949,3.86,*
+7,R,basic,1.534,2.89,***
+8,K,basic,2.271,4.82,*
+8,R,basic,2.048,4.14,***
+12,W,hydrophobic,3.271,9.65,*
+12,F,hydrophobic,2.855,7.24,**
+12,Q,polar,2.271,4.82,**
+14,W,hydrophobic,3.271,9.65,*
+14,A,hydrophobic,1.57,2.97,*
+15,S,polar,2.101,4.29,**
+15,G,polar,1.463,2.76,*
+16,M,hydrophobic,3.271,9.65,*
+17,R,basic,0.892,1.86,***
+18,K,basic,2.271,4.82,*
+18,S,polar,1.505,2.84,*
+19,W,hydrophobic,3.271,9.65,*
+19,G,polar,2.271,4.82,**
+21,P,hydrophobic,1.949,3.86,*
+22,Q,polar,2.048,4.14,*
+23,C,polar,3.271,9.65,*
+23,S,polar,1.592,3.02,*

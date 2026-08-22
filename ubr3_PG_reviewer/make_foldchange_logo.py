@@ -6,56 +6,36 @@ Same palette, same black glyph outlines, same absence of gridlines, same
 legend placement, same italic n-caption, same rcParams and font sizes.
 Only the data and the number of positions differ.
 
-Source: data/AMINO_ACIDS_PG_motif.csv -- the P/G-D/E/T motif analysis.
-Substrates (n = 20) vs. non-substrate controls with the same motif (n = 193).
-The CSV stores log2 fold change, so it is converted back to linear fold
-change here; as in fig4, residues with fold change <= 1 are dropped.
+Data comes from pg_motif_data.py (see that module for the source and for the
+arginine correction). Substrates (n = 20) vs. non-substrate controls carrying
+the same motif (n = 193). Letter height is linear fold change; as in fig4,
+residues with fold change <= 1 are dropped.
+
+Figure13b keeps only the residues significant at p < 0.05. Significance is
+taken from the workbook's chi-square p values and binned here, rather than
+read from its asterisk matrix -- that matrix is not internally consistent with
+its own p values (it marks Basic at position 5 with one star at p = 1.1e-4).
 """
 import os
-import numpy as np
-import pandas as pd
+
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import logomaker
 
-HERE       = os.path.dirname(os.path.abspath(__file__))
-SRC        = os.path.join(HERE, 'data', 'AMINO_ACIDS_PG_motif.csv')
+import pg_motif_data as pg
+
+HERE = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(HERE, 'figures')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-AA  = ["K", "H", "R", "D", "E", "F", "Y", "W", "G", "P",
-       "A", "M", "V", "L", "I", "S", "T", "C", "N", "Q"]
-POS = list(range(4, 25))
-N_SUB, N_CTRL = 20, 193
+POS, AA = pg.POS, pg.AA
+N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 
-# ------------------------------------------------------------------ load
-raw = pd.read_csv(SRC, header=None, dtype=str, keep_default_na=False)
-
-
-def block(row0):
-    b = raw.iloc[row0:row0 + 20, 1:22].copy()
-    b.index, b.columns = raw.iloc[row0:row0 + 20, 0].tolist(), POS
-    return b
-
-
-def to_num(x):
-    x = str(x).strip()
-    if x in ("N/A", "", "-", "#NUM!", "nan"):
-        return np.nan
-    try:
-        return float(x)
-    except ValueError:
-        return np.nan
-
-
-V = block(1).map(to_num)                                  # log2 fold change
-S = block(23).map(lambda x: str(x).strip().count("*"))    # significance stars
-assert list(V.index) == AA and list(S.index) == AA, "row order mismatch"
-
-fc_matrix = (2.0 ** V).T          # positions as rows, linear fold change
-fc_matrix.index = POS
+cells = pg.load()
+fc_matrix = pg.matrix('fold_change', cells=cells)          # AA x POS, linear
+P = pg.matrix('p_chi2', cells=cells)
 
 # ------------------------------------------------------------------ style (verbatim from fig4)
 AA_CATEGORIES = {
@@ -129,19 +109,16 @@ def build(fc_display, title, stem, figsize):
     for ext in ('png', 'pdf', 'svg'):
         path = os.path.join(OUTPUT_DIR, f'{stem}.{ext}')
         fig.savefig(path, format=ext)
-        print(f"  saved: {path}  ({os.path.getsize(path)/1024:.1f} KB)")
+        print(f"  saved: {os.path.basename(path)}  ({os.path.getsize(path)/1024:.1f} KB)")
     plt.close(fig)
 
 
 # all enriched residues -- the direct fig4 analogue
-disp_all = fc_matrix.copy()
-disp_all[~(disp_all > 1)] = 0
-build(disp_all,
-      'Fold-Change Logo \u2014 P/G-D/E/T Substrates vs Non-Substrate Controls',
+build(pg.logo_frame('fold_change', cells=cells),
+      'Fold-Change Logo — P/G-D/E/T Substrates vs Non-Substrate Controls',
       'Figure13_foldchange_logo_pos4_24', (10.5, 2.9))
 
-# same style, restricted to the residues carrying significance stars
-disp_sig = disp_all.where(S.T.set_axis(POS).ge(1), 0)
-build(disp_sig,
-      'Fold-Change Logo \u2014 Significantly Enriched Residues (Positions 4\u201324)',
+# same style, restricted to the residues significant at p < 0.05
+build(pg.logo_frame('fold_change', cells=cells, only=P.lt(0.05)),
+      'Fold-Change Logo — Significantly Enriched Residues (Positions 4–24)',
       'Figure13b_foldchange_logo_pos4_24_significant', (10.5, 2.9))

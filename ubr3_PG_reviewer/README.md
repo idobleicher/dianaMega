@@ -207,10 +207,135 @@ measured before UBR3 is perturbed and is nearly independent of ΔPSI.
 
 ---
 
+## The arginine correction — read this before reusing any figure from before 2026-08-22
+
+The arginine row of `data/AMINO_ACIDS_PG_motif.csv` is **byte-identical to the Basic-class row**
+— it is not arginine at all. The other 19 residue rows match the authoritative file exactly, so
+the error is confined to R. Every figure built from that file understated arginine:
+
+| | drawn as | true value |
+|---|---:|---:|
+| R at position 7 | 2.89× | **5.63×** (7/20 vs 12/193) |
+| R at position 8 | 4.14× | **6.43×** (6/20 vs 9/193) |
+| R at position 17 | 1.86× | **5.36×** (5/20 vs 9/193) |
+
+Since arginine is the one residue in this analysis with a real signal, the error suppressed
+precisely the result worth reporting. **Figures 13, 13b, 14, 14b and 15 have been regenerated**
+from the corrected data; any copy of them predating 2026-08-22, in a deck, a draft or a
+submitted figure, is wrong and should be replaced.
+
+To stop this recurring, all six logos and all five heatmaps now read one loader,
+`pg_motif_data.py`, which is the only module that touches the source sheet.
+`data/AMINO_ACIDS_PG_motif.csv` and `data/Categories_PG_motif.csv` are kept for provenance and
+are **not read by anything** — the pre-aggregated `Categories` file is where the Basic row leaked
+into R in the first place.
+
+---
+
+## Figures 13–15 — logos for positions 4–24
+
+These plot the **P/G-D/E/T motif analysis**: n = 20 substrates against n = 193 non-substrate
+controls *carrying the same motif*, i.e. the within-motif comparison, not substrates vs. the
+whole library. All of them read `pg_motif_data.py`.
+
+| Figure | Script | Letter height |
+|---|---|---|
+| `Figure13_foldchange_logo_pos4_24` | `make_foldchange_logo.py` | fold change, all enriched residues |
+| `Figure13b_..._significant` | " | fold change, residues at p < 0.05 |
+| `Figure14_logo_pos4_24_by_category` | `make_category_logo.py` | same heights, coloured by chemical class |
+| `Figure14b_..._significant` | " | same, residues at p < 0.05 |
+| `Figure15_significance_logo_pos4_24` | `make_significance_logo.py` | **−log₁₀ p** (chi-square) |
+| `Figure15b_..._fisher` | " | **−log₁₀ p** (Fisher exact) |
+
+Figure 13 and Figure 15 are the same data under two rulers, and they disagree on purpose.
+Under fold change the tallest glyphs are W at 12/14/19 and M at 16 — every one of them 1
+substrate vs 1 control, which is just what 1-vs-1 arithmetic gives at n = 20 vs 193. Under
+significance the tall glyphs are **R at 7, 8 and 17**. Show Figure 15, not Figure 13, if the
+question is "which positions matter".
+
+The significance logos draw only residues reaching p < 0.05. Without that threshold all 20
+residues are drawn at every position, most at p ≈ 0.3–0.9, and the stacks reach −log₁₀ p ≈ 8 out
+of noise alone. Heights are exact −log₁₀ p (the first version of Figure 15 could only use the
+`*/**/***` bin representatives 1.30 / 2.00 / 3.00, because the file it read had no p-values).
+
+---
+
+## Figures 16–17 — heatmaps coloured by significance, not fold change
+
+`make_significance_heatmap.py` → `figures/Figure16*`, `figures/Figure17*`
+
+The Colab heatmap embedded at the bottom of `AMINO ACIDS.csv` colours each position × residue
+cell by **fold change** on a locked 0–5 scale. In this dataset that ranking is upside down: the
+biggest fold changes come from the *fewest* observations, because with 20 substrates and 193
+controls a single peptide in each group already gives 9.65×.
+
+| | Loudest cells under **fold change** | Loudest cells under **significance** |
+|---|---|---|
+| 1 | W at 9 — 1 vs 0 peptides, FC = ∞, p = 0.82 | **R at 7** — 7/20 vs 12/193, 5.63×, p = 1.7 × 10⁻⁵ |
+| 2 | W at 12 / 14 / 19 — 1 vs 1, 9.65×, p = 0.05 | **R at 8** — 6/20 vs 9/193, 6.43×, p = 2.5 × 10⁻⁵ |
+| 3 | M at 16, C at 6 — 1–2 vs 1–2, 9.65× | **R at 17** — 5/20 vs 9/193, 5.36×, p = 4.8 × 10⁻⁴ |
+
+Colouring by significance moves arginine to the front and drops the tryptophan cells into the
+background where they belong.
+
+**Source.** `data/AminoAcids_PG_motif_with_pvalues.csv` — the sheet of the same workbook that
+carries the full 2 × 2 contingency table *and* a chi-square p-value for every cell, rather than
+the `* / ** / ***` bins in `AMINO_ACIDS_PG_motif.csv`. n = 20 P/G-D/E/T substrates vs n = 193
+non-substrate controls carrying the same motif, positions 4–24.
+
+**Encoding.** Colour is −log₁₀ p on a single warm ramp — cream → yellow → orange → red → dark red,
+deeper red = more significant, near-white = not significant. The ramp reuses the logo palette
+(`#E8A33D` / `#C0392B` / `#7B241C`) so the heatmaps and the logos read as one set. Cell text is
+the fold change for cells at p < 0.05, with the usual star bins, so effect size stays readable
+while significance drives the colour. Grey = residue absent from both groups, no test possible.
+A black outline marks cells surviving Benjamini–Hochberg FDR across the whole matrix.
+
+**Why there is no cool arm for depletion.** **No depleted cell reaches p < 0.05 anywhere in this
+dataset** — not under either test, not for residues, not for classes. The most significant
+depleted cell is Glu at position 8 at p = 0.11 (Acidic at position 8, p = 0.062, for the classes).
+A diverging scale would therefore spend half its range colouring sub-threshold noise while
+competing for attention with the real signal. Every coloured cell in these figures is an
+enrichment, and direction stays recoverable from the annotation anyway: a printed fold change is
+> 1 for enrichment and < 1 for depletion.
+
+**Two tests, both plotted.** Chi-square is the workbook's own test, but the workbook's expected-count
+block shows most cells expect **fewer than 2** substrates, well under the ≥ 5 chi-square needs, so
+Fisher exact is recomputed from the same tables and plotted alongside rather than assumed
+equivalent. The difference is not cosmetic: chi-square calls 25 cells at p < 0.05, Fisher 18.
+
+| Figure | Rows | p-value |
+|---|---|---|
+| `Figure16_significance_heatmap_residues` | 20 residues × 21 positions | chi-square, as reported in the workbook |
+| `Figure16b_significance_heatmap_residues_fisher` | same | Fisher exact, recomputed |
+| `Figure16c_significance_heatmap_residues_enriched_only` | same | Fisher, with depleted cells forced to the floor — the drop-in replacement for the Colab figure. Since no depleted cell is significant, it differs from `16b` only among cells that are already n.s. |
+| `Figure17_significance_heatmap_categories` | 6 chemical classes × 21 positions | chi-square |
+| `Figure17b_significance_heatmap_categories_fisher` | same | Fisher exact |
+
+**What survives correction — state this plainly if the figure is used.** Across the 416 testable
+residue cells, **25 reach p < 0.05 against 21 expected by chance alone**. Under chi-square only
+**R at positions 7 and 8** survive BH-FDR; under Fisher exact **nothing does**. At the class level
+**Basic at position 8** survives both (9/20 vs 21/193, 4.14×, q = 0.049), with Basic at 5 and 7
+surviving under chi-square only. Positions 4–24 are therefore best described as carrying **one
+borderline arginine/basic signal and no other reproducible per-residue preference** — the motif
+itself lives at positions 2–3, which this matrix does not cover.
+
+`data/significance_heatmap_cells.csv` has all 546 cells (420 residue + 126 class) with counts,
+percentages, fold change, both p-values and both q-values.
+
+---
+
 ## Reproducing
 
 ```bash
 python fetch_annotation.py      # UniProt REST -> data/annotation.json (cached; --refresh to redo)
+
+# positions 4-24, P/G-D/E/T motif analysis -- all four read pg_motif_data.py
+python pg_motif_data.py               # loader self-test: cell counts, what survives FDR
+python make_foldchange_logo.py        # -> figures/Figure13*
+python make_category_logo.py          # -> figures/Figure14*, data/significant_*.csv
+python make_significance_logo.py      # -> figures/Figure15*
+python make_significance_heatmap.py   # -> figures/Figure16*, Figure17*, data/significance_heatmap_cells.csv
+
 python build_workbook.py        # -> UBR3_PG_substrate_tables.xlsx
 python make_figures.py          # -> figures/*.png and *.pdf   (8 composed figures)
 python make_panels.py           # -> panels/*.png              (29 standalone panels)

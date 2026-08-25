@@ -324,17 +324,72 @@ percentages, fold change, both p-values and both q-values.
 
 ---
 
+## Figures 18–19 — heatmaps coloured by frequency, alphabetical, residues and classes apart
+
+`make_frequency_heatmap.py` → `figures/Figure18*`, `figures/Figure19*`
+
+The third and plainest way to colour the same matrix: not fold change (the Colab original), not
+−log₁₀ p (Figures 16–17), but the **percentage of a group that carries that residue — or that
+chemical class — at that position**. Same loader, same 21 positions, same warm ramp, so the
+whole set still reads as one system.
+
+Two things differ from Figures 16–17:
+
+- **Rows are alphabetical** — `A C D E F G H I K L M N P Q R S T V W Y` for the residues and
+  `Acidic … Polar` for the classes — rather than grouped by chemical class. The class is still
+  carried by the colour chip beside each row label (keyed to the logo palette, legend under the
+  matrix), so the grouping stays recoverable without imposing the row order.
+- **Residues and classes are fully separate figures with their own colour scales.** A class is
+  the union of 2–5 residues and is necessarily commoner: the residue matrix tops out at 35% and
+  the class matrix at 45%, so one shared scale would flatten the residue panel.
+
+| Figure | Rows | Group |
+|---|---|---|
+| `Figure18_frequency_heatmap_residues` | 20 residues × 21 positions, alphabetical | the **20 substrates**, 0–35% scale |
+| `Figure18b_frequency_heatmap_residues_controls` | same | the **193 controls**, same 0–35% scale |
+| `Figure19_frequency_heatmap_categories` | 6 chemical classes × 21 positions, alphabetical | the **20 substrates**, 0–45% scale |
+| `Figure19b_frequency_heatmap_categories_controls` | same | the **193 controls**, same 0–45% scale |
+
+**Encoding.** Colour and cell text are the same number. Blank = 0%, no peptide in that group has
+that residue there. With n = 20 substrates one peptide is 5%, so the substrate panels move in
+5-point steps; the control panels are finer (1/193 = 0.52%, printed as `<1`). On the substrate
+panels an asterisk marks cells that *also* differ between the two groups at Fisher exact
+p < 0.05, so these figures never contradict Figures 16–17 — but nothing about the colour here is
+a test.
+
+**Read each substrate panel against its control panel.** A frequency heatmap on its own says
+nothing about UBR3: its loudest cells are partly just the commonest amino acids. That is exactly
+what `18b` / `19b` are for, and the comparison is not cosmetic — the top of each panel is a
+different list.
+
+| | Loudest cells among the **substrates** | Loudest cells among the **controls** |
+|---|---|---|
+| Residues | R at 7 (35%), R at 8 / G at 15 (30%), R at 17 · G at 20 · S at 18 · S at 23 (25%) | L at 21 (15%), L at 18 (14%), A at 11 · L at 23 (13%) — Leu is simply the commonest residue in this library |
+| Classes | Basic at 7 and 8 · Polar at 22 (45%), Basic at 5 · Aliphatic at 15, 19, 20, 21 · Polar at 18 (40%) | Aliphatic at 8 and 11 (30%), Aliphatic at 15 (29%), Polar at 5 and 20 (28%) |
+
+Of the 8 most frequent residue cells in the substrates, all 8 also reach Fisher p < 0.05 — but of
+the 19 substrate cells at ≥ 20%, only 14 do, and **none of the residue cells survives FDR**
+(1 class cell does: Basic at 8). The caveats recorded for Figures 16–17 apply here unchanged:
+these panels describe composition, and the enrichment claim still rests on one borderline
+arginine/basic signal.
+
+`data/frequency_heatmap_cells.csv` has all 546 cells with both groups' counts and percentages
+alongside fold change, both p-values and both q-values.
+
+---
+
 ## Reproducing
 
 ```bash
 python fetch_annotation.py      # UniProt REST -> data/annotation.json (cached; --refresh to redo)
 
-# positions 4-24, P/G-D/E/T motif analysis -- all four read pg_motif_data.py
+# positions 4-24, P/G-D/E/T motif analysis -- all five read pg_motif_data.py
 python pg_motif_data.py               # loader self-test: cell counts, what survives FDR
 python make_foldchange_logo.py        # -> figures/Figure13*
 python make_category_logo.py          # -> figures/Figure14*, data/significant_*.csv
 python make_significance_logo.py      # -> figures/Figure15*
 python make_significance_heatmap.py   # -> figures/Figure16*, Figure17*, data/significance_heatmap_cells.csv
+python make_frequency_heatmap.py      # -> figures/Figure18*, Figure19*, data/frequency_heatmap_cells.csv
 
 python build_workbook.py        # -> UBR3_PG_substrate_tables.xlsx
 python make_figures.py          # -> figures/*.png and *.pdf   (8 composed figures)

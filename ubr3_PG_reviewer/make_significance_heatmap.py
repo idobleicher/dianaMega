@@ -24,6 +24,18 @@ Two p-values are carried for every cell:
 BH-FDR is applied across all 420 residue cells (126 category cells) and the
 survivors are outlined in black.
 
+Nothing is written inside a cell except the star bin for cells at p < 0.05:
+the colour is the p value, so a number in the cell would only repeat it, and
+fold change is deliberately absent -- this figure is about significance alone.
+Every cell's exact p, q, both counts, both percentages and the fold change are
+in data/significance_heatmap_cells.csv for anything that needs quoting in text
+(p is not a substitute for effect size: it folds the fold change together with
+how many peptides the cell rests on).
+
+Type is Helvetica throughout (Arial where Helvetica is absent; see HELV), and
+no left-hand class colour panel is drawn -- the residue rows are still ordered
+by chemical class, which the caption states in words.
+
 Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
   Figure16_significance_heatmap_residues        -log10 chi2 p, warm scale
   Figure16b_significance_heatmap_residues_fisher  -log10 Fisher p
@@ -34,6 +46,7 @@ Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
   data/significance_heatmap_cells.csv           every cell, both tests, q values
 """
 import os
+import re
 
 import matplotlib as mpl
 mpl.use("Agg")
@@ -52,7 +65,6 @@ os.makedirs(FIG_DIR, exist_ok=True)
 POS, AA = pg.POS, pg.AA
 N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 CATEGORY_MEMBERS, CAT_ORDER = pg.CATEGORY_MEMBERS, pg.CAT_ORDER
-CAT_COLORS, CAT_OF_AA = pg.CAT_COLORS, pg.CAT_OF_AA
 stars = pg.stars
 
 cells = pg.load()
@@ -64,13 +76,61 @@ def matrix(kind, col, order):
 
 
 # ---------------------------------------------------------------- style
+# Helvetica everywhere, including inside the maths. Helvetica itself is not
+# installed on every machine, so the stack falls through to Arial, which is
+# metrically identical to Helvetica and is the substitution every journal
+# accepts. mathtext is pointed at the same stack so a "p" set in maths cannot
+# come out in a different face -- and the strings below avoid mathtext anyway.
+HELV = ["Helvetica", "Helvetica Neue", "Arial", "Nimbus Sans",
+        "Liberation Sans", "DejaVu Sans"]
 mpl.rcParams.update({
     "font.family": "sans-serif",
-    "font.sans-serif": ["Helvetica", "Arial", "Liberation Sans", "DejaVu Sans"],
+    "font.sans-serif": HELV,
+    "mathtext.fontset": "custom", "mathtext.default": "regular",
     "font.size": 8, "axes.linewidth": 0.8,
     "svg.fonttype": "none", "pdf.fonttype": 42,
     "figure.dpi": 600, "savefig.dpi": 600, "savefig.bbox": "tight",
 })
+
+# the first member of the stack that is actually installed -- mathtext resolves
+# a family by name, so it has to be given a real one or it silently drops to
+# DejaVu and the maths comes out in a different face from the labels
+_INSTALLED = {f.name for f in mpl.font_manager.fontManager.ttflist}
+FONT = next((f for f in HELV if f in _INSTALLED), "DejaVu Sans")
+mpl.rcParams.update({"mathtext.rm": FONT, "mathtext.it": f"{FONT}:italic",
+                     "mathtext.bf": f"{FONT}:bold"})
+
+
+def fmt_p(p):
+    """p as it is written in a paper: 0.012, 4.8e-4."""
+    if not np.isfinite(p):
+        return "--"
+    if p >= 1e-3:
+        return f"{p:.3f}"
+    m, e = f"{p:.1e}".split("e")
+    return f"{m}e{int(e)}"
+
+
+def save(fig, stem):
+    """PNG + PDF + SVG. The SVG keeps live text (svg.fonttype = none), so its
+    font-family is rewritten to the full Helvetica stack: it then renders in
+    real Helvetica wherever Helvetica exists and in Arial everywhere else."""
+    for ext in ("png", "pdf", "svg"):
+        path = os.path.join(FIG_DIR, f"{stem}.{ext}")
+        fig.savefig(path, format=ext)
+        if ext == "svg":
+            with open(path, encoding="utf-8") as fh:
+                svg = fh.read()
+            # only where a single resolved family was written; the stack
+            # matplotlib emits from font.sans-serif is already Helvetica-first
+            svg = re.sub(r"font-family: ?'?" + FONT + r"'?(?=[;\"<])",
+                         "font-family: Helvetica, " + FONT + ", sans-serif", svg)
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write(svg)
+        print(f"  saved: {os.path.basename(path)}  "
+              f"({os.path.getsize(path)/1024:.1f} KB)")
+    plt.close(fig)
+
 
 # One warm ramp, cream -> yellow -> orange -> red -> dark red, in the house
 # palette (#E8A33D / #C0392B / #7B241C are the Aliphatic / Basic / Acidic
@@ -90,11 +150,15 @@ CMAP_ENRICH = CMAP_MAIN
 GREY = "#E9E9E7"          # residue absent from both groups -- no test possible
 
 
+CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · Acidic D E · "
+              "Aromatic F Y W · Aliphatic G P A M · Hydrophobic V L I · "
+              "Polar S T C N Q.   ")
+
+
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
-            figsize, vmax=5.0, annot_size=5.4, group_rows=True):
+            figsize, vmax=5.0, annot_size=8.5):
     P = matrix(kind, pcol, order).values.astype(float)
     Q = matrix(kind, qcol, order).values.astype(float)
-    FC = matrix(kind, "fold_change", order).values.astype(float)
     D = matrix(kind, "direction", order).values.astype(float)
     OK = matrix(kind, "defined", order).values.astype(float) == 1
 
@@ -123,20 +187,22 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     for y in np.arange(-0.5, nrow, 1):
         ax.axhline(y, color="white", linewidth=0.7)
 
-    # annotate significant cells with their fold change; outline FDR survivors
+    # No numbers inside the cells: colour carries the p value, and the only
+    # marks are the conventional star bins on cells at p < 0.05 plus a black
+    # outline on the FDR survivors. Every cell's exact p, q, counts,
+    # percentages and fold change are in data/significance_heatmap_cells.csv.
     for r in range(nrow):
         for c_ in range(ncol):
-            p, q, fc = P[r, c_], Q[r, c_], FC[r, c_]
-            if not (np.isfinite(p) and p < 0.05):
+            p_, q = P[r, c_], Q[r, c_]
+            if not (np.isfinite(p_) and p_ < 0.05):
                 continue
-            s = stars(p)
-            fc_txt = "∞" if np.isinf(fc) else ("--" if not np.isfinite(fc)
-                                                    else f"{fc:.2f}")
             shade = C[r, c_]
             dark = np.ma.is_masked(shade) or abs(shade) > 0.62 * vmax
-            ax.text(c_, r, f"{fc_txt}{s}", ha="center", va="center",
+            # asterisks hang from the cap line, so nudge them down to sit
+            # optically centred in the cell
+            ax.text(c_, r + 0.16, stars(p_), ha="center", va="center",
                     fontsize=annot_size, fontweight="bold",
-                    color="white" if dark else "#1A1A1A", linespacing=0.9)
+                    color="white" if dark else "#1A1A1A")
             if np.isfinite(q) and q < 0.05:
                 ax.add_patch(Rectangle((c_ - 0.5, r - 0.5), 1, 1, fill=False,
                                        edgecolor="black", linewidth=1.4, zorder=5))
@@ -150,34 +216,15 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     ax.set_xlabel("Position in the 24-mer", fontsize=8.5, labelpad=4)
     for sp in ax.spines.values():
         sp.set_visible(False)
-
-    # class strip + separators down the left edge of the residue heatmap
-    if group_rows and kind == "residue":
-        edges, seen = [], None
-        for r, a in enumerate(order):
-            cat = CAT_OF_AA[a]
-            if cat != seen:
-                if seen is not None:
-                    ax.axhline(r - 0.5, color="#4D4D4D", linewidth=1.1)
-                edges.append([cat, r, r])
-                seen = cat
-            else:
-                edges[-1][2] = r
-        for cat, r0, r1 in edges:
-            ax.add_patch(Rectangle((-0.5 - 1.55, r0 - 0.5), 0.42, r1 - r0 + 1,
-                                   facecolor=CAT_COLORS[cat], clip_on=False,
-                                   edgecolor="white", linewidth=0.6, zorder=6))
-            ax.text(-0.5 - 1.72, (r0 + r1) / 2, cat, rotation=90, ha="center",
-                    va="center", fontsize=6.2, color="#4D4D4D", clip_on=False)
-        ax.set_xlim(-0.5, ncol - 0.5)
+    ax.set_xlim(-0.5, ncol - 0.5)
 
     cbar = fig.colorbar(im, ax=ax, fraction=0.022, pad=0.015)
     cbar.ax.tick_params(labelsize=6.5, length=2, width=0.6)
     cbar.outline.set_linewidth(0.6)
     cbar.set_ticks([0, 1.30103, 2, 3, 4, vmax])
     cbar.set_ticklabels(["n.s.", "0.05", "0.01", "0.001", "1e-4", "1e-5"])
-    cbar.set_label("$p$ value  (colour = $-$log$_{10}\\,p$)"
-                   if signed else "$p$ value  (enriched cells only)",
+    cbar.set_label("$p$ value  (colour = $-$log$_{10}$ $p$)" if signed
+                   else "$p$ value  (enriched cells only)",
                    fontsize=7, labelpad=6)
     cbar.ax.axhline(1.30103, color="#333", linewidth=0.7, linestyle=(0, (2, 1.6)))
 
@@ -189,73 +236,75 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     ax.set_title(title, fontweight="bold", fontsize=9.5, pad=16)
     ax.text(0.5, 1.012, subtitle, transform=ax.transAxes, ha="center",
             va="bottom", fontsize=6.4, color="#666", style="italic")
-    ax.text(0.5, -0.115 if kind == "residue" else -0.30,
-            f"n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} non-substrate "
-            f"controls carrying the same motif.   Cell text is the fold change "
-            f"(substrates / controls) for cells at $p$ < 0.05; "
-            f"* $p$ < 0.05, ** $p$ < 0.01, *** $p$ < 0.001.   "
-            f"Black outline = survives BH-FDR across all "
-            f"{n_test} cells ($q$ < 0.05).   "
-            f"Grey = residue absent from both groups, no test possible.   "
-            f"No depleted cell reaches $p$ < 0.05 anywhere in this dataset, so "
-            f"every coloured cell above is an enrichment.\n"
-            f"{n_hit} of {n_test} testable cells reach $p$ < 0.05 uncorrected, "
-            f"against {0.05 * n_test:.0f} expected by chance alone — "
-            + ("only the outlined cells are more than a multiple-testing "
-               "artefact." if n_fdr else
-               "and none survives FDR correction, so no single cell here is "
-               "more than a multiple-testing artefact."),
-            transform=ax.transAxes, ha="center", va="top", fontsize=5.5,
-            color="#666")
+    foot = [
+        f"n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} non-substrate "
+        f"controls carrying the same motif."
+        + ("   " + CLASS_NOTE if kind == "residue" else ""),
+
+        "Stars are the uncorrected $p$ value of the cell:  * $p$ < 0.05, "
+        "** $p$ < 0.01, *** $p$ < 0.001.   "
+        f"Black outline = survives BH-FDR across all {n_test} cells "
+        "($q$ < 0.05).   "
+        + ("Grey = residue absent from both groups, no test possible."
+           if kind == "residue" else ""),
+
+        "No depleted cell reaches $p$ < 0.05 anywhere in this dataset, so "
+        "every coloured cell above is an enrichment.   "
+        f"{n_hit} of {n_test} testable cells reach $p$ < 0.05 uncorrected, "
+        f"against {0.05 * n_test:.0f} expected by chance alone — "
+        + ("only the outlined cells are more than a multiple-testing "
+           "artefact." if n_fdr else
+           "and none survives FDR correction, so no single cell here is "
+           "more than a multiple-testing artefact."),
+    ]
+    ax.text(0.5, -0.085 if kind == "residue" else -0.26,
+            "\n".join(foot), transform=ax.transAxes, ha="center",
+            va="top", fontsize=5.6, color="#666", linespacing=1.5)
 
     plt.tight_layout(pad=0.4)
-    for ext in ("png", "pdf", "svg"):
-        path = os.path.join(FIG_DIR, f"{stem}.{ext}")
-        fig.savefig(path, format=ext)
-        print(f"  saved: {os.path.basename(path)}  ({os.path.getsize(path)/1024:.1f} KB)")
-    plt.close(fig)
+    save(fig, stem)
 
 
 # ---------------------------------------------------------------- figures
 print("building significance heatmaps\n")
 
 heatmap("residue", "p_chi2", "q_chi2", AA, True,
-        "Position × residue enrichment, coloured by SIGNIFICANCE "
-        "(not fold change)",
-        "colour = $-$log$_{10}$ $p$, chi-square as reported in the workbook · "
-        "deeper red = more significant",
+        "Position × residue enrichment, coloured by significance",
+        "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
+        "workbook · deeper red = more significant",
         "Figure16_significance_heatmap_residues", (13.4, 8.0))
 
 heatmap("residue", "p_fisher", "q_fisher", AA, True,
-        "Position × residue enrichment, coloured by SIGNIFICANCE "
+        "Position × residue enrichment, coloured by significance "
         "(Fisher exact)",
-        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the same "
-        "2×2 tables — valid at the low cell counts here",
+        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
+        "same 2×2 tables — valid at the low cell counts here",
         "Figure16b_significance_heatmap_residues_fisher", (13.4, 8.0))
 
 heatmap("residue", "p_fisher", "q_fisher", AA, False,
-        "Position × residue enrichment, coloured by SIGNIFICANCE "
+        "Position × residue enrichment, coloured by significance "
         "(enriched cells only)",
-        "same layout and palette as the original fold-change heatmap, but the "
-        "colour scale is $-$log$_{10}$ $p$ (Fisher exact)",
+        "same layout as the original Colab heatmap, but the colour scale is "
+        "$-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
+        "at the floor",
         "Figure16c_significance_heatmap_residues_enriched_only", (13.4, 8.0))
 
 heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
-        "Chemical class × position, coloured by SIGNIFICANCE "
-        "(not fold change)",
-        "colour = $-$log$_{10}$ $p$, chi-square as reported in the workbook · "
-        "Basic K H R · Acidic D E · Aromatic F Y W · "
-        "Aliphatic G P A M · Hydrophobic V L I · Polar S T C N Q",
+        "Chemical class × position, coloured by significance",
+        "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
+        "workbook · Basic K H R · Acidic D E · "
+        "Aromatic F Y W · Aliphatic G P A M · "
+        "Hydrophobic V L I · Polar S T C N Q",
         "Figure17_significance_heatmap_categories", (13.4, 3.0),
-        annot_size=6.0, group_rows=False)
+        annot_size=9.0)
 
 heatmap("category", "p_fisher", "q_fisher", CAT_ORDER, True,
-        "Chemical class × position, coloured by SIGNIFICANCE "
+        "Chemical class × position, coloured by significance "
         "(Fisher exact)",
-        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the same "
-        "2×2 tables",
+        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
+        "same 2×2 tables",
         "Figure17b_significance_heatmap_categories_fisher", (13.4, 3.0),
-        annot_size=6.0, group_rows=False)
+        annot_size=9.0)
 
 # ---------------------------------------------------------------- readout
 res = cells[(cells.kind == "residue") & cells.defined].copy()

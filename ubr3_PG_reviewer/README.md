@@ -260,7 +260,7 @@ of noise alone. Heights are exact −log₁₀ p (the first version of Figure 15
 
 ---
 
-## Figures 16–17 — heatmaps coloured by significance, not fold change
+## Figures 16–17 — heatmaps coloured by significance (fold change nowhere in the figure)
 
 `make_significance_heatmap.py` → `figures/Figure16*`, `figures/Figure17*`
 
@@ -283,25 +283,65 @@ carries the full 2 × 2 contingency table *and* a chi-square p-value for every c
 the `* / ** / ***` bins in `AMINO_ACIDS_PG_motif.csv`. n = 20 P/G-D/E/T substrates vs n = 193
 non-substrate controls carrying the same motif, positions 4–24.
 
-**Encoding.** Colour is −log₁₀ p on a single warm ramp — cream → yellow → orange → red → dark red,
-deeper red = more significant, near-white = not significant. The ramp reuses the logo palette
-(`#E8A33D` / `#C0392B` / `#7B241C`) so the heatmaps and the logos read as one set. Cell text is
-the fold change for cells at p < 0.05, with the usual star bins, so effect size stays readable
-while significance drives the colour. Grey = residue absent from both groups, no test possible.
-A black outline marks cells surviving Benjamini–Hochberg FDR across the whole matrix.
+**Encoding — significance only.** Colour is −log₁₀ p on a single warm ramp — cream → yellow →
+orange → red → dark red, deeper red = more significant, near-white = not significant. The ramp
+reuses the logo palette (`#E8A33D` / `#C0392B` / `#7B241C`) so the heatmaps and the logos read as
+one set. **No numbers are printed inside the cells** — the colour *is* the p value, so a number in
+the cell would only repeat it. The only marks are the conventional star bins (`*` p < 0.05,
+`**` p < 0.01, `***` p < 0.001) and a black outline on cells surviving Benjamini–Hochberg FDR
+across the whole matrix. Grey = residue absent from both groups, no test possible. Nothing in the
+figure is fold change.
+
+> Every cell's exact p and q, both counts, both percentages and the fold change are in
+> `data/significance_heatmap_cells.csv` — read the numbers there, quote them in the text. Note that
+> p is *not* a relabelled fold change: it folds the fold change together with how many peptides the
+> cell rests on, which is exactly why the ranking changes: W at 12 is 9.65× at p = 0.05 (1 vs 1
+> peptide) while R at 7 is 5.63× at p = 1.7 × 10⁻⁵ (7/20 vs 12/193). Quoting an effect size in the
+> text therefore still needs the fold change from the CSV.
+
+**No class colour panel.** The residue rows are still ordered by chemical class, but the class
+colour strip and rotated class labels that used to run down the left edge are gone; the ordering
+is stated in words in the caption instead. Nothing else moved.
+
+**Type.** Helvetica throughout — labels, annotations and maths — falling through to Arial where
+Helvetica is not installed (metrically identical, and the substitution journals accept). The SVGs
+keep live text and declare `Helvetica, Arial, sans-serif`, so they open in real Helvetica on any
+machine that has it.
 
 **Why there is no cool arm for depletion.** **No depleted cell reaches p < 0.05 anywhere in this
 dataset** — not under either test, not for residues, not for classes. The most significant
 depleted cell is Glu at position 8 at p = 0.11 (Acidic at position 8, p = 0.062, for the classes).
 A diverging scale would therefore spend half its range colouring sub-threshold noise while
 competing for attention with the real signal. Every coloured cell in these figures is an
-enrichment, and direction stays recoverable from the annotation anyway: a printed fold change is
-> 1 for enrichment and < 1 for depletion.
+enrichment — which the caption states outright, so dropping the fold-change annotation costs no
+information about direction.
+
+**Workbook correction — chi-square columns I and T (positions 9 and 20).** Every one of the 26
+cells in each of those two columns of the `CHI test` block (rows 246–271) disagreed with the
+workbook's own contingency tables; the other 490 cells reproduce plain Pearson chi-square exactly.
+The observed and expected blocks at those positions are both correct (each position's 20 residue
+counts total exactly 20 substrates and 193 controls), so the fault was the CHITEST formula: at
+those two columns its range covers only the second column of the 2 × 2 — the *does not carry the
+residue* counts — instead of both, which reproduces 32 of the 52 wrong values exactly and inflates
+all of them toward p = 1. The 52 cells were recomputed and written back into
+`data/AminoAcids_PG_motif_with_pvalues.csv`; the untouched file is kept alongside it as
+`…csv.ORIGINAL_before_chi_fix`. **If the source Google Sheet is still in use, fix the formula in
+columns I and T there too — this repo's copy is an export.** Two calls changed:
+
+| Cell | Counts | Workbook (wrong) | Corrected chi-square | Fisher |
+|---|---|---|---|---|
+| W at 9 | 1/20 vs 0/193 | 0.82 — n.s. | **0.0018** | 0.094 — n.s. |
+| G at 20 | 5/20 vs 13/193, 3.71× | 0.39 — n.s. | **0.0052** | **0.017** |
+
+After the correction chi-square calls 27 residue cells at p < 0.05 (was 25) against 21 expected by
+chance; Fisher is unaffected throughout, since it is recomputed from the counts and never read
+from the workbook.
 
 **Two tests, both plotted.** Chi-square is the workbook's own test, but the workbook's expected-count
 block shows most cells expect **fewer than 2** substrates, well under the ≥ 5 chi-square needs, so
 Fisher exact is recomputed from the same tables and plotted alongside rather than assumed
-equivalent. The difference is not cosmetic: chi-square calls 25 cells at p < 0.05, Fisher 18.
+equivalent. The difference is not cosmetic: chi-square calls 27 cells at p < 0.05, Fisher 18 —
+against 21 expected by chance alone.
 
 | Figure | Rows | p-value |
 |---|---|---|

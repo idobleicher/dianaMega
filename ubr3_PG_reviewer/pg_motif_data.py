@@ -28,6 +28,7 @@ import os
 
 import numpy as np
 import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
 from scipy.stats import fisher_exact
 from statsmodels.stats.multitest import multipletests
 
@@ -58,6 +59,34 @@ CAT_COLORS = {
     "Aliphatic":   "#E8A33D",
     "Polar":       "#F1C40F",
 }
+# ----------------------------------------------------------------- palette
+# One warm ramp shared by every figure that colours by significance -- the
+# heatmaps (Figures 16-17) and the significance logo (Figure 15) -- so the set
+# reads as one system and cannot drift when one script is edited on its own.
+#
+# It runs warm paper -> straw -> gold -> orange -> red -> deep red, picking up
+# the Aliphatic / Basic / Acidic colours of the class palette above at its
+# middle and its top. The pale end is a warm off-white, not pure white: n.s.
+# cells then read as a quiet ground rather than as holes in the figure, and the
+# white cell separators stay visible against them.
+#
+# Why no cool arm for depletion: NO depleted cell reaches p < 0.05 anywhere in
+# this dataset -- not in either test, not for residues, not for classes. The
+# most significant depleted cell is E at position 8 at p = 0.11. A cool arm
+# would therefore colour nothing but sub-threshold noise while competing for
+# attention with the real signal. Direction stays recoverable from the fold
+# change printed in the cell: > 1 is enrichment, < 1 is depletion.
+CMAP_SIG = LinearSegmentedColormap.from_list("sig_warm", [
+    "#F7F4EC", "#F4EAD0", "#F1DCA6", "#EDC76E", "#E8A33D",
+    "#DC7C31", "#C0392B", "#9B2A20", "#71201A"])
+
+NO_TEST = "#E7E3DA"   # feature absent from both groups -- no test possible
+GRID = "#FFFFFF"      # cell separator
+INK = "#1A1A1A"       # body text
+MUTED = "#6B6B6B"     # captions and footnotes
+RULE = "#C9C4BA"      # hairlines: colourbar outline, logo baseline
+
+
 CAT_OF_AA = {a: c for c, mem in CATEGORY_MEMBERS.items() for a in mem}
 # the workbook's spellings -> ours
 CAT_IN_FILE = {"BASIC": "Basic", "Acidic": "Acidic", "Aromtic": "Aromatic",

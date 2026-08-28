@@ -11,11 +11,23 @@ equal raw counts in both groups -- here 1 peptide vs 1 peptide. R at positions
 many more observations. A fold-change logo makes W look like the main result;
 a significance logo makes R the main result.
 
-Heights are now EXACT -log10(p), not the * / ** / *** bin representatives the
-first version of this figure had to use: pg_motif_data.py reads the workbook
-sheet that carries a p value per cell. That module also documents the arginine
+Heights are EXACT -log10(p), not the * / ** / *** bin representatives the first
+version of this figure had to use: pg_motif_data.py reads the workbook sheet
+that carries a p value per cell. That module also documents the arginine
 correction -- the earlier source file's R row was the Basic-class row, so R was
 drawn far too short here.
+
+COLOUR -- the glyphs are coloured by the same warm significance ramp as the
+heatmaps (pg.CMAP_SIG), keyed to the same -log10 p, with the same colourbar and
+the same p ticks. Height and colour therefore carry one quantity twice, which
+is the point: a letter that is tall is also dark, so the figure reads at a
+glance and sits beside Figures 16-17 as one visual set rather than as a second
+palette. Chemical class is no longer carried by colour here -- that is Figure
+14's job, which colours the same stacks by class. Pass colour_by="class" to
+build() to get the old class-coloured version of this figure back.
+
+There are no black outlines on the glyphs. The hairline that separates two
+stacked letters is white, the same separator the heatmaps use between cells.
 
 Two versions are produced:
   Figure15   chi-square, the workbook's own test.
@@ -34,6 +46,7 @@ import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.colors import LinearSegmentedColormap, Normalize
 import logomaker
 
 import pg_motif_data as pg
@@ -51,6 +64,15 @@ AA_COLOR_SCHEME = {a: CAT_COLORS[c] for c, mem in CATEGORY_MEMBERS.items() for a
 cells = pg.load()
 DIR = pg.matrix('direction', cells=cells)
 
+# Only cells at p < 0.05 are ever drawn, so the ramp is entered at its p = 0.05
+# point rather than at its pale end: the faintest glyph in the figure is the
+# gold the heatmaps use for a one-star cell, not the near-white they use for
+# n.s. VMAX matches the heatmaps' colour ceiling exactly.
+VMIN, VMAX = 1.30103, 5.0
+RAMP = LinearSegmentedColormap.from_list(
+    'sig_glyph', pg.CMAP_SIG(np.linspace(0.34, 1.0, 256)))
+NORM = Normalize(vmin=VMIN, vmax=VMAX, clip=True)
+
 # ------------------------------------------------------------------ style
 mpl.rcParams.update({
     'font.family': 'sans-serif',
@@ -58,11 +80,12 @@ mpl.rcParams.update({
     'font.size': 8, 'axes.linewidth': 0.8,
     'svg.fonttype': 'none', 'pdf.fonttype': 42,
     'figure.dpi': 600, 'savefig.dpi': 600, 'savefig.bbox': 'tight',
+    'figure.facecolor': 'white', 'savefig.facecolor': 'white',
     'axes.spines.top': False, 'axes.spines.right': False,
 })
 
 
-def build(pcol, test_label, stem, q_note):
+def build(pcol, test_label, stem, q_note, colour_by='significance'):
     P = pg.matrix(pcol, cells=cells)
     Q = pg.matrix(pcol.replace('p_', 'q_'), cells=cells)
 
@@ -78,42 +101,74 @@ def build(pcol, test_label, stem, q_note):
     H = H.T.set_axis(POS)
 
     fig, ax = plt.subplots(figsize=(10.5, 2.9))
-    logomaker.Logo(H, ax=ax, color_scheme=AA_COLOR_SCHEME,
-                   font_name='Helvetica', vpad=0.0, width=0.95,
-                   stack_order='big_on_top')
+    base = AA_COLOR_SCHEME if colour_by == 'class' else '#CFCAC1'
+    logo = logomaker.Logo(H, ax=ax, color_scheme=base,
+                          font_name='Helvetica', vpad=0.0, width=0.95,
+                          stack_order='big_on_top')
+
+    # One colour per glyph, from that glyph's own p -- logomaker's colour_scheme
+    # is per-residue and cannot do this, so the glyphs are restyled after the
+    # stacks are laid out.
+    if colour_by != 'class':
+        for p_ in H.index:
+            for a in H.columns:
+                h = float(H.at[p_, a])
+                if h > 0:
+                    logo.style_single_glyph(p_, a, color=RAMP(NORM(h)))
+
+    # No black outlines. A white hairline is the same separator the heatmaps
+    # draw between cells, and it only shows where two glyphs actually touch.
     for patch in ax.patches:
-        patch.set_edgecolor('black')
+        patch.set_edgecolor(pg.GRID)
         patch.set_linewidth(0.35)
 
     for y, lab in [(1.30103, 'p = 0.05'), (2.0, 'p = 0.01'), (3.0, 'p = 0.001')]:
-        ax.axhline(y=y, color='#999', linewidth=0.5, linestyle=(0, (3, 2)), zorder=1)
-        ax.text(POS[-1] + 0.55, y, lab, fontsize=5, color='#666', va='center', ha='left')
+        ax.axhline(y=y, color=pg.RULE, linewidth=0.5, linestyle=(0, (3, 2)),
+                   zorder=1)
+        ax.text(POS[-1] + 0.55, y, lab, fontsize=5, color=pg.MUTED,
+                va='center', ha='left')
 
-    ax.axhline(y=0, color='black', linewidth=0.5)
+    ax.axhline(y=0, color=pg.RULE, linewidth=0.6)
     ax.yaxis.grid(False)
     ax.xaxis.grid(False)
     ax.set_axisbelow(True)
-    ax.set_ylabel('$-$log$_{10}$ $p$   (stacked)', fontsize=8)
-    ax.set_xlabel('Position', fontsize=8, labelpad=2)
+    ax.set_ylabel('$-$log$_{10}$ $p$   (stacked)', fontsize=8, color=pg.INK)
+    ax.set_xlabel('Position', fontsize=8, labelpad=2, color=pg.INK)
     ax.set_xticks(POS)
     ax.set_xticklabels(POS, fontsize=6.5)
-    ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2)
-    ax.set_title(f'Significance Logo — height is $-$log$_{{10}}$ $p$, '
+    ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2,
+                   colors=pg.INK)
+    for sp in ax.spines.values():
+        sp.set_edgecolor(pg.RULE)
+    ax.set_title(f'Significance Logo — height and colour are $-$log$_{{10}}$ $p$, '
                  f'not fold change ({test_label})',
-                 fontweight='bold', fontsize=8.5, pad=4)
+                 fontweight='bold', fontsize=8.5, pad=4, color=pg.INK)
     ax.set_ylim(-0.05, float(H.sum(axis=1).max()) * 1.12)
     ax.set_xlim(POS[0] - 0.6, POS[-1] + 0.6)
     ax.text(0.5, -0.15,
             f'n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} non-substrate '
             f'controls.   {q_note}',
-            transform=ax.transAxes, ha='center', fontsize=5.8, color='#666',
+            transform=ax.transAxes, ha='center', fontsize=5.8, color=pg.MUTED,
             style='italic')
 
-    ax.legend(handles=[mpatches.Patch(color=CAT_COLORS[c],
-                                      label=f'{c}  ({" ".join(CATEGORY_MEMBERS[c])})')
-                       for c in LEGEND_ORDER],
-              fontsize=5.5, frameon=False, loc='upper left', bbox_to_anchor=(1.10, 1.0),
-              handlelength=0.8, handletextpad=0.3, borderpad=0.2)
+    if colour_by == 'class':
+        ax.legend(handles=[mpatches.Patch(color=CAT_COLORS[c],
+                                          label=f'{c}  ({" ".join(CATEGORY_MEMBERS[c])})')
+                           for c in LEGEND_ORDER],
+                  fontsize=5.5, frameon=False, loc='upper left',
+                  bbox_to_anchor=(1.10, 1.0), handlelength=0.8,
+                  handletextpad=0.3, borderpad=0.2)
+    else:
+        # the same key the heatmaps carry, on the same ramp and the same ticks
+        sm = mpl.cm.ScalarMappable(cmap=RAMP, norm=NORM)
+        cbar = fig.colorbar(sm, ax=ax, fraction=0.020, pad=0.055)
+        cbar.ax.tick_params(labelsize=6, length=2, width=0.6, colors=pg.INK)
+        cbar.outline.set_linewidth(0.5)
+        cbar.outline.set_edgecolor(pg.RULE)
+        cbar.set_ticks([VMIN, 2, 3, 4, VMAX])
+        cbar.set_ticklabels(['0.05', '0.01', '0.001', '1e-4', '1e-5'])
+        cbar.set_label('$p$ value', fontsize=6.5, labelpad=5, color=pg.INK)
+
     plt.tight_layout(pad=0.3)
 
     for ext in ('png', 'pdf', 'svg'):

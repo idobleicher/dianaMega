@@ -244,8 +244,8 @@ whole library. All of them read `pg_motif_data.py`.
 | `Figure13b_..._significant` | " | fold change, residues at p < 0.05 |
 | `Figure14_logo_pos4_24_by_category` | `make_category_logo.py` | same heights, coloured by chemical class |
 | `Figure14b_..._significant` | " | same, residues at p < 0.05 |
-| `Figure15_significance_logo_pos4_24` | `make_significance_logo.py` | **−log₁₀ p** (chi-square) |
-| `Figure15b_..._fisher` | " | **−log₁₀ p** (Fisher exact) |
+| `Figure15_significance_logo_pos4_24` | `make_significance_logo.py` | **−log₁₀ p** (chi-square), glyphs coloured by the heatmap ramp |
+| `Figure15b_..._fisher` | " | **−log₁₀ p** (Fisher exact), same colouring |
 
 Figure 13 and Figure 15 are the same data under two rulers, and they disagree on purpose.
 Under fold change the tallest glyphs are W at 12/14/19 and M at 16 — every one of them 1
@@ -257,6 +257,15 @@ The significance logos draw only residues reaching p < 0.05. Without that thresh
 residues are drawn at every position, most at p ≈ 0.3–0.9, and the stacks reach −log₁₀ p ≈ 8 out
 of noise alone. Heights are exact −log₁₀ p (the first version of Figure 15 could only use the
 `*/**/***` bin representatives 1.30 / 2.00 / 3.00, because the file it read had no p-values).
+
+**Figure 15 is coloured to match Figures 16–17.** Its glyphs take their colour from the same
+`CMAP_SIG` ramp, keyed to the same −log₁₀ p, and carry the same colourbar with the same p ticks —
+so a letter that is tall is also dark, and the logo sits beside the heatmaps as one set. The ramp
+is entered at its p = 0.05 point, since nothing below that is drawn, and there are no black
+outlines on the glyphs: the hairline separating two stacked letters is the same white the heatmaps
+use between cells. Chemical class is no longer carried by colour in Figure 15 — that is Figure
+14's job on the same stacks — but `build(..., colour_by='class')` restores the class-coloured
+version of the figure.
 
 ---
 
@@ -283,14 +292,21 @@ carries the full 2 × 2 contingency table *and* a chi-square p-value for every c
 the `* / ** / ***` bins in `AMINO_ACIDS_PG_motif.csv`. n = 20 P/G-D/E/T substrates vs n = 193
 non-substrate controls carrying the same motif, positions 4–24.
 
-**Encoding — significance only.** Colour is −log₁₀ p on a single warm ramp — cream → yellow →
-orange → red → dark red, deeper red = more significant, near-white = not significant. The ramp
-reuses the logo palette (`#E8A33D` / `#C0392B` / `#7B241C`) so the heatmaps and the logos read as
-one set. **No numbers are printed inside the cells** — the colour *is* the p value, so a number in
-the cell would only repeat it. The only marks are the conventional star bins (`*` p < 0.05,
-`**` p < 0.01, `***` p < 0.001) and a black outline on cells surviving Benjamini–Hochberg FDR
-across the whole matrix. Grey = residue absent from both groups, no test possible. Nothing in the
-figure is fold change.
+**Encoding — colour is the p value, the number is the effect size.** Colour is −log₁₀ p on a
+single warm ramp — warm paper → straw → gold → orange → red → deep red, deeper red = more
+significant, palest = not significant. The ramp lives in `pg_motif_data.py` as `CMAP_SIG`, next to
+the loader every figure reads, and Figure 15 colours its glyphs from the same ramp on the same
+scale, so the logo and the heatmaps are one visual set and cannot drift apart when one script is
+edited alone.
+
+**Every cell at p < 0.05 carries its fold change** (substrates / controls) and the star bin of its
+uncorrected p (`*` p < 0.05, `**` p < 0.01, `***` p < 0.001) — and nothing else. The two
+quantities are on different channels on purpose: p folds the effect size together with how many
+peptides the cell rests on, so a reader given colour alone cannot tell 9.65× resting on one
+peptide from 5.63× resting on seven. **The FDR survivors carry no mark inside the matrix** —
+neither the old black outline nor a dagger; both put a third thing into a cell that already holds
+a colour and a number. The caption names them in words instead. Grey = residue absent from both
+groups, no test possible.
 
 > Every cell's exact p and q, both counts, both percentages and the fold change are in
 > `data/significance_heatmap_cells.csv` — read the numbers there, quote them in the text. Note that
@@ -352,7 +368,8 @@ against 21 expected by chance alone.
 | `Figure17b_significance_heatmap_categories_fisher` | same | Fisher exact |
 
 **What survives correction — state this plainly if the figure is used.** Across the 416 testable
-residue cells, **25 reach p < 0.05 against 21 expected by chance alone**. Under chi-square only
+residue cells, **27 reach p < 0.05 under chi-square (18 under Fisher) against 21 expected by
+chance alone**. Under chi-square only
 **R at positions 7 and 8** survive BH-FDR; under Fisher exact **nothing does**. At the class level
 **Basic at position 8** survives both (9/20 vs 21/193, 4.14×, q = 0.049), with Basic at 5 and 7
 surviving under chi-square only. Positions 4–24 are therefore best described as carrying **one

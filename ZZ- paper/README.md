@@ -162,17 +162,89 @@ reproduce.
 - **The mirror-null FDR is an estimate**, not a q value. There is no per-peptide p value in this
   design, and none is invented.
 
+## Met-Pro peptides — is anything but the proline doing work?
+
+`zz_pro_motif.py`, `make_pro_logo.py`, `make_pro_composition.py`
+→ `figures/FigureZ1*`, `FigureZ2*`, `FigureZ3*`
+
+Both sides of this comparison start Met-Pro, so the proline cannot separate them and positions
+3–24 are the question. 36 stabilised Met-Pro peptides (ΔPSI ≥ 1.0 with headroom in any of ZYG11B
+KO, ZER1 KO, double KO) against 424 that are not stabilised anywhere (ΔPSI < 0.5 everywhere
+measured). The 662 Met-Pro peptides in between are in neither group — with 36 substrates, letting
+peptides at ΔPSI 0.5–1.0 into the background would seed it with probable weak substrates.
+
+**No, there is no second motif position.** Across the 440 position × residue cells, **25 reach
+p < 0.05 against 22 expected by chance alone, and not one survives BH-FDR.** The two versions of
+the logo — all three genotypes, and ZYG11B + double KO with the ZER1-only calls dropped — do not
+even agree on which cells are tall: Gly at position 3 is the second-tallest glyph in the first and
+absent from the second, Lys at 14 the reverse. That disagreement is what noise looks like.
+Figures Z1 and Z2 are published as a negative result, because "there is nothing here" is a claim
+a reader should be able to check.
+
+**But a per-cell test is the wrong instrument for the question.** It spends its power on 440
+hypotheses, each about one residue at one position, when the thing that differs is spread across
+the whole sequence. Asking about **composition** instead — 27 tests, each pooling all 22 free
+positions — finds it at once, and the effects are not subtle:
+
+| Positions 3–24 | Stabilised | Not stabilised | q |
+|---|---:|---:|---:|
+| **D+E content** | **13.3%** | **7.3%** | 3 × 10⁻⁴ |
+| Glu content | 8.2% | 4.2% | 0.003 |
+| Hydropathy (Kyte–Doolittle) | −0.20 | +0.24 | 0.005 |
+| Net charge | −0.75 | +0.50 | 0.006 |
+| Asp content | 5.1% | 3.0% | 0.010 |
+| Leu content | 10.9% | 16.7% | 0.016 |
+| Arg content | 3.5% | 6.4% | 0.016 |
+
+Seven of 27 tests survive FDR against 1.4 expected at p < 0.05 by chance. The acidic excess is
+spread evenly along the peptide — 11.6%, 12.5%, 15.6%, 13.9% across positions 3–8, 9–14, 15–19 and
+20–24 against roughly 7–8% in the controls — so it is bulk character, not a position.
+
+**The control that makes it believable.** An acidic peptide could look stabilised merely by
+sitting lower at baseline with more room to rise. It does not: among the controls, acidic content
+correlates **positively** with baseline PSI (Spearman r = +0.22, p = 8 × 10⁻⁶), so the ceiling
+works against this result rather than producing it. Compared band by band inside matched baseline
+PSI the difference holds anyway — combined p = 0.0018. Panels D and E of Figure Z3 are that
+control.
+
+**It is not proline-specific, and that is the real conclusion.** The same composition separates
+stabilised from unstabilised **Met-Gly** peptides, and far more strongly: 13.1% vs 6.2% acidic,
+16 of 27 tests surviving FDR, combined p = 7 × 10⁻¹⁹ after baseline matching. Met-Gly peptides are
+the canonical ZYG11B substrates. So an acidic, hydrophilic, negatively charged N-terminal region
+is a property of what gets degraded in this screen generally — plausibly because such regions are
+disordered and accessible — rather than a second determinant of how proline is read.
+
+One more caution specific to these peptides: Met excision is inefficient at Met-Pro, so most of
+this group probably keeps its initiator methionine and presents Met, not Pro, at the N-terminus.
+Whatever is happening to them may not be an N-degron mechanism at all.
+
+| Figure | What it shows |
+|---|---|
+| `FigureZ1_pro_foldchange_logo` | Fold change, stabilised vs not, enriched residues only |
+| `FigureZ1b_..._significant` | The same, restricted to p < 0.05 |
+| `FigureZ2_pro_significance_logo` | Height and colour = −log₁₀ p (Fisher) — **the one to read** |
+| `FigureZ2b_..._strict` | The same without the ZER1-only calls; it disagrees with Z2 |
+| `FigureZ3_composition_stabilised_vs_not` | Composition, with the baseline-matched control |
+
+---
+
 ## Reproducing
 
 ```bash
-python zz_gps_data.py      # loader self-test; writes data/gps_tidy.csv.gz
-python make_hit_lists.py   # -> ZZ_ZYG11B_ZER1_hit_lists.xlsx, data/hits_*.csv, hit_summary.csv
+python zz_gps_data.py          # loader self-test; writes data/gps_tidy.csv.gz
+python make_hit_lists.py       # -> ZZ_ZYG11B_ZER1_hit_lists.xlsx, data/hits_*.csv
+python zz_pro_motif.py         # Met-Pro group sizes and the top cells
+python make_pro_logo.py        # -> figures/FigureZ1*, FigureZ2*, data/pro_motif_cells.csv
+python make_pro_composition.py # -> figures/FigureZ3*, data/pro_composition_tests.csv
 ```
 
 | File | Role |
 |---|---|
 | `zz_gps_data.py` | The single loader. Reads the workbook, checks its ΔPSI columns against its own PSI columns, joins S3A to S3B, and adds position 2, Met-excision and headroom. Everything else imports it. |
 | `make_hit_lists.py` | Hit definition, the four lists, the mirror-null FDR, the glycine control, and the Excel workbook. |
+| `zz_pro_motif.py` | The Met-Pro within-motif comparison: the two groups, the 440 position × residue cells, Fisher and BH-FDR. |
+| `make_pro_logo.py` | Fold-change and significance logos for that comparison. |
+| `make_pro_composition.py` | Composition and peptide-property tests, plus the baseline-matched control. |
 | `data/gps_tidy.csv.gz` | Cached tidy table, one row per transcript. Delete it to force a re-read of the xlsx. |
 
 ## Still open
@@ -180,7 +252,7 @@ python make_hit_lists.py   # -> ZZ_ZYG11B_ZER1_hit_lists.xlsx, data/hits_*.csv, 
 - Annotation. The UBR3 list carries UniProt function, localisation and GO process per protein;
   these lists carry gene symbol and transcript only. `../ubr3_PG_reviewer/fetch_annotation.py`
   does that job from UniProt and could be pointed at these 63.
-- Figures. Nothing is plotted yet. The obvious first panel is ΔPSI by position-2 residue for the
-  three genotypes side by side, which is the whole story in one image.
+- Figures. The Met-Pro question has Z1–Z3; there is still no overview panel of ΔPSI by
+  position-2 residue for the three genotypes side by side, which is the whole screen in one image.
 - Data S3C (NMT1/2) is loaded but unused. N-myristoyltransferase competes for the same
   N-terminal glycine, so it is the natural next comparison.

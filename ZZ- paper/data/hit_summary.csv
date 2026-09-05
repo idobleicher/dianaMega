@@ -1,0 +1,5 @@
+list,n,pct_gly,gly_enrichment,mirror_negative,est_fdr_pct,median_dpsi,n_genes,definition
+hits_high_confidence,63,87.3,11.3,2,3.175,1.446,62,"ZYG11B KO and double KO both ≥ 1.0, both with headroom"
+hits_double_ko,194,62.37,8.074,2,1.031,1.314,191,"double KO − wild-type ≥ 1.0, baseline PSI ≤ 4.0"
+hits_zyg11b_ko,214,46.73,6.049,21,9.813,1.249,213,"ZYG11B KO − AAVS1 ≥ 1.0, baseline PSI ≤ 4.0"
+hits_zer1_ko,127,8.661,1.121,19,14.96,1.146,126,"ZER1 KO − AAVS1 ≥ 1.0, baseline PSI ≤ 4.0 — no Gly signal, see README"

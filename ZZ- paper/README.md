@@ -218,6 +218,25 @@ One more caution specific to these peptides: Met excision is inefficient at Met-
 this group probably keeps its initiator methionine and presents Met, not Pro, at the N-terminus.
 Whatever is happening to them may not be an N-degron mechanism at all.
 
+**Palette.** This project's figures are blue / purple / pink and deliberately do **not** share the
+warm ramp of `../ubr3_PG_reviewer/`; they are a different paper. The three values live in
+`zz_pro_motif.py` and every figure reads them from there.
+
+Colour in the logos groups residues by **charge** — acidic D E in blue, basic K H R in pink,
+everything uncharged in purple — rather than by the six chemical classes the sibling project uses.
+That is a consequence of the palette, and it is worth stating why: six hues cannot be told apart
+inside blue-purple-pink. The family is roughly a third of the hue wheel, and the best six-colour
+set that fits in it still leaves a pair below the ΔE 15 floor for **normal** colour vision, which
+no amount of legend or labelling excuses. The rule for that case is to cut the series count, so
+three it is — and charge happens to be the axis this paper's result is about anyway.
+
+The three (`#2E6FD0`, `#E0407A`, `#8E44AD`) pass chroma and the normal-vision floor at worst
+ΔE 15.9. Colour-vision separation sits at ΔE 6.2 for blue against purple, which is in the band
+that is legal only where the mark carries its own label — in a sequence logo it does, since the
+glyph is the residue's name. Figure Z3's pair (`#D6408F` stabilised, `#2E6FD0` not) passes every
+check outright. The −log₁₀ p ramp runs pale lavender → periwinkle → violet → purple → deep plum,
+verified monotonic in luminance.
+
 | Figure | What it shows |
 |---|---|
 | `FigureZ1_pro_foldchange_logo` | Fold change, stabilised vs not, enriched residues only |

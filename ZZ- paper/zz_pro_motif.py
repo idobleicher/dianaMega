@@ -57,22 +57,44 @@ POS = list(range(3, 25))        # 1 is Met, 2 is Pro, both fixed by definition
 AA = list("ACDEFGHIKLMNPQRSTVWY")
 CUT_HIT, CUT_CTRL = 1.0, 0.5
 
-# Chemical classes and the warm palette are carried over verbatim from
-# ../ubr3_PG_reviewer/pg_motif_data.py so the two projects' logos read as one
-# visual system. Copied rather than imported: the projects are separate, and a
-# folder name with a space in it is not importable.
+# ---------------------------------------------------------------- palette
+# Blue / purple / pink. This project's figures do NOT share the warm ramp of
+# ../ubr3_PG_reviewer/ -- they are a different paper and are painted apart on
+# purpose.
+#
+# WHY THREE GROUPS AND NOT SIX. The sibling project colours logo glyphs by six
+# chemical classes. Six hues cannot be separated inside blue-purple-pink: the
+# family is about a third of the hue wheel, and the best six-colour set that
+# can be built in it leaves a pair at dE 12 for NORMAL colour vision, below the
+# 15 floor -- full-sight readers cannot tell them apart, which no amount of
+# secondary encoding excuses. The rule for that case is to cut the series
+# count, so the residues are grouped by CHARGE instead, three ways. That is
+# also the axis this paper's result is about (acidic content, net charge), and
+# the four-way acidic/basic/polar/nonpolar scheme of the sibling project's
+# Figure 13 is its nearest relative.
+#
+# The three were checked with the dataviz validator: chroma and the
+# normal-vision floor PASS (worst pair dE 15.9), CVD separation WARN at
+# dE 6.2 (blue vs purple, which no palette in this family escapes -- purple is
+# blue plus red, and red is what a protanope cannot see). That band is legal
+# only where the mark carries its own label, and in a sequence logo it does:
+# the glyph IS the residue's name, and the legend spells out each group.
 CATEGORY_MEMBERS = {
-    "Basic": list("KHR"), "Acidic": list("DE"), "Aromatic": list("FYW"),
-    "Aliphatic": list("GPAM"), "Hydrophobic": list("VLI"), "Polar": list("STCNQ"),
+    "Acidic": list("DE"),
+    "Basic": list("KHR"),
+    "Uncharged": list("STCNQGPAMVLIFYW"),
 }
-CAT_ORDER = ["Basic", "Acidic", "Aromatic", "Aliphatic", "Hydrophobic", "Polar"]
-CAT_COLORS = {"Acidic": "#7B241C", "Aromatic": "#A0522D", "Basic": "#C0392B",
-              "Hydrophobic": "#D35400", "Aliphatic": "#E8A33D", "Polar": "#F1C40F"}
+CAT_ORDER = ["Acidic", "Basic", "Uncharged"]
+CAT_COLORS = {"Acidic": "#2E6FD0", "Basic": "#E0407A", "Uncharged": "#8E44AD"}
 CAT_OF_AA = {a: c for c, mem in CATEGORY_MEMBERS.items() for a in mem}
 
-CMAP_STOPS = ["#F7F4EC", "#F4EAD0", "#F1DCA6", "#EDC76E", "#E8A33D",
-              "#DC7C31", "#C0392B", "#9B2A20", "#71201A"]
-INK, MUTED, RULE, GRID = "#1A1A1A", "#6B6B6B", "#C9C4BA", "#FFFFFF"
+# Sequential ramp for -log10 p: pale lavender -> periwinkle -> violet -> purple
+# -> deep plum. Verified monotonic in relative luminance
+# (0.921 down to 0.059, every step decreasing), which is the one property a
+# magnitude ramp cannot be without.
+CMAP_STOPS = ["#F7F5FC", "#E7E6F7", "#D2D2EF", "#B4B6E4", "#9095D6",
+              "#7B6BC4", "#8E44AD", "#9C2E86", "#7A1F5E"]
+INK, MUTED, RULE, GRID = "#1A1A1A", "#6B6B6B", "#C6C3D0", "#FFFFFF"
 
 _CACHE = {}
 

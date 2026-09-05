@@ -33,10 +33,11 @@ strongly, and those are the canonical ZYG11B substrates. It is a property of
 what makes any peptide a substrate in this screen -- acidic, hydrophilic,
 negatively charged N-terminal regions -- not of how proline is read.
 
-Colours: #9B2A20 (stabilised) and #D9A441 (not), both from the project ramp,
-checked with the dataviz validator -- CVD dE 29, well clear of the floor. The
-gold sits below 3:1 against white, so every group is labelled on the axis and
-identity is never carried by colour alone.
+Colours: #D6408F (stabilised) against #2E6FD0 (not), from the project's
+blue/purple/pink palette in zz_pro_motif.py. Checked with the dataviz
+validator: every check passes, including CVD separation at dE 10.5 and normal
+vision at dE 27.2, so this pair carries identity on its own -- the axis labels
+under each box are belt and braces rather than the required relief.
 
 Outputs:
   figures/FigureZ3_composition_stabilised_vs_not   the five panels
@@ -59,7 +60,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FIG, DATA = os.path.join(HERE, "figures"), os.path.join(HERE, "data")
 os.makedirs(FIG, exist_ok=True)
 
-HIT, QUIET = "#9B2A20", "#D9A441"
+# Pink for the group of interest, blue for the background it is read against.
+# Validated: chroma, CVD (dE 10.5 worst), normal vision (dE 27.2) and contrast
+# all PASS, so this pair needs no relief at all.
+HIT, QUIET = "#D6408F", "#2E6FD0"
 INK, MUTED, RULE = zp.INK, zp.MUTED, zp.RULE
 
 KD = dict(A=1.8, R=-4.5, N=-3.5, D=-3.5, C=2.5, Q=-3.5, E=-3.5, G=-0.4, H=-3.2,

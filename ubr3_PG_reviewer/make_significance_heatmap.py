@@ -24,8 +24,9 @@ Two p-values are carried for every cell:
 BH-FDR is applied across all 420 residue cells (126 category cells).
 
 ANNOTATION -- colour is the p value, cell text is the EFFECT SIZE. Every cell
-at p < 0.05 carries its fold change (substrates / controls) and the star bin of
-its uncorrected p, and nothing else. The two quantities sit on different
+at p < 0.05 carries its fold change (substrates / controls) under the star bin
+of its uncorrected p -- stars on their own line above the number, set a little
+larger -- and nothing else. The two quantities sit on different
 channels on purpose: p folds the effect size together with how many peptides
 the cell rests on, so a reader given only colour cannot tell 9.65x resting on
 one peptide from 5.63x resting on seven. The FDR survivors carry NO mark of
@@ -179,8 +180,10 @@ CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · "
 
 
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
-            height, positions=None, vmax=5.0, annot_size=6.0):
+            height, positions=None, vmax=5.0, annot_size=6.0,
+            star_size=None):
     positions = list(positions or POS)
+    star_size = annot_size + 1.8 if star_size is None else star_size
     window = positions != list(POS)
     figsize = (fig_width(len(positions)), height)
     P = matrix(kind, pcol, order, positions).values.astype(float)
@@ -217,8 +220,18 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     for y in np.arange(-0.5, nrow, 1):
         ax.axhline(y, color=GRID, linewidth=0.8)
 
-    # Cell text = FOLD CHANGE + star bin, on every cell at p < 0.05. Colour is
-    # the p value, so the number carries the effect size the colour cannot.
+    # Cell text = FOLD CHANGE with its STAR BIN STACKED ABOVE IT, on every
+    # cell at p < 0.05. Colour is the p value, so the number carries the effect
+    # size the colour cannot.
+    #
+    # The stars sit on their own line above the number rather than trailing it.
+    # Run together as "4.06***" the two read as one token and the asterisks,
+    # which are small high-sitting glyphs, disappear into the digits; stacked,
+    # the significance bin is legible across the matrix at a glance and the
+    # fold change keeps a clean number of its own. They are drawn as two text
+    # objects because the two lines are set at different sizes -- the stars a
+    # little larger than the number, since an asterisk inks a fraction of its
+    # em box and matches a digit's weight only above the digit's point size.
     # The FDR survivors get no mark of their own here -- the caption names
     # them, so nothing extra is laid over the colour.
     #
@@ -235,9 +248,19 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                 continue
             fc_txt = "∞" if np.isinf(fc) else (
                 "--" if not np.isfinite(fc) else f"{fc:.2f}")
-            ax.text(c_, r, f"{fc_txt}{stars(p_)}", ha="center", va="center",
-                    fontsize=annot_size, fontweight="bold",
-                    color=pg.CELL_TEXT, linespacing=0.9,
+            st = stars(p_)
+            # offsets are fractions of a row, so the pair stays centred in the
+            # cell whatever the figure's height
+            if st:
+                # a thinner halo than the number's: an asterisk is mostly the
+                # gaps between its arms, and the full-weight halo closes them
+                ax.text(c_, r - 0.17, st, ha="center", va="center",
+                        fontsize=star_size, fontweight="bold",
+                        color=pg.CELL_TEXT,
+                        path_effects=pg.cell_text_effects(0.75))
+            ax.text(c_, r + (0.13 if st else 0.0), fc_txt, ha="center",
+                    va="center", fontsize=annot_size, fontweight="bold",
+                    color=pg.CELL_TEXT,
                     path_effects=pg.cell_text_effects())
 
     ax.set_xticks(range(ncol))
@@ -285,7 +308,7 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
         + ("   " + CLASS_NOTE if kind == "residue" else ""),
 
         "Cell text is the fold change (substrates / controls) of every cell at "
-        "$p$ < 0.05, followed by the star bin of its uncorrected $p$:  "
+        "$p$ < 0.05, under the star bin of its uncorrected $p$:  "
         "* $p$ < 0.05, ** $p$ < 0.01, *** $p$ < 0.001.   "
         + ("Grey = residue absent from both groups, no test possible."
            if kind == "residue" else ""),

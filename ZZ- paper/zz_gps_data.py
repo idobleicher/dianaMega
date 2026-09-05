@@ -87,6 +87,39 @@ GLY = "G"
 
 SHEETS = {"a": "Data S3A", "b": "Data S3B", "c": "Data S3C"}
 
+# The five (experiment, column-suffix) blocks whose six bins are carried here.
+# pandas suffixes repeated headers, so the AAVS1 block is Bin1..Bin6 and each
+# later block is Bin1.N..Bin6.N in the order the sheet lays them out.
+CONDITIONS = [
+    ("AAVS1 control", "a", "", "control"),
+    ("ZYG11B KO", "a", ".4", "ko"),
+    ("ZER1 KO", "a", ".5", "ko"),
+    ("wild-type control", "b", "", "control"),
+    ("double KO", "b", ".1", "ko"),
+]
+BINS = list(range(1, 7))
+BIN_CACHE = os.path.join(DATA, "gps_bins.csv.gz")
+
+# ---- gene symbols Excel turned into dates, before the file ever reached us.
+# 44 rows: the septins, the membrane-associated ring fingers and DELEC1, the
+# families whose names Excel reads as "1-Sep", "1-Mar", "1-Dec". The number
+# lands in the YEAR, so 2004-09-01 is SEPTIN4 and 2001-03-01 is MARCHF1. The
+# transcript IDs are untouched, so the repair is exact rather than a guess.
+#
+# This is not cosmetic. SEPTIN4 is a real hit in three of the four lists this
+# project produces, and while its symbol was a date, searching those lists for
+# it returned nothing.
+_DATE_FAMILY = {3: "MARCHF", 9: "SEPTIN", 12: "DELEC"}
+
+
+def _fix_gene(g):
+    g = str(g)
+    if len(g) >= 10 and g[:4].isdigit() and g[4] == "-":
+        y, m = int(g[:4]), int(g[5:7])
+        if m in _DATE_FAMILY:
+            return f"{_DATE_FAMILY[m]}{y - 2000}"
+    return g
+
 _CACHE = None
 
 
@@ -164,7 +197,9 @@ def load(force=False, use_cache=True):
     m["gene"] = m.gene.fillna(m.gene_b)
     m = m.drop(columns=["seq_b", "gene_b"])
 
+    m["gene"] = m.gene.map(_fix_gene)
     m["nterm"] = m.seq.str[1]
+    m["nterm3"] = m.seq.str[:3]
     m["met_excised"] = m.nterm.isin(MET_EXCISED)
     m["is_gly"] = m.nterm.eq(GLY)
     m["headroom"] = m.psi_ctrl_a <= HEADROOM_MAX
@@ -174,6 +209,47 @@ def load(force=False, use_cache=True):
     m.to_csv(CACHE, index=False, float_format="%.6g")
     _CACHE = m
     return m.copy()
+
+
+def bins(force=False):
+    """Proportion of reads in each of the six sort bins, per peptide, per
+    condition. One row per transcript; columns are `<condition> bin<i>`.
+
+    PSI is the read-weighted mean of these bins -- verified on load, since a
+    figure that plots the bins beside a PSI-derived number has to know the two
+    are the same measurement seen at two resolutions. The six bins also sum to
+    the sheet's own Total Reads exactly.
+    """
+    if not force and os.path.exists(BIN_CACHE):
+        return pd.read_csv(BIN_CACHE)
+
+    a, b = _read_sheets()
+    sheets = {"a": a, "b": b}
+    out = None
+    for name, sheet, suffix, _kind in CONDITIONS:
+        df = sheets[sheet]
+        cols = [f"Bin{i}{suffix}" for i in BINS]
+        tot = df[f"Total Reads{suffix}"]
+        assert (df[cols].sum(axis=1) - tot).abs().max() < 1e-6, \
+            f"{name}: the six bins do not sum to Total Reads"
+        psi = sum(i * df[c] for i, c in zip(BINS, cols)) / tot
+        stated = {"AAVS1 control": "PSI AAVS1 KO", "ZYG11B KO": "PSI ZYG11B KO",
+                  "ZER1 KO": "PSI ZER1 KO", "wild-type control": "PSI Wild-type",
+                  "double KO": "PSI Double KO"}[name]
+        assert (psi - df[stated]).abs().max() < 1e-6, \
+            f"{name}: bins do not reproduce the stated PSI"
+
+        part = pd.DataFrame({"transcript": df["Ensembl Transcript ID"]})
+        for i, c in zip(BINS, cols):
+            part[f"{name} bin{i}"] = df[c] / tot
+        part[f"{name} reads"] = tot
+        out = part if out is None else out.merge(part, on="transcript", how="outer")
+
+    d = load()
+    out = d[["transcript", "gene", "seq", "nterm", "nterm3"]].merge(
+        out, on="transcript", how="left")
+    out.to_csv(BIN_CACHE, index=False, float_format="%.6g")
+    return out
 
 
 def gly_enrichment(frame, label=""):

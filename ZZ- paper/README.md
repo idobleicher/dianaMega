@@ -42,7 +42,16 @@ genetic backgrounds", copied verbatim from the download. Read only through `zz_g
 checked on load. Read depth is already floored at 200 reads per peptide per sample.
 
 The workbook's own ΔPSI columns are used as given. They reproduce PSI(KO) − PSI(control) to
-1.5 × 10⁻¹⁵, i.e. exactly; the loader asserts it rather than assuming it.
+1.5 × 10⁻¹⁵, i.e. exactly; the loader asserts it rather than assuming it. The six bin counts sum
+to the sheet's own Total Reads, and their read-weighted mean reproduces the stated PSI, both also
+asserted.
+
+**Gene symbols corrupted into dates are repaired on load.** 44 rows reached us with a date where a
+symbol should be — the septins, the membrane-associated ring fingers and DELEC1, whose names Excel
+reads as "1-Sep", "1-Mar", "1-Dec". The gene number lands in the year, so `2004-09-01` is SEPTIN4
+and `2001-03-01` is MARCHF1; the transcript IDs are untouched, so the repair is exact rather than a
+guess. This is not cosmetic: **SEPTIN4 is a real hit in three of the four lists below**, and while
+its symbol was a date, searching those lists for it returned nothing.
 
 ## Definitions
 
@@ -257,6 +266,41 @@ ramp that stalls has stopped encoding magnitude.
 
 ---
 
+## Figure Z4 — sort-bin profiles, in the layout of the UBR3 Supplementary Fig. 1
+
+`make_bin_profiles.py` → `figures/FigureZ4_bin_profiles`, `data/bin_profiles_plotted.csv`
+
+The UBR3 manuscript's Supplementary Fig. 1 (`Fig_V3.pptx`, slide 6) is a small-multiple grid: one
+panel per reporter peptide, titled with the gene and its N-terminal triplet, plotting the
+**proportion of reads in each sorting bin**, control in grey and knockout in colour. A peptide
+that is degraded sits in the low bins; remove the E3 that degrades it and the whole curve slides
+right. This is the same figure for the ZYG11B / ZER1 screen.
+
+It is not new data. **PSI is exactly the read-weighted mean of these six bins** — asserted on
+load, not assumed — so these curves and every ΔPSI in this project are one measurement at two
+resolutions. What the bins add is the shape: whether a ΔPSI comes from a clean shift of the whole
+population or from one noisy bin.
+
+Three things differ from the original, all forced by this dataset:
+
+- **Six bins, not four.** This screen sorts into six.
+- **Five lines, not four.** The original shows two controls and two knockout replicates. There are
+  no within-genotype replicates anywhere in this workbook, so the lines are the two experiments'
+  controls and the three knockouts: AAVS1 control (dark grey) and ZYG11B KO (blue) and ZER1 KO
+  (blue dashed) from Data S3A; wild-type control (light grey) and double KO (pink) from Data S3B.
+  ZER1 is dashed rather than given a third hue — it is ZYG11B's paralogue in the same CRL2
+  complex, the dash says so, and the palette is two hues on purpose.
+- **The greys are not a replicate pair.** Read each knockout against the control of *its own*
+  experiment: blue against dark grey, pink against light grey. Comparing blue to light grey
+  compares two experiments.
+
+**The twelve peptides.** Rows 1–2 are Met-Pro-Gly, starting with the two confirmed in the lab
+(VWA5B1, SEPTIN4) and continuing with the strongest other candidates (FOSB, SSBP3, ZNF254, PLD4,
+ZNF729, NDUFA8). Row 3 is four canonical Met-Gly substrates (C14orf178, FXR2, UBTD2, HBG1) — the
+shape a known Gly/N-degron substrate makes in this assay, for comparison.
+
+---
+
 ## Reproducing
 
 ```bash
@@ -265,6 +309,7 @@ python make_hit_lists.py       # -> ZZ_ZYG11B_ZER1_hit_lists.xlsx, data/hits_*.c
 python zz_pro_motif.py         # Met-Pro group sizes and the top cells
 python make_pro_logo.py        # -> figures/FigureZ1*, FigureZ2*, data/pro_motif_cells.csv
 python make_pro_composition.py # -> figures/FigureZ3*, data/pro_composition_tests.csv
+python make_bin_profiles.py    # -> figures/FigureZ4*, data/bin_profiles_plotted.csv
 ```
 
 | File | Role |
@@ -274,6 +319,7 @@ python make_pro_composition.py # -> figures/FigureZ3*, data/pro_composition_test
 | `zz_pro_motif.py` | The Met-Pro within-motif comparison: the two groups, the 440 position × residue cells, Fisher and BH-FDR. |
 | `make_pro_logo.py` | Fold-change and significance logos for that comparison. |
 | `make_pro_composition.py` | Composition and peptide-property tests, plus the baseline-matched control. |
+| `make_bin_profiles.py` | Per-peptide sort-bin profiles in the UBR3 Supplementary Fig. 1 layout. |
 | `data/gps_tidy.csv.gz` | Cached tidy table, one row per transcript. Delete it to force a re-read of the xlsx. |
 
 ## Still open

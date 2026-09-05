@@ -4,7 +4,7 @@ Logos comparing stabilised Met-Pro peptides with unstabilised Met-Pro peptides.
 Both groups start Met-Pro, so the proline cannot separate them; positions 3-24
 are the question. Drawn in the layout of ../ubr3_PG_reviewer/ -- black glyph
 outlines on the fold-change logos, white hairlines on the significance logos,
-no gridlines -- but in THIS project's blue/purple/pink palette rather than that
+no gridlines -- but in THIS project's blue-and-pink palette rather than that
 project's warm one. The two are different papers and are painted apart. The
 palette, the three charge groups and the reasoning behind both live in
 zz_pro_motif.py.

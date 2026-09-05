@@ -218,24 +218,34 @@ One more caution specific to these peptides: Met excision is inefficient at Met-
 this group probably keeps its initiator methionine and presents Met, not Pro, at the N-terminus.
 Whatever is happening to them may not be an N-degron mechanism at all.
 
-**Palette.** This project's figures are blue / purple / pink and deliberately do **not** share the
-warm ramp of `../ubr3_PG_reviewer/`; they are a different paper. The three values live in
-`zz_pro_motif.py` and every figure reads them from there.
+**Palette — two hues, blue and pink.** These figures deliberately do **not** share the warm ramp
+of `../ubr3_PG_reviewer/`; that is a different paper. Both values live in `zz_pro_motif.py` and
+every figure reads them from there.
 
-Colour in the logos groups residues by **charge** — acidic D E in blue, basic K H R in pink,
-everything uncharged in purple — rather than by the six chemical classes the sibling project uses.
-That is a consequence of the palette, and it is worth stating why: six hues cannot be told apart
-inside blue-purple-pink. The family is roughly a third of the hue wheel, and the best six-colour
-set that fits in it still leaves a pair below the ΔE 15 floor for **normal** colour vision, which
-no amount of legend or labelling excuses. The rule for that case is to cut the series count, so
-three it is — and charge happens to be the axis this paper's result is about anyway.
+| Role | Colour |
+|---|---|
+| Stabilised / basic K H R | `#D6408F` pink |
+| Not stabilised / acidic D E | `#2E6FD0` blue |
+| Uncharged (the other 15 residues) | `#A6A4AE` neutral grey |
+| −log₁₀ p ramp | pale blue → blue → a brief violet → magenta → deep pink |
 
-The three (`#2E6FD0`, `#E0407A`, `#8E44AD`) pass chroma and the normal-vision floor at worst
-ΔE 15.9. Colour-vision separation sits at ΔE 6.2 for blue against purple, which is in the band
-that is legal only where the mark carries its own label — in a sequence logo it does, since the
-glyph is the residue's name. Figure Z3's pair (`#D6408F` stabilised, `#2E6FD0` not) passes every
-check outright. The −log₁₀ p ramp runs pale lavender → periwinkle → violet → purple → deep plum,
-verified monotonic in luminance.
+**Why two and not three.** Purple was a third category here and no longer is. It is the one hue
+that cannot be told from blue by a red-blind reader — purple is blue plus red, and red is exactly
+what a protanope does not see — so the blue/purple pair sat at ΔE 6.2, inside the band that is
+only legal where the mark carries its own label. Blue against pink is ΔE 10.5 under every
+simulated colour vision and ΔE 27.2 under normal vision, clear of every floor. Two hues remove the
+problem rather than managing it, and the figures need no caveat. Purple survives only as the short
+passage the ramp makes between the two, where nothing depends on telling it from its neighbours.
+
+Colour in the logos groups residues by **charge**, not by the six chemical classes the sibling
+project uses — which is both what two hues allow and the axis this paper's result is actually
+about. The 15 uncharged residues take a neutral grey rather than a hue: grey is not an identity
+colour, it is the absence of the property the other two encode, which is precisely what those
+residues are. A logo glyph also names itself, so no residue depends on its colour to be read.
+
+The ramp is verified monotonic in luminance at every step. That matters more than it sounds: a
+blue-to-pink ramp stalls in lightness at the magenta end unless it is pushed dark, and a magnitude
+ramp that stalls has stopped encoding magnitude.
 
 | Figure | What it shows |
 |---|---|

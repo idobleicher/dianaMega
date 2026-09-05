@@ -58,43 +58,45 @@ AA = list("ACDEFGHIKLMNPQRSTVWY")
 CUT_HIT, CUT_CTRL = 1.0, 0.5
 
 # ---------------------------------------------------------------- palette
-# Blue / purple / pink. This project's figures do NOT share the warm ramp of
+# TWO hues, blue and pink. This project's figures do NOT share the warm ramp of
 # ../ubr3_PG_reviewer/ -- they are a different paper and are painted apart on
 # purpose.
 #
-# WHY THREE GROUPS AND NOT SIX. The sibling project colours logo glyphs by six
-# chemical classes. Six hues cannot be separated inside blue-purple-pink: the
-# family is about a third of the hue wheel, and the best six-colour set that
-# can be built in it leaves a pair at dE 12 for NORMAL colour vision, below the
-# 15 floor -- full-sight readers cannot tell them apart, which no amount of
-# secondary encoding excuses. The rule for that case is to cut the series
-# count, so the residues are grouped by CHARGE instead, three ways. That is
-# also the axis this paper's result is about (acidic content, net charge), and
-# the four-way acidic/basic/polar/nonpolar scheme of the sibling project's
-# Figure 13 is its nearest relative.
+# Purple was a third category here and is not any more. It is the hue that
+# cannot be separated from blue for a red-blind reader -- purple is blue plus
+# red, and red is exactly what a protanope does not see -- so a blue/purple
+# pair sat at dE 6.2, inside the band that is only legal where the mark carries
+# its own label. Two hues remove the problem instead of managing it: blue
+# against pink is dE 10.5 under every simulated colour vision and dE 27.2 under
+# normal vision, comfortably clear of every floor, and it needs no relief and
+# no caveat. Purple now appears only as the short passage the sequential ramp
+# makes between the two, where nothing depends on telling it from its
+# neighbours.
 #
-# The three were checked with the dataviz validator: chroma and the
-# normal-vision floor PASS (worst pair dE 15.9), CVD separation WARN at
-# dE 6.2 (blue vs purple, which no palette in this family escapes -- purple is
-# blue plus red, and red is what a protanope cannot see). That band is legal
-# only where the mark carries its own label, and in a sequence logo it does:
-# the glyph IS the residue's name, and the legend spells out each group.
+# The residues are grouped by CHARGE, which is the axis this paper's result is
+# about (acidic content, net charge). The 15 uncharged residues take a neutral
+# grey rather than a third hue: grey is not an identity colour, it is the
+# absence of the property the other two encode, which is exactly what those
+# residues are. A logo glyph also names itself, so no residue depends on its
+# colour to be read.
 CATEGORY_MEMBERS = {
     "Acidic": list("DE"),
     "Basic": list("KHR"),
     "Uncharged": list("STCNQGPAMVLIFYW"),
 }
 CAT_ORDER = ["Acidic", "Basic", "Uncharged"]
-CAT_COLORS = {"Acidic": "#2E6FD0", "Basic": "#E0407A", "Uncharged": "#8E44AD"}
+CAT_COLORS = {"Acidic": "#2E6FD0", "Basic": "#D6408F", "Uncharged": "#A6A4AE"}
 CAT_OF_AA = {a: c for c, mem in CATEGORY_MEMBERS.items() for a in mem}
 
-# Sequential ramp for -log10 p: pale lavender -> periwinkle -> violet -> purple
-# -> deep plum. Verified monotonic in relative luminance
-# (0.921 down to 0.059, every step decreasing), which is the one property a
-# magnitude ramp cannot be without.
-CMAP_STOPS = ["#F7F5FC", "#E7E6F7", "#D2D2EF", "#B4B6E4", "#9095D6",
-              "#7B6BC4", "#8E44AD", "#9C2E86", "#7A1F5E"]
-INK, MUTED, RULE, GRID = "#1A1A1A", "#6B6B6B", "#C6C3D0", "#FFFFFF"
+# Sequential ramp for -log10 p: pale blue -> blue -> a brief violet -> magenta
+# -> deep pink. Verified monotonic in relative luminance, every step decreasing
+# and the smallest step 0.021 -- a magnitude ramp that stalls in lightness
+# stops encoding magnitude, and a blue-to-pink ramp will stall at the magenta
+# end unless it is pushed dark, which is why the last stops are as deep as they
+# are.
+CMAP_STOPS = ["#F5F8FD", "#DDE8F8", "#B6CDF2", "#86A8E8", "#5C82DC",
+              "#6A5FC8", "#8E3C9E", "#9E2266", "#6E0E3C"]
+INK, MUTED, RULE, GRID = "#1A1A1A", "#6B6B6B", "#C6C6CE", "#FFFFFF"
 
 _CACHE = {}
 

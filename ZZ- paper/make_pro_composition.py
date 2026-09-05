@@ -33,11 +33,11 @@ strongly, and those are the canonical ZYG11B substrates. It is a property of
 what makes any peptide a substrate in this screen -- acidic, hydrophilic,
 negatively charged N-terminal regions -- not of how proline is read.
 
-Colours: #D6408F (stabilised) against #2E6FD0 (not), from the project's
-blue/purple/pink palette in zz_pro_motif.py. Checked with the dataviz
-validator: every check passes, including CVD separation at dE 10.5 and normal
-vision at dE 27.2, so this pair carries identity on its own -- the axis labels
-under each box are belt and braces rather than the required relief.
+Colours: #D6408F (stabilised) against #2E6FD0 (not), the project's two hues
+from zz_pro_motif.py. Checked with the dataviz validator: every check passes,
+including CVD separation at dE 10.5 and normal vision at dE 27.2, so this pair
+carries identity on its own -- the axis labels under each box are belt and
+braces rather than the required relief.
 
 Outputs:
   figures/FigureZ3_composition_stabilised_vs_not   the five panels

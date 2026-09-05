@@ -303,8 +303,13 @@ the loader every figure reads, and Figure 15 colours its glyphs from the same ra
 scale, so the logo and the heatmaps are one visual set and cannot drift apart when one script is
 edited alone.
 
-**Every cell at p < 0.05 carries its fold change** (substrates / controls) and the star bin of its
-uncorrected p (`*` p < 0.05, `**` p < 0.01, `***` p < 0.001) — and nothing else. The two
+**Every cell at p < 0.05 carries its fold change** (substrates / controls) **under** the star bin
+of its uncorrected p (`*` p < 0.05, `**` p < 0.01, `***` p < 0.001) — and nothing else. The stars
+sit on their own line above the number and are set a little larger: run together as `4.06***` the
+two read as one token and the asterisks, which ink a small high-sitting fraction of their em box,
+disappear into the digits — and they are the one thing a reader scans the matrix for. Both heatmap
+families draw their cells through the same `pg_motif_data.annotate_cell`, so Figures 18–19 carry
+their flag the same way. The two
 quantities are on different channels on purpose: p folds the effect size together with how many
 peptides the cell rests on, so a reader given colour alone cannot tell 9.65× resting on one
 peptide from 5.63× resting on seven. **The FDR survivors carry no mark inside the matrix** —

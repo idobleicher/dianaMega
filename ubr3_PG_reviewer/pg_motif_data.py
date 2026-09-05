@@ -98,12 +98,47 @@ CELL_HALO = "#71201A"
 CELL_HALO_LW = 0.95    # points; tuned against 6 pt bold, the annotation size
 
 
+CELL_STAR_BUMP = 1.8      # points the star line is set above the number's
+CELL_STAR_HALO_LW = 0.75  # an asterisk is mostly the gaps between its arms
+
+
 def cell_text_effects(linewidth=CELL_HALO_LW, color=CELL_HALO):
     """Path effects for white-on-anything cell text. Import, don't re-derive:
     the significance and frequency heatmaps must annotate identically."""
     from matplotlib import patheffects
     return [patheffects.withStroke(linewidth=linewidth, foreground=color,
                                    alpha=0.9)]
+
+
+def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None):
+    """One heatmap cell's annotation: `number`, with `stars` STACKED ABOVE it.
+
+    Every cell of every heatmap in this package is written through here, so
+    Figures 16-17 (fold change under a significance bin) and Figures 18-19
+    (a percentage under the flag marking a cell that also differs between the
+    groups) cannot drift apart.
+
+    Run together on one line as "4.06***" the two read as a single token and
+    the asterisks vanish into the digits: an asterisk inks a small, high-
+    sitting fraction of its em box, so at 6 pt beside a bold number it is the
+    quietest thing in the cell when it is the one thing a reader scans the
+    matrix for. Stacked, and set CELL_STAR_BUMP points larger, it is legible
+    at a glance and the number keeps a clean line of its own.
+
+    Two text objects, not one two-line string, because the lines are set at
+    different sizes -- and the star takes a thinner halo, since the full-weight
+    one closes the gaps between its arms into a blob. The offsets are fractions
+    of a row, so the pair sits the same way in a 20-row residue panel and a
+    6-row class one, and an unstarred cell keeps its number dead centre.
+    """
+    star_size = size + CELL_STAR_BUMP if star_size is None else star_size
+    if stars:
+        ax.text(x, y - 0.17, stars, ha="center", va="center",
+                fontsize=star_size, fontweight="bold", color=CELL_TEXT,
+                path_effects=cell_text_effects(CELL_STAR_HALO_LW))
+    ax.text(x, y + (0.13 if stars else 0.0), number, ha="center", va="center",
+            fontsize=size, fontweight="bold", color=CELL_TEXT,
+            path_effects=cell_text_effects())
 
 
 NO_TEST = "#E7E3DA"   # feature absent from both groups -- no test possible

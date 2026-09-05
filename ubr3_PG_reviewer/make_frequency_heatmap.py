@@ -27,11 +27,12 @@ position 15 is 30% of substrates, but Gly is common among these controls too
 the same matrix for the 193 controls on the same colour scale, and is what
 separates those two cases. Enrichment is Figures 13-17's job, not this one's.
 
-ANNOTATION matches Figures 16-17 exactly, from the same two constants: cell
-text is WHITE on every cell with a thin dark halo (pg.CELL_TEXT /
-pg.cell_text_effects), and the row labels are one step larger. The halo carries
-more weight here than there -- most cells of this figure sit at the pale end of
-the ramp, and a plain white number on a 5% cell would not be visible at all.
+ANNOTATION matches Figures 16-17 exactly, because it is the same call:
+pg.annotate_cell draws every cell of both families. White text on every cell
+with a thin dark halo, the star stacked ABOVE the number and set a little
+larger, and row labels one step up. The halo carries more weight here than
+there -- most cells of this figure sit at the pale end of the ramp, and a plain
+white number on a 5% cell would not be visible at all.
 
 WINDOWS -- every panel is written twice, over the full POS (4-24) and over
 pg.POS_N12 (4-12, out to the 12th amino acid), on the SAME colour scale, so the
@@ -140,24 +141,24 @@ def heatmap(kind, group, order, vmax, title, subtitle, stem, height,
         ax.axhline(y, color="white", linewidth=0.7)
 
     # Every non-zero cell carries its percentage. On the substrate panel an
-    # asterisk flags the cells that also differ between the two groups (Fisher
-    # exact p < 0.05), so this figure never contradicts Figures 16-17 -- but
-    # colour here is frequency alone and most dark cells are NOT marked.
+    # asterisk ABOVE the number flags the cells that also differ between the
+    # two groups (Fisher exact p < 0.05), so this figure never contradicts
+    # Figures 16-17 -- but colour here is frequency alone and most dark cells
+    # are NOT marked.
+    #
+    # Drawn through pg.annotate_cell, the same call Figures 16-17 use: white
+    # on every cell, halo behind it, star stacked above the number and set a
+    # little larger. The halo carries more weight here than there -- most cells
+    # of this figure sit at the pale end of the ramp, and a plain white number
+    # on a 5% cell would not be there at all.
     for r in range(nrow):
         for c in range(ncols):
             txt = pct_text(F[r, c])
             if not txt:
                 continue
-            if group == "sub" and np.isfinite(PF[r, c]) and PF[r, c] < 0.05:
-                txt += "*"
-            # White on every cell, as in Figures 16-17. Most cells of this
-            # figure sit at the pale end of the ramp -- a 5% cell is barely
-            # tinted -- so the white glyph carries the thin dark halo defined
-            # in pg_motif_data. Without it a white number on a 5% cell would
-            # not be there at all.
-            ax.text(c, r, txt, ha="center", va="center", fontsize=annot_size,
-                    fontweight="bold", color=pg.CELL_TEXT,
-                    path_effects=pg.cell_text_effects())
+            star = "*" if (group == "sub" and np.isfinite(PF[r, c])
+                           and PF[r, c] < 0.05) else ""
+            pg.annotate_cell(ax, c, r, txt, star, size=annot_size)
 
     ax.set_xticks(range(ncols))
     ax.set_xticklabels(positions, fontsize=7)
@@ -222,7 +223,8 @@ def heatmap(kind, group, order, vmax, title, subtitle, stem, height,
     fam = cells[(cells.kind == kind) & cells.defined]
     n_test, n_hit = len(fam), int((fam.p_fisher < 0.05).sum())
     n_fdr = int((fam.q_fisher < 0.05).sum())
-    tail = (f"* = the cell also differs between the two groups at Fisher exact "
+    tail = (f"* above a cell = it also differs between the two groups at Fisher "
+            f"exact "
             f"p < 0.05 ({n_hit} of {n_test} testable "
             f"{'residue' if kind == 'residue' else 'class'} cells, against "
             f"{0.05 * n_test:.0f} expected by chance alone"

@@ -224,14 +224,9 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     # cell at p < 0.05. Colour is the p value, so the number carries the effect
     # size the colour cannot.
     #
-    # The stars sit on their own line above the number rather than trailing it.
-    # Run together as "4.06***" the two read as one token and the asterisks,
-    # which are small high-sitting glyphs, disappear into the digits; stacked,
-    # the significance bin is legible across the matrix at a glance and the
-    # fold change keeps a clean number of its own. They are drawn as two text
-    # objects because the two lines are set at different sizes -- the stars a
-    # little larger than the number, since an asterisk inks a fraction of its
-    # em box and matches a digit's weight only above the digit's point size.
+    # The stars sit on their own line above the number rather than trailing
+    # it, and the layout lives in pg.annotate_cell -- shared with Figures
+    # 18-19, so the two heatmap families annotate identically.
     # The FDR survivors get no mark of their own here -- the caption names
     # them, so nothing extra is laid over the colour.
     #
@@ -248,20 +243,8 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                 continue
             fc_txt = "∞" if np.isinf(fc) else (
                 "--" if not np.isfinite(fc) else f"{fc:.2f}")
-            st = stars(p_)
-            # offsets are fractions of a row, so the pair stays centred in the
-            # cell whatever the figure's height
-            if st:
-                # a thinner halo than the number's: an asterisk is mostly the
-                # gaps between its arms, and the full-weight halo closes them
-                ax.text(c_, r - 0.17, st, ha="center", va="center",
-                        fontsize=star_size, fontweight="bold",
-                        color=pg.CELL_TEXT,
-                        path_effects=pg.cell_text_effects(0.75))
-            ax.text(c_, r + (0.13 if st else 0.0), fc_txt, ha="center",
-                    va="center", fontsize=annot_size, fontweight="bold",
-                    color=pg.CELL_TEXT,
-                    path_effects=pg.cell_text_effects())
+            pg.annotate_cell(ax, c_, r, fc_txt, stars(p_),
+                             size=annot_size, star_size=star_size)
 
     ax.set_xticks(range(ncol))
     ax.set_xticklabels(positions, fontsize=7, color=INK)

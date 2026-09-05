@@ -301,6 +301,44 @@ shape a known Gly/N-degron substrate makes in this assay, for comparison.
 
 ---
 
+## All Met-Pro substrates
+
+`make_mp_substrate_list.py` → `ZZ_MetPro_substrates.xlsx`, `data/mp_substrates.csv`,
+`data/mp_all_peptides.csv`
+
+**1,122 peptides start Met-Pro**, across 1,072 genes. 604 have headroom in at least one experiment
+and could therefore show stabilisation at all; the other 518 were already stable in their control
+and are carried in the all-peptides sheet with that stated, not silently dropped.
+
+The stabilised ones are **tiered rather than cut once**, because a single threshold is what hid
+the lab-confirmed peptides in the first place:
+
+| Tier | Definition | n | Met-Pro-Gly | Also UBR |
+|---|---|---:|---:|---:|
+| **A** | ΔPSI ≥ 1.0 in **two or more** of ZYG11B / ZER1 / double KO | 7 | 1 (14%) | 2 |
+| **B** | ΔPSI ≥ 1.0 in **exactly one** | 29 | 10 (34%) | 4 |
+| **C** | best ΔPSI 0.5–1.0, the watch list | 144 | 18 (12%) | 2 |
+
+Met-Pro-Gly is 11% of Met-Pro peptides overall, so its 34% share of tier B is the signal showing
+through. **Tier says how much evidence there is, not how good a substrate something is.** There is
+no within-genotype replicate anywhere in this workbook, so a ΔPSI of 0.6 in one clone is not
+evidence of absence. SEPTIN4 is tier A and VWA5B1 tier B, and VWA5B1 qualifies only through the
+ZER1 knockout — the readout with the weakest aggregate signal in the screen. Neither reaches the
+high-confidence list. That is the case for tier C existing.
+
+**`Also UBR` is a caveat, not a bonus.** Data S3A carries three UBR knockout clones, and Met-Pro
+is UBR3's territory in `../ubr3_PG_reviewer/`. Eight of the 180 are stabilised when UBR is lost
+too, in all three clones, so they are not cleanly attributable to ZYG11B or ZER1. Worth knowing:
+Met-Pro-**acidic** peptides show no UBR enrichment at all here (mean UBR ΔPSI +0.085 against
++0.099 for other Met-Pro peptides), so the UBR3 [P/G]-[E/D] motif does not sort these peptides in
+this dataset.
+
+Met excision is inefficient at Met-Pro, so most of this group probably keeps its initiator
+methionine and presents Met rather than Pro. Whatever stabilises them need not be an N-degron
+mechanism at all.
+
+---
+
 ## Reproducing
 
 ```bash
@@ -310,6 +348,7 @@ python zz_pro_motif.py         # Met-Pro group sizes and the top cells
 python make_pro_logo.py        # -> figures/FigureZ1*, FigureZ2*, data/pro_motif_cells.csv
 python make_pro_composition.py # -> figures/FigureZ3*, data/pro_composition_tests.csv
 python make_bin_profiles.py    # -> figures/FigureZ4*, data/bin_profiles_plotted.csv
+python make_mp_substrate_list.py # -> ZZ_MetPro_substrates.xlsx, data/mp_*.csv
 ```
 
 | File | Role |
@@ -320,6 +359,7 @@ python make_bin_profiles.py    # -> figures/FigureZ4*, data/bin_profiles_plotted
 | `make_pro_logo.py` | Fold-change and significance logos for that comparison. |
 | `make_pro_composition.py` | Composition and peptide-property tests, plus the baseline-matched control. |
 | `make_bin_profiles.py` | Per-peptide sort-bin profiles in the UBR3 Supplementary Fig. 1 layout. |
+| `make_mp_substrate_list.py` | Every Met-Pro peptide, ranked, with the stabilised ones tiered A/B/C. |
 | `data/gps_tidy.csv.gz` | Cached tidy table, one row per transcript. Delete it to force a re-read of the xlsx. |
 
 ## Still open

@@ -17,6 +17,7 @@ read from its asterisk matrix -- that matrix is not internally consistent with
 its own p values (it marks Basic at position 5 with one star at p = 1.1e-4).
 """
 import os
+import textwrap
 
 import matplotlib as mpl
 mpl.use("Agg")
@@ -36,6 +37,24 @@ N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 cells = pg.load()
 fc_matrix = pg.matrix('fold_change', cells=cells)          # AA x POS, linear
 P = pg.matrix('p_chi2', cells=cells)
+
+def fig_width(ncol):
+    """Constant glyph column width across windows: the 21-position logo is
+    10.5 in wide, so the 9-position one is narrower by the columns it drops
+    rather than the same width with stretched letters."""
+    return 3.2 + 0.35 * ncol
+
+
+def wrap(text, figw, per_inch=16.5):
+    return textwrap.fill(text, width=max(40, int(figw * per_inch)))
+
+
+# Every logo is drawn twice: over the full 4-24 range, and over the N-terminal
+# window out to the 12th amino acid. Heights, colours and p values are
+# identical in both -- the window is a display crop, not a re-analysis.
+WINDOWS = [(POS, "pos4_24", ""),
+           (pg.POS_N12, "pos4_12", " (positions 4–12)")]
+
 
 # ------------------------------------------------------------------ style (verbatim from fig4)
 AA_CATEGORIES = {
@@ -69,7 +88,8 @@ mpl.rcParams.update({
 })
 
 
-def build(fc_display, title, stem, figsize):
+def build(fc_display, title, stem, positions):
+    figsize = (fig_width(len(positions)), 2.9)
     fig, ax = plt.subplots(figsize=figsize)
     logo = logomaker.Logo(fc_display, ax=ax, color_scheme=AA_COLOR_SCHEME,
                           font_name='Helvetica', vpad=0.0, width=0.95,
@@ -85,14 +105,15 @@ def build(fc_display, title, stem, figsize):
 
     ax.set_ylabel('Fold Change (substrates / controls)', fontsize=8)
     ax.set_xlabel('Position', fontsize=8, labelpad=2)
-    ax.set_xticks(POS)
-    ax.set_xticklabels(POS, fontsize=6.5)
+    ax.set_xticks(positions)
+    ax.set_xticklabels(positions, fontsize=6.5)
     ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2)
-    ax.set_title(title, fontweight='bold', fontsize=8.5, pad=4)
+    ax.set_title(wrap(title, figsize[0]), fontweight='bold', fontsize=8.5,
+                 pad=4)
 
     max_stack = float(fc_display.sum(axis=1).max())
     ax.set_ylim(-0.3, max_stack + 2.0)
-    ax.set_xlim(POS[0] - 0.6, POS[-1] + 0.6)
+    ax.set_xlim(positions[0] - 0.6, positions[-1] + 0.6)
 
     ax.text(0.5, -0.15,
             f'n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} non-substrate controls',
@@ -113,12 +134,16 @@ def build(fc_display, title, stem, figsize):
     plt.close(fig)
 
 
-# all enriched residues -- the direct fig4 analogue
-build(pg.logo_frame('fold_change', cells=cells),
-      'Fold-Change Logo — P/G-D/E/T Substrates vs Non-Substrate Controls',
-      'Figure13_foldchange_logo_pos4_24', (10.5, 2.9))
+for positions, tag, wt in WINDOWS:
+    # all enriched residues -- the direct fig4 analogue
+    build(pg.logo_frame('fold_change', cells=cells, positions=positions),
+          'Fold-Change Logo — P/G-D/E/T Substrates vs Non-Substrate '
+          'Controls' + wt,
+          f'Figure13_foldchange_logo_{tag}', positions)
 
-# same style, restricted to the residues significant at p < 0.05
-build(pg.logo_frame('fold_change', cells=cells, only=P.lt(0.05)),
-      'Fold-Change Logo — Significantly Enriched Residues (Positions 4–24)',
-      'Figure13b_foldchange_logo_pos4_24_significant', (10.5, 2.9))
+    # same style, restricted to the residues significant at p < 0.05
+    build(pg.logo_frame('fold_change', cells=cells, only=P.lt(0.05),
+                        positions=positions),
+          f'Fold-Change Logo — Significantly Enriched Residues '
+          f'(Positions {positions[0]}–{positions[-1]})',
+          f'Figure13b_foldchange_logo_{tag}_significant', positions)

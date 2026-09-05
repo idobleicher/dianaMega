@@ -36,6 +36,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "data", "AminoAcids_PG_motif_with_pvalues.csv")
 
 POS = list(range(4, 25))
+# The N-terminal window. Every figure in the set is drawn twice: once over the
+# full POS and once over POS_N12 only -- positions 4-12, i.e. out to the 12th
+# amino acid of the 24-mer. Positions 1-3 are the motif itself and are not in
+# the source sheet, so "to the 12th" starts at 4 like everything else here.
+# The window is a display crop and nothing else: p values are per cell and do
+# not change, and q values stay the BH-FDR of the FULL 4-24 family rather than
+# being recomputed inside the window -- recomputing would be choosing the
+# region after seeing the data and would make the same cells look stronger.
+POS_N12 = list(range(4, 13))
 N_SUB, N_CTRL = 20, 193
 
 # display order = the Colab aa_order, which is already grouped by class
@@ -79,6 +88,23 @@ CAT_COLORS = {
 CMAP_SIG = LinearSegmentedColormap.from_list("sig_warm", [
     "#F7F4EC", "#F4EAD0", "#F1DCA6", "#EDC76E", "#E8A33D",
     "#DC7C31", "#C0392B", "#9B2A20", "#71201A"])
+
+CELL_TEXT = "#FFFFFF"  # ALL text inside a heatmap cell is white, on every cell
+# A white number on the pale end of either ramp would be invisible -- most
+# cells of the frequency heatmap sit there -- so each glyph carries a thin
+# halo in the deep end of the same ramp. The letterform stays white and one
+# colour throughout the matrix; the halo only gives it an edge to sit on.
+CELL_HALO = "#71201A"
+CELL_HALO_LW = 0.95    # points; tuned against 6 pt bold, the annotation size
+
+
+def cell_text_effects(linewidth=CELL_HALO_LW, color=CELL_HALO):
+    """Path effects for white-on-anything cell text. Import, don't re-derive:
+    the significance and frequency heatmaps must annotate identically."""
+    from matplotlib import patheffects
+    return [patheffects.withStroke(linewidth=linewidth, foreground=color,
+                                   alpha=0.9)]
+
 
 NO_TEST = "#E7E3DA"   # feature absent from both groups -- no test possible
 GRID = "#FFFFFF"      # cell separator
@@ -210,17 +236,21 @@ def load(force=False):
     return cells.copy()
 
 
-def matrix(col, kind="residue", order=None, cells=None):
-    """`col` as a DataFrame with rows = residues/classes and columns = POS."""
+def matrix(col, kind="residue", order=None, cells=None, positions=None):
+    """`col` as a DataFrame with rows = residues/classes and columns = POS.
+
+    `positions` crops the columns (POS_N12 for the 4-12 window); the values
+    themselves are untouched by the crop.
+    """
     cells = load() if cells is None else cells
     order = order or (AA if kind == "residue" else CAT_ORDER)
     return (cells[cells.kind == kind]
             .pivot(index="label", columns="position", values=col)
-            .reindex(index=order, columns=POS))
+            .reindex(index=order, columns=positions or POS))
 
 
 def logo_frame(col="fold_change", kind="residue", order=None, cells=None,
-               floor=1.0, only=None):
+               floor=1.0, only=None, positions=None):
     """Matrix shaped for logomaker: rows = positions, columns = residues.
 
     Non-finite values become 0 (the workbook shows them as N/A), as do values
@@ -228,13 +258,14 @@ def logo_frame(col="fold_change", kind="residue", order=None, cells=None,
     exactly as the original logo scripts did. `only` is an optional boolean
     matrix in the same shape as `matrix()`; cells outside it are zeroed.
     """
-    m = matrix(col, kind, order, cells).astype(float)
+    positions = positions or POS
+    m = matrix(col, kind, order, cells, positions).astype(float)
     m = m.where(np.isfinite(m), 0.0)
     if floor is not None:
         m = m.where(m > floor, 0.0)
     if only is not None:
         m = m.where(only.reindex_like(m).fillna(False), 0.0)
-    return m.T.set_axis(POS)
+    return m.T.set_axis(positions)
 
 
 if __name__ == "__main__":

@@ -27,7 +27,17 @@ position 15 is 30% of substrates, but Gly is common among these controls too
 the same matrix for the 193 controls on the same colour scale, and is what
 separates those two cases. Enrichment is Figures 13-17's job, not this one's.
 
-Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
+ANNOTATION matches Figures 16-17 exactly, from the same two constants: cell
+text is WHITE on every cell with a thin dark halo (pg.CELL_TEXT /
+pg.cell_text_effects), and the row labels are one step larger. The halo carries
+more weight here than there -- most cells of this figure sit at the pale end of
+the ramp, and a plain white number on a 5% cell would not be visible at all.
+
+WINDOWS -- every panel is written twice, over the full POS (4-24) and over
+pg.POS_N12 (4-12, out to the 12th amino acid), on the SAME colour scale, so the
+crop changes what is shown and nothing about how it is read.
+
+Outputs (figures/, 600 dpi PNG + vector PDF + SVG), each also as ..._pos4_12:
   Figure18_frequency_heatmap_residues            % of the 20 substrates
   Figure18b_frequency_heatmap_residues_controls  % of the 193 controls, same scale
   Figure19_frequency_heatmap_categories          % of the 20 substrates, 6 classes
@@ -35,6 +45,7 @@ Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
   data/frequency_heatmap_cells.csv               every cell, both groups
 """
 import os
+import textwrap
 
 import matplotlib as mpl
 mpl.use("Agg")
@@ -52,6 +63,16 @@ os.makedirs(FIG_DIR, exist_ok=True)
 POS = pg.POS
 N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 CAT_COLORS, CAT_OF_AA = pg.CAT_COLORS, pg.CAT_OF_AA
+
+
+def fig_width(ncol):
+    """Constant cell width across windows -- the same rule Figures 16-17 use,
+    so a cropped panel is the full one with columns removed, not squeezed."""
+    return 3.0 + 0.495 * ncol
+
+
+def wrap(text, figw, fontsize=5.5):
+    return textwrap.fill(text, width=max(60, int(figw * 25)))
 
 # ---- alphabetical row orders (the whole point of this variant) --------------
 AA_ALPHA = sorted(pg.AA)          # A C D E F G H I K L M N P Q R S T V W Y
@@ -92,14 +113,19 @@ def pct_text(v):
     return f"{v:.0f}"
 
 
-def heatmap(kind, group, order, vmax, title, subtitle, stem, figsize,
-            annot_size=5.4, chips=True, legend=False):
+def heatmap(kind, group, order, vmax, title, subtitle, stem, height,
+            positions=None, annot_size=6.0, chips=True, legend=False):
+    positions = list(positions or POS)
+    window = positions != list(POS)
+    figsize = (fig_width(len(positions)), height)
     pcol = "pct_sub" if group == "sub" else "pct_ctrl"
     ncell = "n_sub" if group == "sub" else "n_ctrl"
     n_group = N_SUB if group == "sub" else N_CTRL
 
-    F = pg.matrix(pcol, kind=kind, order=order, cells=cells).values.astype(float)
-    PF = pg.matrix("p_fisher", kind=kind, order=order, cells=cells).values.astype(float)
+    F = pg.matrix(pcol, kind=kind, order=order, cells=cells,
+                  positions=positions).values.astype(float)
+    PF = pg.matrix("p_fisher", kind=kind, order=order, cells=cells,
+                   positions=positions).values.astype(float)
 
     C = np.clip(F, 0.0, vmax)
     nrow, ncols = C.shape
@@ -124,14 +150,21 @@ def heatmap(kind, group, order, vmax, title, subtitle, stem, figsize,
                 continue
             if group == "sub" and np.isfinite(PF[r, c]) and PF[r, c] < 0.05:
                 txt += "*"
-            dark = C[r, c] > 0.62 * vmax
+            # White on every cell, as in Figures 16-17. Most cells of this
+            # figure sit at the pale end of the ramp -- a 5% cell is barely
+            # tinted -- so the white glyph carries the thin dark halo defined
+            # in pg_motif_data. Without it a white number on a 5% cell would
+            # not be there at all.
             ax.text(c, r, txt, ha="center", va="center", fontsize=annot_size,
-                    fontweight="bold", color="white" if dark else "#1A1A1A")
+                    fontweight="bold", color=pg.CELL_TEXT,
+                    path_effects=pg.cell_text_effects())
 
     ax.set_xticks(range(ncols))
-    ax.set_xticklabels(POS, fontsize=7)
+    ax.set_xticklabels(positions, fontsize=7)
     ax.set_yticks(range(nrow))
-    ax.set_yticklabels(order, fontsize=9.5 if kind == "residue" else 8.5,
+    # One step up, matching Figures 16-17: the residue letter is the key to
+    # its row and should not be the quietest thing on the axis.
+    ax.set_yticklabels(order, fontsize=12.0 if kind == "residue" else 10.5,
                        fontweight="bold" if kind == "residue" else "normal")
     ax.tick_params(length=0, pad=3)
     ax.set_xlabel("Position in the 24-mer", fontsize=8.5, labelpad=4)
@@ -167,9 +200,15 @@ def heatmap(kind, group, order, vmax, title, subtitle, stem, figsize,
     ticks = [t for t in (0, 5, 10, 15, 20, 25, 30, 35, 40, 45) if t <= vmax]
     cbar.set_ticks(ticks)
     cbar.set_ticklabels([f"{t}%" for t in ticks])
-    cbar.set_label("% of the group carrying this "
-                   + ("residue" if kind == "residue" else "class")
-                   + " at this position", fontsize=7, labelpad=6)
+    # The label runs along a colourbar as tall as the axes. On the 3-in-tall
+    # class panels that bar is shorter than the label, so the text is wrapped
+    # to two lines there instead of overrunning the title.
+    cbar_label = ("% of the group carrying this "
+                  + ("residue" if kind == "residue" else "class")
+                  + " at this position")
+    if height < 5:
+        cbar_label = textwrap.fill(cbar_label, width=30)
+    cbar.set_label(cbar_label, fontsize=7, labelpad=6, linespacing=1.4)
 
     ax.set_title(title, fontweight="bold", fontsize=9.5, pad=16)
     ax.text(0.5, 1.012, subtitle, transform=ax.transAxes,
@@ -193,17 +232,32 @@ def heatmap(kind, group, order, vmax, title, subtitle, stem, figsize,
             if group == "sub" else
             "This is the background panel: the same matrix, on the same colour "
             "scale, for the controls.  ")
+    companion = "18b / 19b" if group == "sub" else "18 / 19"
+    if window:
+        companion += " for positions 4–12"
+    lines = [
+        f"Colour and cell text are the same number: the percentage of the "
+        f"n = {n_group} {who} with that "
+        f"{'residue' if kind == 'residue' else 'class'} at that position "
+        f"(one peptide = {step:.2g}%).   Blank = 0%, no peptide in the group.   "
+        f"Rows are alphabetical; the chip beside each label is its chemical class.",
+
+        f"This is composition, NOT enrichment — a residue frequent here may be "
+        f"just as frequent among the {other}.  " + tail
+        + f"Compare with Figure {companion} "
+          f"for the other group, and with Figures 16–17 for significance.",
+    ]
+    if window:
+        lines.append(
+            f"This panel is the N-terminal window only — positions "
+            f"{positions[0]}–{positions[-1]}, out to the {positions[-1]}th "
+            f"amino acid of the 24-mer — on the same 0–{vmax:.0f}% scale as "
+            f"the full {POS[0]}–{POS[-1]} version, so the two are read the "
+            f"same way.")
     ax.text(0.5, -0.145 if kind == "residue" else -0.36,
-            f"Colour and cell text are the same number: the percentage of the "
-            f"n = {n_group} {who} with that "
-            f"{'residue' if kind == 'residue' else 'class'} at that position "
-            f"(one peptide = {step:.2g}%).   Blank = 0%, no peptide in the group.   "
-            f"Rows are alphabetical; the chip beside each label is its chemical class.\n"
-            f"This is composition, NOT enrichment — a residue frequent here may be "
-            f"just as frequent among the {other}.  " + tail
-            + f"Compare with Figure {'18b / 19b' if group == 'sub' else '18 / 19'} "
-              f"for the other group, and with Figures 16–17 for significance.",
-            transform=ax.transAxes, ha="center", va="top", fontsize=5.5, color="#666")
+            "\n".join(wrap(l, figsize[0]) for l in lines),
+            transform=ax.transAxes, ha="center", va="top", fontsize=5.5,
+            color="#666")
 
     plt.tight_layout(pad=0.4)
     for ext in ("png", "pdf", "svg"):
@@ -224,31 +278,43 @@ for _kind, _vmax in (("residue", VMAX_RES), ("category", VMAX_CAT)):
 
 print("building frequency heatmaps\n")
 
-heatmap("residue", "sub", AA_ALPHA, VMAX_RES,
-        "Residue frequency by position — the 20 P/G-D/E/T substrates",
-        "colour = % of substrates carrying that residue at that position · "
-        "rows alphabetical · this is not an enrichment scale",
-        "Figure18_frequency_heatmap_residues", (13.4, 8.0), legend=True)
+# Each panel twice: the full 4-24 matrix and the N-terminal window out to the
+# 12th amino acid, on the SAME colour scale, so the crop changes what is shown
+# and nothing about how it is read.
+WINDOWS = [(POS, "", ""),
+           (pg.POS_N12, "_pos4_12", " (positions 4–12)")]
 
-heatmap("residue", "ctrl", AA_ALPHA, VMAX_RES,
-        "Residue frequency by position — the 193 non-substrate controls "
-        "(background panel)",
-        "same matrix, same 0–35% scale, for the controls · what the substrate "
-        "panel has to be read against",
-        "Figure18b_frequency_heatmap_residues_controls", (13.4, 8.0), legend=True)
+for positions, suffix, wt in WINDOWS:
+    heatmap("residue", "sub", AA_ALPHA, VMAX_RES,
+            "Residue frequency by position — the 20 P/G-D/E/T substrates" + wt,
+            "colour = % of substrates carrying that residue at that position · "
+            "rows alphabetical · this is not an enrichment scale",
+            "Figure18_frequency_heatmap_residues" + suffix, 8.0, positions,
+            legend=True)
 
-heatmap("category", "sub", CAT_ALPHA, VMAX_CAT,
-        "Chemical class frequency by position — the 20 P/G-D/E/T substrates",
-        "colour = % of substrates with a residue of that class at that position · "
-        "rows alphabetical · the six classes partition the 20 residues, so every "
-        "column sums to 100%",
-        "Figure19_frequency_heatmap_categories", (13.4, 3.0), annot_size=6.0)
+    heatmap("residue", "ctrl", AA_ALPHA, VMAX_RES,
+            "Residue frequency by position — the 193 non-substrate controls "
+            "(background panel)" + wt,
+            "same matrix, same 0–35% scale, for the controls · what the "
+            "substrate panel has to be read against",
+            "Figure18b_frequency_heatmap_residues_controls" + suffix,
+            8.0, positions, legend=True)
 
-heatmap("category", "ctrl", CAT_ALPHA, VMAX_CAT,
-        "Chemical class frequency by position — the 193 non-substrate controls "
-        "(background panel)",
-        "same matrix, same 0–45% scale, for the controls",
-        "Figure19b_frequency_heatmap_categories_controls", (13.4, 3.0), annot_size=6.0)
+    heatmap("category", "sub", CAT_ALPHA, VMAX_CAT,
+            "Chemical class frequency by position — the 20 P/G-D/E/T "
+            "substrates" + wt,
+            "colour = % of substrates with a residue of that class at that "
+            "position · rows alphabetical · the six classes partition the 20 "
+            "residues, so every column sums to 100%",
+            "Figure19_frequency_heatmap_categories" + suffix, 3.0, positions,
+            annot_size=6.6)
+
+    heatmap("category", "ctrl", CAT_ALPHA, VMAX_CAT,
+            "Chemical class frequency by position — the 193 non-substrate "
+            "controls (background panel)" + wt,
+            "same matrix, same 0–45% scale, for the controls",
+            "Figure19b_frequency_heatmap_categories_controls" + suffix,
+            3.0, positions, annot_size=6.6)
 
 # ---------------------------------------------------------------- readout
 print("\n" + "=" * 78)

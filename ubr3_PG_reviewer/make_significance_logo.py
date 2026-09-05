@@ -29,7 +29,9 @@ build() to get the old class-coloured version of this figure back.
 There are no black outlines on the glyphs. The hairline that separates two
 stacked letters is white, the same separator the heatmaps use between cells.
 
-Two versions are produced:
+Two versions are produced, each over two position windows (pos4_24, the full
+range, and pos4_12, out to the 12th amino acid -- a display crop on the same
+scale, with q still corrected across the full 4-24 family):
   Figure15   chi-square, the workbook's own test.
   Figure15b  Fisher exact, recomputed from the same 2 x 2 tables. Chi-square
              needs expected counts >= 5 and most cells here expect fewer than
@@ -39,6 +41,7 @@ Substrates (n = 20) vs. non-substrate controls carrying the same motif
 (n = 193).
 """
 import os
+import textwrap
 
 import numpy as np
 import pandas as pd
@@ -64,6 +67,24 @@ AA_COLOR_SCHEME = {a: CAT_COLORS[c] for c, mem in CATEGORY_MEMBERS.items() for a
 cells = pg.load()
 DIR = pg.matrix('direction', cells=cells)
 
+def fig_width(ncol):
+    """Constant glyph column width across windows: the 21-position logo is
+    10.5 in wide, so the 9-position one is narrower by the columns it drops
+    rather than the same width with stretched letters."""
+    return 3.2 + 0.35 * ncol
+
+
+def wrap(text, figw, per_inch=16.5):
+    return textwrap.fill(text, width=max(40, int(figw * per_inch)))
+
+
+# Every logo is drawn twice: over the full 4-24 range, and over the N-terminal
+# window out to the 12th amino acid. Heights, colours and p values are
+# identical in both -- the window is a display crop, not a re-analysis.
+WINDOWS = [(POS, "pos4_24", ""),
+           (pg.POS_N12, "pos4_12", " (positions 4–12)")]
+
+
 # Only cells at p < 0.05 are ever drawn, so the ramp is entered at its p = 0.05
 # point rather than at its pale end: the faintest glyph in the figure is the
 # gold the heatmaps use for a one-star cell, not the near-white they use for
@@ -85,9 +106,13 @@ mpl.rcParams.update({
 })
 
 
-def build(pcol, test_label, stem, q_note, colour_by='significance'):
-    P = pg.matrix(pcol, cells=cells)
-    Q = pg.matrix(pcol.replace('p_', 'q_'), cells=cells)
+def build(pcol, test_label, stem, q_note, positions=None,
+          colour_by='significance'):
+    positions = list(positions or POS)
+    figsize = (fig_width(len(positions)), 2.9)
+    P = pg.matrix(pcol, cells=cells, positions=positions)
+    Q = pg.matrix(pcol.replace('p_', 'q_'), cells=cells, positions=positions)
+    direction = DIR[positions]
 
     # Height = -log10(p), for residues ENRICHED in the substrates and reaching
     # p < 0.05. The threshold matters: without it all 20 residues are drawn at
@@ -97,10 +122,11 @@ def build(pcol, test_label, stem, q_note, colour_by='significance'):
     # star bins); the heights are now exact rather than bin representatives.
     with np.errstate(divide='ignore', invalid='ignore'):
         H = -np.log10(P.astype(float))
-    H = H.where(np.isfinite(H) & DIR.gt(0) & P.lt(0.05), 0.0).clip(lower=0.0)
-    H = H.T.set_axis(POS)
+    H = H.where(np.isfinite(H) & direction.gt(0) & P.lt(0.05),
+                0.0).clip(lower=0.0)
+    H = H.T.set_axis(positions)
 
-    fig, ax = plt.subplots(figsize=(10.5, 2.9))
+    fig, ax = plt.subplots(figsize=figsize)
     base = AA_COLOR_SCHEME if colour_by == 'class' else '#CFCAC1'
     logo = logomaker.Logo(H, ax=ax, color_scheme=base,
                           font_name='Helvetica', vpad=0.0, width=0.95,
@@ -125,7 +151,7 @@ def build(pcol, test_label, stem, q_note, colour_by='significance'):
     for y, lab in [(1.30103, 'p = 0.05'), (2.0, 'p = 0.01'), (3.0, 'p = 0.001')]:
         ax.axhline(y=y, color=pg.RULE, linewidth=0.5, linestyle=(0, (3, 2)),
                    zorder=1)
-        ax.text(POS[-1] + 0.55, y, lab, fontsize=5, color=pg.MUTED,
+        ax.text(positions[-1] + 0.55, y, lab, fontsize=5, color=pg.MUTED,
                 va='center', ha='left')
 
     ax.axhline(y=0, color=pg.RULE, linewidth=0.6)
@@ -134,22 +160,28 @@ def build(pcol, test_label, stem, q_note, colour_by='significance'):
     ax.set_axisbelow(True)
     ax.set_ylabel('$-$log$_{10}$ $p$   (stacked)', fontsize=8, color=pg.INK)
     ax.set_xlabel('Position', fontsize=8, labelpad=2, color=pg.INK)
-    ax.set_xticks(POS)
-    ax.set_xticklabels(POS, fontsize=6.5)
+    ax.set_xticks(positions)
+    ax.set_xticklabels(positions, fontsize=6.5)
     ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2,
                    colors=pg.INK)
     for sp in ax.spines.values():
         sp.set_edgecolor(pg.RULE)
-    ax.set_title(f'Significance Logo — height and colour are $-$log$_{{10}}$ $p$, '
-                 f'not fold change ({test_label})',
+    wt = '' if positions == list(POS) else (
+        f'  —  positions {positions[0]}–{positions[-1]}')
+    ax.set_title(wrap(f'Significance Logo — height and colour are '
+                      f'$-$log$_{{10}}$ $p$, not fold change '
+                      f'({test_label}){wt}', figsize[0]),
                  fontweight='bold', fontsize=8.5, pad=4, color=pg.INK)
     ax.set_ylim(-0.05, float(H.sum(axis=1).max()) * 1.12)
-    ax.set_xlim(POS[0] - 0.6, POS[-1] + 0.6)
-    ax.text(0.5, -0.15,
-            f'n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} non-substrate '
-            f'controls.   {q_note}',
+    ax.set_xlim(positions[0] - 0.6, positions[-1] + 0.6)
+    # The caption wraps on the narrow window figure, so it is pushed down by
+    # a line's worth of height per extra line: at -0.15 a three-line caption
+    # would sit on top of the position numbers and the x label.
+    cap = wrap(f'n = {N_SUB} P/G-D/E/T substrates  vs  n = {N_CTRL} '
+               f'non-substrate controls.   {q_note}', figsize[0], 24)
+    ax.text(0.5, -0.15 - 0.085 * cap.count('\n'), cap,
             transform=ax.transAxes, ha='center', fontsize=5.8, color=pg.MUTED,
-            style='italic')
+            style='italic', linespacing=1.5)
 
     if colour_by == 'class':
         ax.legend(handles=[mpatches.Patch(color=CAT_COLORS[c],
@@ -183,22 +215,35 @@ res = cells[(cells.kind == 'residue') & cells.defined]
 n_test = len(res)
 
 
-def note(pcol):
+def note(pcol, positions):
+    """The caption's own arithmetic, counted over the positions actually
+    drawn. q stays the BH-FDR of the full 4-24 family: cropping the figure
+    must not make a cell look more significant than it is."""
     q = pcol.replace('p_', 'q_')
-    n_hit, n_fdr = int((res[pcol] < 0.05).sum()), int((res[q] < 0.05).sum())
+    win = res[res.position.isin(positions)]
+    n_win = len(win)
+    n_hit, n_fdr = int((win[pcol] < 0.05).sum()), int((win[q] < 0.05).sum())
     survivors = ', '.join(f'{r.label}{r.position}' for _, r in
-                          res[res[q] < 0.05].sort_values(q).iterrows())
-    return (f'Heights are uncorrected $p$: {n_hit} of {n_test} cells reach '
-            f'$p$ < 0.05 against {0.05 * n_test:.0f} expected by chance, and '
-            + (f'only {survivors} survive'
+                          win[win[q] < 0.05].sort_values(q).iterrows())
+    crop = ('' if len(positions) == len(POS) else
+            f' This is the N-terminal window only — positions '
+            f'{positions[0]}–{positions[-1]}, out to the '
+            f'{positions[-1]}th amino acid; $q$ is still BH-FDR across all '
+            f'{n_test} cells of the full {POS[0]}–{POS[-1]} matrix.')
+    return (f'Heights are uncorrected $p$: {n_hit} of the {n_win} cells shown '
+            f'reach $p$ < 0.05 against {0.05 * n_win:.0f} expected by chance, '
+            + (f'and only {survivors} survive'
                f'{"s" if n_fdr == 1 else ""} BH-FDR.' if n_fdr else
-               'none survives BH-FDR.'))
+               'and none survives BH-FDR.') + crop)
 
 
-build('p_chi2', 'chi-square, as reported in the workbook',
-      'Figure15_significance_logo_pos4_24', note('p_chi2'))
-build('p_fisher', 'Fisher exact, recomputed',
-      'Figure15b_significance_logo_pos4_24_fisher', note('p_fisher'))
+for positions, tag, _wt in WINDOWS:
+    build('p_chi2', 'chi-square, as reported in the workbook',
+          f'Figure15_significance_logo_{tag}', note('p_chi2', positions),
+          positions)
+    build('p_fisher', 'Fisher exact, recomputed',
+          f'Figure15b_significance_logo_{tag}_fisher',
+          note('p_fisher', positions), positions)
 
 # ---------------------------------------------- fold change vs significance
 enr = res[res.direction > 0].copy()

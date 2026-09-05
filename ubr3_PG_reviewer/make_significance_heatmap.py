@@ -34,11 +34,25 @@ which put a third thing in a cell that already holds a colour and a number.
 The caption names them instead, and every cell's exact p, q, both counts and
 both percentages are in data/significance_heatmap_cells.csv.
 
+That cell text is WHITE on every cell, pale ground or dark, with a thin dark
+halo (pg.CELL_TEXT / pg.cell_text_effects) so the white keeps an edge at the
+pale end of the ramp. It used to flip to near-black below 62% of the scale,
+which put two text colours in one figure and made the flip read as a threshold
+in the data. Row labels are one step larger for the same reason the text is one
+colour: the residue letter is the key to its row.
+
 Type is Helvetica throughout (Arial where Helvetica is absent; see HELV), and
 no left-hand class colour panel is drawn -- the residue rows are still ordered
 by chemical class, which the caption states in words.
 
-Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
+WINDOWS -- every figure is written twice, over the full POS (4-24) and over
+pg.POS_N12 (4-12, out to the 12th amino acid). The crop is a display crop: the
+p values are per cell and unchanged, the colour scale is identical, the cells
+are the same width in inches, and q stays the BH-FDR of the FULL family rather
+than being recomputed inside the window -- recomputing would be choosing the
+region after seeing the data. The cropped captions say both.
+
+Outputs (figures/, 600 dpi PNG + vector PDF + SVG), each also as ..._pos4_12:
   Figure16_significance_heatmap_residues        -log10 chi2 p, warm scale
   Figure16b_significance_heatmap_residues_fisher  -log10 Fisher p
   Figure16c_significance_heatmap_residues_enriched_only  depleted cells forced to
@@ -50,6 +64,7 @@ Outputs (figures/, 600 dpi PNG + vector PDF + SVG):
 """
 import os
 import re
+import textwrap
 
 import matplotlib as mpl
 mpl.use("Agg")
@@ -72,8 +87,22 @@ cells = pg.load()
 cells.to_csv(os.path.join(DATA_DIR, "significance_heatmap_cells.csv"), index=False)
 
 
-def matrix(kind, col, order):
-    return pg.matrix(col, kind=kind, order=order, cells=cells)
+def matrix(kind, col, order, positions=None):
+    return pg.matrix(col, kind=kind, order=order, cells=cells,
+                     positions=positions)
+
+
+def fig_width(ncol):
+    """Constant cell width across windows. The 21-position figure is 13.4 in
+    wide; a 9-position one is narrower by the columns it drops rather than the
+    same width with fatter cells, so the two are directly comparable."""
+    return 3.0 + 0.495 * ncol
+
+
+def wrap(text, figw, fontsize=5.6):
+    """Wrap a caption line to the figure width. At 5.6 pt a character averages
+    about 0.039 in, so roughly 25 fit per inch of figure."""
+    return textwrap.fill(text, width=max(60, int(figw * 25)))
 
 
 # ---------------------------------------------------------------- style
@@ -150,12 +179,15 @@ CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · "
 
 
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
-            figsize, vmax=5.0, annot_size=5.4):
-    P = matrix(kind, pcol, order).values.astype(float)
-    Q = matrix(kind, qcol, order).values.astype(float)
-    FC = matrix(kind, "fold_change", order).values.astype(float)
-    D = matrix(kind, "direction", order).values.astype(float)
-    OK = matrix(kind, "defined", order).values.astype(float) == 1
+            height, positions=None, vmax=5.0, annot_size=6.0):
+    positions = list(positions or POS)
+    window = positions != list(POS)
+    figsize = (fig_width(len(positions)), height)
+    P = matrix(kind, pcol, order, positions).values.astype(float)
+    Q = matrix(kind, qcol, order, positions).values.astype(float)
+    FC = matrix(kind, "fold_change", order, positions).values.astype(float)
+    D = matrix(kind, "direction", order, positions).values.astype(float)
+    OK = matrix(kind, "defined", order, positions).values.astype(float) == 1
 
     with np.errstate(divide="ignore", invalid="ignore"):
         L = -np.log10(P)
@@ -189,6 +221,13 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     # the p value, so the number carries the effect size the colour cannot.
     # The FDR survivors get no mark of their own here -- the caption names
     # them, so nothing extra is laid over the colour.
+    #
+    # The text is WHITE on every cell, dark ground or pale. It used to flip to
+    # near-black below 62% of the scale, which put two text colours in one
+    # figure and made the flip itself read as a threshold in the data. A white
+    # number needs an edge on a straw cell, so every glyph carries the thin
+    # halo defined in pg_motif_data: the letterform stays white, and the same
+    # white, everywhere in the matrix.
     for r in range(nrow):
         for c_ in range(ncol):
             p_, q, fc = P[r, c_], Q[r, c_], FC[r, c_]
@@ -196,16 +235,17 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                 continue
             fc_txt = "∞" if np.isinf(fc) else (
                 "--" if not np.isfinite(fc) else f"{fc:.2f}")
-            shade = C[r, c_]
-            dark = np.ma.is_masked(shade) or abs(shade) > 0.62 * vmax
             ax.text(c_, r, f"{fc_txt}{stars(p_)}", ha="center", va="center",
                     fontsize=annot_size, fontweight="bold",
-                    color="white" if dark else INK, linespacing=0.9)
+                    color=pg.CELL_TEXT, linespacing=0.9,
+                    path_effects=pg.cell_text_effects())
 
     ax.set_xticks(range(ncol))
-    ax.set_xticklabels(POS, fontsize=7, color=INK)
+    ax.set_xticklabels(positions, fontsize=7, color=INK)
     ax.set_yticks(range(nrow))
-    ax.set_yticklabels(order, fontsize=9.5 if kind == "residue" else 8.5,
+    # The residue letter is the key to its row and was set smaller than the
+    # position numbers carry visually; it is one step up from that here.
+    ax.set_yticklabels(order, fontsize=12.0 if kind == "residue" else 10.5,
                        fontweight="bold" if kind == "residue" else "normal",
                        color=INK)
     ax.tick_params(length=0, pad=3)
@@ -225,8 +265,9 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                    fontsize=7, labelpad=6, color=INK)
     cbar.ax.axhline(1.30103, color=INK, linewidth=0.7, linestyle=(0, (2, 1.6)))
 
-    k = cells[(cells.kind == kind) & cells.defined]
-    n_test = len(k)
+    full = cells[(cells.kind == kind) & cells.defined]
+    k = full[full.position.isin(positions)]
+    n_test, n_full = len(k), len(full)
     n_hit = int((k[pcol] < 0.05).sum())
     n_fdr = int((k[qcol] < 0.05).sum())
     # the FDR survivors are named in the caption rather than marked in the
@@ -251,17 +292,29 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
 
         "No depleted cell reaches $p$ < 0.05 anywhere in this dataset, so "
         "every coloured cell above is an enrichment.   "
-        f"{n_hit} of {n_test} testable cells reach $p$ < 0.05 uncorrected, "
-        f"against {0.05 * n_test:.0f} expected by chance alone — "
+        f"{n_hit} of the {n_test} testable cells "
+        + ("shown here " if window else "")
+        + "reach $p$ < 0.05 uncorrected, against "
+        f"{0.05 * n_test:.0f} expected by chance alone — "
         + (f"and only {fdr_names} survive"
-            f"{'s' if n_fdr == 1 else ''} BH-FDR across all {n_test} cells "
-            f"($q$ < 0.05) — the rest is not separable from that expectation."
+            f"{'s' if n_fdr == 1 else ''} BH-FDR ($q$ < 0.05) — the rest "
+            f"is not separable from that expectation."
             if n_fdr else
             "and none survives FDR correction, so no single cell here is "
             "more than a multiple-testing artefact."),
     ]
+    if window:
+        foot.append(
+            f"This panel is the N-terminal window only — positions "
+            f"{positions[0]}–{positions[-1]}, out to the {positions[-1]}th "
+            f"amino acid of the 24-mer. The crop is a display crop: every "
+            f"cell's $p$ is unchanged, and $q$ is still BH-FDR across all "
+            f"{n_full} cells of the full {POS[0]}–{POS[-1]} matrix rather "
+            f"than recomputed inside the window — recomputing it would be "
+            f"choosing the region after seeing the data.")
     ax.text(0.5, -0.085 if kind == "residue" else -0.26,
-            "\n".join(foot), transform=ax.transAxes, ha="center",
+            "\n".join(wrap(f, figsize[0]) for f in foot),
+            transform=ax.transAxes, ha="center",
             va="top", fontsize=5.6, color=MUTED, linespacing=1.5)
 
     plt.tight_layout(pad=0.4)
@@ -271,44 +324,53 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
 # ---------------------------------------------------------------- figures
 print("building significance heatmaps\n")
 
-heatmap("residue", "p_chi2", "q_chi2", AA, True,
-        "Position × residue enrichment, coloured by significance",
-        "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
-        "workbook · cell text = fold change · "
-        "deeper red = more significant",
-        "Figure16_significance_heatmap_residues", (13.4, 8.0))
+# Every figure is drawn twice: over the full 4-24 matrix, and over the
+# N-terminal window out to the 12th amino acid. Same data, same colour scale,
+# same encoding - the second is the first with its right-hand columns cropped.
+WINDOWS = [(POS, "", ""),
+           (pg.POS_N12, "_pos4_12", " (positions 4–12)")]
 
-heatmap("residue", "p_fisher", "q_fisher", AA, True,
-        "Position × residue enrichment, coloured by significance "
-        "(Fisher exact)",
-        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
-        "same 2×2 tables — valid at the low cell counts here",
-        "Figure16b_significance_heatmap_residues_fisher", (13.4, 8.0))
+for positions, suffix, wt in WINDOWS:
+    heatmap("residue", "p_chi2", "q_chi2", AA, True,
+            "Position × residue enrichment, coloured by significance" + wt,
+            "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
+            "workbook · cell text = fold change · "
+            "deeper red = more significant",
+            "Figure16_significance_heatmap_residues" + suffix, 8.0, positions)
 
-heatmap("residue", "p_fisher", "q_fisher", AA, False,
-        "Position × residue enrichment, coloured by significance "
-        "(enriched cells only)",
-        "same layout as the original Colab heatmap, but the colour scale is "
-        "$-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
-        "at the floor",
-        "Figure16c_significance_heatmap_residues_enriched_only", (13.4, 8.0))
+    heatmap("residue", "p_fisher", "q_fisher", AA, True,
+            "Position × residue enrichment, coloured by significance "
+            "(Fisher exact)" + wt,
+            "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
+            "same 2×2 tables — valid at the low cell counts here",
+            "Figure16b_significance_heatmap_residues_fisher" + suffix,
+            8.0, positions)
 
-heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
-        "Chemical class × position, coloured by significance",
-        "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
-        "workbook · Basic K H R · Acidic D E · "
-        "Aromatic F Y W · Aliphatic G P A M · "
-        "Hydrophobic V L I · Polar S T C N Q",
-        "Figure17_significance_heatmap_categories", (13.4, 3.0),
-        annot_size=6.0)
+    heatmap("residue", "p_fisher", "q_fisher", AA, False,
+            "Position × residue enrichment, coloured by significance "
+            "(enriched cells only)" + wt,
+            "same layout as the original Colab heatmap, but the colour scale "
+            "is $-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
+            "at the floor",
+            "Figure16c_significance_heatmap_residues_enriched_only" + suffix,
+            8.0, positions)
 
-heatmap("category", "p_fisher", "q_fisher", CAT_ORDER, True,
-        "Chemical class × position, coloured by significance "
-        "(Fisher exact)",
-        "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
-        "same 2×2 tables",
-        "Figure17b_significance_heatmap_categories_fisher", (13.4, 3.0),
-        annot_size=6.0)
+    heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
+            "Chemical class × position, coloured by significance" + wt,
+            "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
+            "workbook · Basic K H R · Acidic D E · "
+            "Aromatic F Y W · Aliphatic G P A M · "
+            "Hydrophobic V L I · Polar S T C N Q",
+            "Figure17_significance_heatmap_categories" + suffix,
+            3.0, positions, annot_size=6.6)
+
+    heatmap("category", "p_fisher", "q_fisher", CAT_ORDER, True,
+            "Chemical class × position, coloured by significance "
+            "(Fisher exact)" + wt,
+            "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
+            "same 2×2 tables",
+            "Figure17b_significance_heatmap_categories_fisher" + suffix,
+            3.0, positions, annot_size=6.6)
 
 # ---------------------------------------------------------------- readout
 res = cells[(cells.kind == "residue") & cells.defined].copy()

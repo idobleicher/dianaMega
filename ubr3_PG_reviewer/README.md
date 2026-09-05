@@ -247,6 +247,10 @@ whole library. All of them read `pg_motif_data.py`.
 | `Figure15_significance_logo_pos4_24` | `make_significance_logo.py` | **−log₁₀ p** (chi-square), glyphs coloured by the heatmap ramp |
 | `Figure15b_..._fisher` | " | **−log₁₀ p** (Fisher exact), same colouring |
 
+Every one of these six now has a **`pos4_12` twin** — `Figure13_foldchange_logo_pos4_12`,
+`Figure14_logo_pos4_12_by_category`, `Figure15b_significance_logo_pos4_12_fisher` and so on — drawn
+over positions 4–12 only. See *The positions 4–12 window* below.
+
 Figure 13 and Figure 15 are the same data under two rulers, and they disagree on purpose.
 Under fold change the tallest glyphs are W at 12/14/19 and M at 16 — every one of them 1
 substrate vs 1 control, which is just what 1-vs-1 arithmetic gives at n = 20 vs 193. Under
@@ -315,6 +319,15 @@ groups, no test possible.
 > peptide) while R at 7 is 5.63× at p = 1.7 × 10⁻⁵ (7/20 vs 12/193). Quoting an effect size in the
 > text therefore still needs the fold change from the CSV.
 
+**Cell text is white on every cell.** It used to flip to near-black below 62% of the colour
+scale, which put two text colours in one figure and made the flip itself read as a threshold in
+the data — it is not one, it is a contrast rule. Every number is now the same white, on a straw
+cell and on a deep red one alike, and carries a thin dark halo (`CELL_HALO` in `pg_motif_data.py`)
+so that white still has an edge to sit on at the pale end of the ramp. The residue and class **row
+labels are one step larger** — 12 pt for the residue letters, 10.5 pt for the class names — since
+the letter is the key to its row and had been set smaller than the position numbers carry
+visually. Figures 18–19 annotate identically, from the same two constants.
+
 **No class colour panel.** The residue rows are still ordered by chemical class, but the class
 colour strip and rotated class labels that used to run down the left edge are gone; the ordering
 is stated in words in the caption instead. Nothing else moved.
@@ -367,6 +380,8 @@ against 21 expected by chance alone.
 | `Figure17_significance_heatmap_categories` | 6 chemical classes × 21 positions | chi-square |
 | `Figure17b_significance_heatmap_categories_fisher` | same | Fisher exact |
 
+Each of the five also exists as `…_pos4_12`, cropped to positions 4–12 — ten heatmaps in all.
+
 **What survives correction — state this plainly if the figure is used.** Across the 416 testable
 residue cells, **27 reach p < 0.05 under chi-square (18 under Fisher) against 21 expected by
 chance alone**. Under chi-square only
@@ -407,8 +422,14 @@ Two things differ from Figures 16–17:
 | `Figure19_frequency_heatmap_categories` | 6 chemical classes × 21 positions, alphabetical | the **20 substrates**, 0–45% scale |
 | `Figure19b_frequency_heatmap_categories_controls` | same | the **193 controls**, same 0–45% scale |
 
-**Encoding.** Colour and cell text are the same number. Blank = 0%, no peptide in that group has
-that residue there. With n = 20 substrates one peptide is 5%, so the substrate panels move in
+All four also exist as `…_pos4_12`, on the same 0–35% / 0–45% scales.
+
+**Encoding.** Colour and cell text are the same number, and **the text is white on every cell**,
+with the same halo and the same enlarged row labels as Figures 16–17 — the two families are
+annotated from one pair of constants in `pg_motif_data.py` and cannot drift. The halo matters more
+here than there: most cells of this figure sit at the pale end of the ramp (a 5% cell is barely
+tinted), and a plain white number on one would not be visible at all. Blank = 0%, no peptide in
+that group has that residue there. With n = 20 substrates one peptide is 5%, so the substrate panels move in
 5-point steps; the control panels are finer (1/193 = 0.52%, printed as `<1`). On the substrate
 panels an asterisk marks cells that *also* differ between the two groups at Fisher exact
 p < 0.05, so these figures never contradict Figures 16–17 — but nothing about the colour here is
@@ -435,6 +456,37 @@ alongside fold change, both p-values and both q-values.
 
 ---
 
+## The positions 4–12 window — every figure twice
+
+`pg_motif_data.POS_N12` → the `…_pos4_12` half of `figures/`
+
+Every logo and every heatmap above is now produced in two versions: over the full **4–24** range,
+and over **positions 4–12 only** — out to the 12th amino acid of the 24-mer. Positions 1–3 are the
+motif itself and are in no version, so the window starts at 4 like everything else here. That is
+**15 figure pairs**: Figures 13, 13b, 14, 14b, 15, 15b (logos) and 16, 16b, 16c, 17, 17b, 18, 18b,
+19, 19b (heatmaps).
+
+**The window is a display crop and nothing more.** Same loader, same p-values, same colour scales
+(0–5 on −log₁₀ p, 0–35% / 0–45% on frequency), same cell width in inches — a `pos4_12` panel is
+the full panel with its right-hand columns removed, not a re-run on a subset. Two consequences are
+stated in every cropped caption:
+
+- **q is not recomputed inside the window.** It stays the Benjamini–Hochberg FDR across all 416
+  testable residue cells (126 class cells) of the full 4–24 matrix. Re-running BH over the 179
+  cells of the window would be choosing the region after seeing the data, and would make the same
+  cells look stronger than they are. As it happens the survivors are unchanged either way — R at 7
+  and R at 8, Basic at 5, 7 and 8 all lie inside the window — but the q values printed are the
+  honest, full-family ones.
+- **The chance expectation is quoted for the window.** 12 of the 179 residue cells shown reach
+  p < 0.05 under chi-square (9 under Fisher) against **9 expected by chance alone**, so the
+  cropped figure is, if anything, a *weaker* result per cell than the full one and must not be
+  read as a cleaner one. What the crop buys is legibility: at 9 columns instead of 21 the
+  arginine/basic signal at positions 5–8 is the whole figure.
+
+Nothing else about the analysis changes, and no claim in this README is based on the window.
+
+---
+
 ## Reproducing
 
 ```bash
@@ -442,6 +494,7 @@ python fetch_annotation.py      # UniProt REST -> data/annotation.json (cached; 
 
 # positions 4-24, P/G-D/E/T motif analysis -- all five read pg_motif_data.py
 python pg_motif_data.py               # loader self-test: cell counts, what survives FDR
+# each writes BOTH windows: the full 4-24 figure and its ..._pos4_12 twin
 python make_foldchange_logo.py        # -> figures/Figure13*
 python make_category_logo.py          # -> figures/Figure14*, data/significant_*.csv
 python make_significance_logo.py      # -> figures/Figure15*

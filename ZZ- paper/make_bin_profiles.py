@@ -29,18 +29,21 @@ DIFFERENCES FROM THE ORIGINAL, all forced by this dataset:
     control of ITS OWN experiment -- blue against dark grey, pink against
     light grey. Comparing blue to light grey compares two experiments.
 
-WHICH PEPTIDES. Twelve, in three rows of four:
-  row 1  the two peptides confirmed in the lab, then the two strongest other
-         Met-Pro-Gly candidates
-  row 2  four more Met-Pro-Gly
-  row 3  four canonical Met-Gly substrates, for comparison -- the shape a
-         known Gly/N-degron substrate makes in this assay
-Met-Pro-Gly is the group the lab-confirmed peptides both belong to; see the
-README for why it behaves like Met-Gly.
+TWO FIGURES COME OUT OF THIS
+  FigureZ4  twelve curated panels: the two peptides confirmed in the lab, the
+            strongest other Met-Pro-Gly candidates, and four canonical Met-Gly
+            substrates on the bottom row for comparison.
+  FigureZ5  EVERY Met-Pro substrate -- all 180 of tiers A, B and C from
+            make_mp_substrate_list.py -- paginated 20 to a page, in tier order
+            and ranked by best dPSI within each tier. One multi-page PDF plus
+            a PNG per page. Each panel carries its tier, so a page can be read
+            without the tier table beside it.
 
 Outputs:
-  figures/FigureZ4_bin_profiles          the twelve panels
-  data/bin_profiles_plotted.csv          the numbers behind every line
+  figures/FigureZ4_bin_profiles                    the twelve curated panels
+  figures/FigureZ5_bin_profiles_all_MP_substrates.pdf   all 180, multi-page
+  figures/FigureZ5_bin_profiles_all_MP_substrates_p01..pNN.png
+  data/bin_profiles_plotted.csv                    numbers behind FigureZ4
 """
 import os
 
@@ -49,6 +52,7 @@ import pandas as pd
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 from matplotlib.lines import Line2D
 
 import zz_gps_data as zz
@@ -61,7 +65,6 @@ BLUE, PINK = "#2E6FD0", "#D6408F"
 GREY_A, GREY_B = "#6E6E76", "#B6B6BE"
 INK, MUTED, RULE = "#1A1A1A", "#6B6B6B", "#C6C6CE"
 
-# name, colour, linestyle, which control it belongs with
 SERIES = [
     ("AAVS1 control", GREY_A, "-", 1.3),
     ("ZYG11B KO", BLUE, "-", 1.5),
@@ -70,15 +73,12 @@ SERIES = [
     ("double KO", PINK, "-", 1.5),
 ]
 
-# transcript given where a specific isoform is meant; otherwise the gene's
-# best-scoring transcript in the double KO is used
-PANELS = [
+CURATED = [
     ("VWA5B1", "ENST00000485375.6"), ("SEPTIN4", "ENST00000412945.7"),
     ("FOSB", None), ("SSBP3", None),
     ("ZNF254", None), ("PLD4", None), ("ZNF729", None), ("NDUFA8", None),
     ("C14orf178", None), ("FXR2", None), ("UBTD2", None), ("HBG1", None),
 ]
-NCOL = 4
 
 mpl.rcParams.update({
     "font.family": "sans-serif",
@@ -94,37 +94,17 @@ b = zz.bins()
 merged = b.merge(d[["transcript", "dpsi_zyg11b", "dpsi_zer1", "dpsi_dko",
                     "psi_ctrl_a", "psi_ctrl_b"]], on="transcript", how="left")
 
+LEGEND = [Line2D([0], [0], color=c, linestyle=s, linewidth=lw, marker="o",
+                 markersize=3, markeredgewidth=0, label=n)
+          for n, c, s, lw in SERIES]
+FOOT = ("Read each knockout against the control of its own experiment: blue and blue-dashed "
+        "against dark grey (Data S3A), pink against light grey (Data S3B).  The two greys are "
+        "different experiments, not replicates, and there is no within-genotype replicate "
+        "anywhere in this workbook.\nPSI is the read-weighted mean of these six bins, so these "
+        "curves and every ΔPSI quoted in this project are one measurement at two resolutions.")
 
-def resolve(gene, transcript):
-    rows = merged[merged.gene == gene]
-    assert len(rows), f"{gene} is not in the screen"
-    if transcript:
-        r = rows[rows.transcript == transcript]
-        assert len(r), f"{gene}: transcript {transcript} not found"
-        return r.iloc[0]
-    return rows.loc[rows.dpsi_dko.idxmax()]
 
-
-rows = [resolve(g, t) for g, t in PANELS]
-
-# every number that reaches the figure, written out beside it
-out = []
-for r in rows:
-    for name, *_ in SERIES:
-        for i in zz.BINS:
-            out.append({"gene": r.gene, "transcript": r.transcript,
-                        "nterm3": r.nterm3, "condition": name, "bin": i,
-                        "proportion": r[f"{name} bin{i}"],
-                        "reads": r[f"{name} reads"]})
-pd.DataFrame(out).to_csv(os.path.join(DATA, "bin_profiles_plotted.csv"),
-                         index=False, float_format="%.5g")
-
-nrow = int(np.ceil(len(rows) / NCOL))
-fig, axes = plt.subplots(nrow, NCOL, figsize=(10.6, 2.05 * nrow))
-axes = np.atleast_2d(axes)
-
-for k, r in enumerate(rows):
-    ax = axes[k // NCOL][k % NCOL]
+def draw_panel(ax, r, tier=None):
     for name, colour, style, lw in SERIES:
         y = [r[f"{name} bin{i}"] for i in zz.BINS]
         if not np.isfinite(y).all():
@@ -133,14 +113,17 @@ for k, r in enumerate(rows):
                 marker="o", markersize=2.6, markeredgewidth=0, zorder=3,
                 clip_on=False)
 
-    ax.set_title(f"{r.gene} ({r.nterm3}-)", fontsize=8, fontweight="bold",
-                 color=INK, pad=9)
+    title = f"{r.gene} ({r.nterm3}-)"
+    ax.set_title(title, fontsize=8, fontweight="bold", color=INK, pad=9)
     dp = "   ".join(
         f"{lab} {r[c]:+.2f}" for lab, c in
         (("ZYG", "dpsi_zyg11b"), ("ZER", "dpsi_zer1"), ("DKO", "dpsi_dko"))
         if np.isfinite(r[c]))
     ax.text(0.5, 1.015, f"ΔPSI   {dp}", transform=ax.transAxes, ha="center",
             va="bottom", fontsize=5.2, color=MUTED)
+    if tier:
+        ax.text(0.0, 1.015, f"tier {tier}", transform=ax.transAxes, ha="left",
+                va="bottom", fontsize=5.2, color=MUTED, fontweight="bold")
 
     ax.set_xticks(zz.BINS)
     ax.set_xticklabels([f"Bin{i}" for i in zz.BINS], fontsize=5.6, color=MUTED)
@@ -154,39 +137,104 @@ for k, r in enumerate(rows):
     for side in ("left", "bottom"):
         ax.spines[side].set_color(RULE)
 
-for k in range(len(rows), nrow * NCOL):
-    axes[k // NCOL][k % NCOL].set_visible(False)
 
-handles = [Line2D([0], [0], color=c, linestyle=s, linewidth=lw, marker="o",
-                  markersize=3, markeredgewidth=0, label=n)
-           for n, c, s, lw in SERIES]
-fig.legend(handles=handles, loc="lower center", ncol=5, frameon=False,
-           fontsize=6.6, handlelength=2.2, handletextpad=0.5,
-           columnspacing=2.0, bbox_to_anchor=(0.5, -0.005))
+def grid(rows, tiers, title, subtitle, foot, ncol=4, panel_h=2.05, panel_w=2.65):
+    nrow = int(np.ceil(len(rows) / ncol))
+    fig, axes = plt.subplots(nrow, ncol,
+                             figsize=(panel_w * ncol, panel_h * nrow))
+    axes = np.atleast_2d(axes)
+    for k, r in enumerate(rows):
+        draw_panel(axes[k // ncol][k % ncol], r, tiers[k] if tiers else None)
+    for k in range(len(rows), nrow * ncol):
+        axes[k // ncol][k % ncol].set_visible(False)
 
-fig.suptitle("Sort-bin profiles of individual peptides", fontsize=10,
-             fontweight="bold", color=INK, y=1.005)
-fig.text(0.5, 0.978,
-         "proportion of reads in each of the six stability bins · low bins = degraded, "
-         "high bins = stable · a knockout that stabilises a peptide moves its curve to the right",
-         ha="center", fontsize=6.4, color=MUTED, style="italic")
-fig.text(0.5, -0.035,
-         "Read each knockout against the control of its own experiment: blue and blue-dashed "
-         "against dark grey (Data S3A), pink against light grey (Data S3B).  The two greys are "
-         "different experiments, not replicates, and there is no within-genotype replicate "
-         "anywhere in this workbook.\nPSI is the read-weighted mean of these six bins, so these "
-         "curves and every ΔPSI quoted in this project are one measurement at two resolutions.  "
-         "Rows 1–2 are Met-Pro-Gly peptides, row 3 canonical Met-Gly substrates for comparison.",
-         ha="center", va="top", fontsize=5.6, color=MUTED, linespacing=1.6)
+    fig.legend(handles=LEGEND, loc="lower center", ncol=5, frameon=False,
+               fontsize=6.6, handlelength=2.2, handletextpad=0.5,
+               columnspacing=2.0, bbox_to_anchor=(0.5, -0.004))
+    fig.suptitle(title, fontsize=10, fontweight="bold", color=INK, y=1.004)
+    top = 1.0 - 0.026 * (2.05 * 3) / (panel_h * nrow)
+    fig.text(0.5, top, subtitle, ha="center", fontsize=6.4, color=MUTED,
+             style="italic")
+    fig.text(0.5, -0.028, foot, ha="center", va="top", fontsize=5.6,
+             color=MUTED, linespacing=1.6)
+    plt.tight_layout(rect=(0, 0.03, 1, 1 - 0.035 * (2.05 * 3) / (panel_h * nrow)),
+                     h_pad=2.4, w_pad=1.6)
+    return fig
 
-plt.tight_layout(rect=(0, 0.03, 1, 0.965), h_pad=2.4, w_pad=1.6)
-for ext in ("png", "pdf", "svg"):
-    path = os.path.join(FIG, f"FigureZ4_bin_profiles.{ext}")
-    fig.savefig(path, format=ext)
-    print(f"  saved: {os.path.basename(path)}  ({os.path.getsize(path)/1024:.1f} KB)")
+
+def save(fig, stem, exts=("png", "pdf", "svg")):
+    for ext in exts:
+        p = os.path.join(FIG, f"{stem}.{ext}")
+        fig.savefig(p, format=ext)
+        print(f"  saved: {os.path.basename(p)}  ({os.path.getsize(p)/1024:.1f} KB)")
+
+
+# ----------------------------------------------------------- Figure Z4
+def resolve(gene, transcript):
+    rows = merged[merged.gene == gene]
+    assert len(rows), f"{gene} is not in the screen"
+    if transcript:
+        r = rows[rows.transcript == transcript]
+        assert len(r), f"{gene}: transcript {transcript} not found"
+        return r.iloc[0]
+    return rows.loc[rows.dpsi_dko.idxmax()]
+
+
+rows = [resolve(g, t) for g, t in CURATED]
+out = [{"gene": r.gene, "transcript": r.transcript, "nterm3": r.nterm3,
+        "condition": name, "bin": i, "proportion": r[f"{name} bin{i}"],
+        "reads": r[f"{name} reads"]}
+       for r in rows for name, *_ in SERIES for i in zz.BINS]
+pd.DataFrame(out).to_csv(os.path.join(DATA, "bin_profiles_plotted.csv"),
+                         index=False, float_format="%.5g")
+
+fig = grid(rows, None, "Sort-bin profiles of individual peptides",
+           "proportion of reads in each of the six stability bins · low bins = degraded, "
+           "high bins = stable · a knockout that stabilises a peptide moves its curve to the right",
+           FOOT + "  Rows 1–2 are Met-Pro-Gly peptides, row 3 canonical Met-Gly substrates "
+                  "for comparison.")
+save(fig, "FigureZ4_bin_profiles")
 plt.close(fig)
 
-print("\npanels drawn:")
-for r in rows:
-    print(f"   {r.gene:<10} {r.nterm3}-  {r.transcript:<20} "
-          f"ZYG {r.dpsi_zyg11b:+.2f}  ZER {r.dpsi_zer1:+.2f}  DKO {r.dpsi_dko:+.2f}")
+# ----------------------------------------------------------- Figure Z5
+subs = pd.read_csv(os.path.join(DATA, "mp_substrates.csv"))
+subs = subs.sort_values(["tier", "best_dpsi"], ascending=[True, False])
+panels = merged.set_index("transcript").loc[subs.transcript].reset_index()
+tiers = list(subs.tier)
+
+PER_PAGE, NCOL = 20, 4
+pages = int(np.ceil(len(panels) / PER_PAGE))
+stem = "FigureZ5_bin_profiles_all_MP_substrates"
+print(f"\nFigureZ5: {len(panels)} Met-Pro substrates over {pages} pages")
+
+with PdfPages(os.path.join(FIG, f"{stem}.pdf")) as pdf:
+    for pg in range(pages):
+        sl = slice(pg * PER_PAGE, (pg + 1) * PER_PAGE)
+        chunk = [panels.iloc[i] for i in range(len(panels))][sl]
+        t_chunk = tiers[sl]
+        counts = pd.Series(t_chunk).value_counts().reindex(list("ABC")).fillna(0)
+        fig = grid(
+            chunk, t_chunk,
+            f"Sort-bin profiles — every Met-Pro substrate  ({pg + 1} of {pages})",
+            f"tiers on this page: "
+            + ", ".join(f"{int(counts[t])} × {t}" for t in "ABC" if counts[t])
+            + "  ·  A = ΔPSI ≥ 1.0 in two or more genotypes, B = in exactly one, "
+              "C = best 0.5–1.0  ·  ranked by best ΔPSI within tier",
+            FOOT + "  Tier is how much evidence there is, not how good a substrate is: with no "
+                   "within-genotype replicate, 0.6 in one clone is not evidence of absence.",
+            ncol=NCOL, panel_h=2.05)
+        pdf.savefig(fig, bbox_inches="tight")
+        # the PDF is the archival artefact and is vector; the page PNGs exist
+        # to be looked at, so they are written at screen resolution rather than
+        # 600 dpi -- nine 600-dpi pages would add 25 MB to the repository for
+        # nothing the PDF does not already hold.
+        png = os.path.join(FIG, f"{stem}_p{pg + 1:02d}.png")
+        fig.savefig(png, format="png", dpi=200)
+        plt.close(fig)
+        print(f"  page {pg + 1:>2}: {len(chunk):>2} panels  "
+              f"({os.path.getsize(png)/1024:.0f} KB png)")
+
+size = os.path.getsize(os.path.join(FIG, f"{stem}.pdf")) / 1024
+print(f"  saved: {stem}.pdf  ({size:.1f} KB, {pages} pages)")
+print(f"\ntier counts across the whole figure: "
+      f"{ {t: int((subs.tier == t).sum()) for t in 'ABC'} }")

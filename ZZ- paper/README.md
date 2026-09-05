@@ -294,10 +294,22 @@ Three things differ from the original, all forced by this dataset:
   experiment: blue against dark grey, pink against light grey. Comparing blue to light grey
   compares two experiments.
 
-**The twelve peptides.** Rows 1–2 are Met-Pro-Gly, starting with the two confirmed in the lab
-(VWA5B1, SEPTIN4) and continuing with the strongest other candidates (FOSB, SSBP3, ZNF254, PLD4,
-ZNF729, NDUFA8). Row 3 is four canonical Met-Gly substrates (C14orf178, FXR2, UBTD2, HBG1) — the
-shape a known Gly/N-degron substrate makes in this assay, for comparison.
+**The twelve peptides of Z4.** Rows 1–2 are Met-Pro-Gly, starting with the two confirmed in the
+lab (VWA5B1, SEPTIN4) and continuing with the strongest other candidates (FOSB, SSBP3, ZNF254,
+PLD4, ZNF729, NDUFA8). Row 3 is four canonical Met-Gly substrates (C14orf178, FXR2, UBTD2, HBG1) —
+the shape a known Gly/N-degron substrate makes in this assay, for comparison.
+
+**Figure Z5 is the same panel for every Met-Pro substrate** — all 180 of tiers A, B and C, 20 to a
+page over 9 pages, in tier order and ranked by best ΔPSI within each tier. Every panel carries its
+tier, so a page reads on its own. The multi-page **PDF is the archival version and is vector**; the
+per-page PNGs are written at screen resolution because nine 600-dpi pages would add 25 MB to the
+repository for nothing the PDF does not already hold.
+
+| Page | Contents |
+|---|---|
+| 1 | all 7 of tier A, then the start of tier B |
+| 2 | the rest of tier B, then tier C begins |
+| 3–9 | tier C, ranked |
 
 ---
 

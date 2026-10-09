@@ -45,6 +45,10 @@ POS = list(range(4, 25))
 # being recomputed inside the window -- recomputing would be choosing the
 # region after seeing the data and would make the same cells look stronger.
 POS_N12 = list(range(4, 13))
+# Figures 15-17b print every position number one lower than the source sheet's
+# column (sheet 4 is shown as 3, ..., 24 as 23). Labels only: the data, the
+# windows and the output file names still use the sheet's numbering.
+LABEL_SHIFT = -1
 N_SUB, N_CTRL = 20, 193
 
 # display order = the Colab aa_order, which is already grouped by class

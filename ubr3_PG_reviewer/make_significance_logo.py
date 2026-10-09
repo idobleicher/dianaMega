@@ -59,6 +59,7 @@ OUTPUT_DIR = os.path.join(HERE, 'figures')
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 POS, AA = pg.POS, pg.AA
+SHIFT = pg.LABEL_SHIFT
 N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 CATEGORY_MEMBERS, CAT_COLORS = pg.CATEGORY_MEMBERS, pg.CAT_COLORS
 LEGEND_ORDER = ['Basic', 'Acidic', 'Aromatic', 'Aliphatic', 'Hydrophobic', 'Polar']
@@ -161,13 +162,13 @@ def build(pcol, test_label, stem, q_note, positions=None,
     ax.set_ylabel('$-$log$_{10}$ $p$   (stacked)', fontsize=8, color=pg.INK)
     ax.set_xlabel('Position', fontsize=8, labelpad=2, color=pg.INK)
     ax.set_xticks(positions)
-    ax.set_xticklabels(positions, fontsize=6.5)
+    ax.set_xticklabels([p + SHIFT for p in positions], fontsize=6.5)
     ax.tick_params(axis='both', labelsize=6.5, length=2.5, width=0.7, pad=2,
                    colors=pg.INK)
     for sp in ax.spines.values():
         sp.set_edgecolor(pg.RULE)
     wt = '' if positions == list(POS) else (
-        f'  —  positions {positions[0]}–{positions[-1]}')
+        f'  —  positions {positions[0] + SHIFT}–{positions[-1] + SHIFT}')
     ax.set_title(wrap(f'Significance Logo — height and colour are '
                       f'$-$log$_{{10}}$ $p$, not fold change '
                       f'({test_label}){wt}', figsize[0]),
@@ -223,13 +224,14 @@ def note(pcol, positions):
     win = res[res.position.isin(positions)]
     n_win = len(win)
     n_hit, n_fdr = int((win[pcol] < 0.05).sum()), int((win[q] < 0.05).sum())
-    survivors = ', '.join(f'{r.label}{r.position}' for _, r in
+    survivors = ', '.join(f'{r.label}{r.position + SHIFT}' for _, r in
                           win[win[q] < 0.05].sort_values(q).iterrows())
     crop = ('' if len(positions) == len(POS) else
             f' This is the N-terminal window only — positions '
-            f'{positions[0]}–{positions[-1]}, out to the '
-            f'{positions[-1]}th amino acid; $q$ is still BH-FDR across all '
-            f'{n_test} cells of the full {POS[0]}–{POS[-1]} matrix.')
+            f'{positions[0] + SHIFT}–{positions[-1] + SHIFT}, out to the '
+            f'{positions[-1] + SHIFT}th amino acid; $q$ is still BH-FDR '
+            f'across all {n_test} cells of the full '
+            f'{POS[0] + SHIFT}–{POS[-1] + SHIFT} matrix.')
     return (f'Heights are uncorrected $p$: {n_hit} of the {n_win} cells shown '
             f'reach $p$ < 0.05 against {0.05 * n_win:.0f} expected by chance, '
             + (f'and only {survivors} survive'

@@ -80,6 +80,7 @@ DATA_DIR = os.path.join(HERE, "data")
 os.makedirs(FIG_DIR, exist_ok=True)
 
 POS, AA = pg.POS, pg.AA
+SHIFT = pg.LABEL_SHIFT
 N_SUB, N_CTRL = pg.N_SUB, pg.N_CTRL
 CATEGORY_MEMBERS, CAT_ORDER = pg.CATEGORY_MEMBERS, pg.CAT_ORDER
 stars = pg.stars
@@ -247,7 +248,7 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                              size=annot_size, star_size=star_size)
 
     ax.set_xticks(range(ncol))
-    ax.set_xticklabels(positions, fontsize=7, color=INK)
+    ax.set_xticklabels([p + SHIFT for p in positions], fontsize=7, color=INK)
     ax.set_yticks(range(nrow))
     # The residue letter is the key to its row and was set smaller than the
     # position numbers carry visually; it is one step up from that here.
@@ -279,7 +280,7 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     # the FDR survivors are named in the caption rather than marked in the
     # matrix, so the cells keep to one colour and one number
     fdr_names = ", ".join(
-        f"{r.label} at {r.position}"
+        f"{r.label} at {r.position + SHIFT}"
         for _, r in k[k[qcol] < 0.05].sort_values(qcol).iterrows())
 
     ax.set_title(title, fontweight="bold", fontsize=9.5, pad=16, color=INK)
@@ -312,10 +313,12 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     if window:
         foot.append(
             f"This panel is the N-terminal window only — positions "
-            f"{positions[0]}–{positions[-1]}, out to the {positions[-1]}th "
+            f"{positions[0] + SHIFT}–{positions[-1] + SHIFT}, out to the "
+            f"{positions[-1] + SHIFT}th "
             f"amino acid of the 24-mer. The crop is a display crop: every "
             f"cell's $p$ is unchanged, and $q$ is still BH-FDR across all "
-            f"{n_full} cells of the full {POS[0]}–{POS[-1]} matrix rather "
+            f"{n_full} cells of the full "
+            f"{POS[0] + SHIFT}–{POS[-1] + SHIFT} matrix rather "
             f"than recomputed inside the window — recomputing it would be "
             f"choosing the region after seeing the data.")
     ax.text(0.5, -0.085 if kind == "residue" else -0.26,
@@ -334,7 +337,8 @@ print("building significance heatmaps\n")
 # N-terminal window out to the 12th amino acid. Same data, same colour scale,
 # same encoding - the second is the first with its right-hand columns cropped.
 WINDOWS = [(POS, "", ""),
-           (pg.POS_N12, "_pos4_12", " (positions 4–12)")]
+           (pg.POS_N12, "_pos4_12",
+            f" (positions {pg.POS_N12[0] + SHIFT}–{pg.POS_N12[-1] + SHIFT})")]
 
 for positions, suffix, wt in WINDOWS:
     heatmap("residue", "p_chi2", "q_chi2", AA, True,

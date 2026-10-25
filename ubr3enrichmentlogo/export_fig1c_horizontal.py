@@ -100,7 +100,7 @@ CMAP_SIG = LinearSegmentedColormap.from_list('sig_warm', [
     '#DC7C31', '#C0392B', '#9B2A20', '#71201A'])
 GRID, INK, RULE = '#FFFFFF', '#1A1A1A', '#C9C4BA'
 
-fig, ax = plt.subplots(figsize=(5.0, 1.15))
+fig, ax = plt.subplots(figsize=(5.0, 1.49))
 nrow, ncol = M.shape
 im = ax.imshow(M.values, aspect='auto', cmap=CMAP_SIG, vmin=0,
                vmax=max(M.values.max(), 5),

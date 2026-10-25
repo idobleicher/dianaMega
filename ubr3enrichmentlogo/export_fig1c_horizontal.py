@@ -16,6 +16,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap
 from collections import Counter
 from scipy import stats
@@ -26,14 +27,20 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 AMINO_ACIDS = list('ACDEFGHIKLMNPQRSTVWY')
 
+# Helvetica is not installed on this machine, so matplotlib was falling back to
+# Arial. TeX Gyre Heros (fonts/, GUST font licence) is a free Helvetica clone.
+FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fonts')
+for f in ('texgyreheros-regular.otf', 'texgyreheros-bold.otf'):
+    font_manager.fontManager.addfont(os.path.join(FONT_DIR, f))
+
 mpl.rcParams.update({
     'font.family': 'sans-serif',
-    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.sans-serif': ['TeX Gyre Heros', 'Helvetica', 'Arial'],
     'font.size': 8,
     'axes.titlesize': 9,
     'axes.labelsize': 8,
     'axes.linewidth': 0.8,
-    'svg.fonttype': 'none',
+    'svg.fonttype': 'path',   # outlines, so the SVG shows Helvetica without the font installed
     'figure.dpi': 600,
     'savefig.dpi': 600,
     'savefig.bbox': 'tight',

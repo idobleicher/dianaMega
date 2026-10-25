@@ -19,7 +19,7 @@ drawn far too short here.
 
 COLOUR -- the glyphs are coloured by the same warm significance ramp as the
 heatmaps (pg.CMAP_SIG), keyed to the same -log10 p, with the same colourbar and
-the same p ticks. Height and colour therefore carry one quantity twice, which
+the same whole-number -log10 p ticks. Height and colour therefore carry one quantity twice, which
 is the point: a letter that is tall is also dark, so the figure reads at a
 glance and sits beside Figures 16-17 as one visual set rather than as a second
 palette. Chemical class is no longer carried by colour here -- that is Figure
@@ -198,9 +198,8 @@ def build(pcol, test_label, stem, q_note, positions=None,
         cbar.ax.tick_params(labelsize=6, length=2, width=0.6, colors=pg.INK)
         cbar.outline.set_linewidth(0.5)
         cbar.outline.set_edgecolor(pg.RULE)
-        cbar.set_ticks([VMIN, 2, 3, 4, VMAX])
-        cbar.set_ticklabels(['0.05', '0.01', '0.001', '1e-4', '1e-5'])
-        cbar.set_label('$p$ value', fontsize=6.5, labelpad=5, color=pg.INK)
+        cbar.set_ticks([2, 3, 4, 5])
+        cbar.set_label('$-$log$_{10}$ $p$  (floor: $p$ = 0.05)', fontsize=6.5, labelpad=5, color=pg.INK)
 
     plt.tight_layout(pad=0.3)
 

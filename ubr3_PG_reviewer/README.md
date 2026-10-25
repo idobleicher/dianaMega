@@ -263,7 +263,7 @@ of noise alone. Heights are exact −log₁₀ p (the first version of Figure 15
 `*/**/***` bin representatives 1.30 / 2.00 / 3.00, because the file it read had no p-values).
 
 **Figure 15 is coloured to match Figures 16–17.** Its glyphs take their colour from the same
-`CMAP_SIG` ramp, keyed to the same −log₁₀ p, and carry the same colourbar with the same p ticks —
+`CMAP_SIG` ramp, keyed to the same −log₁₀ p, and carry the same colourbar with the same whole-number −log₁₀ p ticks (0–5) —
 so a letter that is tall is also dark, and the logo sits beside the heatmaps as one set. The ramp
 is entered at its p = 0.05 point, since nothing below that is drawn, and there are no black
 outlines on the glyphs: the hairline separating two stacked letters is the same white the heatmaps

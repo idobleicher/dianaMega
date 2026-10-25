@@ -265,10 +265,9 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     cbar.ax.tick_params(labelsize=6.5, length=2, width=0.6, colors=INK)
     cbar.outline.set_linewidth(0.5)
     cbar.outline.set_edgecolor(pg.RULE)
-    cbar.set_ticks([0, 1.30103, 2, 3, 4, vmax])
-    cbar.set_ticklabels(["n.s.", "0.05", "0.01", "0.001", "1e-4", "1e-5"])
-    cbar.set_label("$p$ value  (colour = $-$log$_{10}$ $p$)" if signed
-                   else "$p$ value  (enriched cells only)",
+    cbar.set_ticks(range(0, int(vmax) + 1))
+    cbar.set_label("$-$log$_{10}$ $p$  (dashed line: $p$ = 0.05)" if signed
+                   else "$-$log$_{10}$ $p$  (enriched cells only; dashed line: $p$ = 0.05)",
                    fontsize=7, labelpad=6, color=INK)
     cbar.ax.axhline(1.30103, color=INK, linewidth=0.7, linestyle=(0, (2, 1.6)))
 

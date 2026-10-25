@@ -91,7 +91,7 @@ for aa in AMINO_ACIDS:
         _, p = stats.fisher_exact(table, alternative='two-sided')
         pval_dict[(aa, pos_label)] = p
 
-# 20 columns x 2 rows; 5.0 x 1.965 in matches the box the panel was resized to on the slide
+# 20 columns x 2 rows of short, wide cells
 # Look of Fig. 1g (ubr3_PG_reviewer Figure 17b, make_significance_heatmap.py):
 # its warm ramp (pg_motif_data.CMAP_SIG), white cell separators, no frame or
 # tick marks, near-black text and a hairline colour-bar outline.
@@ -100,7 +100,7 @@ CMAP_SIG = LinearSegmentedColormap.from_list('sig_warm', [
     '#DC7C31', '#C0392B', '#9B2A20', '#71201A'])
 GRID, INK, RULE = '#FFFFFF', '#1A1A1A', '#C9C4BA'
 
-fig, ax = plt.subplots(figsize=(5.0, 1.965))
+fig, ax = plt.subplots(figsize=(5.0, 1.15))
 nrow, ncol = M.shape
 im = ax.imshow(M.values, aspect='auto', cmap=CMAP_SIG, vmin=0,
                vmax=max(M.values.max(), 5),
@@ -139,10 +139,10 @@ for i, pos in enumerate(M.index):
         # dark halo, stars stacked above and set larger. Every number sits on
         # the same line, starred or not, so the row reads level.
         if stars:
-            ax.text(j, i - 0.12, stars, ha='center', va='center',
+            ax.text(j, i - 0.2, stars, ha='center', va='center',
                     fontsize=NUM_SIZE + STAR_BUMP, fontweight='bold',
                     color=CELL_TEXT, path_effects=halo(STAR_HALO_LW))
-        ax.text(j, i + 0.08, f'{v:.1f}', ha='center', va='center',
+        ax.text(j, i + 0.16, f'{v:.1f}', ha='center', va='center',
                 fontsize=NUM_SIZE, fontweight='bold', color=CELL_TEXT,
                 path_effects=halo(HALO_LW))
 

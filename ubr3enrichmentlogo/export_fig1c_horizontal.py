@@ -91,8 +91,8 @@ for aa in AMINO_ACIDS:
         _, p = stats.fisher_exact(table, alternative='two-sided')
         pval_dict[(aa, pos_label)] = p
 
-# 20 columns x 2 rows of narrow ~0.16 in cells, condensed to sit compactly on the slide
-fig, ax = plt.subplots(figsize=(4.0, 0.75))
+# 20 columns x 2 rows of ~0.2 in cells (the vertical panel's were ~0.25 x 0.38)
+fig, ax = plt.subplots(figsize=(5.0, 1.05))
 cmap_warm = LinearSegmentedColormap.from_list(
     'warm', ['#FEF9E7', '#F5B041', '#E67E22', '#C0392B', '#78281F'])
 im = ax.imshow(M.values, aspect='auto', cmap=cmap_warm, vmin=0,
@@ -132,14 +132,14 @@ for i, pos in enumerate(M.index):
                 fontsize=NUM_SIZE, fontweight='bold', color=CELL_TEXT,
                 path_effects=halo(HALO_LW))
 
-cbar = plt.colorbar(im, ax=ax, fraction=0.03, pad=0.012, aspect=7)
+cbar = plt.colorbar(im, ax=ax, fraction=0.025, pad=0.015, aspect=8)
 cbar.set_ticks(range(0, 6))
 cbar.set_label('Enrichment', fontsize=6.5)
 cbar.ax.tick_params(labelsize=6, length=2, width=0.6)
 cbar.outline.set_linewidth(0.6)
 # no title: the slide carries its own ("Amino acid enrichment at the N-terminus")
-ax.tick_params(length=2, width=0.7, pad=1)
-plt.tight_layout(pad=0.2)
+ax.tick_params(length=2, width=0.7, pad=1.5)
+plt.tight_layout()
 
 print(f'n = {n_hit} hits, n = {n_lib:,} library')
 for (aa, pos), p in sorted(pval_dict.items(), key=lambda kv: kv[1]):

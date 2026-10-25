@@ -98,8 +98,8 @@ CELL_TEXT = "#FFFFFF"  # ALL text inside a heatmap cell is white, on every cell
 # cells of the frequency heatmap sit there -- so each glyph carries a thin
 # halo in the deep end of the same ramp. The letterform stays white and one
 # colour throughout the matrix; the halo only gives it an edge to sit on.
-CELL_HALO = "#71201A"
-CELL_HALO_LW = 0.95    # points; tuned against 6 pt bold, the annotation size
+CELL_HALO = "#4A1410"
+CELL_HALO_LW = 1.15    # points; tuned against 6 pt bold, the annotation size
 
 
 CELL_STAR_BUMP = 1.8      # points the star line is set above the number's

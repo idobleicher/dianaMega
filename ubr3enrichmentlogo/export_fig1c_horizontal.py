@@ -1,0 +1,134 @@
+"""
+Fig. 1c of Fig_V3 revision.pptx -- the Best Hits / Library enrichment heatmap
+(the vertical fig1b_enrichment_heatmap) laid out HORIZONTALLY: residues run
+along the x axis, Position 2 and Position 3 are the two rows. Same data, order
+(by Position 2 enrichment), colour ramp and 0-5 scale as export_fig1b_svg.py;
+the cells are a little smaller and every label reads left to right.
+
+The significance stars are drawn in the figure, above each number, since the
+star text boxes laid over the vertical panel in the slide cannot follow the
+cells into the new layout.
+"""
+import os, sys, io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+from matplotlib.colors import LinearSegmentedColormap
+from collections import Counter
+from scipy import stats
+
+EXCEL_PATH = r'c:\Users\User\Desktop\תינוקת\dianaMega\ubr3freqencyenrichment\UBR3 Nt screen.xlsx'
+OUTPUT_DIR = r'c:\Users\User\Desktop\תינוקת\dianaMega\ubr3enrichmentlogo\figures'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+AMINO_ACIDS = list('ACDEFGHIKLMNPQRSTVWY')
+
+mpl.rcParams.update({
+    'font.family': 'sans-serif',
+    'font.sans-serif': ['Helvetica', 'Arial', 'Liberation Sans', 'DejaVu Sans'],
+    'font.size': 8,
+    'axes.titlesize': 9,
+    'axes.labelsize': 8,
+    'axes.linewidth': 0.8,
+    'svg.fonttype': 'none',
+    'figure.dpi': 600,
+    'savefig.dpi': 600,
+    'savefig.bbox': 'tight',
+    'axes.spines.top': False,
+    'axes.spines.right': False,
+})
+
+df_all  = pd.read_excel(EXCEL_PATH, sheet_name='Nprot_5_analyzed')
+df_hits = pd.read_excel(EXCEL_PATH, sheet_name='sub_high')
+
+def get_freq(series):
+    c = Counter(series.dropna())
+    t = sum(c.values())
+    return {aa: c.get(aa, 0) / t for aa in AMINO_ACIDS}
+
+def get_counts(series):
+    c = Counter(series.dropna())
+    return {aa: c.get(aa, 0) for aa in AMINO_ACIDS}
+
+def enrichment(hit_freq, lib_freq):
+    return {aa: (hit_freq.get(aa, 0) / lib_freq[aa]) if lib_freq.get(aa, 0) > 0 else 0
+            for aa in AMINO_ACIDS}
+
+lib_aa2_freq = get_freq(df_all['AA2'])
+lib_aa3_freq = get_freq(df_all['AA3'])
+hit_aa2_freq = get_freq(df_hits['AA2'])
+hit_aa3_freq = get_freq(df_hits['AA3'])
+enrich_aa2 = enrichment(hit_aa2_freq, lib_aa2_freq)
+enrich_aa3 = enrichment(hit_aa3_freq, lib_aa3_freq)
+
+enrich_matrix = pd.DataFrame({'Position 2': enrich_aa2, 'Position 3': enrich_aa3})
+sorted_by_pos2 = enrich_matrix.sort_values('Position 2', ascending=False)
+M = sorted_by_pos2.T          # rows = positions, columns = residues
+
+lib_counts_2 = get_counts(df_all['AA2'])
+lib_counts_3 = get_counts(df_all['AA3'])
+hit_counts_2 = get_counts(df_hits['AA2'])
+hit_counts_3 = get_counts(df_hits['AA3'])
+n_lib = len(df_all)
+n_hit = len(df_hits)
+
+pval_dict = {}
+for aa in AMINO_ACIDS:
+    for pos_label, hc, lc in [('Position 2', hit_counts_2, lib_counts_2),
+                              ('Position 3', hit_counts_3, lib_counts_3)]:
+        table = [[hc[aa], n_hit - hc[aa]],
+                 [lc[aa], n_lib - lc[aa]]]
+        _, p = stats.fisher_exact(table, alternative='two-sided')
+        pval_dict[(aa, pos_label)] = p
+
+# 20 columns x 2 rows of ~0.2 in cells (the vertical panel's were ~0.25 x 0.38)
+fig, ax = plt.subplots(figsize=(5.0, 1.05))
+cmap_warm = LinearSegmentedColormap.from_list(
+    'warm', ['#FEF9E7', '#F5B041', '#E67E22', '#C0392B', '#78281F'])
+im = ax.imshow(M.values, aspect='auto', cmap=cmap_warm, vmin=0,
+               vmax=max(M.values.max(), 5))
+ax.set_xticks(range(M.shape[1]))
+ax.set_xticklabels(M.columns, fontsize=7.5)
+ax.set_yticks([0, 1])
+ax.set_yticklabels(M.index, fontsize=7.5)
+
+for i, pos in enumerate(M.index):
+    for j, aa in enumerate(M.columns):
+        v = M.values[i, j]
+        p = pval_dict[(aa, pos)]
+        stars = '***' if p < 0.001 else '**' if p < 0.01 else '*' if p < 0.05 else ''
+        if v <= 1:
+            stars = ''    # the slide stars enrichments only (A pos 2, G pos 3 are depleted)
+        color = 'white' if v > 2.5 else 'black'
+        if stars:
+            ax.text(j, i - 0.2, stars, ha='center', va='center',
+                    fontsize=5.6, color=color, fontweight='bold')
+            ax.text(j, i + 0.17, f'{v:.1f}', ha='center', va='center',
+                    fontsize=5.2, color=color)
+        else:
+            ax.text(j, i, f'{v:.1f}', ha='center', va='center',
+                    fontsize=5.2, color=color)
+
+cbar = plt.colorbar(im, ax=ax, fraction=0.025, pad=0.015, aspect=8)
+cbar.set_ticks(range(0, 6))
+cbar.set_label('Enrichment', fontsize=6.5)
+cbar.ax.tick_params(labelsize=6, length=2, width=0.6)
+cbar.outline.set_linewidth(0.6)
+ax.set_title('Enrichment Heatmap (Best Hits / Library)', fontweight='bold')
+ax.tick_params(length=2, width=0.7, pad=1.5)
+plt.tight_layout()
+
+print(f'n = {n_hit} hits, n = {n_lib:,} library')
+for (aa, pos), p in sorted(pval_dict.items(), key=lambda kv: kv[1]):
+    if p < 0.05:
+        print(f'  {pos}  {aa}  enrichment {enrich_matrix.loc[aa, pos]:.2f}  p = {p:.2g}')
+
+base = 'fig1c_enrichment_heatmap_horizontal'
+for ext in ('png', 'pdf', 'svg'):
+    path = os.path.join(OUTPUT_DIR, f'{base}.{ext}')
+    fig.savefig(path, format=ext)
+    print(f"Saved: {path}")
+plt.close(fig)

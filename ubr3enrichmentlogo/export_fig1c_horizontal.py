@@ -91,19 +91,33 @@ for aa in AMINO_ACIDS:
         _, p = stats.fisher_exact(table, alternative='two-sided')
         pval_dict[(aa, pos_label)] = p
 
-# 20 columns x 2 rows of ~0.2 in cells (the vertical panel's were ~0.25 x 0.38)
-fig, ax = plt.subplots(figsize=(5.0, 1.05))
-cmap_warm = LinearSegmentedColormap.from_list(
-    'warm', ['#FEF9E7', '#F5B041', '#E67E22', '#C0392B', '#78281F'])
-im = ax.imshow(M.values, aspect='auto', cmap=cmap_warm, vmin=0,
-               vmax=max(M.values.max(), 5))
-ax.set_xticks(range(M.shape[1]))
-ax.set_xticklabels(M.columns, fontsize=6)
+# 20 columns x 2 rows; 5.0 x 1.965 in matches the box the panel was resized to on the slide
+# Look of Fig. 1g (ubr3_PG_reviewer Figure 17b, make_significance_heatmap.py):
+# its warm ramp (pg_motif_data.CMAP_SIG), white cell separators, no frame or
+# tick marks, near-black text and a hairline colour-bar outline.
+CMAP_SIG = LinearSegmentedColormap.from_list('sig_warm', [
+    '#F7F4EC', '#F4EAD0', '#F1DCA6', '#EDC76E', '#E8A33D',
+    '#DC7C31', '#C0392B', '#9B2A20', '#71201A'])
+GRID, INK, RULE = '#FFFFFF', '#1A1A1A', '#C9C4BA'
+
+fig, ax = plt.subplots(figsize=(5.0, 1.965))
+nrow, ncol = M.shape
+im = ax.imshow(M.values, aspect='auto', cmap=CMAP_SIG, vmin=0,
+               vmax=max(M.values.max(), 5),
+               extent=(-0.5, ncol - 0.5, nrow - 0.5, -0.5))
+for x in np.arange(-0.5, ncol, 1):
+    ax.axvline(x, color=GRID, linewidth=0.8)
+for y in np.arange(-0.5, nrow, 1):
+    ax.axhline(y, color=GRID, linewidth=0.8)
+for sp in ax.spines.values():
+    sp.set_visible(False)
+ax.set_xticks(range(ncol))
+ax.set_xticklabels(M.columns, fontsize=6, color=INK)
 ax.set_yticks([0, 1])
 # The slide numbers residues after the initiator Met: sheet AA2 is its
 # "N-terminal Position 1", AA3 its "Position 2" (as in panel e).
 ax.set_yticklabels(['N-terminal\nPosition 1', 'N-terminal\nPosition 2'],
-                   fontsize=5.5)
+                   fontsize=5.5, color=INK)
 
 # values from ubr3_PG_reviewer/pg_motif_data.py (CELL_TEXT, CELL_HALO, ...)
 CELL_TEXT, CELL_HALO = '#FFFFFF', '#4A1410'
@@ -125,20 +139,21 @@ for i, pos in enumerate(M.index):
         # dark halo, stars stacked above and set larger. Every number sits on
         # the same line, starred or not, so the row reads level.
         if stars:
-            ax.text(j, i - 0.22, stars, ha='center', va='center',
+            ax.text(j, i - 0.12, stars, ha='center', va='center',
                     fontsize=NUM_SIZE + STAR_BUMP, fontweight='bold',
                     color=CELL_TEXT, path_effects=halo(STAR_HALO_LW))
-        ax.text(j, i + 0.18, f'{v:.1f}', ha='center', va='center',
+        ax.text(j, i + 0.08, f'{v:.1f}', ha='center', va='center',
                 fontsize=NUM_SIZE, fontweight='bold', color=CELL_TEXT,
                 path_effects=halo(HALO_LW))
 
 cbar = plt.colorbar(im, ax=ax, fraction=0.025, pad=0.015, aspect=8)
 cbar.set_ticks(range(0, 6))
-cbar.set_label('Enrichment', fontsize=6.5)
-cbar.ax.tick_params(labelsize=6, length=2, width=0.6)
-cbar.outline.set_linewidth(0.6)
+cbar.set_label('Enrichment', fontsize=6.5, color=INK)
+cbar.ax.tick_params(labelsize=6, length=2, width=0.6, colors=INK)
+cbar.outline.set_linewidth(0.5)
+cbar.outline.set_edgecolor(RULE)
 # no title: the slide carries its own ("Amino acid enrichment at the N-terminus")
-ax.tick_params(length=2, width=0.7, pad=1.5)
+ax.tick_params(length=0, pad=2)
 plt.tight_layout()
 
 print(f'n = {n_hit} hits, n = {n_lib:,} library')

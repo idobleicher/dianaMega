@@ -16,7 +16,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-from matplotlib import font_manager
+from matplotlib import font_manager, patheffects
 from matplotlib.colors import LinearSegmentedColormap
 from collections import Counter
 from scipy import stats
@@ -105,6 +105,14 @@ ax.set_yticks([0, 1])
 ax.set_yticklabels(['N-terminal\nPosition 1', 'N-terminal\nPosition 2'],
                    fontsize=7)
 
+# values from ubr3_PG_reviewer/pg_motif_data.py (CELL_TEXT, CELL_HALO, ...)
+CELL_TEXT, CELL_HALO = '#FFFFFF', '#4A1410'
+HALO_LW, STAR_HALO_LW = 0.9, 0.6   # 17b's 1.15 / 0.75, scaled to the smaller text
+NUM_SIZE, STAR_BUMP = 5.4, 1.8
+
+def halo(lw):
+    return [patheffects.withStroke(linewidth=lw, foreground=CELL_HALO, alpha=0.9)]
+
 for i, pos in enumerate(M.index):
     for j, aa in enumerate(M.columns):
         v = M.values[i, j]
@@ -112,15 +120,17 @@ for i, pos in enumerate(M.index):
         stars = '***' if p < 0.001 else '**' if p < 0.01 else '*' if p < 0.05 else ''
         if v <= 1:
             stars = ''    # the slide stars enrichments only (A pos 2, G pos 3 are depleted)
-        color = 'white' if v > 2.5 else 'black'
+        # Cell text styled as in ubr3_PG_reviewer Figures 16c/17b
+        # (pg_motif_data.annotate_cell): white bold on every cell with a thin
+        # dark halo, stars stacked above and set larger. Every number sits on
+        # the same line, starred or not, so the row reads level.
         if stars:
-            ax.text(j, i - 0.2, stars, ha='center', va='center',
-                    fontsize=5.6, color=color, fontweight='bold')
-            ax.text(j, i + 0.17, f'{v:.1f}', ha='center', va='center',
-                    fontsize=5.2, color=color)
-        else:
-            ax.text(j, i, f'{v:.1f}', ha='center', va='center',
-                    fontsize=5.2, color=color)
+            ax.text(j, i - 0.22, stars, ha='center', va='center',
+                    fontsize=NUM_SIZE + STAR_BUMP, fontweight='bold',
+                    color=CELL_TEXT, path_effects=halo(STAR_HALO_LW))
+        ax.text(j, i + 0.18, f'{v:.1f}', ha='center', va='center',
+                fontsize=NUM_SIZE, fontweight='bold', color=CELL_TEXT,
+                path_effects=halo(HALO_LW))
 
 cbar = plt.colorbar(im, ax=ax, fraction=0.025, pad=0.015, aspect=8)
 cbar.set_ticks(range(0, 6))

@@ -98,12 +98,12 @@ cmap_warm = LinearSegmentedColormap.from_list(
 im = ax.imshow(M.values, aspect='auto', cmap=cmap_warm, vmin=0,
                vmax=max(M.values.max(), 5))
 ax.set_xticks(range(M.shape[1]))
-ax.set_xticklabels(M.columns, fontsize=7.5)
+ax.set_xticklabels(M.columns, fontsize=6)
 ax.set_yticks([0, 1])
 # The slide numbers residues after the initiator Met: sheet AA2 is its
 # "N-terminal Position 1", AA3 its "Position 2" (as in panel e).
 ax.set_yticklabels(['N-terminal\nPosition 1', 'N-terminal\nPosition 2'],
-                   fontsize=7)
+                   fontsize=5.5)
 
 # values from ubr3_PG_reviewer/pg_motif_data.py (CELL_TEXT, CELL_HALO, ...)
 CELL_TEXT, CELL_HALO = '#FFFFFF', '#4A1410'

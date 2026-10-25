@@ -93,7 +93,10 @@ im = ax.imshow(M.values, aspect='auto', cmap=cmap_warm, vmin=0,
 ax.set_xticks(range(M.shape[1]))
 ax.set_xticklabels(M.columns, fontsize=7.5)
 ax.set_yticks([0, 1])
-ax.set_yticklabels(M.index, fontsize=7.5)
+# The slide numbers residues after the initiator Met: sheet AA2 is its
+# "N-terminal Position 1", AA3 its "Position 2" (as in panel e).
+ax.set_yticklabels(['N-terminal\nPosition 1', 'N-terminal\nPosition 2'],
+                   fontsize=7)
 
 for i, pos in enumerate(M.index):
     for j, aa in enumerate(M.columns):
@@ -117,7 +120,7 @@ cbar.set_ticks(range(0, 6))
 cbar.set_label('Enrichment', fontsize=6.5)
 cbar.ax.tick_params(labelsize=6, length=2, width=0.6)
 cbar.outline.set_linewidth(0.6)
-ax.set_title('Enrichment Heatmap (Best Hits / Library)', fontweight='bold')
+# no title: the slide carries its own ("Amino acid enrichment at the N-terminus")
 ax.tick_params(length=2, width=0.7, pad=1.5)
 plt.tight_layout()
 

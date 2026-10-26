@@ -181,7 +181,7 @@ CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · "
 
 
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
-            height, positions=None, vmax=5.0, annot_size=6.0,
+            height, positions=None, vmax=5.0, annot_size=7.5,
             star_size=None):
     positions = list(positions or POS)
     star_size = annot_size + 1.8 if star_size is None else star_size
@@ -266,10 +266,9 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
     cbar.outline.set_linewidth(0.5)
     cbar.outline.set_edgecolor(pg.RULE)
     cbar.set_ticks(range(0, int(vmax) + 1))
-    cbar.set_label("$-$log$_{10}$ $p$  (dashed line: $p$ = 0.05)" if signed
-                   else "$-$log$_{10}$ $p$  (enriched cells only; dashed line: $p$ = 0.05)",
+    cbar.set_label("$-$log$_{10}$ $p$" if signed
+                   else "$-$log$_{10}$ $p$  (enriched cells only)",
                    fontsize=7, labelpad=6, color=INK)
-    cbar.ax.axhline(1.30103, color=INK, linewidth=0.7, linestyle=(0, (2, 1.6)))
 
     full = cells[(cells.kind == kind) & cells.defined]
     k = full[full.position.isin(positions)]

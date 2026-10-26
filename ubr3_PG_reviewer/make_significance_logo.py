@@ -149,12 +149,6 @@ def build(pcol, test_label, stem, q_note, positions=None,
         patch.set_edgecolor(pg.GRID)
         patch.set_linewidth(0.35)
 
-    for y, lab in [(1.30103, 'p = 0.05'), (2.0, 'p = 0.01'), (3.0, 'p = 0.001')]:
-        ax.axhline(y=y, color=pg.RULE, linewidth=0.5, linestyle=(0, (3, 2)),
-                   zorder=1)
-        ax.text(positions[-1] + 0.55, y, lab, fontsize=5, color=pg.MUTED,
-                va='center', ha='left')
-
     ax.axhline(y=0, color=pg.RULE, linewidth=0.6)
     ax.yaxis.grid(False)
     ax.xaxis.grid(False)

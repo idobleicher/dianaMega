@@ -114,7 +114,8 @@ def cell_text_effects(linewidth=CELL_HALO_LW, color=CELL_HALO):
                                    alpha=0.9)]
 
 
-def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None):
+def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None,
+                  star_dy=-0.17, num_dy=0.13):
     """One heatmap cell's annotation: `number`, with `stars` STACKED ABOVE it.
 
     Every cell of every heatmap in this package is written through here, so
@@ -137,10 +138,10 @@ def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None):
     """
     star_size = size + CELL_STAR_BUMP if star_size is None else star_size
     if stars:
-        ax.text(x, y - 0.17, stars, ha="center", va="center",
+        ax.text(x, y + star_dy, stars, ha="center", va="center",
                 fontsize=star_size, fontweight="bold", color=CELL_TEXT,
                 path_effects=cell_text_effects(CELL_STAR_HALO_LW))
-    ax.text(x, y + (0.13 if stars else 0.0), number, ha="center", va="center",
+    ax.text(x, y + (num_dy if stars else 0.0), number, ha="center", va="center",
             fontsize=size, fontweight="bold", color=CELL_TEXT,
             path_effects=cell_text_effects())
 

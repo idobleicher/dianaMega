@@ -182,7 +182,7 @@ CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · "
 
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
             height, positions=None, vmax=5.0, annot_size=7.5,
-            star_size=None):
+            star_size=None, star_dy=-0.17, num_dy=0.13):
     positions = list(positions or POS)
     star_size = annot_size + 1.8 if star_size is None else star_size
     window = positions != list(POS)
@@ -245,7 +245,8 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
             fc_txt = "∞" if np.isinf(fc) else (
                 "--" if not np.isfinite(fc) else f"{fc:.2f}")
             pg.annotate_cell(ax, c_, r, fc_txt, stars(p_),
-                             size=annot_size, star_size=star_size)
+                             size=annot_size, star_size=star_size,
+                             star_dy=star_dy, num_dy=num_dy)
 
     ax.set_xticks(range(ncol))
     ax.set_xticklabels([p + SHIFT for p in positions], fontsize=7, color=INK)
@@ -361,7 +362,10 @@ for positions, suffix, wt in WINDOWS:
             "is $-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
             "at the floor",
             "Figure16c_significance_heatmap_residues_enriched_only" + suffix,
-            8.0, positions, annot_size=14.0, star_size=12.0)
+            8.0, positions, annot_size=20.0 if suffix else 14.0,
+            star_size=14.0 if suffix else 12.0,
+            star_dy=-0.30 if suffix else -0.17,
+            num_dy=0.12 if suffix else 0.13)
 
     heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
             "Chemical class × position, coloured by significance" + wt,

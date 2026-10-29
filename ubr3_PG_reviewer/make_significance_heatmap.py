@@ -342,7 +342,7 @@ WINDOWS = [(POS, "", ""),
 for positions, suffix, wt in WINDOWS:
     # large cell text on the residue heatmaps: number dead centre in the
     # cell, stars raised above it
-    big = dict(annot_size=13.0, star_size=11.0, star_dy=-0.30, num_dy=0.0,
+    big = dict(annot_size=13.0, star_size=9.0, star_dy=-0.24, num_dy=0.13,
                halo="#330D0A")  # one shade darker than pg.CELL_HALO
 
     heatmap("residue", "p_chi2", "q_chi2", AA, True,

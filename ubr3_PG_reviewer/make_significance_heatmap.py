@@ -361,7 +361,7 @@ for positions, suffix, wt in WINDOWS:
             "is $-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
             "at the floor",
             "Figure16c_significance_heatmap_residues_enriched_only" + suffix,
-            8.0, positions, annot_size=10.0)
+            8.0, positions, annot_size=14.0, star_size=12.0)
 
     heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
             "Chemical class × position, coloured by significance" + wt,

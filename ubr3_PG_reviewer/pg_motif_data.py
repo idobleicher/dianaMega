@@ -115,7 +115,7 @@ def cell_text_effects(linewidth=CELL_HALO_LW, color=CELL_HALO):
 
 
 def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None,
-                  star_dy=-0.17, num_dy=0.13):
+                  star_dy=-0.17, num_dy=0.13, halo=CELL_HALO):
     """One heatmap cell's annotation: `number`, with `stars` STACKED ABOVE it.
 
     Every cell of every heatmap in this package is written through here, so
@@ -140,10 +140,10 @@ def annotate_cell(ax, x, y, number, stars="", size=6.0, star_size=None,
     if stars:
         ax.text(x, y + star_dy, stars, ha="center", va="center",
                 fontsize=star_size, fontweight="bold", color=CELL_TEXT,
-                path_effects=cell_text_effects(CELL_STAR_HALO_LW))
+                path_effects=cell_text_effects(CELL_STAR_HALO_LW, halo))
     ax.text(x, y + (num_dy if stars else 0.0), number, ha="center", va="center",
             fontsize=size, fontweight="bold", color=CELL_TEXT,
-            path_effects=cell_text_effects())
+            path_effects=cell_text_effects(color=halo))
 
 
 NO_TEST = "#E7E3DA"   # feature absent from both groups -- no test possible

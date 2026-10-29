@@ -182,7 +182,7 @@ CLASS_NOTE = ("Rows are ordered by chemical class — Basic K H R · "
 
 def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
             height, positions=None, vmax=5.0, annot_size=7.5,
-            star_size=None, star_dy=-0.17, num_dy=0.13):
+            star_size=None, star_dy=-0.17, num_dy=0.13, halo=pg.CELL_HALO):
     positions = list(positions or POS)
     star_size = annot_size + 1.8 if star_size is None else star_size
     window = positions != list(POS)
@@ -246,7 +246,7 @@ def heatmap(kind, pcol, qcol, order, signed, title, subtitle, stem,
                 "--" if not np.isfinite(fc) else f"{fc:.2f}")
             pg.annotate_cell(ax, c_, r, fc_txt, stars(p_),
                              size=annot_size, star_size=star_size,
-                             star_dy=star_dy, num_dy=num_dy)
+                             star_dy=star_dy, num_dy=num_dy, halo=halo)
 
     ax.set_xticks(range(ncol))
     ax.set_xticklabels([p + SHIFT for p in positions], fontsize=7, color=INK)
@@ -340,10 +340,10 @@ WINDOWS = [(POS, "", ""),
             f" (positions {pg.POS_N12[0] + SHIFT}–{pg.POS_N12[-1] + SHIFT})")]
 
 for positions, suffix, wt in WINDOWS:
-    # large cell text on the residue heatmaps; the 3-11 window has wider
-    # cells, so it takes bigger text with the stars raised clear of it
-    big = (dict(annot_size=20.0, star_size=14.0, star_dy=-0.30, num_dy=0.12)
-           if suffix else dict(annot_size=14.0, star_size=12.0))
+    # large cell text on the residue heatmaps: number dead centre in the
+    # cell, stars raised above it
+    big = dict(annot_size=13.0, star_size=11.0, star_dy=-0.30, num_dy=0.0,
+               halo="#330D0A")  # one shade darker than pg.CELL_HALO
 
     heatmap("residue", "p_chi2", "q_chi2", AA, True,
             "Position × residue enrichment, coloured by significance" + wt,

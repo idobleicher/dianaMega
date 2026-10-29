@@ -340,12 +340,18 @@ WINDOWS = [(POS, "", ""),
             f" (positions {pg.POS_N12[0] + SHIFT}–{pg.POS_N12[-1] + SHIFT})")]
 
 for positions, suffix, wt in WINDOWS:
+    # large cell text on the residue heatmaps; the 3-11 window has wider
+    # cells, so it takes bigger text with the stars raised clear of it
+    big = (dict(annot_size=20.0, star_size=14.0, star_dy=-0.30, num_dy=0.12)
+           if suffix else dict(annot_size=14.0, star_size=12.0))
+
     heatmap("residue", "p_chi2", "q_chi2", AA, True,
             "Position × residue enrichment, coloured by significance" + wt,
             "colour = $-$log$_{10}$ $p$, chi-square as reported in the "
             "workbook · cell text = fold change · "
             "deeper red = more significant",
-            "Figure16_significance_heatmap_residues" + suffix, 8.0, positions)
+            "Figure16_significance_heatmap_residues" + suffix, 8.0, positions,
+            **big)
 
     heatmap("residue", "p_fisher", "q_fisher", AA, True,
             "Position × residue enrichment, coloured by significance "
@@ -353,7 +359,7 @@ for positions, suffix, wt in WINDOWS:
             "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
             "same 2×2 tables — valid at the low cell counts here",
             "Figure16b_significance_heatmap_residues_fisher" + suffix,
-            8.0, positions)
+            8.0, positions, **big)
 
     heatmap("residue", "p_fisher", "q_fisher", AA, False,
             "Position × residue enrichment, coloured by significance "
@@ -362,10 +368,7 @@ for positions, suffix, wt in WINDOWS:
             "is $-$log$_{10}$ $p$ (Fisher exact) and depleted cells are held "
             "at the floor",
             "Figure16c_significance_heatmap_residues_enriched_only" + suffix,
-            8.0, positions, annot_size=20.0 if suffix else 14.0,
-            star_size=14.0 if suffix else 12.0,
-            star_dy=-0.30 if suffix else -0.17,
-            num_dy=0.12 if suffix else 0.13)
+            8.0, positions, **big)
 
     heatmap("category", "p_chi2", "q_chi2", CAT_ORDER, True,
             "Chemical class × position, coloured by significance" + wt,

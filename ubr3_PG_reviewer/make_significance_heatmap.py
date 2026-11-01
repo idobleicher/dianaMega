@@ -344,6 +344,9 @@ for positions, suffix, wt in WINDOWS:
     # cell, stars raised above it
     big = dict(annot_size=13.0, star_size=9.0, star_dy=-0.24, num_dy=0.13,
                halo="#330D0A")  # one shade darker than pg.CELL_HALO
+    # 14 pt on the category heatmaps; the rows are taller so stars + number fit
+    cat_big = {**big, "annot_size": 14.0}
+    cat_h = 4.6
 
     heatmap("residue", "p_chi2", "q_chi2", AA, True,
             "Position × residue enrichment, coloured by significance" + wt,
@@ -377,7 +380,7 @@ for positions, suffix, wt in WINDOWS:
             "Aromatic F Y W · Aliphatic G P A M · "
             "Hydrophobic V L I · Polar S T C N Q",
             "Figure17_significance_heatmap_categories" + suffix,
-            3.0, positions, annot_size=6.6)
+            cat_h, positions, **cat_big)
 
     heatmap("category", "p_fisher", "q_fisher", CAT_ORDER, True,
             "Chemical class × position, coloured by significance "
@@ -385,7 +388,7 @@ for positions, suffix, wt in WINDOWS:
             "colour = $-$log$_{10}$ $p$, Fisher exact recomputed from the "
             "same 2×2 tables",
             "Figure17b_significance_heatmap_categories_fisher" + suffix,
-            3.0, positions, annot_size=6.6)
+            cat_h, positions, **cat_big)
 
 # ---------------------------------------------------------------- readout
 res = cells[(cells.kind == "residue") & cells.defined].copy()

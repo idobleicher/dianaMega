@@ -15,7 +15,14 @@ position = CSV position − 1, because the figure numbers residues from the firs
 
 ## Fig. 1e: add to the end of the panel e legend
 
-Two-sided Fisher's exact test, one test per class and position. UBR3 substrates carrying an N-terminal P/G–D/E/T motif (*n* = 20 peptides) were compared with motif-carrying library peptides that were not stabilised upon UBR3 loss (*n* = 193 peptides). Colour shows −log10 *P*; numbers show the fold change (frequency in substrates / frequency in non-substrates) for cells with *P* < 0.05; \*, *P* < 0.05; \*\*, *P* < 0.01; \*\*\*, *P* < 0.001; not adjusted for multiple comparisons. Exact *P* values: basic residues at positions 4 (*P* = 0.0011), 6 (*P* = 0.0035) and 7 (*P* = 0.00039); aromatic residues at position 11 (*P* = 0.039). After Benjamini–Hochberg correction across all 126 class–position combinations (positions 3–23), only basic residues at position 7 remain significant (*q* = 0.049).
+Two-sided Fisher's exact test, one test per class and position. UBR3 substrates carrying an N-terminal P/G–D/E/T motif (*n* = 20 peptides) were compared with motif-carrying library peptides that were not stabilised upon UBR3 loss (*n* = 193 peptides). Colour shows −log10 *P*; numbers show the fold change (frequency in substrates / frequency in non-substrates) for cells with *P* < 0.05; \*, *P* < 0.05; \*\*, *P* < 0.01; \*\*\*, *P* < 0.001; not adjusted for multiple comparisons. Exact *P* values: basic residues at positions 4 (*P* = 0.0011), 6 (*P* = 0.0035) and 7 (*P* = 0.00039); aromatic residues at position 11 (*P* = 0.039). The test was run at every position from 3 to 23 (6 classes × 21 positions = 126 tests), and the panel shows positions 3–11. After Benjamini–Hochberg correction across all 126 tests, only basic residues at position 7 remain significant (*q* = 0.049).
+
+**End of the Fig. 1e addition: choose one option** (the text above uses option A)
+
+- **Option A (recommended), correct across all 126 tests:** "The test was run at every position from 3 to 23 (6 classes × 21 positions = 126 tests), and the panel shows positions 3–11. After Benjamini–Hochberg correction across all 126 tests, only basic residues at position 7 remain significant (*q* = 0.049)."
+  Use this unless the Methods say that only positions 3–11 were analysed. The tests were run at all 21 positions, so correcting only over the positions shown can look like choosing the window after seeing the data.
+- **Option B, correct across the 54 cells shown:** "After Benjamini–Hochberg correction across the 54 class–position combinations shown (6 classes × 9 positions, 3–11), basic residues at positions 4 (*q* = 0.029) and 7 (*q* = 0.021) remain significant."
+  Stronger result (two cells survive instead of one; basic residues at position 6 still do not, *q* = 0.063), but only defensible if positions 3–11 were chosen before the analysis. If you use it, say so in the Methods.
 
 If the legend does not already name the six classes, also add: "Classes: basic (K, H, R), acidic (D, E), aromatic (F, Y, W), aliphatic (G, P, A, M), hydrophobic (V, L, I), polar (S, T, C, N, Q)."
 
